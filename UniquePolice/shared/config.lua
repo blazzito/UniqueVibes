@@ -13,7 +13,7 @@ Config.RequireOnDuty = true                  -- Si está en true, requiere que P
 Config.Webhooks = {
     Admin = "",   
     Armory = "",  
-    Jail = "",    
+    Jail = "https://discord.com/api/webhooks/1508585469255090256/wx1DTTtfNfQj4YVmEqUQUMpnLXan8rp1WxLmJLwsvi__qu4bauFT45U5NPB42RXiXMs8",    
     Stash = ""    
 }
 
