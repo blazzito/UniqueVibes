@@ -1,0 +1,169 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Bebas+Neue&display=swap");
+
+:root {
+    --color-main: #ff8c00;
+    --color-accent: #00e5ff;
+    --color-bg-dark: rgba(10, 10, 12, 0.92);
+    --glass-border: rgba(255, 255, 255, 0.12);
+    --font-main: 'Quicksand', sans-serif;
+    --font-accent: 'Bebas Neue', sans-serif;
+    --radius-premium: 12px;
+    --shadow-glow: 0 0 15px rgba(255, 140, 0, 0.4);
+}
+
+#ui-container {
+    position: absolute;
+    width: 100vw; height: 100vh;
+    top: 0; left: 0;
+    pointer-events: none;
+}
+
+/* BASE NODE */
+.textui-node {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    will-change: transform, left, top;
+    transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    opacity: 0;
+}
+
+.textui-node.pinned {
+    z-index: 999;
+}
+
+.node-wrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+/* THE ELITE DOT */
+.dot-indicator {
+    width: 12px;
+    height: 12px;
+    background: var(--color-main);
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 0 0 10px var(--color-main);
+    transition: all 0.3s ease;
+}
+
+.dot-indicator::after {
+    content: "";
+    position: absolute;
+    width: 100%; height: 100%;
+    border: 2px solid var(--color-main);
+    border-radius: 50%;
+    top: -2px; left: -2px;
+    animation: dotPulse 2s infinite;
+}
+
+@keyframes dotPulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(2.5); opacity: 0; }
+}
+
+.node-wrapper.expanded .dot-indicator {
+    transform: scale(0);
+    opacity: 0;
+    width: 0;
+    margin-right: -10px;
+}
+
+/* THE KEY CUBE */
+.key-cube {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, var(--color-main) 0%, #ff5e00 100%);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: var(--font-accent);
+    font-size: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), var(--shadow-glow);
+    transform: scale(0);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.node-wrapper.expanded .key-cube {
+    transform: scale(1);
+    margin-top: 1px;
+}
+
+/* OPTIONS STACK */
+.node-content-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    transform: translateX(-10px);
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.node-wrapper.expanded .node-content-stack {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.stack-item {
+    min-width: 150px;
+    height: 38px; 
+    padding: 0 18px;
+    border-radius: var(--radius-premium);
+    display: flex;
+    align-items: center;
+    font-family: var(--font-main);
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    background: var(--color-bg-dark);
+    border: 1px solid var(--glass-border);
+    color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.stack-item.active {
+    color: #ffffff;
+    border-color: rgba(255, 140, 0, 0.5);
+    transform: translateX(10px);
+    background: rgba(20, 20, 24, 0.98);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4), 0 0 10px rgba(255, 140, 0, 0.1);
+}
+
+/* ACCENT LINE IN ACTIVE */
+.stack-item.active::after {
+    content: "";
+    position: absolute;
+    height: 70% !important;
+    left: 0;
+    width: 4px;
+    border-radius: 0 4px 4px 0;
+    background: var(--color-main);
+    box-shadow: 0 0 10px var(--color-main);
+}
+
+/* CORNER ACCENT */
+.stack-item.active::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 12px;
+    height: 12px;
+    background: linear-gradient(225deg, var(--color-main) 50%, transparent 50%);
+    border-radius: 0 var(--radius-premium) 0 4px;
+}
+
+.stack-item i {
+    margin-right: 10px;
+    font-size: 14px;
+    color: var(--color-main);
+}

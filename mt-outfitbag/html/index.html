@@ -1,0 +1,738 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <title>mt-outfitbag UI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="js/jquery.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Bebas+Neue&family=Permanent+Marker&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --panel-w: 40vh;
+      --panel-h: 60vh;
+      --pad-top: 9vh;
+      --pad-right: 6vh;
+      --pad-bottom: 1.4vh;
+      --pad-left: 11vh;
+      --card-radius: 4px;
+      --btn-radius: 6px;
+      --lock-size: 4.0vh;
+      --lock-gap: 1.2vh;
+      --close-size: 3vh;
+      --fz-name: 1.6vh;
+      --fz-amount: 1.3vh;
+      --fz-btn: 1.2vh;
+      --apply-icon: 3.2vh;
+
+      /* Elite Essence Colors & Fonts */
+      --color-orange: #ff6b00;
+      --color-petrol: #00a8cc;
+      --color-bg-dark: #0f0f0f;
+      --glass-bg: rgba(12, 12, 14, 0.95);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --font-main: 'Quicksand', sans-serif;
+      --font-accent: 'Bebas Neue', sans-serif;
+      --font-marker: 'Permanent Marker', cursive;
+      --radius-lg: 16px;
+      --radius-md: 10px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden;
+    }
+
+    body {
+      display: none;
+      font-family: var(--font-main);
+      font-weight: 500;
+      color: #fff;
+      background: transparent;
+      user-select: none;
+    }
+
+    /* Original Background Layout Preserved */
+    .outfit-bag {
+      position: absolute;
+      z-index: 100000;
+      right: 3vh;
+      top: 15vh;
+      width: var(--panel-w);
+      height: var(--panel-h);
+      background-image: url('img/outfitbag.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: 3.4vh 0;
+      transition: background-image .12s linear;
+    }
+
+    .top-left {
+      position: absolute;
+      left: 1.6vh;
+      top: 6.0vh;
+      display: flex;
+      align-items: center;
+      gap: var(--lock-gap);
+      z-index: 100020;
+    }
+
+    .public-toggle {
+      display: none;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .public-toggle-icon { display: none; }
+
+    .public-toggle img {
+      width: var(--lock-size);
+      height: var(--lock-size);
+      display: block;
+      object-fit: contain;
+      pointer-events: auto;
+      background: transparent;
+      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, .35));
+    }
+
+    .top-right {
+      position: absolute;
+      right: 1.6vh;
+      top: 5.0vh;
+      z-index: 100020;
+    }
+
+    /* Elite styled close button */
+    .close-fab {
+      width: var(--close-size);
+      height: var(--close-size);
+      display: grid;
+      place-items: center;
+      color: #fff;
+      cursor: pointer;
+      transition: .12s;
+      background: rgba(0,0,0,0.8);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: var(--btn-radius);
+      font-family: var(--font-accent);
+      font-size: 1.6vh;
+      line-height: 1;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    }
+    .close-fab:hover {
+      transform: translateY(-1px) scale(1.05);
+      background: var(--color-orange);
+      border-color: var(--color-orange);
+      color: #fff;
+    }
+    .close-fab:active { transform: scale(.96); }
+
+    .main-container {
+      position: absolute;
+      inset: 0;
+      padding: var(--pad-top) var(--pad-right) var(--pad-bottom) var(--pad-left);
+      display: flex;
+      flex-direction: column;
+      gap: 0.6vh;
+    }
+
+    .amount {
+      position: absolute;
+      right: calc(var(--pad-right) + 4vh);
+      top: 11.2vh;
+      font-family: var(--font-marker);
+      font-size: var(--fz-amount);
+      color: var(--color-orange);
+      text-shadow: 2px 2px 0px black;
+      z-index: 100010;
+      transform: rotate(-5deg);
+    }
+
+    .bag-container {
+      height: 44vh;
+      overflow-y: auto;
+      padding-right: 4px;
+      display: block;
+    }
+
+    /* Webkit Scrollbar */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); border-radius: 5px; }
+    ::-webkit-scrollbar-thumb { background: var(--color-petrol); border-radius: 5px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--color-orange); }
+
+    /* ELITE ESSENCE ITEM STYLING */
+    .outfit {
+      display: block;
+      margin: 0 0 10px 0;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: rgba(15, 15, 15, 0.95);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      transition: transform .16s ease, background .16s ease, border-color .16s ease;
+      position: relative;
+    }
+
+    /* Left accent line */
+    .outfit::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 40%;
+      background: linear-gradient(to bottom, var(--color-orange), var(--color-petrol));
+      transition: height 0.3s ease;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .outfit:hover {
+      transform: translateX(4px);
+      background: rgba(25, 25, 25, 0.95);
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .outfit:hover::after {
+      height: 70%;
+    }
+
+    .outfit.disabled {
+      opacity: .6;
+      filter: grayscale(80%);
+    }
+
+    .row-title {
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+      cursor: pointer;
+      min-height: 38px;
+    }
+
+    .row-title .name {
+      font-family: var(--font-accent);
+      font-size: var(--fz-name);
+      font-weight: 400;
+      letter-spacing: 1px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 75%;
+      line-height: 1.2;
+      color: #fff;
+    }
+
+    .row-title .chev {
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.4);
+      transition: .15s;
+    }
+
+    .outfit.open .row-title .chev {
+      transform: rotate(180deg);
+      color: var(--color-orange);
+    }
+    .outfit.open::after {
+      height: 100%;
+    }
+    .outfit.open {
+      background: rgba(20, 20, 20, 0.95);
+    }
+    .outfit.open .row-title .name {
+      color: var(--color-petrol);
+    }
+
+    .inner {
+      display: none;
+      padding: 8px 10px 12px;
+    }
+    .outfit.open .inner { display: block; animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(-4px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .inner .line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 4px;
+      flex-wrap: wrap;
+    }
+
+    .options {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    /* ELITE ICON BUTTONS */
+    .icon-apply {
+      width: var(--apply-icon);
+      height: var(--apply-icon);
+      border-radius: 6px;
+      background: rgba(255,255,255,0.05) center/60% no-repeat;
+      border: 1px solid rgba(255,255,255,0.05);
+      cursor: pointer;
+      transition: .15s ease;
+      filter: invert(1);
+    }
+
+    .icon-apply:hover {
+      background-color: var(--color-petrol);
+      transform: scale(1.05);
+      filter: invert(0);
+      border-color: var(--color-petrol);
+      box-shadow: 0 0 10px rgba(0, 168, 204, 0.3);
+    }
+
+    .icon-full { background-image: url('img/full.png'); }
+    .icon-torso { background-image: url('img/torso.png'); }
+    .icon-bottom { background-image: url('img/bottom.png'); }
+    .icon-head { background-image: url('img/head.png'); }
+
+    /* ELITE ACTION BUTTONS */
+    .actions {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btnw {
+      background: rgba(255,255,255,0.05);
+      color: #dfdfdf;
+      border: 1px solid rgba(255,255,255,0.1);
+      height: 28px;
+      padding: 0 15px;
+      border-radius: var(--btn-radius);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: var(--font-main);
+      font-weight: 600;
+      font-size: 1.1vh;
+      cursor: pointer;
+      transition: .12s ease;
+      user-select: none;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .btnw:hover {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .btnw:active { transform: scale(.985); }
+
+    .btnw-danger:hover {
+      background: rgba(255,107,0,0.15) !important;
+      color: var(--color-orange) !important;
+      border-color: rgba(255,107,0,0.3) !important;
+    }
+
+    .bag-buttons {
+      margin-top: .4vh;
+      width: 100%;
+      display: flex;
+      gap: .5vh;
+    }
+
+    /* ELITE SAVE BUTTON */
+    .btn-save {
+      flex: 1;
+      height: 40px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(45deg, var(--color-orange), #ff8c33);
+      color: #fff;
+      border: none;
+      font-family: var(--font-accent);
+      font-size: 1.8vh;
+      font-weight: 400;
+      letter-spacing: 1px;
+      transition: .14s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3);
+      cursor: pointer;
+    }
+
+    .btn-save:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 107, 0, 0.4);
+      filter: brightness(1.05);
+    }
+    .btn-save:active { transform: scale(.98); }
+
+    /* ELITE MODALS */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 100050;
+      background: rgba(0, 0, 0, .6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-card {
+      width: 380px;
+      max-width: 90vw;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--glass-bg);
+      color: #fff;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      border: 1px solid var(--glass-border);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .modal-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 30px;
+      height: 30px;
+      background: linear-gradient(225deg, var(--color-orange) 50%, transparent 50%);
+      z-index: 10;
+    }
+
+    .modal-head {
+      padding: 18px 20px;
+      font-family: var(--font-accent);
+      font-size: 20px;
+      color: #fff;
+      background: rgba(255, 255, 255, 0.03);
+      border-bottom: 2px solid var(--color-orange);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .modal-body {
+      padding: 25px 20px;
+      background: transparent;
+    }
+
+    .modal-actions {
+      padding: 15px 20px;
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      background: rgba(0,0,0,0.2);
+    }
+
+    .input {
+      width: 100%;
+      height: 48px;
+      border-radius: var(--radius-md);
+      padding: 0 15px;
+      background: rgba(0,0,0,0.3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #fff;
+      outline: none;
+      font-family: var(--font-main);
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+    .input:focus {
+      border-color: var(--color-petrol);
+      box-shadow: 0 0 10px rgba(0, 168, 204, 0.2);
+      background: rgba(0,0,0,0.5);
+    }
+    .input::placeholder {
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .modal-actions .btnw {
+      height: 38px;
+      padding: 0 20px;
+      font-size: 13px;
+    }
+    .btnw-primary {
+      background: var(--color-petrol);
+      color: #fff;
+      border: none;
+    }
+    .btnw-primary:hover {
+      background: #008eb0;
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="outfit-bag" id="panel">
+    <div class="top-left">
+      <div id="public-toggle" class="public-toggle" title="">
+        <div id="make-public" class="public-toggle-icon"><img src="img/lock.png" alt="lock"></div>
+        <div id="make-private" class="public-toggle-icon"><img src="img/unlock.png" alt="unlock"></div>
+      </div>
+    </div>
+
+    <div class="top-right">
+      <div class="close-fab" id="close-ui">✕</div>
+    </div>
+
+    <span id="amount" class="amount"></span>
+
+    <div class="main-container">
+      <div id="outfits" class="bag-container"></div>
+      <div class="bag-buttons">
+        <div id="save-outfit" class="btn-save"><span id="locale-save-outfit">GUARDAR OUTFIT</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-save" class="modal-backdrop" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true">
+      <div class="modal-head">Guardar outfit</div>
+      <div class="modal-body">
+        <input id="save-name" class="input" placeholder="Nombre del outfit" />
+      </div>
+      <div class="modal-actions">
+        <div class="btnw" id="save-cancel">Cancelar</div>
+        <div class="btnw btnw-primary" id="save-confirm">Guardar</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-rename" class="modal-backdrop" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true">
+      <div class="modal-head">Renombrar outfit</div>
+      <div class="modal-body">
+        <input id="rename-name" class="input" placeholder="Nuevo nombre" />
+      </div>
+      <div class="modal-actions">
+        <div class="btnw" id="rename-cancel">Cancelar</div>
+        <div class="btnw btnw-primary" id="rename-confirm">Renombrar</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    $(function () {
+      let amount = 0, maxAmount = 10, owned = true, bagLocked = true, currentModel = 0;
+      let allowSharing = false;
+      let isModalOpen = false;
+
+      const RES = GetParentResourceName ? GetParentResourceName() : 'mt-outfitbag';
+      const post = (name, payload) => fetch(`https://${RES}/${name}`, { method: 'POST', body: JSON.stringify(payload || {}) });
+
+      const $body = $('body');
+      const $panel = $('#panel');
+      const $main = $('.main-container');
+      const $amount = $('#amount');
+      const $toggle = $('#public-toggle');
+      const $lock = $('#make-public');
+      const $unlock = $('#make-private');
+
+      const $modalSave = $('#modal-save');
+      const $modalRename = $('#modal-rename');
+      const $inpSave = $('#save-name');
+      const $inpRename = $('#rename-name');
+      let renameTargetId = null;
+
+      function setBackgroundByLock() {
+        if (bagLocked) $panel.css('background-image', "url('img/bag.png')");
+        else $panel.css('background-image', "url('img/outfitbag.png')");
+      }
+
+      function placeLockButton() {
+        if (!owned) { $toggle.hide(); return; }
+        $toggle.show();
+        $lock.hide(); $unlock.hide();
+        if (bagLocked) $lock.show(); else $unlock.show();
+      }
+
+      function showContents(show) {
+        if (show) {
+          $main.stop(true, true).fadeIn(120);
+          $amount.stop(true, true).fadeIn(120);
+        } else {
+          $main.stop(true, true).fadeOut(120);
+          $amount.stop(true, true).fadeOut(120);
+        }
+      }
+
+      function applyMode(animated = true) {
+        setBackgroundByLock();
+        placeLockButton();
+        if (animated) showContents(!bagLocked);
+        else { if (bagLocked) { $main.hide(); $amount.hide(); } else { $main.show(); $amount.show(); } }
+        refreshAmount();
+      }
+
+      function setOutfits(outfits) {
+        $('#outfits').html(''); amount = 0; (outfits || []).forEach(o => appendOutfit(o));
+        refreshAmount();
+      }
+
+      function appendOutfit(data) {
+        amount++;
+        const disabled = (Number(currentModel) !== Number(data.model));
+        const ownerActions = owned ? `
+          <div class="actions">
+            <div class="btnw btnw-danger action-delete" title="Eliminar">Eliminar</div>
+            <div class="btnw action-rename" title="Renombrar">Renombrar</div>
+          </div>
+        ` : '';
+
+        const html = `
+          <div class="outfit ${disabled ? 'disabled' : ''}" outfitId="${data.id}" outfitName="${data.name}">
+            <div class="row-title open-outfit">
+              <div class="name" title="${data.name}">${data.name}</div>
+              <div class="chev">▾</div>
+            </div>
+            <div class="inner">
+              <div class="line">
+                <div class="options">
+                  <div class="icon-apply icon-full apply"   option="full"   title="Aplicar completo"></div>
+                  <div class="icon-apply icon-torso apply"  option="top"    title="Solo torso"></div>
+                  <div class="icon-apply icon-bottom apply" option="bottom" title="Solo parte baja"></div>
+                  <div class="icon-apply icon-head apply"   option="head"   title="Solo cabeza"></div>
+                </div>
+                ${ownerActions}
+              </div>
+            </div>
+          </div>`;
+        $('#outfits').append(html);
+      }
+
+      function refreshAmount() {
+        if (owned && !bagLocked) {
+          $('#save-outfit').show();
+          $('#amount').text(String(amount));
+        } else {
+          $('#save-outfit').hide();
+          $('#amount').text('');
+        }
+      }
+
+      function openModal($m, $input) {
+        isModalOpen = true;
+        $m.css('display', 'flex').attr('aria-hidden', 'false');
+        setTimeout(() => { $input.trigger('focus'); $input[0]?.select?.(); }, 0);
+      }
+
+      function closeModal($m) {
+        $m.hide().attr('aria-hidden', 'true');
+        if ($('#modal-save:visible').length === 0 && $('#modal-rename:visible').length === 0) {
+          isModalOpen = false;
+        }
+      }
+
+      $('#save-outfit').on('click', function () {
+        $inpSave.val('');
+        openModal($modalSave, $inpSave);
+      });
+      $('#save-cancel').on('click', () => closeModal($modalSave));
+      $('#save-confirm').on('click', function () {
+        const name = $inpSave.val();
+        post('SaveOutfit', { name });
+        closeModal($modalSave);
+      });
+
+      $(document).on('click', '.action-rename', function () {
+        const $o = $(this).closest('.outfit');
+        renameTargetId = $o.attr('outfitId');
+        $inpRename.val($o.attr('outfitName') || '');
+        openModal($modalRename, $inpRename);
+      });
+      $('#rename-cancel').on('click', () => closeModal($modalRename));
+      $('#rename-confirm').on('click', function () {
+        const name = $inpRename.val();
+        if (renameTargetId) post('RenameOutfit', { id: renameTargetId, name });
+        closeModal($modalRename);
+      });
+
+      window.addEventListener('message', ({ data }) => {
+        if (!data || !data.event) return;
+
+        if (data.event === 'show') {
+          owned = !!data.owned;
+          bagLocked = (typeof data.bagLocked === 'boolean') ? data.bagLocked : true;
+          currentModel = Number(data.currentModel) || 0;
+
+          if (data.state) {
+            setOutfits(data.outfits || []);
+            maxAmount = Number(data.maxAmount) || maxAmount;
+            applyMode(false);
+            try { $body.fadeIn(120); } catch (e) { $body.show(); }
+          } else {
+            closeModal($modalSave);
+            closeModal($modalRename);
+            try { $body.fadeOut(120); } catch (e) { $body.hide(); }
+          }
+          return;
+        }
+
+        if (data.event === 'config') {
+          maxAmount = Number(data.maxAmount) || maxAmount;
+          allowSharing = !!data.allowSharing;
+          if (data.locale && data.locale.save) $('#locale-save-outfit').text(data.locale.save);
+          return;
+        }
+
+        if (data.event === 'set') { setOutfits(data.outfits || []); return; }
+        if (data.event === 'clear') { $('#outfits').html(''); amount = 0; refreshAmount(); return; }
+        if (data.event === 'update-lock') {
+          bagLocked = !!data.bagLocked;
+          applyMode();
+          return;
+        }
+      });
+
+      $('#public-toggle').on('click', function () {
+        if (!owned) return;
+        bagLocked = !bagLocked;
+        applyMode();
+        post('ToggleLock', { unlock: !bagLocked, bagLocked });
+      });
+
+      $('#close-ui').on('click', () => { if (!isModalOpen) post('CloseBag'); });
+      document.addEventListener('keyup', (e) => {
+        if (isModalOpen) return;
+        if (['Escape', 'Backspace', 'e', ' '].includes(e.key)) post('CloseBag');
+      });
+
+      $(document).on('click', '.open-outfit', function () {
+        const $o = $(this).closest('.outfit'); const id = $o.attr('outfitId');
+        if ($o.hasClass('disabled')) { post('PreviewOutfit', { id }); return; }
+        $('.outfit').not($o).removeClass('open'); $o.toggleClass('open');
+        if ($o.hasClass('open')) post('PreviewOutfit', { id });
+      });
+
+      $(document).on('click', '.apply', function () {
+        const $o = $(this).closest('.outfit'); const id = $o.attr('outfitId'); const type = $(this).attr('option');
+        post('ApplyOutfit', { id, type });
+      });
+
+      $(document).on('click', '.action-delete', function () {
+        const $o = $(this).closest('.outfit'); const id = $o.attr('outfitId');
+        $o.css('opacity', '1%'); post('DeleteOutfit', { id });
+      });
+
+      post('UILoaded');
+    });
+  </script>
+</body>
+
+</html>

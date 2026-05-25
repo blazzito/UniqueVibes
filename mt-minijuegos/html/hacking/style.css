@@ -1,0 +1,279 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+@font-face {
+    font-family: 'Evogria';
+    src: url('../lockpick/fonts/evogria.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    background: transparent;
+    overflow: hidden;
+    user-select: none;
+}
+
+:root {
+    --primary: #850e49f2;
+    --success: #1c850ef2;
+    --danger: #ef4444;
+    --cubic: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ========== CONTAINER ========== */
+#hacking-container {
+    position: fixed;
+    right: 3vh;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8vh;
+    z-index: 9999;
+}
+
+/* ========== LABEL SUPERIOR ========== */
+.hacking-label {
+    width: 100%;
+    text-align: center;
+    font-size: 1vh;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 100;
+    font-family: 'Evogria', sans-serif;
+    letter-spacing: 0.08vh;
+    text-transform: uppercase;
+    margin-bottom: 0.5vh;
+}
+
+/* ========== INFO BAR ========== */
+#hacking-container .hacking-info-bar,
+#hacking-container .info-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 55vh;
+    padding: 1.5vh 2vh;
+    background: rgba(0, 0, 0, 0.7);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.8vh;
+    box-shadow: 0 0.5vh 2vh rgba(0, 0, 0, 0.5);
+    outline: 0.1vh dashed rgba(0, 0, 0, 0.7);
+    outline-offset: 0.3vh;
+    transition: var(--cubic) 0.3s all;
+}
+
+#hacking-container .info-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5vh;
+    min-width: 8vh;
+}
+
+#hacking-container .info-item.timer {
+    min-width: 13vh;
+    width: 13vh;
+    justify-content: center;
+}
+
+#hacking-container .value {
+    font-family: 'Evogria', sans-serif;
+    font-size: 1.25vh;
+    color: rgba(255, 255, 255, 0.55);
+    font-weight: 100;
+    letter-spacing: 0.1vh;
+    line-height: 1;
+    text-align: center;
+}
+
+#hacking-container .info-item.timer .value {
+    font-size: 2.5vh;
+    color: #fffffff2;
+    text-shadow: 0 0 0.8vh #ffffff9c;
+    letter-spacing: 0.1vh;
+}
+
+#hacking-container .progress-value {
+    font-size: 1.25vh;
+}
+
+/* ========== PROGRESS DOTS ========== */
+#hacking-progress-dots {
+    display: flex;
+    gap: 1.5vh;
+    padding: 0.5vh;
+}
+
+#hacking-progress-dots .progress-dot {
+    width: 1.2vh;
+    height: 1.2vh;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.6);
+    border: 0.15vh solid rgba(255, 255, 255, 0.2);
+    transition: var(--cubic) 0.3s all;
+}
+
+#hacking-progress-dots .progress-dot.active {
+    background: var(--primary);
+    border-color: var(--primary);
+    box-shadow: 0 0 0.8vh var(--primary);
+    animation: hackingPulse 1.5s infinite;
+}
+
+#hacking-progress-dots .progress-dot.completed {
+    background: var(--success);
+    border-color: var(--success);
+    box-shadow: 0 0 0.5vh var(--success);
+}
+
+@keyframes hackingPulse {
+    0%, 100% { 
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% { 
+        transform: scale(1.15);
+        opacity: 0.9;
+    }
+}
+
+/* ========== CODE GRID ========== */
+.code-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5vh;
+    width: 55vh;
+    padding: 3vh;
+    background: rgba(0, 0, 0, 0.7);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.8vh;
+    box-shadow: 0 0.5vh 2vh rgba(0, 0, 0, 0.5);
+    outline: 0.1vh dashed rgba(0, 0, 0, 0.7);
+    outline-offset: 0.3vh;
+}
+
+.code-cell {
+    aspect-ratio: 1;
+    background: rgba(0, 0, 0, 0.5);
+    border: 0.1vh solid rgba(255, 255, 255, 0.15);
+    border-radius: 0.6vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Evogria', sans-serif;
+    font-size: 3.5vh;
+    color: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: var(--cubic) 0.2s all;
+    position: relative;
+    overflow: hidden;
+}
+
+.code-cell:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.code-cell.showing {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+    box-shadow: 0 0 1.5vh var(--primary);
+    transform: scale(1.05);
+}
+
+.code-cell.correct {
+    background: var(--success);
+    color: white;
+    border-color: var(--success);
+    box-shadow: 0 0 1.5vh var(--success);
+    animation: correctPulse 0.4s ease;
+}
+
+.code-cell.wrong {
+    background: var(--danger);
+    color: white;
+    border-color: var(--danger);
+    box-shadow: 0 0 1.5vh var(--danger);
+    animation: shake 0.3s ease;
+}
+
+.code-cell.disabled {
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+@keyframes correctPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-0.8vh); }
+    20%, 40%, 60%, 80% { transform: translateX(0.8vh); }
+}
+
+/* ========== INSTRUCTIONS ========== */
+#hacking-container .instructions {
+    font-family: 'Quicksand', sans-serif;
+    text-align: center;
+    padding: 1vh 2vh;
+    background: rgba(0, 0, 0, 0.7);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.8vh;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.2vh;
+    letter-spacing: 0.08vh;
+    text-transform: uppercase;
+    font-weight: 600;
+    box-shadow: 0 0.5vh 2vh rgba(0, 0, 0, 0.5);
+    outline: 0.1vh dashed rgba(0, 0, 0, 0.7);
+    outline-offset: 0.3vh;
+    transition: var(--cubic) 0.3s all;
+}
+
+#hacking-container .instructions strong {
+    color: white;
+    font-family: 'Evogria', sans-serif;
+    font-weight: 100;
+    text-shadow: 0 0 0.8vh rgba(255, 255, 255, 0.6);
+}
+
+/* Timer Warning */
+#hacking-container .info-item.timer .value.warning {
+    color: #f59e0b;
+    text-shadow: 0 0 0.8vh #f59e0b;
+}
+
+#hacking-container .info-item.timer .value.danger {
+    color: var(--danger);
+    text-shadow: 0 0 0.8vh var(--danger);
+    animation: hackingPulse 0.5s infinite;
+}
+
+/* ========== FADE IN ANIMATION ========== */
+@keyframes fadeIn {
+    from { 
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to { 
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+#hacking-container {
+    animation: fadeIn 0.3s var(--cubic);
+}
+

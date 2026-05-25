@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MT Fuel System</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Iconos: FontAwesome + Lucide (Como el Dealership) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- MENU DE REPOSTAJE (USUARIO) -->
+        <div id="refuel-container" class="refuel-menu" style="display: none;">
+            <div class="menu-header">
+                <div class="icon-box"><i data-lucide="fuel"></i></div>
+                <span>Carga de Combustible</span>
+            </div>
+            
+            <div id="fuel-list" class="fuel-grid">
+                <!-- Se rellena dinámicamente -->
+            </div>
+
+            <div class="fuel-gauge-panel">
+                <div class="gauge-info">
+                    <div class="info-item">
+                        <span class="label">CANTIDAD</span>
+                        <span class="value"><span id="selected-amount">0</span> L</span>
+                    </div>
+                    <div class="info-item text-right">
+                        <span class="label">TOTAL A PAGAR</span>
+                        <span class="value price">$<span id="total-price">0</span></span>
+                    </div>
+                </div>
+                <div class="progress-bar-container">
+                    <div id="gauge-current" class="bar-current" style="width: 0%;"></div>
+                    <div id="gauge-selected" class="bar-selected" style="width: 0%;"></div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN DE BIDÓN -->
+            <div class="jerrycan-section" style="padding: 1.5vh; margin: 1vh 0; background: rgba(255,255,255,0.02); border-radius: 1vh; border: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center;">
+                <div style="display: flex; align-items: center; gap: 1.5vh;">
+                    <div style="width: 4vh; height: 4vh; background: rgba(255,170,0,0.1); border-radius: 0.8vh; display: flex; align-items: center; justify-content: center;">
+                        <i data-lucide="container" style="width: 2vh; height: 2vh; color: #fa0;"></i>
+                    </div>
+                    <div style="display: flex; flex-direction: column;">
+                        <span style="font-family: 'Evogria'; font-size: 1.2vh; color: #fff;">BIDÓN DE GASOLINA</span>
+                        <span style="font-size: 0.9vh; color: rgba(255,255,255,0.4);">OBJETO DE UN SOLO USO (50L)</span>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 1vh;">
+                    <div class="pay-btn jerry-btn" onclick="buyJerrycan('cash')" style="padding: 0.8vh 1.5vh; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 0.6vh; font-size: 1.2vh; cursor: pointer; display: flex; align-items: center; gap: 0.5vh; font-family: 'Evogria';">
+                        <i data-lucide="banknote" style="width: 1.4vh; height: 1.4vh;"></i> $50
+                    </div>
+                    <div class="pay-btn jerry-btn" onclick="buyJerrycan('university')" style="padding: 0.8vh 1.5vh; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 0.6vh; font-size: 1.2vh; cursor: pointer; display: flex; align-items: center; gap: 0.5vh; font-family: 'Evogria';">
+                        <i data-lucide="landmark" style="width: 1.4vh; height: 1.4vh;"></i> $50
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-footer">
+                <div class="pay-btn cash" onclick="payFuel('cash')">
+                    <i data-lucide="banknote"></i>
+                    <span>Efectivo</span>
+                </div>
+                <div class="pay-btn bank" onclick="payFuel('university')">
+                    <i data-lucide="landmark"></i>
+                    <span>Banco</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- PANEL DE ADMINISTRACIÓN (Estilo Dealership Management) -->
+        <div id="admin-container" class="admin-panel" style="display: none;">
+            <div class="admin-header">
+                <div class="admin-title">ADMINISTRACIÓN DE COMBUSTIBLE</div>
+                <div class="admin-tabs">
+                    <div class="tab-item active" onclick="switchTab('stations')"><i data-lucide="map-pin"></i> ESTACIONES</div>
+                    <div class="tab-item" onclick="switchTab('stock')"><i data-lucide="layers"></i> INVENTARIO</div>
+                    <div class="tab-item" onclick="switchTab('prices')"><i data-lucide="tag"></i> PRECIOS</div>
+                </div>
+            </div>
+
+            <div class="admin-content">
+                <div class="admin-toolbar">
+                    <div class="search-wrapper">
+                        <i data-lucide="search"></i>
+                        <input type="text" id="station-search" placeholder="Buscar estaciones..." oninput="filterStations()">
+                    </div>
+                    <div class="btn-primary" onclick="openCreateModal()">
+                        <i data-lucide="plus-circle"></i> Agregar Estación
+                    </div>
+                    <div class="btn-refill" onclick="refillAll()">
+                        <i data-lucide="refresh-cw"></i> Rellenar Todas
+                    </div>
+                </div>
+
+                <div id="stations-list" class="stations-grid">
+                    <!-- Se rellena dinámicamente -->
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL (Estilo Dealership Modal) -->
+        <div id="modal-overlay" class="modal-wrapper" style="display: none;">
+            <div class="modal-box">
+                <div class="modal-header">
+                    <h3 id="modal-title">EDITAR ESTACIÓN</h3>
+                    <div class="close-modal" onclick="closeModal()"><i data-lucide="x"></i></div>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>NOMBRE DE LA ESTACIÓN</label>
+                        <div class="input-wrapper">
+                            <i data-lucide="type"></i>
+                            <input type="text" id="edit-name" placeholder="Escribe el nombre...">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>ÁREA DE LA ZONA (POLYZONE)</label>
+                        <div id="zone-status">
+                            <div class="status-alert warning"><i data-lucide="alert-triangle"></i> Sin zona creada</div>
+                        </div>
+                        <button class="btn-action-outline" onclick="startZoneCreation()"><i data-lucide="box"></i> Crear Zona</button>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-col">
+                            <label>CAPACIDAD MÁXIMA (LITROS)</label>
+                            <div class="capacity-grid">
+                                <div class="mini-input"><span>95</span><input type="number" id="edit-stock-b"></div>
+                                <div class="mini-input"><span>98</span><input type="number" id="edit-stock-a"></div>
+                                <div class="mini-input"><span>QUERO</span><input type="number" id="edit-stock-c"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-col">
+                            <label>PRECIOS INICIALES ($/L)</label>
+                            <div class="capacity-grid">
+                                <div class="mini-input"><span>95</span><input type="number" id="edit-price-b" step="0.01"></div>
+                                <div class="mini-input"><span>98</span><input type="number" id="edit-price-a" step="0.01"></div>
+                                <div class="mini-input"><span>QUERO</span><input type="number" id="edit-price-c" step="0.01"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-cancel" onclick="closeModal()">Cancelar</button>
+                    <button class="btn-save" onclick="saveStation()">Guardar Cambios</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL DE CONFIRMACIÓN (NUEVO) -->
+        <div id="confirm-modal" class="modal-wrapper" style="display: none;">
+            <div class="modal-box confirm-box">
+                <div class="modal-header">
+                    <h3 style="color: #f44;"><i data-lucide="alert-circle"></i> CONFIRMAR ELIMINACIÓN</h3>
+                    <div class="close-modal" onclick="closeConfirm()"><i data-lucide="x"></i></div>
+                </div>
+                <div class="modal-body">
+                    <p id="confirm-text" style="text-align: center; font-size: 1.4vh; color: var(--text-muted);"></p>
+                </div>
+                <div class="modal-footer" style="display: flex; gap: 1vh;">
+                    <button class="btn-cancel" onclick="closeConfirm()" style="flex: 1;">CANCELAR</button>
+                    <button id="confirm-btn" class="btn-save" style="flex: 1; background: #f44;">ELIMINAR ESTACIÓN</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Inicializar Lucide Icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>

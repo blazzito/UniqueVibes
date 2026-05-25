@@ -1,0 +1,18 @@
+import { c as createLucideIcon } from './index-f7c7acfe.js';
+
+/**
+ * @license lucide-react v0.476.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+
+
+const __iconNode = [
+  ["path", { d: "M6 12h12", key: "8npq4p" }],
+  ["path", { d: "M6 20V4", key: "1w1bmo" }],
+  ["path", { d: "M18 20V4", key: "o2hl4u" }]
+];
+const Heading = createLucideIcon("Heading", __iconNode);
+
+export { __iconNode, Heading as default };

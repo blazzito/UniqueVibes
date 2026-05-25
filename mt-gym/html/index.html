@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>MT GYM</title>
+</head>
+
+<body>
+    <!-- Main Stats Menu -->
+    <section class="section-main">
+        <div class="elite-panel">
+            <div class="panel-header">
+                <div class="header-tag">Habilidades</div>
+                <button class="exit-btn" onclick="Close()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div class="skills-list">
+                <!-- Skills injected via JS -->
+            </div>
+
+            <div class="panel-footer">
+                <div class="footer-text">MT-GYM // PREMIUM SYSTEM</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workout Timer -->
+    <section class="section-timer">
+        <div class="timer-card">
+            <div class="timer-tag">SESIÓN ACTIVA</div>
+            <h1 id="timer-val">00:00</h1>
+        </div>
+    </section>
+
+    <!-- Progress Notification -->
+    <section class="section-notify">
+        <div class="notify-card">
+            <div class="notify-tag">PROGRESO ADQUIRIDO</div>
+            <div id="notify-text"></div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

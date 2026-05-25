@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MT VIP System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <div v-if="visible" v-cloak class="mt-panel-wrapper">
+            <div class="mt-panel">
+                <!-- Sidebar Navigation -->
+                <div class="sidebar">
+                    <div class="brand">
+                        <div class="logo-box">
+                            <i data-lucide="crown"></i>
+                        </div>
+                        <div class="brand-text">
+                            <h1>MT-VIP</h1>
+                            <p>ELITE SYSTEM</p>
+                        </div>
+                    </div>
+
+                    <nav>
+                        <div v-for="tab in tabs" 
+                             :key="tab.id" 
+                             class="nav-item" 
+                             :class="{ active: activeTab === tab.id }"
+                             @click="activeTab = tab.id">
+                            <i :data-lucide="tab.icon"></i>
+                            <span>{{ tab.label }}</span>
+                        </div>
+                    </nav>
+                </div>
+
+                <!-- Main Content Area -->
+                <div class="main-content">
+                    <header>
+                        <div class="page-title">
+                            <h2>{{ getActiveTabLabel() }}</h2>
+                            <p>GESTIÓN DE PRIVILEGIOS VIP</p>
+                        </div>
+                        <div class="admin-badge">
+                            <div class="admin-info">
+                                <span class="rank">ADMINISTRADOR</span>
+                                <span class="name">ELMATA DEV</span>
+                            </div>
+                            <div class="avatar">M</div>
+                        </div>
+                    </header>
+
+                    <div class="content-body custom-scrollbar">
+                        <!-- Dashboard Tab -->
+                        <div v-show="activeTab === 'dashboard'" class="fade-in" key="tab-dashboard">
+                            <div class="stats-grid">
+                                <div class="stat-card" style="--accent: #60a5fa">
+                                    <div class="stat-icon"><i data-lucide="users"></i></div>
+                                    <div class="stat-info">
+                                        <span class="label">USUARIOS VIP</span>
+                                        <span class="value">{{ data.users.length }}</span>
+                                    </div>
+                                </div>
+                                <div class="stat-card" style="--accent: #fbbf24">
+                                    <div class="stat-icon"><i data-lucide="crown"></i></div>
+                                    <div class="stat-info">
+                                        <span class="label">RANGOS ACTIVOS</span>
+                                        <span class="value">{{ data.ranks.length }}</span>
+                                    </div>
+                                </div>
+                                <div class="stat-card" style="--accent: #34d399">
+                                    <div class="stat-icon"><i data-lucide="coins"></i></div>
+                                    <div class="stat-info">
+                                        <span class="label">COINS TOTALES</span>
+                                        <span class="value">{{ data.totalCoins ? data.totalCoins.toLocaleString() : '0' }}</span>
+                                    </div>
+                                </div>
+                                <div class="stat-card" style="--accent: #a78bfa">
+                                    <div class="stat-icon"><i data-lucide="ticket"></i></div>
+                                    <div class="stat-info">
+                                        <span class="label">CUPONES</span>
+                                        <span class="value">{{ data.codes.length }}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="dashboard-rows">
+                                <div class="data-box">
+                                    <div class="box-header">
+                                        <i data-lucide="clock"></i>
+                                        <h3>Actividad Reciente</h3>
+                                    </div>
+                                    <div class="box-content">
+                                        <div v-for="(user, i) in data.users.slice(0, 6)" :key="i" class="list-item">
+                                            <div class="item-left">
+                                                <span class="idx">#{{ i+1 }}</span>
+                                                <span class="identifier">{{ user.identifier.slice(0, 20) }}...</span>
+                                            </div>
+                                            <span class="badge">{{ user.rank_label }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="data-box">
+                                    <div class="box-header">
+                                        <i data-lucide="trophy"></i>
+                                        <h3>Top Ranking</h3>
+                                    </div>
+                                    <div class="box-content">
+                                        <div v-for="(player, i) in data.ranking.slice(0, 6)" :key="i" class="list-item">
+                                            <div class="item-left">
+                                                <span class="rank-pos" :class="'pos-' + (i+1)">#{{ i+1 }}</span>
+                                                <span class="identifier">{{ player.identifier.slice(0, 15) }}...</span>
+                                            </div>
+                                            <div class="item-right">
+                                                <span class="coins-val">{{ player.coins.toLocaleString() }}</span>
+                                                <i data-lucide="coins" class="coin-icon"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Users Tab -->
+                        <div v-show="activeTab === 'users'" class="fade-in" key="tab-users">
+                            <div class="action-bar">
+                                <div class="search-box">
+                                    <i data-lucide="search"></i>
+                                    <input type="text" v-model="searchTerm" placeholder="Buscar por identificador...">
+                                </div>
+                            </div>
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>IDENTIFICADOR</th>
+                                            <th class="text-center">RANGO</th>
+                                            <th class="text-right">BALANCE</th>
+                                            <th class="text-center">ACCIONES</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="user in filteredUsers" :key="user.identifier">
+                                            <td>
+                                                <div class="user-cell">
+                                                    <span class="name">{{ user.name }}</span>
+                                                    <span class="id">{{ user.identifier }}</span>
+                                                </div>
+                                            </td>
+                                            <td class="text-center">
+                                                <span class="table-badge" :class="{ 'no-rank': !user.rank_id }">
+                                                    {{ user.rank_label }}
+                                                </span>
+                                            </td>
+                                            <td class="text-right font-bold text-yellow-400">{{ user.coins.toLocaleString() }} C</td>
+                                            <td class="text-center">
+                                                <div class="table-actions">
+                                                    <button class="t-btn t-btn-edit" @click="openUserModal(user)"><i data-lucide="user-cog"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Ranks Tab -->
+                        <div v-show="activeTab === 'ranks'" class="fade-in" key="tab-ranks">
+                            <div class="action-bar">
+                                <button class="mt-btn mt-btn-primary" @click="openRankModal(null)"><i data-lucide="plus"></i> NUEVO RANGO</button>
+                            </div>
+                            <div class="ranks-grid">
+                                <div v-for="rank in data.ranks" :key="rank.id" class="rank-card">
+                                    <div class="rank-header">
+                                        <div class="rank-icon"><i data-lucide="crown"></i></div>
+                                        <div class="rank-title">
+                                            <h3>{{ rank.label }}</h3>
+                                            <span>CICLO: {{ rank.interval }} MIN</span>
+                                        </div>
+                                    </div>
+                                    <div class="rank-body">
+                                        <div class="reward-row">
+                                            <i data-lucide="dollar-sign"></i>
+                                            <span>${{ rank.money_passive }}</span>
+                                        </div>
+                                        <div class="reward-row">
+                                            <i data-lucide="coins"></i>
+                                            <span>{{ rank.coins_passive }} COINS</span>
+                                        </div>
+                                    </div>
+                                    <div class="rank-footer">
+                                        <button class="rank-btn" @click="openRankModal(rank)"><i data-lucide="edit-3"></i></button>
+                                        <button class="rank-btn btn-danger" @click="deleteRank(rank.id)"><i data-lucide="trash-2"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Codes Tab -->
+                        <div v-show="activeTab === 'codes'" class="fade-in" key="tab-codes">
+                            <div class="action-bar">
+                                <button class="mt-btn mt-btn-primary" @click="showCreator = true"><i data-lucide="plus"></i> NUEVO CUPÓN</button>
+                            </div>
+                            <div class="codes-list">
+                                <div v-for="code in data.codes" :key="code.id" class="code-item">
+                                    <div class="code-main">
+                                        <div class="code-tag">{{ code.code }}</div>
+                                        <div class="rewards-preview">
+                                            <span v-for="(r, idx) in parseRewards(code.value)" :key="idx" class="reward-tag">
+                                                {{ formatReward(r) }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="code-usage">
+                                        <div class="usage-info">
+                                            <span>USOS</span>
+                                            <div class="progress">
+                                                <div class="bar" :style="{ width: (code.current_uses / code.max_uses * 100) + '%' }"></div>
+                                            </div>
+                                            <span>{{ code.current_uses }}/{{ code.max_uses }}</span>
+                                        </div>
+                                        <button class="delete-btn" @click="deleteCode(code.id)"><i data-lucide="trash-2"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ranking Tab -->
+                        <div v-show="activeTab === 'ranking'" class="fade-in" key="tab-ranking">
+                            <div class="ranking-list">
+                                <div v-for="(player, i) in data.ranking" :key="i" class="rank-row">
+                                    <div class="rank-num" :class="'num-' + (i+1)">#{{ i+1 }}</div>
+                                    <div class="player-info">
+                                        <span class="id">{{ player.identifier }}</span>
+                                        <span class="sub">CUENTA VERIFICADA</span>
+                                    </div>
+                                    <div class="player-coins">
+                                        <span class="val">{{ player.coins.toLocaleString() }}</span>
+                                        <i data-lucide="coins"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rank Creator/Editor Modal -->
+                <div v-if="showRankModal" class="modal-overlay">
+                    <div class="mt-modal">
+                        <div class="modal-header">
+                            <h3>{{ editingRank.id ? 'EDITAR RANGO' : 'CREAR RANGO' }}</h3>
+                            <button @click="showRankModal = false"><i data-lucide="x"></i></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-row">
+                                <div class="form-group flex-grow-1">
+                                    <label>NOMBRE (ID)</label>
+                                    <input type="text" v-model="editingRank.name" placeholder="ej: vip_oro">
+                                </div>
+                                <div class="form-group flex-grow-1">
+                                    <label>ETIQUETA (LABEL)</label>
+                                    <input type="text" v-model="editingRank.label" placeholder="ej: VIP ORO">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group flex-grow-1">
+                                    <label>DINERO PASIVO ($)</label>
+                                    <input type="number" v-model="editingRank.money_passive">
+                                </div>
+                                <div class="form-group flex-grow-1">
+                                    <label>COINS PASIVOS</label>
+                                    <input type="number" v-model="editingRank.coins_passive">
+                                </div>
+                                <div class="form-group" style="width: 100px;">
+                                    <label>INTERVALO (MIN)</label>
+                                    <input type="number" v-model="editingRank.interval">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="mt-btn mt-btn-secondary" @click="showRankModal = false">CANCELAR</button>
+                            <button class="mt-btn mt-btn-primary" @click="saveRank">GUARDAR CAMBIOS</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coupon Creator Modal -->
+                <div v-if="showCreator" class="modal-overlay">
+                    <div class="mt-modal">
+                        <div class="modal-header">
+                            <h3>CREADOR DE CUPONES</h3>
+                            <button @click="showCreator = false"><i data-lucide="x"></i></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-row">
+                                <div class="form-group flex-grow-1">
+                                    <label>CÓDIGO</label>
+                                    <div class="input-with-btn">
+                                        <input type="text" v-model="newCode.code" placeholder="VIP-XXXX">
+                                        <button @click="generateCode"><i data-lucide="refresh-cw"></i></button>
+                                    </div>
+                                </div>
+                                <div class="form-group" style="width: 100px;">
+                                    <label>USOS MAX</label>
+                                    <input type="number" v-model="newCode.max_uses">
+                                </div>
+                            </div>
+
+                            <div class="bundle-box">
+                                <header>RECOMPENSAS DEL PACK</header>
+                                <div class="bundle-inputs">
+                                    <select v-model="tempReward.type">
+                                        <option value="coins">Coins</option>
+                                        <option value="vip">VIP Rank</option>
+                                        <option value="item">Item</option>
+                                        <option value="vehicle">Vehicle</option>
+                                    </select>
+                                    
+                                    <input v-if="tempReward.type === 'coins'" type="number" v-model="tempReward.val" placeholder="Cantidad...">
+                                    <select v-if="tempReward.type === 'vip'" v-model="tempReward.val">
+                                        <option v-for="rank in data.ranks" :value="rank.id">{{ rank.label }}</option>
+                                    </select>
+                                    <select v-if="tempReward.type === 'item'" v-model="tempReward.val">
+                                        <option v-for="item in data.items" :value="item.name">{{ item.label }}</option>
+                                    </select>
+                                    <input v-if="tempReward.type === 'vehicle'" type="text" v-model="tempReward.val" placeholder="Modelo (t20, etc)...">
+                                    
+                                    <button @click="addRewardToPack"><i data-lucide="plus"></i></button>
+                                </div>
+                                <div class="pack-items">
+                                    <div v-for="(r, i) in newCode.rewards" :key="i" class="pack-item">
+                                        <span>{{ formatReward(r) }}</span>
+                                        <i data-lucide="trash-2" @click="removeRewardFromPack(i)"></i>
+                                    </div>
+                                    <p v-if="newCode.rewards.length === 0" class="empty-msg">No hay recompensas añadidas</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="mt-btn mt-btn-secondary" @click="showCreator = false">CANCELAR</button>
+                            <button class="mt-btn mt-btn-primary" @click="saveCode">GUARDAR CUPÓN</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- User Management Modal -->
+                <div v-if="showUserModal" class="modal-overlay">
+                    <div class="mt-modal modal-md">
+                        <div class="modal-header">
+                            <div class="header-content">
+                                <i data-lucide="user"></i>
+                                <div>
+                                    <h3>GESTIÓN DE USUARIO</h3>
+                                    <p>{{ editingUser.name }}</p>
+                                </div>
+                            </div>
+                            <button @click="showUserModal = false"><i data-lucide="x"></i></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Coins Management -->
+                            <div class="mgmt-section">
+                                <label>GESTIÓN DE COINS</label>
+                                <div class="coins-control">
+                                    <div class="current-balance">
+                                        <span>Balance Actual</span>
+                                        <strong>{{ editingUser.coins.toLocaleString() }} <i data-lucide="coins"></i></strong>
+                                    </div>
+                                    <div class="input-actions">
+                                        <input type="number" v-model.number="userActionValue" placeholder="Cantidad...">
+                                        <div class="btn-group">
+                                            <button class="action-btn add" @click="updateUserCoins(true)"><i data-lucide="plus"></i> AÑADIR</button>
+                                            <button class="action-btn rem" @click="updateUserCoins(false)"><i data-lucide="minus"></i> QUITAR</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr class="modal-divider">
+
+                            <!-- Rank Management -->
+                            <div class="mgmt-section">
+                                <label>RANGO Y DURACIÓN</label>
+                                <div class="rank-control">
+                                    <div class="form-group">
+                                        <label>SELECCIONAR RANGO</label>
+                                        <div class="custom-select-wrapper">
+                                            <div class="custom-select-trigger" 
+                                                 :class="{ open: showCustomDropdown }"
+                                                 @click="showCustomDropdown = !showCustomDropdown">
+                                                <span>{{ getSelectedRankLabel() }}</span>
+                                                <i :data-lucide="showCustomDropdown ? 'chevron-up' : 'chevron-down'"></i>
+                                            </div>
+                                            <div class="custom-select-options custom-scrollbar" :class="{ show: showCustomDropdown }">
+                                                <div class="custom-option" 
+                                                     :class="{ selected: editingUser.rank_id === null }"
+                                                     @click="selectCustomRank(null)">
+                                                    <span>Ninguno</span>
+                                                    <i v-if="editingUser.rank_id === null" data-lucide="check"></i>
+                                                </div>
+                                                <div v-for="rank in data.ranks" 
+                                                     :key="rank.id" 
+                                                     class="custom-option"
+                                                     :class="{ selected: editingUser.rank_id === rank.id }"
+                                                     @click="selectCustomRank(rank.id)">
+                                                    <span>{{ rank.label }}</span>
+                                                    <i v-if="editingUser.rank_id === rank.id" data-lucide="check"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>DURACIÓN (DÍAS)</label>
+                                        <input type="number" v-model.number="userVipDays" placeholder="30">
+                                        <p class="input-hint">0 para permanente</p>
+                                    </div>
+                                </div>
+                                <button class="mt-btn mt-btn-primary w-100" @click="updateUserRank">
+                                    <i data-lucide="save"></i> GUARDAR CAMBIOS DE RANGO
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+    <script src="./js/script.js"></script>
+</body>
+</html>

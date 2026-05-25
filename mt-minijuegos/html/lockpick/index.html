@@ -1,0 +1,3266 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Origen Minijuegos</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ========== TIMING CIRCLES STYLES ========== */
+        #timingcircles-container {
+            position: fixed;
+            right: 1vh;
+            top: 50%;
+            transform: translateY(-50%) scale(0.7);
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 0.8vh;
+            z-index: 9999;
+        }
+
+        .timingcircles-label {
+            width: 100%;
+            text-align: center;
+            font-size: 1vh;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 100;
+            font-family: 'Evogria', sans-serif;
+            letter-spacing: 0.08vh;
+            text-transform: uppercase;
+            margin-bottom: 0.5vh;
+        }
+
+        #timingcircles-container .timingcircles-info-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 55vh;
+            padding: 1.5vh 2vh;
+            background: rgba(0, 0, 0, 0.7);
+            border: 0.1vh solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.8vh;
+            box-shadow: 0 0.5vh 2vh rgba(0, 0, 0, 0.5);
+            outline: 0.1vh dashed rgba(0, 0, 0, 0.7);
+            outline-offset: 0.3vh;
+        }
+
+        .tc-circle-area {
+            width: 55vh;
+            height: 55vh;
+            padding: 2vh;
+            background: rgba(0, 0, 0, 0.7);
+            border: 0.1vh solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.8vh;
+            box-shadow: 0 0.5vh 2vh rgba(0, 0, 0, 0.5);
+            outline: 0.1vh dashed rgba(0, 0, 0, 0.7);
+            outline-offset: 0.3vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tc-svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .tc-outer-circle {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.1);
+            stroke-width: 2;
+        }
+
+        .tc-perfect-zone {
+            fill: none;
+            stroke: #1c850ef2;
+            stroke-width: 3;
+            filter: drop-shadow(0 0 1vh #1c850ef2);
+        }
+
+        .tc-moving-circle {
+            fill: none;
+            stroke: #850e49f2;
+            stroke-width: 4;
+            filter: drop-shadow(0 0 1.5vh #850e49f2);
+            transition: stroke 0.2s ease;
+        }
+
+        .tc-moving-circle.perfect {
+            stroke: #1c850ef2;
+            filter: drop-shadow(0 0 2vh #1c850ef2);
+        }
+
+        .tc-moving-circle.fail {
+            stroke: #ef4444;
+            filter: drop-shadow(0 0 2vh #ef4444);
+        }
+
+        #timingcircles-container .timingcircles-instructions {
+            font-family: 'Quicksand', sans-serif;
+            text-align: center;
+            padding: 1vh 2vh;
+            background: rgba(0, 0, 0, 0.7);
+            border: 0.1vh solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.8vh;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.2vh;
+            letter-spacing: 0.08vh;
+            text-transform: uppercase;
+            font-weight: 600;
+            box-shadow: 0 0.5vh 2vh rgba(0, 0, 0, 0.5);
+            outline: 0.1vh dashed rgba(0, 0, 0, 0.7);
+            outline-offset: 0.3vh;
+        }
+
+        /* ========== VAR HACK STYLES ========== */
+        #varhack-container {
+            position: fixed;
+            right: 1vh;
+            top: 50%;
+            transform: translateY(-50%) scale(0.7);
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 0.8vh;
+            z-index: 9999;
+        }
+
+        .varhack-label {
+            width: 100%;
+            text-align: center;
+            font-size: 1vh;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 100;
+            font-family: 'Evogria', sans-serif;
+            letter-spacing: 0.08vh;
+            text-transform: uppercase;
+            margin-bottom: 0.5vh;
+        }
+
+        #varhack-container .varhack-info-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 55vh;
+            padding: 1.5vh 2vh;
+            background: rgba(0, 0, 0, 0.7);
+            border: 0.1vh solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.8vh;
+            box-shadow: 0 0.5vh 2vh rgba(0, 0, 0, 0.5);
+            outline: 0.1vh dashed rgba(0, 0, 0, 0.7);
+            outline-offset: 0.3vh;
+        }
+
+        .vh-lines-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5vh;
+            padding: 2vh;
+            background: rgba(0, 0, 0, 0.7);
+            border: 0.1vh solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.8vh;
+            box-shadow: 0 0.5vh 2vh rgba(0, 0, 0, 0.5);
+            outline: 0.1vh dashed rgba(0, 0, 0, 0.7);
+            outline-offset: 0.3vh;
+            width: 55vh;
+        }
+
+        .vh-line {
+            display: flex;
+            gap: 1vh;
+            justify-content: center;
+            cursor: pointer;
+            padding: 1vh;
+            background: rgba(0, 0, 0, 0.5);
+            border: 0.1vh solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.6vh;
+            transition: all 0.2s ease;
+        }
+
+        .vh-line:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .vh-line.aligned {
+            background: rgba(28, 133, 14, 0.3);
+            border-color: #1c850ef2;
+            box-shadow: 0 0 1vh #1c850ef2;
+        }
+
+        .vh-symbol {
+            width: 5vh;
+            height: 5vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Evogria', sans-serif;
+            font-size: 2.5vh;
+            color: rgba(255, 255, 255, 0.6);
+            background: rgba(0, 0, 0, 0.6);
+            border: 0.1vh solid rgba(255, 255, 255, 0.2);
+            border-radius: 0.4vh;
+        }
+
+        #varhack-container .varhack-instructions {
+            font-family: 'Quicksand', sans-serif;
+            text-align: center;
+            padding: 1vh 2vh;
+            background: rgba(0, 0, 0, 0.7);
+            border: 0.1vh solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.8vh;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.2vh;
+            letter-spacing: 0.08vh;
+            text-transform: uppercase;
+            font-weight: 600;
+            box-shadow: 0 0.5vh 2vh rgba(0, 0, 0, 0.5);
+            outline: 0.1vh dashed rgba(0, 0, 0, 0.7);
+            outline-offset: 0.3vh;
+        }
+
+        /* ========== POWER GRID STYLES ========== */
+        #powergrid-container {
+            position: fixed;
+            right: 1vh;
+            top: 50%;
+            transform: translateY(-50%) scale(0.7);
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 0.8vh;
+            z-index: 9999;
+        }
+
+        .powergrid-label {
+            width: 100%;
+            text-align: center;
+            font-size: 1vh;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 100;
+            font-family: 'Evogria', sans-serif;
+            letter-spacing: 0.08vh;
+            text-transform: uppercase;
+            margin-bottom: 0.5vh;
+        }
+
+        #powergrid-container .powergrid-info-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 55vh;
+            padding: 1.5vh 2vh;
+            background: rgba(0, 0, 0, 0.7);
+            border: 0.1vh solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.8vh;
+            box-shadow: 0 0.5vh 2vh rgba(0, 0, 0, 0.5);
+            outline: 0.1vh dashed rgba(0, 0, 0, 0.7);
+            outline-offset: 0.3vh;
+        }
+
+        .pg-grid {
+            display: grid;
+            gap: 0.5vh;
+            padding: 2vh;
+            background: rgba(0, 0, 0, 0.7);
+            border: 0.1vh solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.8vh;
+            box-shadow: 0 0.5vh 2vh rgba(0, 0, 0, 0.5);
+            outline: 0.1vh dashed rgba(0, 0, 0, 0.7);
+            outline-offset: 0.3vh;
+            width: 55vh;
+        }
+
+        .pg-cell {
+            aspect-ratio: 1;
+            background: rgba(0, 0, 0, 0.5);
+            border: 0.1vh solid rgba(255, 255, 255, 0.15);
+            border-radius: 0.4vh;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .pg-cell:hover:not(.pg-start):not(.pg-end):not(.pg-blocked) {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .pg-cell.pg-start {
+            background: #1c850ef2;
+            box-shadow: 0 0 1vh #1c850ef2;
+            font-family: 'Evogria', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5vh;
+        }
+
+        .pg-cell.pg-end {
+            background: #850e49f2;
+            box-shadow: 0 0 1vh #850e49f2;
+            font-family: 'Evogria', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5vh;
+        }
+
+        .pg-cell.pg-path {
+            background: #3b82f6;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0.5vh #3b82f6;
+        }
+
+        .pg-cell.pg-blocked {
+            background: rgba(239, 68, 68, 0.3);
+            border-color: #ef4444;
+            cursor: not-allowed;
+        }
+
+        .pg-buttons {
+            display: flex;
+            gap: 1vh;
+            width: 55vh;
+        }
+
+        .pg-button {
+            flex: 1;
+            padding: 1.5vh 2vh;
+            background: rgba(0, 0, 0, 0.7);
+            border: 0.1vh solid rgba(255, 255, 255, 0.2);
+            border-radius: 0.8vh;
+            color: rgba(255, 255, 255, 0.8);
+            font-family: 'Evogria', sans-serif;
+            font-size: 1.2vh;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.1vh;
+        }
+
+        .pg-button:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .pg-button-complete {
+            background: rgba(28, 133, 14, 0.3);
+            border-color: #1c850ef2;
+        }
+
+        .pg-button-complete:hover {
+            background: rgba(28, 133, 14, 0.5);
+        }
+
+        #powergrid-container .powergrid-instructions {
+            font-family: 'Quicksand', sans-serif;
+            text-align: center;
+            padding: 1vh 2vh;
+            background: rgba(0, 0, 0, 0.7);
+            border: 0.1vh solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.8vh;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.2vh;
+            letter-spacing: 0.08vh;
+            text-transform: uppercase;
+            font-weight: 600;
+            box-shadow: 0 0.5vh 2vh rgba(0, 0, 0, 0.5);
+            outline: 0.1vh dashed rgba(0, 0, 0, 0.7);
+            outline-offset: 0.3vh;
+        }
+
+        /* ========== MINESWEEPER STYLES ========== */
+        #minesweeper-container {
+            position: fixed;
+            right: 1vh;
+            top: 50%;
+            transform: translateY(-50%) scale(0.7);
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 0.8vh;
+            z-index: 9999;
+        }
+
+        .minesweeper-label {
+            width: 100%;
+            text-align: center;
+            font-size: 1vh;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 100;
+            font-family: 'Evogria', sans-serif;
+            letter-spacing: 0.08vh;
+            text-transform: uppercase;
+            margin-bottom: 0.5vh;
+        }
+
+        #minesweeper-container .minesweeper-info-bar,
+        #minesweeper-container .info-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 55vh;
+            padding: 1.5vh 2vh;
+            background: rgba(0, 0, 0, 0.7);
+            border: 0.1vh solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.8vh;
+            box-shadow: 0 0.5vh 2vh rgba(0, 0, 0, 0.5);
+            outline: 0.1vh dashed rgba(0, 0, 0, 0.7);
+            outline-offset: 0.3vh;
+        }
+
+        .ms-grid {
+            display: grid;
+            gap: 0.8vh;
+            padding: 2vh;
+            background: rgba(0, 0, 0, 0.7);
+            border: 0.1vh solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.8vh;
+            box-shadow: 0 0.5vh 2vh rgba(0, 0, 0, 0.5);
+            outline: 0.1vh dashed rgba(0, 0, 0, 0.7);
+            outline-offset: 0.3vh;
+            width: 55vh;
+        }
+
+        .ms-cell {
+            aspect-ratio: 1;
+            background: rgba(0, 0, 0, 0.5);
+            border: 0.1vh solid rgba(255, 255, 255, 0.15);
+            border-radius: 0.6vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Evogria', sans-serif;
+            font-size: 2.2vh;
+            color: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: cubic-bezier(0.4, 0, 0.2, 1) 0.2s all;
+            position: relative;
+        }
+
+        .ms-cell:hover:not(.revealed):not(.mine-hit) {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .ms-cell.revealed {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.25);
+            cursor: default;
+        }
+
+        .ms-cell.revealed.number-1 {
+            color: #3b82f6;
+        }
+
+        .ms-cell.revealed.number-2 {
+            color: #22c55e;
+        }
+
+        .ms-cell.revealed.number-3 {
+            color: #ef4444;
+        }
+
+        .ms-cell.revealed.number-4 {
+            color: #a855f7;
+        }
+
+        .ms-cell.revealed.number-5 {
+            color: #f97316;
+        }
+
+        .ms-cell.revealed.number-6 {
+            color: #06b6d4;
+        }
+
+        .ms-cell.revealed.number-7 {
+            color: #ec4899;
+        }
+
+        .ms-cell.revealed.number-8 {
+            color: #eab308;
+        }
+
+        .ms-cell.mine-hit {
+            background: #ef4444;
+            color: white;
+            border-color: #ef4444;
+            box-shadow: 0 0 1.5vh #ef4444;
+            animation: mineExplode 0.4s ease;
+            cursor: default;
+        }
+
+        .ms-cell.mine-revealed {
+            background: rgba(239, 68, 68, 0.3);
+            color: #ef4444;
+            border-color: #ef4444;
+        }
+
+        @keyframes mineExplode {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        #minesweeper-container .minesweeper-instructions,
+        #minesweeper-container .instructions {
+            font-family: 'Quicksand', sans-serif;
+            text-align: center;
+            padding: 1vh 2vh;
+            background: rgba(0, 0, 0, 0.7);
+            border: 0.1vh solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.8vh;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.2vh;
+            letter-spacing: 0.08vh;
+            text-transform: uppercase;
+            font-weight: 600;
+            box-shadow: 0 0.5vh 2vh rgba(0, 0, 0, 0.5);
+            outline: 0.1vh dashed rgba(0, 0, 0, 0.7);
+            outline-offset: 0.3vh;
+        }
+
+        /* ========== WIRE PUZZLE STYLES ========== */
+        #wirepuzzle-container {
+            position: fixed;
+            right: 1vh;
+            top: 50%;
+            transform: translateY(-50%) scale(0.7);
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 0.8vh;
+            z-index: 9999;
+        }
+
+        .wirepuzzle-label {
+            width: 100%;
+            text-align: center;
+            font-size: 1vh;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 100;
+            font-family: 'Evogria', sans-serif;
+            letter-spacing: 0.08vh;
+            text-transform: uppercase;
+            margin-bottom: 0.5vh;
+        }
+
+        #wirepuzzle-container .wirepuzzle-info-bar,
+        #wirepuzzle-container .info-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 55vh;
+            padding: 1.5vh 2vh;
+            background: rgba(0, 0, 0, 0.7);
+            border: 0.1vh solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.8vh;
+            box-shadow: 0 0.5vh 2vh rgba(0, 0, 0, 0.5);
+            outline: 0.1vh dashed rgba(0, 0, 0, 0.7);
+            outline-offset: 0.3vh;
+        }
+
+        .wp-game-area {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 55vh;
+            height: 40vh;
+            padding: 2vh;
+            background: rgba(0, 0, 0, 0.7);
+            border: 0.1vh solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.8vh;
+            box-shadow: 0 0.5vh 2vh rgba(0, 0, 0, 0.5);
+            outline: 0.1vh dashed rgba(0, 0, 0, 0.7);
+            outline-offset: 0.3vh;
+        }
+
+        .wp-wires-left,
+        .wp-wires-right {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            height: 100%;
+            z-index: 2;
+        }
+
+        .wp-wire {
+            width: 12vh;
+            height: 4vh;
+            display: flex;
+            align-items: center;
+            padding: 0 1vh;
+            background: rgba(0, 0, 0, 0.6);
+            border: 0.1vh solid rgba(255, 255, 255, 0.2);
+            border-radius: 0.6vh;
+            cursor: pointer;
+            transition: cubic-bezier(0.4, 0, 0.2, 1) 0.2s all;
+            position: relative;
+        }
+
+        .wp-wire-left {
+            justify-content: flex-start;
+        }
+
+        .wp-wire-left::after {
+            content: '';
+            position: absolute;
+            right: -1.5vh;
+            width: 1.5vh;
+            height: 0.4vh;
+            background: currentColor;
+            border-radius: 0.2vh;
+        }
+
+        .wp-wire-right {
+            justify-content: flex-end;
+        }
+
+        .wp-wire-right::before {
+            content: '';
+            position: absolute;
+            left: -1.5vh;
+            width: 1.5vh;
+            height: 0.4vh;
+            background: currentColor;
+            border-radius: 0.2vh;
+        }
+
+        .wp-wire-label {
+            font-family: 'Evogria', sans-serif;
+            font-size: 1.8vh;
+            font-weight: 100;
+            letter-spacing: 0.1vh;
+        }
+
+        .wp-wire:hover:not(.connected):not(.disabled) {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: scale(1.02);
+        }
+
+        .wp-wire.selected {
+            background: rgba(133, 14, 73, 0.5);
+            border-color: #850e49f2;
+            box-shadow: 0 0 1vh #850e49f2;
+        }
+
+        .wp-wire.connected {
+            background: rgba(28, 133, 14, 0.5);
+            border-color: #1c850ef2;
+            cursor: default;
+            opacity: 0.7;
+        }
+
+        .wp-wire.disabled {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        .wp-connections {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .wp-connection-line {
+            stroke-width: 0.3vh;
+            stroke-linecap: round;
+            fill: none;
+            transition: stroke 0.3s ease;
+        }
+
+        .wp-connection-line.correct {
+            stroke: #1c850ef2;
+            filter: drop-shadow(0 0 0.5vh #1c850ef2);
+        }
+
+        .wp-connection-line.wrong {
+            stroke: #ef4444;
+            filter: drop-shadow(0 0 0.5vh #ef4444);
+            animation: wireShake 0.3s ease;
+        }
+
+        .wp-connection-line.selecting {
+            stroke: #850e49f2;
+            stroke-dasharray: 1vh;
+            animation: wirePulse 1s linear infinite;
+        }
+
+        @keyframes wirePulse {
+            0% {
+                stroke-dashoffset: 0;
+            }
+
+            100% {
+                stroke-dashoffset: -2vh;
+            }
+        }
+
+        @keyframes wireShake {
+
+            0%,
+            100% {
+                stroke-width: 0.3vh;
+            }
+
+            50% {
+                stroke-width: 0.5vh;
+            }
+        }
+
+        #wirepuzzle-container .wirepuzzle-instructions,
+        #wirepuzzle-container .instructions {
+            font-family: 'Quicksand', sans-serif;
+            text-align: center;
+            padding: 1vh 2vh;
+            background: rgba(0, 0, 0, 0.7);
+            border: 0.1vh solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.8vh;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.2vh;
+            letter-spacing: 0.08vh;
+            text-transform: uppercase;
+            font-weight: 600;
+            box-shadow: 0 0.5vh 2vh rgba(0, 0, 0, 0.5);
+            outline: 0.1vh dashed rgba(0, 0, 0, 0.7);
+            outline-offset: 0.3vh;
+        }
+
+        /* ========== CODE BREAKER STYLES ========== */
+        #codebreaker-container {
+            position: fixed;
+            right: 1vh;
+            top: 50%;
+            transform: translateY(-50%) scale(0.7);
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 0.8vh;
+            z-index: 9999;
+        }
+
+        .codebreaker-label {
+            width: 100%;
+            text-align: center;
+            font-size: 1vh;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 100;
+            font-family: 'Evogria', sans-serif;
+            letter-spacing: 0.08vh;
+            text-transform: uppercase;
+            margin-bottom: 0.5vh;
+        }
+
+        #codebreaker-container .codebreaker-info-bar,
+        #codebreaker-container .info-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 55vh;
+            padding: 1.5vh 2vh;
+            background: rgba(0, 0, 0, 0.7);
+            border: 0.1vh solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.8vh;
+            box-shadow: 0 0.5vh 2vh rgba(0, 0, 0, 0.5);
+            outline: 0.1vh dashed rgba(0, 0, 0, 0.7);
+            outline-offset: 0.3vh;
+        }
+
+        .cb-sequence-display {
+            display: flex;
+            gap: 1vh;
+            padding: 1.5vh 2vh;
+            background: rgba(0, 0, 0, 0.7);
+            border: 0.1vh solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.8vh;
+            box-shadow: 0 0.5vh 2vh rgba(0, 0, 0, 0.5);
+            outline: 0.1vh dashed rgba(0, 0, 0, 0.7);
+            outline-offset: 0.3vh;
+            width: 55vh;
+            justify-content: center;
+        }
+
+        .cb-seq-item {
+            width: 5vh;
+            height: 5vh;
+            background: rgba(0, 0, 0, 0.6);
+            border: 0.1vh solid rgba(255, 255, 255, 0.2);
+            border-radius: 0.6vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Evogria', sans-serif;
+            font-size: 1.8vh;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .cb-seq-item.found {
+            background: #1c850ef2;
+            border-color: #1c850ef2;
+            color: white;
+            box-shadow: 0 0 1vh #1c850ef2;
+        }
+
+        .cb-matrix {
+            display: grid;
+            gap: 0.8vh;
+            padding: 2vh;
+            background: rgba(0, 0, 0, 0.7);
+            border: 0.1vh solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.8vh;
+            box-shadow: 0 0.5vh 2vh rgba(0, 0, 0, 0.5);
+            outline: 0.1vh dashed rgba(0, 0, 0, 0.7);
+            outline-offset: 0.3vh;
+            width: 55vh;
+        }
+
+        .cb-cell {
+            aspect-ratio: 1;
+            background: rgba(0, 0, 0, 0.5);
+            border: 0.1vh solid rgba(255, 255, 255, 0.15);
+            border-radius: 0.6vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Evogria', sans-serif;
+            font-size: 2.2vh;
+            color: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: cubic-bezier(0.4, 0, 0.2, 1) 0.2s all;
+        }
+
+        .cb-cell:hover:not(.disabled):not(.selected) {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .cb-cell.highlighted {
+            background: rgba(133, 14, 73, 0.3);
+            border-color: #850e49f2;
+        }
+
+        .cb-cell.selected {
+            background: #850e49f2;
+            color: white;
+            border-color: #850e49f2;
+            box-shadow: 0 0 1vh #850e49f2;
+        }
+
+        .cb-cell.correct {
+            background: #1c850ef2;
+            color: white;
+            border-color: #1c850ef2;
+            box-shadow: 0 0 1vh #1c850ef2;
+            animation: correctPulse 0.4s ease;
+        }
+
+        .cb-cell.wrong {
+            background: #ef4444;
+            color: white;
+            border-color: #ef4444;
+            box-shadow: 0 0 1vh #ef4444;
+            animation: shake 0.3s ease;
+        }
+
+        .cb-cell.disabled {
+            pointer-events: none;
+            opacity: 0.3;
+        }
+
+        .cb-buffer-bar {
+            display: flex;
+            gap: 0.8vh;
+            padding: 1.5vh 2vh;
+            background: rgba(0, 0, 0, 0.7);
+            border: 0.1vh solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.8vh;
+            box-shadow: 0 0.5vh 2vh rgba(0, 0, 0, 0.5);
+            outline: 0.1vh dashed rgba(0, 0, 0, 0.7);
+            outline-offset: 0.3vh;
+            width: 55vh;
+            justify-content: center;
+        }
+
+        .cb-buffer-slot {
+            width: 5vh;
+            height: 5vh;
+            background: rgba(0, 0, 0, 0.6);
+            border: 0.1vh solid rgba(255, 255, 255, 0.2);
+            border-radius: 0.6vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Evogria', sans-serif;
+            font-size: 1.8vh;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .cb-buffer-slot.filled {
+            background: rgba(133, 14, 73, 0.5);
+            border-color: #850e49f2;
+            color: white;
+        }
+
+        #codebreaker-container .codebreaker-instructions,
+        #codebreaker-container .instructions {
+            font-family: 'Quicksand', sans-serif;
+            text-align: center;
+            padding: 1vh 2vh;
+            background: rgba(0, 0, 0, 0.7);
+            border: 0.1vh solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.8vh;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.2vh;
+            letter-spacing: 0.08vh;
+            text-transform: uppercase;
+            font-weight: 600;
+            box-shadow: 0 0.5vh 2vh rgba(0, 0, 0, 0.5);
+            outline: 0.1vh dashed rgba(0, 0, 0, 0.7);
+            outline-offset: 0.3vh;
+        }
+
+        /* ========== HACKING STYLES ========== */
+        #hacking-container {
+            position: fixed;
+            right: 1vh;
+            top: 50%;
+            transform: translateY(-50%) scale(0.7);
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 0.8vh;
+            z-index: 9999;
+        }
+
+        .hacking-label {
+            width: 100%;
+            text-align: center;
+            font-size: 1vh;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 100;
+            font-family: 'Evogria', sans-serif;
+            letter-spacing: 0.08vh;
+            text-transform: uppercase;
+            margin-bottom: 0.5vh;
+        }
+
+        #hacking-container .hacking-info-bar,
+        #hacking-container .info-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 55vh;
+            padding: 1.5vh 2vh;
+            background: rgba(0, 0, 0, 0.7);
+            border: 0.1vh solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.8vh;
+            box-shadow: 0 0.5vh 2vh rgba(0, 0, 0, 0.5);
+            outline: 0.1vh dashed rgba(0, 0, 0, 0.7);
+            outline-offset: 0.3vh;
+            transition: cubic-bezier(0.4, 0, 0.2, 1) 0.3s all;
+        }
+
+        .code-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.2vh;
+            width: 55vh;
+            padding: 2vh;
+            background: rgba(0, 0, 0, 0.7);
+            border: 0.1vh solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.8vh;
+            box-shadow: 0 0.5vh 2vh rgba(0, 0, 0, 0.5);
+            outline: 0.1vh dashed rgba(0, 0, 0, 0.7);
+            outline-offset: 0.3vh;
+        }
+
+        .code-cell {
+            aspect-ratio: 1;
+            background: rgba(0, 0, 0, 0.5);
+            border: 0.1vh solid rgba(255, 255, 255, 0.15);
+            border-radius: 0.6vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Evogria', sans-serif;
+            font-size: 2.8vh;
+            color: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: cubic-bezier(0.4, 0, 0.2, 1) 0.2s all;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .code-cell:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .code-cell.showing {
+            background: #850e49f2;
+            color: white;
+            border-color: #850e49f2;
+            box-shadow: 0 0 1.5vh #850e49f2;
+            transform: scale(1.05);
+        }
+
+        .code-cell.correct {
+            background: #1c850ef2;
+            color: white;
+            border-color: #1c850ef2;
+            box-shadow: 0 0 1.5vh #1c850ef2;
+            animation: correctPulse 0.4s ease;
+        }
+
+        .code-cell.wrong {
+            background: #ef4444;
+            color: white;
+            border-color: #ef4444;
+            box-shadow: 0 0 1.5vh #ef4444;
+            animation: shake 0.3s ease;
+        }
+
+        .code-cell.disabled {
+            pointer-events: none;
+            opacity: 0.3;
+        }
+
+        @keyframes correctPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            10%,
+            30%,
+            50%,
+            70%,
+            90% {
+                transform: translateX(-0.8vh);
+            }
+
+            20%,
+            40%,
+            60%,
+            80% {
+                transform: translateX(0.8vh);
+            }
+        }
+
+        #hacking-progress-dots {
+            display: flex;
+            gap: 1.5vh;
+            padding: 0.5vh;
+        }
+
+        #hacking-progress-dots .progress-dot {
+            width: 1.2vh;
+            height: 1.2vh;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.6);
+            border: 0.15vh solid rgba(255, 255, 255, 0.2);
+            transition: cubic-bezier(0.4, 0, 0.2, 1) 0.3s all;
+        }
+
+        #hacking-progress-dots .progress-dot.active {
+            background: #850e49f2;
+            border-color: #850e49f2;
+            box-shadow: 0 0 0.8vh #850e49f2;
+            animation: hackingPulse 1.5s infinite;
+        }
+
+        #hacking-progress-dots .progress-dot.completed {
+            background: #1c850ef2;
+            border-color: #1c850ef2;
+            box-shadow: 0 0 0.5vh #1c850ef2;
+        }
+
+        @keyframes hackingPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.15);
+                opacity: 0.9;
+            }
+        }
+
+        #hacking-container .hacking-instructions,
+        #hacking-container .instructions {
+            font-family: 'Quicksand', sans-serif;
+            text-align: center;
+            padding: 1vh 2vh;
+            background: rgba(0, 0, 0, 0.7);
+            border: 0.1vh solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.8vh;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.2vh;
+            letter-spacing: 0.08vh;
+            text-transform: uppercase;
+            font-weight: 600;
+            box-shadow: 0 0.5vh 2vh rgba(0, 0, 0, 0.5);
+            outline: 0.1vh dashed rgba(0, 0, 0, 0.7);
+            outline-offset: 0.3vh;
+            transition: cubic-bezier(0.4, 0, 0.2, 1) 0.3s all;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- LOCKPICK -->
+    <div id="lockpick-container" style="display: none;">
+        <!-- Label superior -->
+        <div class="lockpick-label">LOCKPICK</div>
+
+        <!-- Info Bar -->
+        <div class="info-bar">
+            <div class="info-item">
+                <span class="value"><span id="current-pin">1</span>/<span id="total-pins">5</span></span>
+            </div>
+            <div class="info-item timer">
+                <span class="value" id="timer">5.0</span>
+            </div>
+            <div class="info-item">
+                <span class="value progress-value"><span id="completed-pins">0</span>/<span
+                        id="total-pins-2">5</span></span>
+            </div>
+        </div>
+
+        <!-- Progress Dots -->
+        <div class="progress-dots" id="progress-dots"></div>
+
+        <!-- Game Track -->
+        <div class="game-track">
+            <div class="sweet-spot" id="sweet-spot"></div>
+            <div class="pin-indicator" id="pin-indicator"></div>
+        </div>
+
+        <!-- Instructions -->
+        <div class="instructions">
+            <span>PRESIONA <strong>ESPACIO</strong> CUANDO ESTÉ EN VERDE</span>
+        </div>
+    </div>
+
+    <!-- TIMING CIRCLES -->
+    <div id="timingcircles-container" style="display: none;">
+        <div class="timingcircles-label">TIMING CIRCLES</div>
+
+        <div class="info-bar timingcircles-info-bar">
+            <div class="info-item">
+                <span class="value"><span id="tc-current">1</span>/<span id="tc-total">6</span></span>
+            </div>
+            <div class="info-item timer">
+                <span class="value" id="tc-status">ESPERA...</span>
+            </div>
+            <div class="info-item">
+                <span class="value progress-value">✓ <span id="tc-perfect">0</span></span>
+            </div>
+        </div>
+
+        <div class="tc-circle-area" id="tc-circle-area">
+            <svg class="tc-svg" id="tc-svg" viewBox="0 0 300 300">
+                <circle class="tc-outer-circle" cx="150" cy="150" r="140" />
+                <circle class="tc-perfect-zone" cx="150" cy="150" r="40" id="tc-perfect-zone" />
+                <circle class="tc-moving-circle" cx="150" cy="150" r="140" id="tc-moving-circle" />
+            </svg>
+        </div>
+
+        <div class="instructions timingcircles-instructions">
+            <span id="tc-instruction-text">PRESIONA ESPACIO EN LA ZONA PERFECTA</span>
+        </div>
+    </div>
+
+    <!-- VAR HACK -->
+    <div id="varhack-container" style="display: none;">
+        <div class="varhack-label">VAR HACK</div>
+
+        <div class="info-bar varhack-info-bar">
+            <div class="info-item">
+                <span class="value">ALINEAR</span>
+            </div>
+            <div class="info-item timer">
+                <span class="value" id="vh-timer">35.0</span>
+            </div>
+            <div class="info-item">
+                <span class="value progress-value"><span id="vh-aligned">0</span>/<span id="vh-total">4</span></span>
+            </div>
+        </div>
+
+        <div class="vh-lines-container" id="vh-lines-container"></div>
+
+        <div class="instructions varhack-instructions">
+            <span id="vh-instruction-text">CLICK EN LAS LÍNEAS PARA ROTARLAS</span>
+        </div>
+    </div>
+
+    <!-- POWER GRID -->
+    <div id="powergrid-container" style="display: none;">
+        <div class="powergrid-label">POWER GRID</div>
+
+        <div class="info-bar powergrid-info-bar">
+            <div class="info-item">
+                <span class="value"><span id="pg-path-length">0</span>/<span id="pg-min-length">12</span></span>
+            </div>
+            <div class="info-item timer">
+                <span class="value" id="pg-timer">30.0</span>
+            </div>
+            <div class="info-item">
+                <span class="value progress-value">⚡</span>
+            </div>
+        </div>
+
+        <div class="pg-grid" id="pg-grid"></div>
+
+        <div class="pg-buttons">
+            <button class="pg-button pg-button-reset" id="pg-button-reset">REINICIAR</button>
+            <button class="pg-button pg-button-complete" id="pg-button-complete">COMPLETAR</button>
+        </div>
+
+        <div class="instructions powergrid-instructions">
+            <span id="pg-instruction-text">TRAZA UN CAMINO DESDE START HASTA END</span>
+        </div>
+    </div>
+
+    <!-- MINESWEEPER -->
+    <div id="minesweeper-container" style="display: none;">
+        <div class="minesweeper-label">MINESWEEPER</div>
+
+        <div class="info-bar minesweeper-info-bar">
+            <div class="info-item">
+                <span class="value"><span id="ms-revealed">0</span>/<span id="ms-safe">18</span></span>
+            </div>
+            <div class="info-item timer">
+                <span class="value" id="ms-timer">50.0</span>
+            </div>
+            <div class="info-item">
+                <span class="value progress-value">💣 <span id="ms-mines">7</span></span>
+            </div>
+        </div>
+
+        <div class="ms-grid" id="ms-grid"></div>
+
+        <div class="instructions minesweeper-instructions">
+            <span id="ms-instruction-text">DESPEJA EL CAMPO SIN TOCAR MINAS</span>
+        </div>
+    </div>
+
+    <!-- WIRE PUZZLE -->
+    <div id="wirepuzzle-container" style="display: none;">
+        <div class="wirepuzzle-label">WIRE PUZZLE</div>
+
+        <div class="info-bar wirepuzzle-info-bar">
+            <div class="info-item">
+                <span class="value"><span id="wp-connected">0</span>/<span id="wp-total">6</span></span>
+            </div>
+            <div class="info-item timer">
+                <span class="value" id="wp-timer">25.0</span>
+            </div>
+            <div class="info-item">
+                <span class="value progress-value"><span id="wp-mistakes">0</span>/<span
+                        id="wp-max-mistakes">2</span></span>
+            </div>
+        </div>
+
+        <div class="wp-game-area">
+            <div class="wp-wires-left" id="wp-wires-left"></div>
+            <svg class="wp-connections" id="wp-connections"></svg>
+            <div class="wp-wires-right" id="wp-wires-right"></div>
+        </div>
+
+        <div class="instructions wirepuzzle-instructions">
+            <span id="wp-instruction-text">CONECTA LOS CABLES CORRECTAMENTE</span>
+        </div>
+    </div>
+
+    <!-- CODE BREAKER -->
+    <div id="codebreaker-container" style="display: none;">
+        <div class="codebreaker-label">CODE BREAKER</div>
+
+        <div class="info-bar codebreaker-info-bar">
+            <div class="info-item">
+                <span class="value"><span id="cb-current-seq">1</span>/<span id="cb-total-seq">2</span></span>
+            </div>
+            <div class="info-item timer">
+                <span class="value" id="cb-timer">30.0</span>
+            </div>
+            <div class="info-item">
+                <span class="value progress-value"><span id="cb-buffer-count">0</span>/<span
+                        id="cb-buffer-size">4</span></span>
+            </div>
+        </div>
+
+        <div class="cb-sequence-display" id="cb-sequence-display"></div>
+
+        <div class="cb-matrix" id="cb-matrix"></div>
+
+        <div class="cb-buffer-bar" id="cb-buffer-bar"></div>
+
+        <div class="instructions codebreaker-instructions">
+            <span id="cb-instruction-text">SELECCIONA LA SECUENCIA</span>
+        </div>
+    </div>
+
+    <!-- HACKING -->
+    <div id="hacking-container" style="display: none;">
+        <div class="hacking-label">HACKING</div>
+
+        <div class="info-bar hacking-info-bar">
+            <div class="info-item">
+                <span class="value"><span id="hacking-current-level">1</span>/<span
+                        id="hacking-total-levels">5</span></span>
+            </div>
+            <div class="info-item timer">
+                <span class="value" id="hacking-timer">10.0</span>
+            </div>
+            <div class="info-item">
+                <span class="value progress-value"><span id="hacking-completed-levels">0</span>/<span
+                        id="hacking-total-levels-2">5</span></span>
+            </div>
+        </div>
+
+        <div class="code-grid" id="code-grid"></div>
+
+        <div class="progress-dots" id="hacking-progress-dots"></div>
+
+        <div class="instructions hacking-instructions">
+            <span id="instruction-text">MEMORIZA LA SECUENCIA</span>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        
+        
+    </script>
+    <script src="script.js"></script>
+    <script>
+        
+    </script>
+    <script>
+        // =====================================================
+        // HACKING MINIGAME - INLINE COMPLETO
+        // =====================================================
+
+        
+
+        const HackingGame = {
+            isActive: false,
+            currentLevel: 0,
+            totalLevels: 5,
+            timePerLevel: 10,
+            timeLeft: 10,
+            timerInterval: null,
+            currentSequence: [],
+            playerSequence: [],
+            isShowingSequence: false,
+            GRID_CODES: ['00', '01', '10', '11', 'FF', 'A7', 'B3', '7E', 'C4']
+        };
+
+        function hackingPost(action, data = {}) {
+            return $.post('https://mt-minijuegos/' + action, JSON.stringify(data));
+        }
+
+        window.addEventListener('message', function (event) {
+            const data = event.data;
+
+            if (data.action === 'startHacking') {
+                
+                startHacking(data.config);
+            }
+        });
+
+        function startHacking(config) {
+            
+
+            if (HackingGame.isActive) return;
+
+            HackingGame.totalLevels = config.levels || 5;
+            HackingGame.timePerLevel = config.timePerLevel || 10;
+            HackingGame.currentLevel = 0;
+            HackingGame.timeLeft = HackingGame.timePerLevel;
+            HackingGame.isActive = true;
+
+            $('#hacking-container').css('display', 'flex');
+
+            generateHackingGrid();
+            generateHackingProgressDots();
+            startNewHackingLevel();
+        }
+
+        function generateHackingGrid() {
+            
+            const container = $('#code-grid');
+            container.empty();
+
+            HackingGame.GRID_CODES.forEach((code, index) => {
+                const cell = $('<div class="code-cell" data-index="' + index + '">' + code + '</div>');
+                cell.on('click', function () {
+                    handleHackingCellClick(index);
+                });
+                container.append(cell);
+            });
+
+            
+        }
+
+        function generateHackingProgressDots() {
+            const container = $('#hacking-progress-dots');
+            container.empty();
+
+            for (let i = 0; i < HackingGame.totalLevels; i++) {
+                const dot = $('<div class="progress-dot"></div>');
+                if (i === 0) dot.addClass('active');
+                container.append(dot);
+            }
+        }
+
+        function startNewHackingLevel() {
+            
+
+            HackingGame.timeLeft = HackingGame.timePerLevel;
+            HackingGame.playerSequence = [];
+            HackingGame.isShowingSequence = true;
+
+            const sequenceLength = 2 + HackingGame.currentLevel;
+            HackingGame.currentSequence = [];
+
+            for (let i = 0; i < sequenceLength; i++) {
+                HackingGame.currentSequence.push(Math.floor(Math.random() * 9));
+            }
+
+            
+
+            updateHackingUI();
+            disableHackingGrid(true);
+            showHackingSequence();
+        }
+
+        function showHackingSequence() {
+            $('#instruction-text').text('MEMORIZA LA SECUENCIA');
+
+            let index = 0;
+
+            const showNext = () => {
+                if (index >= HackingGame.currentSequence.length) {
+                    setTimeout(() => {
+                        HackingGame.isShowingSequence = false;
+                        disableHackingGrid(false);
+                        $('#instruction-text').text('REPITE LA SECUENCIA');
+                        startHackingTimer();
+                    }, 500);
+                    return;
+                }
+
+                const cellIndex = HackingGame.currentSequence[index];
+                const cell = $('.code-cell[data-index="' + cellIndex + '"]');
+
+                cell.addClass('showing');
+
+                setTimeout(() => {
+                    cell.removeClass('showing');
+                    index++;
+                    setTimeout(showNext, 300);
+                }, 600);
+            };
+
+            setTimeout(showNext, 500);
+        }
+
+        function handleHackingCellClick(index) {
+            if (!HackingGame.isActive || HackingGame.isShowingSequence) return;
+
+            
+
+            HackingGame.playerSequence.push(index);
+            const cell = $('.code-cell[data-index="' + index + '"]');
+
+            const currentStep = HackingGame.playerSequence.length - 1;
+            const isCorrect = HackingGame.currentSequence[currentStep] === index;
+
+            if (isCorrect) {
+                cell.addClass('correct');
+                setTimeout(() => cell.removeClass('correct'), 300);
+
+                if (HackingGame.playerSequence.length === HackingGame.currentSequence.length) {
+                    successHackingLevel();
+                }
+            } else {
+                cell.addClass('wrong');
+                setTimeout(() => {
+                    cell.removeClass('wrong');
+                    failHacking();
+                }, 500);
+            }
+        }
+
+        function startHackingTimer() {
+            if (HackingGame.timerInterval) clearInterval(HackingGame.timerInterval);
+
+            HackingGame.timerInterval = setInterval(() => {
+                HackingGame.timeLeft -= 0.1;
+
+                if (HackingGame.timeLeft <= 0) {
+                    failHacking();
+                }
+
+                updateHackingTimer();
+            }, 100);
+        }
+
+        function updateHackingTimer() {
+            const timerElement = $('#hacking-timer');
+            timerElement.text(Math.max(0, HackingGame.timeLeft).toFixed(1));
+
+            timerElement.removeClass('warning danger');
+            if (HackingGame.timeLeft < 3) {
+                timerElement.addClass('danger');
+            } else if (HackingGame.timeLeft < 5) {
+                timerElement.addClass('warning');
+            }
+        }
+
+        function updateHackingUI() {
+            $('#hacking-current-level').text(HackingGame.currentLevel + 1);
+            $('#hacking-total-levels').text(HackingGame.totalLevels);
+            $('#hacking-total-levels-2').text(HackingGame.totalLevels);
+            $('#hacking-completed-levels').text(HackingGame.currentLevel);
+
+            $('#hacking-progress-dots .progress-dot').each(function (index) {
+                $(this).removeClass('active completed');
+                if (index < HackingGame.currentLevel) {
+                    $(this).addClass('completed');
+                } else if (index === HackingGame.currentLevel) {
+                    $(this).addClass('active');
+                }
+            });
+        }
+
+        function disableHackingGrid(disabled) {
+            if (disabled) {
+                $('.code-cell').addClass('disabled');
+            } else {
+                $('.code-cell').removeClass('disabled');
+            }
+        }
+
+        function successHackingLevel() {
+            
+
+            clearInterval(HackingGame.timerInterval);
+            disableHackingGrid(true);
+
+            setTimeout(() => {
+                HackingGame.currentLevel++;
+
+                if (HackingGame.currentLevel >= HackingGame.totalLevels) {
+                    completeHacking(true);
+                } else {
+                    startNewHackingLevel();
+                }
+            }, 500);
+        }
+
+        function failHacking() {
+            
+
+            clearInterval(HackingGame.timerInterval);
+            disableHackingGrid(true);
+
+            setTimeout(() => {
+                completeHacking(false);
+            }, 500);
+        }
+
+        function completeHacking(success) {
+            
+
+            HackingGame.isActive = false;
+
+            if (HackingGame.timerInterval) clearInterval(HackingGame.timerInterval);
+
+            setTimeout(() => {
+                $('#hacking-container').css('display', 'none');
+                hackingPost('hackingResult', { success: success });
+            }, 300);
+        }
+
+        $(document).on('keydown', function (e) {
+            if (e.key === 'Escape' && HackingGame.isActive) {
+                clearInterval(HackingGame.timerInterval);
+                HackingGame.isActive = false;
+                $('#hacking-container').css('display', 'none');
+                hackingPost('closeHacking', {});
+            }
+        });
+
+        
+    </script>
+
+    <script>
+        // =====================================================
+        // CODE BREAKER MINIGAME - INLINE COMPLETO
+        // =====================================================
+
+        
+
+        const CodeBreakerGame = {
+            isActive: false,
+            gridSize: 5,
+            matrix: [],
+            currentSequence: [],
+            targetSequence: [],
+            bufferSize: 4,
+            buffer: [],
+            selectingRow: true,
+            lastRow: null,
+            lastCol: null,
+            timeLeft: 30,
+            timerInterval: null,
+            currentSeqIndex: 0,
+            totalSequences: 1,
+            completedSequences: 0,
+            CODES: ['1C', 'BD', '55', 'E9', '7A', 'FF', 'A1', 'B2', 'C3', 'D4', 'E5', 'F6']
+        };
+
+        function cbPost(action, data = {}) {
+            return $.post('https://mt-minijuegos/' + action, JSON.stringify(data));
+        }
+
+        window.addEventListener('message', function (event) {
+            const data = event.data;
+
+            if (data.action === 'startCodeBreaker') {
+                
+                startCodeBreaker(data.config);
+            }
+        });
+
+        function startCodeBreaker(config) {
+            
+
+            if (CodeBreakerGame.isActive) return;
+
+            CodeBreakerGame.gridSize = config.gridSize || 5;
+            CodeBreakerGame.bufferSize = config.sequenceLength || 4;
+            CodeBreakerGame.totalSequences = config.sequences || 1;
+            CodeBreakerGame.timeLeft = config.timeLimit || 30;
+            CodeBreakerGame.completedSequences = 0;
+            CodeBreakerGame.isActive = true;
+
+            $('#codebreaker-container').css('display', 'flex');
+
+            generateCBMatrix();
+            generateNewCBSequence();
+            updateCBUI();
+            startCBTimer();
+        }
+
+        function generateCBMatrix() {
+            const container = $('#cb-matrix');
+            container.empty();
+            container.css('grid-template-columns', 'repeat(' + CodeBreakerGame.gridSize + ', 1fr)');
+
+            CodeBreakerGame.matrix = [];
+
+            for (let row = 0; row < CodeBreakerGame.gridSize; row++) {
+                CodeBreakerGame.matrix[row] = [];
+                for (let col = 0; col < CodeBreakerGame.gridSize; col++) {
+                    const code = CodeBreakerGame.CODES[Math.floor(Math.random() * CodeBreakerGame.CODES.length)];
+                    CodeBreakerGame.matrix[row][col] = code;
+
+                    const cell = $('<div class="cb-cell" data-row="' + row + '" data-col="' + col + '">' + code + '</div>');
+                    cell.on('click', function () {
+                        handleCBCellClick(row, col);
+                    });
+                    container.append(cell);
+                }
+            }
+
+            
+        }
+
+        function generateNewCBSequence() {
+            CodeBreakerGame.targetSequence = [];
+            CodeBreakerGame.buffer = [];
+            CodeBreakerGame.selectingRow = true;
+            CodeBreakerGame.lastRow = null;
+            CodeBreakerGame.lastCol = null;
+
+            // Generar secuencia objetivo tomando códigos de la matriz
+            for (let i = 0; i < CodeBreakerGame.bufferSize; i++) {
+                const row = Math.floor(Math.random() * CodeBreakerGame.gridSize);
+                const col = Math.floor(Math.random() * CodeBreakerGame.gridSize);
+                CodeBreakerGame.targetSequence.push(CodeBreakerGame.matrix[row][col]);
+            }
+
+            
+
+            updateCBSequenceDisplay();
+            updateCBBufferBar();
+            highlightCBAvailableCells();
+        }
+
+        function updateCBSequenceDisplay() {
+            const container = $('#cb-sequence-display');
+            container.empty();
+
+            CodeBreakerGame.targetSequence.forEach((code, index) => {
+                const item = $('<div class="cb-seq-item">' + code + '</div>');
+                if (index < CodeBreakerGame.buffer.length && CodeBreakerGame.buffer[index] === code) {
+                    item.addClass('found');
+                }
+                container.append(item);
+            });
+        }
+
+        function updateCBBufferBar() {
+            const container = $('#cb-buffer-bar');
+            container.empty();
+
+            for (let i = 0; i < CodeBreakerGame.bufferSize; i++) {
+                const slot = $('<div class="cb-buffer-slot"></div>');
+                if (i < CodeBreakerGame.buffer.length) {
+                    slot.addClass('filled');
+                    slot.text(CodeBreakerGame.buffer[i]);
+                }
+                container.append(slot);
+            }
+        }
+
+        function highlightCBAvailableCells() {
+            $('.cb-cell').removeClass('highlighted disabled');
+
+            if (CodeBreakerGame.selectingRow) {
+                // Puede seleccionar cualquier celda de cualquier fila
+                $('.cb-cell').removeClass('disabled');
+            } else {
+                // Solo puede seleccionar de la columna de la última celda seleccionada
+                $('.cb-cell').addClass('disabled');
+                if (CodeBreakerGame.lastCol !== null) {
+                    $('.cb-cell[data-col="' + CodeBreakerGame.lastCol + '"]').removeClass('disabled').addClass('highlighted');
+                }
+            }
+        }
+
+        function handleCBCellClick(row, col) {
+            if (!CodeBreakerGame.isActive) return;
+
+            const cell = $('.cb-cell[data-row="' + row + '"][data-col="' + col + '"]');
+            if (cell.hasClass('disabled')) return;
+
+            const code = CodeBreakerGame.matrix[row][col];
+            
+
+            // Agregar al buffer
+            CodeBreakerGame.buffer.push(code);
+            cell.addClass('selected');
+
+            CodeBreakerGame.lastRow = row;
+            CodeBreakerGame.lastCol = col;
+            CodeBreakerGame.selectingRow = !CodeBreakerGame.selectingRow;
+
+            updateCBSequenceDisplay();
+            updateCBBufferBar();
+
+            // Verificar si completó la secuencia
+            if (checkCBSequence()) {
+                successCBSequence();
+            } else if (CodeBreakerGame.buffer.length >= CodeBreakerGame.bufferSize) {
+                // Buffer lleno pero no completó la secuencia
+                failCB();
+            } else {
+                highlightCBAvailableCells();
+            }
+        }
+
+        function checkCBSequence() {
+            if (CodeBreakerGame.buffer.length < CodeBreakerGame.targetSequence.length) {
+                return false;
+            }
+
+            // Buscar la secuencia dentro del buffer
+            for (let i = 0; i <= CodeBreakerGame.buffer.length - CodeBreakerGame.targetSequence.length; i++) {
+                let match = true;
+                for (let j = 0; j < CodeBreakerGame.targetSequence.length; j++) {
+                    if (CodeBreakerGame.buffer[i + j] !== CodeBreakerGame.targetSequence[j]) {
+                        match = false;
+                        break;
+                    }
+                }
+                if (match) return true;
+            }
+
+            return false;
+        }
+
+        function successCBSequence() {
+            
+
+            CodeBreakerGame.completedSequences++;
+
+            if (CodeBreakerGame.completedSequences >= CodeBreakerGame.totalSequences) {
+                
+                completeCB(true);
+            } else {
+                // Generar nueva secuencia
+                setTimeout(() => {
+                    $('.cb-cell').removeClass('selected');
+                    generateNewCBSequence();
+                    updateCBUI();
+                }, 800);
+            }
+        }
+
+        function startCBTimer() {
+            if (CodeBreakerGame.timerInterval) clearInterval(CodeBreakerGame.timerInterval);
+
+            CodeBreakerGame.timerInterval = setInterval(() => {
+                CodeBreakerGame.timeLeft -= 0.1;
+
+                if (CodeBreakerGame.timeLeft <= 0) {
+                    failCB();
+                }
+
+                updateCBTimer();
+            }, 100);
+        }
+
+        function updateCBTimer() {
+            const timerElement = $('#cb-timer');
+            timerElement.text(Math.max(0, CodeBreakerGame.timeLeft).toFixed(1));
+
+            timerElement.removeClass('warning danger');
+            if (CodeBreakerGame.timeLeft < 5) {
+                timerElement.addClass('danger');
+            } else if (CodeBreakerGame.timeLeft < 10) {
+                timerElement.addClass('warning');
+            }
+        }
+
+        function updateCBUI() {
+            $('#cb-current-seq').text(CodeBreakerGame.completedSequences + 1);
+            $('#cb-total-seq').text(CodeBreakerGame.totalSequences);
+            $('#cb-buffer-count').text(CodeBreakerGame.buffer.length);
+            $('#cb-buffer-size').text(CodeBreakerGame.bufferSize);
+        }
+
+        function failCB() {
+            
+
+            clearInterval(CodeBreakerGame.timerInterval);
+
+            setTimeout(() => {
+                completeCB(false);
+            }, 500);
+        }
+
+        function completeCB(success) {
+            
+
+            CodeBreakerGame.isActive = false;
+
+            if (CodeBreakerGame.timerInterval) clearInterval(CodeBreakerGame.timerInterval);
+
+            setTimeout(() => {
+                $('#codebreaker-container').css('display', 'none');
+                cbPost('codeBreakerResult', { success: success });
+            }, 300);
+        }
+
+        $(document).on('keydown', function (e) {
+            if (e.key === 'Escape' && CodeBreakerGame.isActive) {
+                clearInterval(CodeBreakerGame.timerInterval);
+                CodeBreakerGame.isActive = false;
+                $('#codebreaker-container').css('display', 'none');
+                cbPost('closeCodeBreaker', {});
+            }
+        });
+
+        
+    </script>
+
+    <script>
+        // =====================================================
+        // WIRE PUZZLE MINIGAME - INLINE COMPLETO
+        // =====================================================
+
+        
+
+        const WirePuzzleGame = {
+            isActive: false,
+            wireCount: 6,
+            timeLeft: 25,
+            timerInterval: null,
+            mistakes: 0,
+            maxMistakes: 2,
+            connected: 0,
+            wires: [],
+            selectedLeft: null,
+            COLORS: [
+                { code: 'R1', color: '#ef4444' },
+                { code: 'G1', color: '#22c55e' },
+                { code: 'B1', color: '#3b82f6' },
+                { code: 'Y1', color: '#eab308' },
+                { code: 'P1', color: '#a855f7' },
+                { code: 'O1', color: '#f97316' },
+                { code: 'C1', color: '#06b6d4' },
+                { code: 'M1', color: '#ec4899' }
+            ]
+        };
+
+        function wpPost(action, data = {}) {
+            return $.post('https://mt-minijuegos/' + action, JSON.stringify(data));
+        }
+
+        window.addEventListener('message', function (event) {
+            const data = event.data;
+
+            if (data.action === 'startWirePuzzle') {
+                
+                startWirePuzzle(data.config);
+            }
+        });
+
+        function startWirePuzzle(config) {
+            
+
+            if (WirePuzzleGame.isActive) return;
+
+            WirePuzzleGame.wireCount = config.wireCount || 6;
+            WirePuzzleGame.timeLeft = config.timeLimit || 25;
+            WirePuzzleGame.maxMistakes = config.mistakes || 2;
+            WirePuzzleGame.mistakes = 0;
+            WirePuzzleGame.connected = 0;
+            WirePuzzleGame.selectedLeft = null;
+            WirePuzzleGame.isActive = true;
+
+            $('#wirepuzzle-container').css('display', 'flex');
+
+            generateWPWires();
+            updateWPUI();
+            startWPTimer();
+        }
+
+        function generateWPWires() {
+            
+
+            // Seleccionar colores aleatorios
+            const shuffled = [...WirePuzzleGame.COLORS].sort(() => Math.random() - 0.5);
+            const selectedColors = shuffled.slice(0, WirePuzzleGame.wireCount);
+
+            // Crear pares de cables
+            WirePuzzleGame.wires = selectedColors.map((c, i) => ({
+                id: i,
+                code: c.code,
+                color: c.color,
+                connected: false,
+                leftIndex: i,
+                rightIndex: -1
+            }));
+
+            // Mezclar lado derecho
+            const rightIndices = [...Array(WirePuzzleGame.wireCount).keys()].sort(() => Math.random() - 0.5);
+            WirePuzzleGame.wires.forEach((wire, i) => {
+                wire.rightIndex = rightIndices[i];
+            });
+
+            
+
+            // Renderizar cables
+            const leftContainer = $('#wp-wires-left');
+            const rightContainer = $('#wp-wires-right');
+            leftContainer.empty();
+            rightContainer.empty();
+
+            // Lado izquierdo (orden fijo)
+            WirePuzzleGame.wires.forEach((wire, i) => {
+                const wireEl = $('<div class="wp-wire wp-wire-left" data-id="' + wire.id + '" data-side="left"></div>');
+                wireEl.css('color', wire.color);
+                wireEl.append('<span class="wp-wire-label">' + wire.code + '</span>');
+                wireEl.on('click', function () {
+                    handleWPWireClick(wire.id, 'left');
+                });
+                leftContainer.append(wireEl);
+            });
+
+            // Lado derecho (orden mezclado)
+            const rightWires = [...WirePuzzleGame.wires].sort((a, b) => a.rightIndex - b.rightIndex);
+            rightWires.forEach((wire, i) => {
+                const wireEl = $('<div class="wp-wire wp-wire-right" data-id="' + wire.id + '" data-side="right"></div>');
+                wireEl.css('color', wire.color);
+                wireEl.append('<span class="wp-wire-label">' + wire.code + '</span>');
+                wireEl.on('click', function () {
+                    handleWPWireClick(wire.id, 'right');
+                });
+                rightContainer.append(wireEl);
+            });
+
+            // Limpiar SVG
+            $('#wp-connections').empty();
+        }
+
+        function handleWPWireClick(wireId, side) {
+            if (!WirePuzzleGame.isActive) return;
+
+            const wire = WirePuzzleGame.wires.find(w => w.id === wireId);
+            if (!wire || wire.connected) return;
+
+            
+
+            if (side === 'left') {
+                // Seleccionar cable izquierdo
+                if (WirePuzzleGame.selectedLeft === wireId) {
+                    // Deseleccionar
+                    WirePuzzleGame.selectedLeft = null;
+                    $('.wp-wire[data-side="left"]').removeClass('selected');
+                    removeTempLine();
+                } else {
+                    // Seleccionar
+                    WirePuzzleGame.selectedLeft = wireId;
+                    $('.wp-wire[data-side="left"]').removeClass('selected');
+                    $('.wp-wire[data-id="' + wireId + '"][data-side="left"]').addClass('selected');
+                    updateTempLine();
+                }
+            } else if (side === 'right') {
+                // Conectar con cable derecho
+                if (WirePuzzleGame.selectedLeft === null) return;
+
+                const leftWire = WirePuzzleGame.wires.find(w => w.id === WirePuzzleGame.selectedLeft);
+
+                if (WirePuzzleGame.selectedLeft === wireId) {
+                    // Correcto!
+                    
+                    leftWire.connected = true;
+                    WirePuzzleGame.connected++;
+
+                    $('.wp-wire[data-id="' + wireId + '"]').addClass('connected');
+                    drawConnection(leftWire, true);
+
+                    WirePuzzleGame.selectedLeft = null;
+                    $('.wp-wire[data-side="left"]').removeClass('selected');
+                    removeTempLine();
+
+                    updateWPUI();
+
+                    // Verificar si completó
+                    if (WirePuzzleGame.connected >= WirePuzzleGame.wireCount) {
+                        successWP();
+                    }
+                } else {
+                    // Incorrecto
+                    
+                    WirePuzzleGame.mistakes++;
+
+                    const rightWire = WirePuzzleGame.wires.find(w => w.id === wireId);
+                    drawConnection(leftWire, false, rightWire);
+
+                    setTimeout(() => {
+                        $('.wp-connection-line.wrong').remove();
+                    }, 500);
+
+                    WirePuzzleGame.selectedLeft = null;
+                    $('.wp-wire[data-side="left"]').removeClass('selected');
+                    removeTempLine();
+
+                    updateWPUI();
+
+                    // Verificar si alcanzó máximo de errores
+                    if (WirePuzzleGame.mistakes > WirePuzzleGame.maxMistakes) {
+                        failWP();
+                    }
+                }
+            }
+        }
+
+        function drawConnection(wire, correct, wrongRightWire = null) {
+            const svg = document.getElementById('wp-connections');
+            const leftEl = $('.wp-wire[data-id="' + wire.id + '"][data-side="left"]')[0];
+            const rightEl = wrongRightWire
+                ? $('.wp-wire[data-id="' + wrongRightWire.id + '"][data-side="right"]')[0]
+                : $('.wp-wire[data-id="' + wire.id + '"][data-side="right"]')[0];
+
+            if (!leftEl || !rightEl) return;
+
+            // El contenedor tiene transform: scale(0.7), getBoundingClientRect devuelve coords escaladas
+            // pero el SVG internamente usa coords sin escalar - hay que compensar
+            const scale = 0.7;
+
+            const leftRect = leftEl.getBoundingClientRect();
+            const rightRect = rightEl.getBoundingClientRect();
+            const svgRect = svg.getBoundingClientRect();
+
+            // Calcular 1.5vh en píxeles (tamaño del stub) - ya escalado por el navegador
+            const stubSize = window.innerHeight * 0.015;
+
+            // Convertir las diferencias de coords escaladas a coords internas del SVG
+            const x1 = (leftRect.right - svgRect.left + stubSize) / scale;
+            const y1 = (leftRect.top + leftRect.height / 2 - svgRect.top) / scale;
+
+            const x2 = (rightRect.left - svgRect.left - stubSize) / scale;
+            const y2 = (rightRect.top + rightRect.height / 2 - svgRect.top) / scale;
+
+            const line = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            const midX = (x1 + x2) / 2;
+            const path = `M ${x1} ${y1} C ${midX} ${y1}, ${midX} ${y2}, ${x2} ${y2}`;
+
+            line.setAttribute('d', path);
+            line.setAttribute('class', 'wp-connection-line ' + (correct ? 'correct' : 'wrong'));
+
+            svg.appendChild(line);
+        }
+
+        function updateTempLine() {
+            removeTempLine();
+
+            if (WirePuzzleGame.selectedLeft === null) return;
+
+            const wire = WirePuzzleGame.wires.find(w => w.id === WirePuzzleGame.selectedLeft);
+            if (!wire) return;
+
+            const svg = document.getElementById('wp-connections');
+            const leftEl = $('.wp-wire[data-id="' + wire.id + '"][data-side="left"]')[0];
+
+            if (!leftEl) return;
+
+            // Compensar la escala del contenedor
+            const scale = 0.7;
+
+            const leftRect = leftEl.getBoundingClientRect();
+            const svgRect = svg.getBoundingClientRect();
+
+            // Calcular 1.5vh en píxeles (tamaño del stub)
+            const stubSize = window.innerHeight * 0.015;
+
+            // Convertir coords escaladas a coords internas del SVG
+            const x1 = (leftRect.right - svgRect.left + stubSize) / scale;
+            const y1 = (leftRect.top + leftRect.height / 2 - svgRect.top) / scale;
+            const svgInternalWidth = svgRect.width / scale;
+            const x2 = svgInternalWidth - svgInternalWidth / 3;
+            const y2 = y1;
+
+            const line = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            const midX = (x1 + x2) / 2;
+            const path = `M ${x1} ${y1} C ${midX} ${y1}, ${midX} ${y2}, ${x2} ${y2}`;
+
+            line.setAttribute('d', path);
+            line.setAttribute('class', 'wp-connection-line selecting');
+            line.setAttribute('id', 'temp-line');
+
+            svg.appendChild(line);
+        }
+
+        function removeTempLine() {
+            $('#temp-line').remove();
+        }
+
+        function startWPTimer() {
+            if (WirePuzzleGame.timerInterval) clearInterval(WirePuzzleGame.timerInterval);
+
+            WirePuzzleGame.timerInterval = setInterval(() => {
+                WirePuzzleGame.timeLeft -= 0.1;
+
+                if (WirePuzzleGame.timeLeft <= 0) {
+                    failWP();
+                }
+
+                updateWPTimer();
+            }, 100);
+        }
+
+        function updateWPTimer() {
+            const timerElement = $('#wp-timer');
+            timerElement.text(Math.max(0, WirePuzzleGame.timeLeft).toFixed(1));
+
+            timerElement.removeClass('warning danger');
+            if (WirePuzzleGame.timeLeft < 5) {
+                timerElement.addClass('danger');
+            } else if (WirePuzzleGame.timeLeft < 10) {
+                timerElement.addClass('warning');
+            }
+        }
+
+        function updateWPUI() {
+            $('#wp-connected').text(WirePuzzleGame.connected);
+            $('#wp-total').text(WirePuzzleGame.wireCount);
+            $('#wp-mistakes').text(WirePuzzleGame.mistakes);
+            $('#wp-max-mistakes').text(WirePuzzleGame.maxMistakes);
+        }
+
+        function successWP() {
+            
+
+            clearInterval(WirePuzzleGame.timerInterval);
+
+            setTimeout(() => {
+                completeWP(true);
+            }, 500);
+        }
+
+        function failWP() {
+            
+
+            clearInterval(WirePuzzleGame.timerInterval);
+
+            setTimeout(() => {
+                completeWP(false);
+            }, 500);
+        }
+
+        function completeWP(success) {
+            
+
+            WirePuzzleGame.isActive = false;
+
+            if (WirePuzzleGame.timerInterval) clearInterval(WirePuzzleGame.timerInterval);
+
+            setTimeout(() => {
+                $('#wirepuzzle-container').css('display', 'none');
+                wpPost('wirePuzzleResult', { success: success });
+            }, 300);
+        }
+
+        $(document).on('keydown', function (e) {
+            if (e.key === 'Escape' && WirePuzzleGame.isActive) {
+                clearInterval(WirePuzzleGame.timerInterval);
+                WirePuzzleGame.isActive = false;
+                $('#wirepuzzle-container').css('display', 'none');
+                wpPost('closeWirePuzzle', {});
+            }
+        });
+
+        
+    </script>
+
+    <script>
+        // =====================================================
+        // MINESWEEPER MINIGAME - INLINE COMPLETO
+        // =====================================================
+
+        
+
+        const MinesweeperGame = {
+            isActive: false,
+            gridSize: 6,
+            mines: 7,
+            timeLeft: 50,
+            timerInterval: null,
+            grid: [],
+            revealed: 0,
+            safeCells: 0
+        };
+
+        function msPost(action, data = {}) {
+            return $.post('https://mt-minijuegos/' + action, JSON.stringify(data));
+        }
+
+        window.addEventListener('message', function (event) {
+            const data = event.data;
+
+            if (data.action === 'startMinesweeper') {
+                
+                startMinesweeper(data.config);
+            }
+        });
+
+        function startMinesweeper(config) {
+            
+
+            if (MinesweeperGame.isActive) return;
+
+            MinesweeperGame.gridSize = config.gridSize || 6;
+            MinesweeperGame.mines = config.mines || 7;
+            MinesweeperGame.timeLeft = config.timeLimit || 50;
+            MinesweeperGame.revealed = 0;
+            MinesweeperGame.safeCells = (MinesweeperGame.gridSize * MinesweeperGame.gridSize) - MinesweeperGame.mines;
+            MinesweeperGame.isActive = true;
+
+            $('#minesweeper-container').css('display', 'flex');
+
+            generateMinesweeperGrid();
+            updateMinesweeperUI();
+            startMinesweeperTimer();
+        }
+
+        function generateMinesweeperGrid() {
+            
+
+            const container = $('#ms-grid');
+            container.empty();
+            container.css('grid-template-columns', 'repeat(' + MinesweeperGame.gridSize + ', 1fr)');
+
+            const totalCells = MinesweeperGame.gridSize * MinesweeperGame.gridSize;
+
+            // Inicializar grid
+            MinesweeperGame.grid = [];
+            for (let i = 0; i < totalCells; i++) {
+                MinesweeperGame.grid.push({
+                    isMine: false,
+                    revealed: false,
+                    adjacentMines: 0
+                });
+            }
+
+            // Colocar minas aleatoriamente
+            let minesPlaced = 0;
+            while (minesPlaced < MinesweeperGame.mines) {
+                const randomIndex = Math.floor(Math.random() * totalCells);
+                if (!MinesweeperGame.grid[randomIndex].isMine) {
+                    MinesweeperGame.grid[randomIndex].isMine = true;
+                    minesPlaced++;
+                }
+            }
+
+            // Calcular números adyacentes
+            for (let i = 0; i < totalCells; i++) {
+                if (!MinesweeperGame.grid[i].isMine) {
+                    MinesweeperGame.grid[i].adjacentMines = countAdjacentMines(i);
+                }
+            }
+
+            // Crear celdas visuales
+            for (let i = 0; i < totalCells; i++) {
+                const cell = $('<div class="ms-cell" data-index="' + i + '"></div>');
+                cell.on('click', function () {
+                    handleMinesweeperClick(i);
+                });
+                container.append(cell);
+            }
+
+            
+        }
+
+        function countAdjacentMines(index) {
+            const row = Math.floor(index / MinesweeperGame.gridSize);
+            const col = index % MinesweeperGame.gridSize;
+            let count = 0;
+
+            // Verificar las 8 celdas adyacentes
+            for (let dr = -1; dr <= 1; dr++) {
+                for (let dc = -1; dc <= 1; dc++) {
+                    if (dr === 0 && dc === 0) continue;
+
+                    const newRow = row + dr;
+                    const newCol = col + dc;
+
+                    if (newRow >= 0 && newRow < MinesweeperGame.gridSize &&
+                        newCol >= 0 && newCol < MinesweeperGame.gridSize) {
+                        const newIndex = newRow * MinesweeperGame.gridSize + newCol;
+                        if (MinesweeperGame.grid[newIndex].isMine) {
+                            count++;
+                        }
+                    }
+                }
+            }
+
+            return count;
+        }
+
+        function handleMinesweeperClick(index) {
+            if (!MinesweeperGame.isActive) return;
+
+            const cellData = MinesweeperGame.grid[index];
+            if (cellData.revealed) return;
+
+            
+
+            if (cellData.isMine) {
+                // ¡BOOM! Tocó una mina
+                
+                revealMine(index);
+                failMinesweeper();
+            } else {
+                // Celda segura
+                revealCell(index);
+
+                // Verificar victoria
+                if (MinesweeperGame.revealed >= MinesweeperGame.safeCells) {
+                    
+                    successMinesweeper();
+                }
+            }
+        }
+
+        function revealCell(index) {
+            const cellData = MinesweeperGame.grid[index];
+
+            if (cellData.revealed || cellData.isMine) return;
+
+            cellData.revealed = true;
+            MinesweeperGame.revealed++;
+
+            const cell = $('.ms-cell[data-index="' + index + '"]');
+            cell.addClass('revealed');
+
+            if (cellData.adjacentMines > 0) {
+                cell.text(cellData.adjacentMines);
+                cell.addClass('number-' + cellData.adjacentMines);
+            } else {
+                // Si no hay minas adyacentes, revelar celdas vecinas automáticamente
+                revealAdjacentCells(index);
+            }
+
+            updateMinesweeperUI();
+        }
+
+        function revealAdjacentCells(index) {
+            const row = Math.floor(index / MinesweeperGame.gridSize);
+            const col = index % MinesweeperGame.gridSize;
+
+            for (let dr = -1; dr <= 1; dr++) {
+                for (let dc = -1; dc <= 1; dc++) {
+                    if (dr === 0 && dc === 0) continue;
+
+                    const newRow = row + dr;
+                    const newCol = col + dc;
+
+                    if (newRow >= 0 && newRow < MinesweeperGame.gridSize &&
+                        newCol >= 0 && newCol < MinesweeperGame.gridSize) {
+                        const newIndex = newRow * MinesweeperGame.gridSize + newCol;
+                        revealCell(newIndex);
+                    }
+                }
+            }
+        }
+
+        function revealMine(hitIndex) {
+            // Revelar la mina que fue clickeada
+            const hitCell = $('.ms-cell[data-index="' + hitIndex + '"]');
+            hitCell.addClass('mine-hit');
+            hitCell.text('💣');
+
+            // Revelar todas las demás minas
+            setTimeout(() => {
+                for (let i = 0; i < MinesweeperGame.grid.length; i++) {
+                    if (i !== hitIndex && MinesweeperGame.grid[i].isMine) {
+                        const cell = $('.ms-cell[data-index="' + i + '"]');
+                        cell.addClass('mine-revealed');
+                        cell.text('💣');
+                    }
+                }
+            }, 300);
+        }
+
+        function startMinesweeperTimer() {
+            if (MinesweeperGame.timerInterval) clearInterval(MinesweeperGame.timerInterval);
+
+            MinesweeperGame.timerInterval = setInterval(() => {
+                MinesweeperGame.timeLeft -= 0.1;
+
+                if (MinesweeperGame.timeLeft <= 0) {
+                    
+                    failMinesweeper();
+                }
+
+                updateMinesweeperTimer();
+            }, 100);
+        }
+
+        function updateMinesweeperTimer() {
+            const timerElement = $('#ms-timer');
+            timerElement.text(Math.max(0, MinesweeperGame.timeLeft).toFixed(1));
+
+            timerElement.removeClass('warning danger');
+            if (MinesweeperGame.timeLeft < 10) {
+                timerElement.addClass('danger');
+            } else if (MinesweeperGame.timeLeft < 20) {
+                timerElement.addClass('warning');
+            }
+        }
+
+        function updateMinesweeperUI() {
+            $('#ms-revealed').text(MinesweeperGame.revealed);
+            $('#ms-safe').text(MinesweeperGame.safeCells);
+            $('#ms-mines').text(MinesweeperGame.mines);
+        }
+
+        function successMinesweeper() {
+            
+
+            clearInterval(MinesweeperGame.timerInterval);
+
+            // Mostrar todas las minas en verde
+            for (let i = 0; i < MinesweeperGame.grid.length; i++) {
+                if (MinesweeperGame.grid[i].isMine) {
+                    const cell = $('.ms-cell[data-index="' + i + '"]');
+                    cell.addClass('revealed');
+                    cell.css({
+                        'background': '#1c850ef2',
+                        'color': 'white',
+                        'border-color': '#1c850ef2'
+                    });
+                    cell.text('💣');
+                }
+            }
+
+            setTimeout(() => {
+                completeMinesweeper(true);
+            }, 800);
+        }
+
+        function failMinesweeper() {
+            
+
+            clearInterval(MinesweeperGame.timerInterval);
+            MinesweeperGame.isActive = false;
+
+            setTimeout(() => {
+                completeMinesweeper(false);
+            }, 1000);
+        }
+
+        function completeMinesweeper(success) {
+            
+
+            MinesweeperGame.isActive = false;
+
+            if (MinesweeperGame.timerInterval) clearInterval(MinesweeperGame.timerInterval);
+
+            setTimeout(() => {
+                $('#minesweeper-container').css('display', 'none');
+                msPost('minesweeperResult', { success: success });
+            }, 300);
+        }
+
+        $(document).on('keydown', function (e) {
+            if (e.key === 'Escape' && MinesweeperGame.isActive) {
+                clearInterval(MinesweeperGame.timerInterval);
+                MinesweeperGame.isActive = false;
+                $('#minesweeper-container').css('display', 'none');
+                msPost('closeMinesweeper', {});
+            }
+        });
+
+        
+    </script>
+
+    <script>
+        // =====================================================
+        // TIMING CIRCLES MINIGAME
+        // =====================================================
+
+        
+
+        const TimingCirclesGame = {
+            isActive: false,
+            currentRound: 0,
+            totalRounds: 6,
+            perfectHits: 0,
+            speed: 1.3,
+            perfectZone: 20,
+            currentRadius: 140,
+            shrinking: true,
+            animationFrame: null
+        };
+
+        function tcPost(action, data = {}) {
+            return $.post('https://mt-minijuegos/' + action, JSON.stringify(data));
+        }
+
+        window.addEventListener('message', function (event) {
+            if (event.data.action === 'startTimingCircles') {
+                
+                startTimingCircles(event.data.config);
+            }
+        });
+
+        function startTimingCircles(config) {
+            if (TimingCirclesGame.isActive) return;
+
+            TimingCirclesGame.totalRounds = config.rounds || 6;
+            TimingCirclesGame.speed = config.speed || 1.3;
+            TimingCirclesGame.perfectZone = config.perfectZone || 20;
+            TimingCirclesGame.currentRound = 0;
+            TimingCirclesGame.perfectHits = 0;
+            TimingCirclesGame.isActive = true;
+
+            $('#timingcircles-container').css('display', 'flex');
+
+            updateTimingCirclesUI();
+            startTimingCirclesRound();
+        }
+
+        function startTimingCirclesRound() {
+            TimingCirclesGame.currentRound++;
+            TimingCirclesGame.currentRadius = 140;
+            TimingCirclesGame.shrinking = true;
+
+            $('#tc-status').text('¡AHORA!').css('color', '#850e49f2');
+            $('.tc-moving-circle').removeClass('perfect fail');
+
+            updateTimingCirclesUI();
+            animateTimingCircle();
+        }
+
+        function animateTimingCircle() {
+            if (!TimingCirclesGame.shrinking) return;
+
+            TimingCirclesGame.currentRadius -= TimingCirclesGame.speed;
+
+            if (TimingCirclesGame.currentRadius <= 10) {
+                // Se pasó - falló
+                TimingCirclesGame.shrinking = false;
+                $('.tc-moving-circle').addClass('fail');
+                $('#tc-status').text('FALLIDO').css('color', '#ef4444');
+
+                setTimeout(() => {
+                    failTimingCircles();
+                }, 500);
+                return;
+            }
+
+            $('#tc-moving-circle').attr('r', TimingCirclesGame.currentRadius);
+
+            TimingCirclesGame.animationFrame = requestAnimationFrame(animateTimingCircle);
+        }
+
+        function handleTimingCirclesClick() {
+            if (!TimingCirclesGame.isActive || !TimingCirclesGame.shrinking) return;
+
+            TimingCirclesGame.shrinking = false;
+            cancelAnimationFrame(TimingCirclesGame.animationFrame);
+
+            const perfectRadius = 40;
+            const tolerance = perfectRadius * (TimingCirclesGame.perfectZone / 100);
+
+            const isPerfect = Math.abs(TimingCirclesGame.currentRadius - perfectRadius) <= tolerance;
+
+            if (isPerfect) {
+                
+                TimingCirclesGame.perfectHits++;
+                $('.tc-moving-circle').addClass('perfect');
+                $('#tc-status').text('PERFECTO!').css('color', '#1c850ef2');
+
+                updateTimingCirclesUI();
+
+                setTimeout(() => {
+                    if (TimingCirclesGame.currentRound >= TimingCirclesGame.totalRounds) {
+                        successTimingCircles();
+                    } else {
+                        startTimingCirclesRound();
+                    }
+                }, 600);
+            } else {
+                
+                $('.tc-moving-circle').addClass('fail');
+                $('#tc-status').text('FALLIDO').css('color', '#ef4444');
+
+                setTimeout(() => {
+                    failTimingCircles();
+                }, 500);
+            }
+        }
+
+        $(document).on('keydown', function (e) {
+            if (e.key === ' ' || e.key === 'Spacebar') {
+                if (TimingCirclesGame.isActive) {
+                    e.preventDefault();
+                    handleTimingCirclesClick();
+                }
+            }
+
+            if (e.key === 'Escape' && TimingCirclesGame.isActive) {
+                TimingCirclesGame.shrinking = false;
+                cancelAnimationFrame(TimingCirclesGame.animationFrame);
+                TimingCirclesGame.isActive = false;
+                $('#timingcircles-container').css('display', 'none');
+                tcPost('closeTimingCircles', {});
+            }
+        });
+
+        function updateTimingCirclesUI() {
+            $('#tc-current').text(TimingCirclesGame.currentRound);
+            $('#tc-total').text(TimingCirclesGame.totalRounds);
+            $('#tc-perfect').text(TimingCirclesGame.perfectHits);
+        }
+
+        function successTimingCircles() {
+            TimingCirclesGame.isActive = false;
+            setTimeout(() => {
+                $('#timingcircles-container').css('display', 'none');
+                tcPost('timingCirclesResult', { success: true });
+            }, 300);
+        }
+
+        function failTimingCircles() {
+            TimingCirclesGame.isActive = false;
+            setTimeout(() => {
+                $('#timingcircles-container').css('display', 'none');
+                tcPost('timingCirclesResult', { success: false });
+            }, 300);
+        }
+
+        
+    </script>
+
+    <script>
+        // =====================================================
+        // VAR HACK MINIGAME
+        // =====================================================
+
+        
+
+        const VarHackGame = {
+            isActive: false,
+            lines: 4,
+            symbols: 5,
+            timeLeft: 35,
+            timerInterval: null,
+            lineStates: [],
+            SYMBOLS: ['▲', '■', '●', '◆', '★', '▼', '◀', '▶']
+        };
+
+        function vhPost(action, data = {}) {
+            return $.post('https://mt-minijuegos/' + action, JSON.stringify(data));
+        }
+
+        window.addEventListener('message', function (event) {
+            if (event.data.action === 'startVarHack') {
+                
+                startVarHack(event.data.config);
+            }
+        });
+
+        function startVarHack(config) {
+            if (VarHackGame.isActive) return;
+
+            VarHackGame.lines = config.lines || 4;
+            VarHackGame.symbols = config.symbols || 5;
+            VarHackGame.timeLeft = config.timeLimit || 35;
+            VarHackGame.isActive = true;
+
+            $('#varhack-container').css('display', 'flex');
+
+            generateVarHackLines();
+            updateVarHackUI();
+            startVarHackTimer();
+        }
+
+        function generateVarHackLines() {
+            const container = $('#vh-lines-container');
+            container.empty();
+
+            VarHackGame.lineStates = [];
+
+            for (let lineIdx = 0; lineIdx < VarHackGame.lines; lineIdx++) {
+                const randomOffset = Math.floor(Math.random() * VarHackGame.symbols);
+                VarHackGame.lineStates.push({
+                    offset: randomOffset,
+                    symbols: []
+                });
+
+                // Generar símbolos aleatorios para esta línea
+                for (let i = 0; i < VarHackGame.symbols; i++) {
+                    const symbol = VarHackGame.SYMBOLS[Math.floor(Math.random() * VarHackGame.SYMBOLS.length)];
+                    VarHackGame.lineStates[lineIdx].symbols.push(symbol);
+                }
+
+                const line = $('<div class="vh-line" data-line="' + lineIdx + '"></div>');
+
+                for (let i = 0; i < VarHackGame.symbols; i++) {
+                    const symbolEl = $('<div class="vh-symbol"></div>');
+                    line.append(symbolEl);
+                }
+
+                line.on('click', function () {
+                    rotateVarHackLine(lineIdx);
+                });
+
+                container.append(line);
+            }
+
+            updateVarHackDisplay();
+            checkVarHackAlignment();
+        }
+
+        function rotateVarHackLine(lineIdx) {
+            if (!VarHackGame.isActive) return;
+
+            VarHackGame.lineStates[lineIdx].offset = (VarHackGame.lineStates[lineIdx].offset + 1) % VarHackGame.symbols;
+
+            updateVarHackDisplay();
+            checkVarHackAlignment();
+        }
+
+        function updateVarHackDisplay() {
+            VarHackGame.lineStates.forEach((lineState, lineIdx) => {
+                const line = $('.vh-line[data-line="' + lineIdx + '"]');
+                const symbols = line.find('.vh-symbol');
+
+                for (let i = 0; i < VarHackGame.symbols; i++) {
+                    const displayIndex = (i + lineState.offset) % VarHackGame.symbols;
+                    $(symbols[i]).text(lineState.symbols[displayIndex]);
+                }
+            });
+        }
+
+        function checkVarHackAlignment() {
+            let alignedCount = 0;
+
+            // Verificar cada columna
+            for (let col = 0; col < VarHackGame.symbols; col++) {
+                let allSame = true;
+                let firstSymbol = null;
+
+                for (let lineIdx = 0; lineIdx < VarHackGame.lines; lineIdx++) {
+                    const displayIndex = (col + VarHackGame.lineStates[lineIdx].offset) % VarHackGame.symbols;
+                    const symbol = VarHackGame.lineStates[lineIdx].symbols[displayIndex];
+
+                    if (firstSymbol === null) {
+                        firstSymbol = symbol;
+                    } else if (symbol !== firstSymbol) {
+                        allSame = false;
+                        break;
+                    }
+                }
+
+                if (allSame) {
+                    alignedCount++;
+                }
+            }
+
+            // Marcar líneas alineadas
+            $('.vh-line').removeClass('aligned');
+
+            if (alignedCount > 0) {
+                // Buscar qué columnas están alineadas
+                for (let col = 0; col < VarHackGame.symbols; col++) {
+                    let allSame = true;
+                    let firstSymbol = null;
+
+                    for (let lineIdx = 0; lineIdx < VarHackGame.lines; lineIdx++) {
+                        const displayIndex = (col + VarHackGame.lineStates[lineIdx].offset) % VarHackGame.symbols;
+                        const symbol = VarHackGame.lineStates[lineIdx].symbols[displayIndex];
+
+                        if (firstSymbol === null) {
+                            firstSymbol = symbol;
+                        } else if (symbol !== firstSymbol) {
+                            allSame = false;
+                            break;
+                        }
+                    }
+
+                    if (allSame) {
+                        // Todas las líneas están alineadas - marcar todas
+                        for (let lineIdx = 0; lineIdx < VarHackGame.lines; lineIdx++) {
+                            $('.vh-line[data-line="' + lineIdx + '"]').addClass('aligned');
+                        }
+                        break;
+                    }
+                }
+            }
+
+            updateVarHackUI();
+
+            // Verificar victoria
+            if (alignedCount > 0) {
+                
+                successVarHack();
+            }
+        }
+
+        function startVarHackTimer() {
+            if (VarHackGame.timerInterval) clearInterval(VarHackGame.timerInterval);
+
+            VarHackGame.timerInterval = setInterval(() => {
+                VarHackGame.timeLeft -= 0.1;
+
+                if (VarHackGame.timeLeft <= 0) {
+                    failVarHack();
+                }
+
+                const timerElement = $('#vh-timer');
+                timerElement.text(Math.max(0, VarHackGame.timeLeft).toFixed(1));
+
+                timerElement.removeClass('warning danger');
+                if (VarHackGame.timeLeft < 5) {
+                    timerElement.addClass('danger');
+                } else if (VarHackGame.timeLeft < 10) {
+                    timerElement.addClass('warning');
+                }
+            }, 100);
+        }
+
+        function updateVarHackUI() {
+            $('#vh-aligned').text($('.vh-line.aligned').length > 0 ? '1' : '0');
+            $('#vh-total').text(VarHackGame.lines);
+        }
+
+        function successVarHack() {
+            clearInterval(VarHackGame.timerInterval);
+            VarHackGame.isActive = false;
+
+            setTimeout(() => {
+                $('#varhack-container').css('display', 'none');
+                vhPost('varHackResult', { success: true });
+            }, 500);
+        }
+
+        function failVarHack() {
+            clearInterval(VarHackGame.timerInterval);
+            VarHackGame.isActive = false;
+
+            setTimeout(() => {
+                $('#varhack-container').css('display', 'none');
+                vhPost('varHackResult', { success: false });
+            }, 300);
+        }
+
+        $(document).on('keydown', function (e) {
+            if (e.key === 'Escape' && VarHackGame.isActive) {
+                clearInterval(VarHackGame.timerInterval);
+                VarHackGame.isActive = false;
+                $('#varhack-container').css('display', 'none');
+                vhPost('closeVarHack', {});
+            }
+        });
+
+        
+    </script>
+
+    <script>
+        // =====================================================
+        // POWER GRID MINIGAME
+        // =====================================================
+
+        
+
+        const PowerGridGame = {
+            isActive: false,
+            gridSize: 6,
+            minPathLength: 12,
+            timeLeft: 30,
+            timerInterval: null,
+            grid: [],
+            path: [],
+            startCell: null,
+            endCell: null,
+            isDrawing: false
+        };
+
+        function pgPost(action, data = {}) {
+            return $.post('https://mt-minijuegos/' + action, JSON.stringify(data));
+        }
+
+        window.addEventListener('message', function (event) {
+            if (event.data.action === 'startPowerGrid') {
+                
+                startPowerGrid(event.data.config);
+            }
+        });
+
+        function startPowerGrid(config) {
+            if (PowerGridGame.isActive) return;
+
+            PowerGridGame.gridSize = config.gridSize || 6;
+            PowerGridGame.minPathLength = config.pathLength || 12;
+            PowerGridGame.timeLeft = config.timeLimit || 30;
+            PowerGridGame.path = [];
+            PowerGridGame.isActive = true;
+
+            $('#powergrid-container').css('display', 'flex');
+
+            generatePowerGrid();
+            updatePowerGridUI();
+            startPowerGridTimer();
+        }
+
+        function generatePowerGrid() {
+            
+
+            const container = $('#pg-grid');
+            container.empty();
+            container.css('grid-template-columns', 'repeat(' + PowerGridGame.gridSize + ', 1fr)');
+
+            const totalCells = PowerGridGame.gridSize * PowerGridGame.gridSize;
+            PowerGridGame.grid = [];
+
+            // Posiciones aleatorias para start y end
+            PowerGridGame.startCell = Math.floor(Math.random() * PowerGridGame.gridSize);
+            PowerGridGame.endCell = totalCells - 1 - Math.floor(Math.random() * PowerGridGame.gridSize);
+
+            
+            
+
+            // Generar algunas celdas bloqueadas
+            const blockedCount = Math.floor(totalCells * 0.2);
+            const blockedCells = new Set();
+            blockedCells.add(PowerGridGame.startCell);
+            blockedCells.add(PowerGridGame.endCell);
+
+            while (blockedCells.size < blockedCount + 2) {
+                blockedCells.add(Math.floor(Math.random() * totalCells));
+            }
+
+            for (let i = 0; i < totalCells; i++) {
+                const cell = $('<div class="pg-cell" data-index="' + i + '"></div>');
+
+                if (i === PowerGridGame.startCell) {
+                    cell.addClass('pg-start');
+                    cell.text('START');
+                    PowerGridGame.grid.push({ type: 'start', inPath: false });
+                } else if (i === PowerGridGame.endCell) {
+                    cell.addClass('pg-end');
+                    cell.text('END');
+                    PowerGridGame.grid.push({ type: 'end', inPath: false });
+                } else if (blockedCells.has(i) && i !== PowerGridGame.startCell && i !== PowerGridGame.endCell) {
+                    cell.addClass('pg-blocked');
+                    PowerGridGame.grid.push({ type: 'blocked', inPath: false });
+                } else {
+                    PowerGridGame.grid.push({ type: 'empty', inPath: false });
+                }
+
+                // Click para todos los tipos de celdas
+                cell.on('click', function () {
+                    handlePowerGridClick(i);
+                });
+
+                container.append(cell);
+            }
+
+            
+        }
+
+        function handlePowerGridClick(index) {
+            if (!PowerGridGame.isActive) return;
+
+            
+
+            const cellType = PowerGridGame.grid[index].type;
+
+            // Si es una celda bloqueada, no hacer nada
+            if (cellType === 'blocked') {
+                
+                return;
+            }
+
+            // Si el path está vacío, debe empezar en START
+            if (PowerGridGame.path.length === 0) {
+                if (index === PowerGridGame.startCell) {
+                    
+                    PowerGridGame.path = [index];
+                    updatePowerGridPath();
+                    updatePowerGridUI();
+                } else {
+                    
+                }
+                return;
+            }
+
+            const lastIndex = PowerGridGame.path[PowerGridGame.path.length - 1];
+
+            // Si clickea la última celda del path, eliminar desde ahí hacia atrás
+            if (PowerGridGame.path.includes(index)) {
+                const clickedPosition = PowerGridGame.path.indexOf(index);
+                PowerGridGame.path = PowerGridGame.path.slice(0, clickedPosition + 1);
+                
+                updatePowerGridPath();
+                updatePowerGridUI();
+                return;
+            }
+
+            // Verificar si es adyacente
+            if (!isAdjacent(lastIndex, index)) {
+                
+                return;
+            }
+
+            // Agregar al path
+            PowerGridGame.path.push(index);
+            
+            updatePowerGridPath();
+            updatePowerGridUI();
+        }
+
+        function isAdjacent(index1, index2) {
+            const row1 = Math.floor(index1 / PowerGridGame.gridSize);
+            const col1 = index1 % PowerGridGame.gridSize;
+            const row2 = Math.floor(index2 / PowerGridGame.gridSize);
+            const col2 = index2 % PowerGridGame.gridSize;
+
+            const rowDiff = Math.abs(row1 - row2);
+            const colDiff = Math.abs(col1 - col2);
+
+            return (rowDiff === 1 && colDiff === 0) || (rowDiff === 0 && colDiff === 1);
+        }
+
+        function updatePowerGridPath() {
+            $('.pg-cell').removeClass('pg-path');
+
+            PowerGridGame.path.forEach(index => {
+                $('.pg-cell[data-index="' + index + '"]').addClass('pg-path');
+            });
+        }
+
+        function resetPowerGridPath() {
+            PowerGridGame.path = [];
+            PowerGridGame.isDrawing = false;
+            updatePowerGridPath();
+            updatePowerGridUI();
+        }
+
+        function completePowerGridPath() {
+            if (!PowerGridGame.isActive) return;
+
+            
+            
+            
+            
+            
+            
+
+            if (PowerGridGame.path.length === 0) {
+                
+                return;
+            }
+
+            const firstIndex = PowerGridGame.path[0];
+            const lastIndex = PowerGridGame.path[PowerGridGame.path.length - 1];
+
+            
+            
+
+            const startsAtStart = firstIndex === PowerGridGame.startCell;
+            const endsAtEnd = lastIndex === PowerGridGame.endCell;
+            const hasMinLength = PowerGridGame.path.length >= PowerGridGame.minPathLength;
+
+            
+            
+            
+
+            if (startsAtStart && endsAtEnd && hasMinLength) {
+                
+                successPowerGrid();
+            } else {
+                
+
+                if (!startsAtStart) {
+                    
+                    $('#pg-instruction-text').text('DEBES EMPEZAR EN START').css('color', '#ef4444');
+                } else if (!endsAtEnd) {
+                    
+                    $('#pg-instruction-text').text('DEBES LLEGAR HASTA END').css('color', '#ef4444');
+                } else if (!hasMinLength) {
+                    
+                    const remaining = PowerGridGame.minPathLength - PowerGridGame.path.length;
+                    $('#pg-instruction-text').text('NECESITAS ' + remaining + ' CELDAS MÁS').css('color', '#ef4444');
+                }
+
+                setTimeout(() => {
+                    $('#pg-instruction-text').text('TRAZA UN CAMINO DESDE START HASTA END').css('color', 'rgba(255, 255, 255, 0.6)');
+                }, 2000);
+            }
+        }
+
+        $(document).on('click', '#pg-button-reset', function () {
+            
+            resetPowerGridPath();
+        });
+
+        $(document).on('click', '#pg-button-complete', function () {
+            
+            completePowerGridPath();
+        });
+
+        function startPowerGridTimer() {
+            if (PowerGridGame.timerInterval) clearInterval(PowerGridGame.timerInterval);
+
+            PowerGridGame.timerInterval = setInterval(() => {
+                PowerGridGame.timeLeft -= 0.1;
+
+                if (PowerGridGame.timeLeft <= 0) {
+                    failPowerGrid();
+                }
+
+                const timerElement = $('#pg-timer');
+                timerElement.text(Math.max(0, PowerGridGame.timeLeft).toFixed(1));
+
+                timerElement.removeClass('warning danger');
+                if (PowerGridGame.timeLeft < 5) {
+                    timerElement.addClass('danger');
+                } else if (PowerGridGame.timeLeft < 10) {
+                    timerElement.addClass('warning');
+                }
+            }, 100);
+        }
+
+        function updatePowerGridUI() {
+            $('#pg-path-length').text(PowerGridGame.path.length);
+            $('#pg-min-length').text(PowerGridGame.minPathLength);
+        }
+
+        function successPowerGrid() {
+            clearInterval(PowerGridGame.timerInterval);
+            PowerGridGame.isActive = false;
+
+            setTimeout(() => {
+                $('#powergrid-container').css('display', 'none');
+                pgPost('powerGridResult', { success: true });
+            }, 500);
+        }
+
+        function failPowerGrid() {
+            clearInterval(PowerGridGame.timerInterval);
+            PowerGridGame.isActive = false;
+
+            setTimeout(() => {
+                $('#powergrid-container').css('display', 'none');
+                pgPost('powerGridResult', { success: false });
+            }, 300);
+        }
+
+        $(document).on('keydown', function (e) {
+            if (e.key === 'Escape' && PowerGridGame.isActive) {
+                clearInterval(PowerGridGame.timerInterval);
+                PowerGridGame.isActive = false;
+                $('#powergrid-container').css('display', 'none');
+                pgPost('closePowerGrid', {});
+            }
+        });
+
+        
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <link href="vendor/latofonts.css" rel="stylesheet">
+  <link href="vendor/flexboxgrid.6.3.1.min.css" rel="stylesheet">
+  </link>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <link href="vendor/animate.3.5.2.min.css" rel="stylesheet">
+  </link>
+  <link href="index.css" rel="stylesheet">
+  </link>
+
+  <script src="vendor/vue.2.3.3.min.js" type="text/javascript"></script>
+  <script src="config.default.js" type="text/javascript"></script>
+  <script src="config.js" type="text/javascript"></script>
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <!-- App Template -->
+  <script type="text/x-template" id="app_template">
+    <div id="app">
+      <div class="chat-window" :style="this.style" :class="{ 'fadeOut animated': !showWindow, 'hidden': shouldHide, 'interactive': showInput }">
+        <div class="chat-messages" ref="messages">
+          <message v-for="(msg, index) in messages"
+                   :templates="templates"
+                   :multiline="msg.multiline"
+                   :args="msg.args"
+                   :color="msg.color"
+                   :template="msg.template"
+                   :template-id="msg.templateId"
+                   :sender-id="msg.senderId"
+                   :local-id="localId"
+                   :key="index">
+          </message>
+        </div>
+      </div>
+      <div class="chat-input" v-show="showInput">
+        <div id="container-input">
+          <i class="fas fa-comment-dots" id="speed-icon" title="Chat"></i>
+          <textarea v-model="message"
+                    ref="input"
+                    type="text"
+                    autofocus
+                    spellcheck="false"
+                    placeholder="Escribe aquí..."
+                    @keyup.esc="hideInput"
+                    @keyup="keyUp"
+                    @keydown="keyDown"
+                    @keypress.enter.prevent="send">
+          </textarea>
+          
+          <div class="input-actions">
+            <i class="fas fa-smile action-btn" @click="toggleEmojiPicker" title="Emojis"></i>
+            <i class="fas fa-paper-plane action-btn send-btn" @click="send" title="Enviar"></i>
+          </div>
+
+          <!-- Emoji Picker Sticker-Book -->
+          <div v-if="showEmojiPicker" class="emoji-picker animated fadeIn">
+            <!-- Sidebar / Category Nav -->
+            <div class="emoji-nav">
+              <div v-for="cat in categories" 
+                   :key="cat.id" 
+                   class="nav-item" 
+                   :class="{ active: currentCategory === cat.id }"
+                   @click="setCategory(cat.id)"
+                   :title="cat.label">
+                <i :class="cat.icon"></i>
+              </div>
+            </div>
+
+            <!-- Main Content Area -->
+            <div class="emoji-main">
+              <!-- Search Header -->
+              <div class="emoji-header">
+                <div class="search-wrapper">
+                  <i class="fas fa-search"></i>
+                  <input type="text" 
+                         v-model="emojiSearch" 
+                         placeholder="Buscar emoji..." 
+                         class="emoji-search-input"
+                         ref="emojiSearch"
+                         @click.stop>
+                </div>
+              </div>
+
+              <!-- Emoji Lists -->
+              <div class="emoji-content">
+                <!-- Search Result or Single Category -->
+                <div v-if="emojiSearch || currentCategory !== 'all'">
+                  <div class="section-title">
+                    {{ emojiSearch ? 'Resultados' : categories.find(c => c.id === currentCategory).label }}
+                  </div>
+                  <div class="emoji-grid">
+                    <div v-for="emoji in filteredEmojis" 
+                         :key="emoji.char" 
+                         class="emoji-item-wrapped"
+                         :class="{ 'is-favorite': isFavorite(emoji.char) }">
+                      <span @click="addEmoji(emoji.char)" class="emoji-item" :title="emoji.name">{{ emoji.char }}</span>
+                      <i class="action-fav" 
+                         :class="isFavorite(emoji.char) ? 'fas fa-star active' : 'far fa-star'" 
+                         @click="toggleFavorite(emoji.char)"></i>
+                    </div>
+                    <div v-if="filteredEmojis.length === 0" class="no-results">
+                      No se encontraron emojis
+                    </div>
+                  </div>
+                </div>
+
+                <!-- ALL View with Headers -->
+                <div v-else>
+                  <div v-for="group in groupedEmojis" :key="group.id" class="emoji-section-group">
+                    <div class="section-title">{{ group.label }}</div>
+                    <div class="emoji-grid">
+                      <div v-for="emoji in group.emojis" 
+                           :key="emoji.char" 
+                           class="emoji-item-wrapped"
+                           :class="{ 'is-favorite': isFavorite(emoji.char) }">
+                        <span @click="addEmoji(emoji.char)" class="emoji-item" :title="emoji.name">{{ emoji.char }}</span>
+                        <i class="action-fav" 
+                           :class="isFavorite(emoji.char) ? 'fas fa-star active' : 'far fa-star'" 
+                           @click="toggleFavorite(emoji.char)"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <suggestions :message="message" :suggestions="suggestions"></suggestions>
+      </div>
+      
+      <div class="global-billboard">
+      <div class="global-billboard">
+        <div v-if="currentAnnouncement" 
+             class="billboard-container animated"
+             :class="showBillboard ? 'backInDown' : 'backOutUp'">
+             
+          <div class="billboard-content" :class="currentAnnouncement.args[1]">
+            <div class="billboard-header" :class="currentAnnouncement.args[1]">
+              <i class="fas fa-bullhorn"></i> {{ currentAnnouncement.args[0] }}
+            </div>
+            <div class="billboard-body">
+              <span v-html="formatBillboard(currentAnnouncement)"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <div id="bubble-container">
+        <div v-for="bubble in bubbles" :key="bubble.id" 
+             class="bubble-3d animated rubberBand"
+             :style="{ 
+               left: bubble.left * 100 + '%', 
+               top: bubble.top * 100 + '%',
+               transform: 'translate(-15%, -100%)'
+             }">
+          
+          <!-- Elite Fluid-Shard Wrapper (External relative for circles) -->
+          <div style="position: relative;">
+            <div class="manga-box elite-shard" :class="bubble.type">
+              <!-- Fluid Command Shard (Skewed & Rounded) -->
+              <div class="shard-tag" :style="{ backgroundColor: getBubbleColor(bubble.type), boxShadow: '0 0 30px ' + getBubbleColor(bubble.type) + '60' }">
+                <span class="action-text">{{ bubble.type.toUpperCase() }}</span>
+              </div>
+
+              <!-- Content Area -->
+              <div class="manga-content">
+                {{ bubble.text }}
+              </div>
+            </div>
+
+            <!-- Thought Tail Circles (Outside clipped container) -->
+            <div class="tail-circle tc-1" :style="{ backgroundColor: getBubbleColor(bubble.type) }"></div>
+            <div class="tail-circle tc-2" :style="{ backgroundColor: getBubbleColor(bubble.type) }"></div>
+            <div class="tail-circle tc-3" :style="{ backgroundColor: getBubbleColor(bubble.type) }"></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </script>
+
+  <!-- Elite Essence Message Template -->
+  <script type="text/x-template" id="message_template">
+    <div class="chat-row" :class="{ 'self-message': isSelf }">
+      <!-- Announcement Style (Existing logic, but simplified for Elite) -->
+      <div v-if="args && args[2] === 'announcement'" class="chat-message elite-message" :class="args[1]">
+        <div class="elite-badge" :class="args[1]">
+          <i class="fas fa-bullhorn"></i> <span>{{ args[0] }}</span>
+        </div>
+        <div class="message-body" v-html="textEscaped"></div>
+      </div>
+
+      <!-- Fallback template (SISTEMA) -->
+      <div v-if="!template || template === ''" class="chat-message elite-message color-system">
+        <div class="elite-badge color-system">
+          <i class="fas fa-cog"></i> <span>@SISTEMA</span>
+        </div>
+        <div class="message-body" v-html="textEscaped"></div>
+      </div>
+
+      <!-- Standard & Command Messages (Elite Refresh) -->
+      <div v-else class="chat-message elite-message" :class="[args ? args[1] : '', { 'no-badge': !args || !args[1] }]">
+        <!-- Elite Slanted Badge (For TWT, OOC, etc) -->
+        <div v-if="args && args[1]" class="elite-badge" :class="args[1]">
+          <i v-if="args[1] === 'color-twt'" class="fab fa-twitter"></i>
+          <i v-else-if="args[1] === 'color-anon'" class="fab fa-twitter"></i>
+          <i v-else-if="args[1] === 'color-pd'" class="fas fa-shield"></i>
+          <i v-else-if="args[1] === 'color-ems'" class="fas fa-hospital"></i>
+          <i v-else-if="args[1] === 'color-mec'" class="fas fa-wrench"></i>
+          <i v-else-if="args[1] === 'color-admin'" class="fas fa-user-shield"></i>
+          <i v-else-if="args[1] === 'color-ooc'" class="fas fa-user"></i>
+          <i v-else-if="args[1] === 'color-chat'" class="fas fa-user"></i>
+          <i v-else-if="args[1] === 'color-staff'" class="fas fa-user-shield"></i>
+          <i v-else-if="args[1] === 'color-system'" class="fas fa-cog"></i>
+          <i v-else-if="args[1] === 'color-system'" class="fas fa-cog"></i>
+          <i v-else-if="args[1] === 'color-system'" class="fas fa-cog"></i>
+          <i v-else-if="args[1] === 'color-announcement'" class="fas fa-bullhorn"></i>
+          
+          <span v-if="args[1] === 'color-twt'">@{{ args[0] }}</span>
+          <span v-else-if="args[1] === 'color-ooc'">@OOC — {{ args[0] }}</span>
+          <span v-else-if="args[1] === 'color-staff'">@STAFF — {{ args[0] }}</span>
+          <span v-else>@{{ args[0] }}</span>
+        </div>
+        
+        <div class="message-body" v-html="textEscaped"></div>
+
+        <!-- NEW: Elite ID Badge (Right side) -->
+        <div v-if="senderId !== -1" class="elite-id-badge">
+          <span>ID / {{ senderId }}</span>
+        </div>
+      </div>
+    </div>
+  </script>
+
+
+
+
+
+  <!-- Suggestions Template -->
+  <script type="text/x-template" id="suggestions_template">
+    <div class="suggestions-wrap" v-show="currentSuggestions.length > 0">
+      <ul class="suggestions">
+        <li class="suggestion" v-for="s in currentSuggestions">
+          <p>
+            <span :class="{ 'disabled': s.disabled }">
+              {{s.name}}
+            </span>
+            <span class="param"
+                  v-for="(p, index) in s.params"
+                  :class="{ 'disabled': p.disabled }">
+              [{{p.name}}]
+            </span>
+          </p>
+          <small class="help">
+            <template v-if="!s.disabled">
+              {{s.help}}
+            </template>
+            <template v-for="p in s.params" v-if="!p.disabled">
+              {{p.help}}
+            </template>
+          </small>
+        </li>
+      </ul>
+    </div>
+  </script>
+
+  <!-- Scripts -->
+  <script type="text/javascript" src="./Suggestions.js"></script>
+  <script type="text/javascript" src="./Message.js"></script>
+  <script type="text/javascript" src="./App.js"></script>
+
+  <!-- Main Entry -->
+  <script type="text/javascript">
+    window.post = (url, data) => {
+      var request = new XMLHttpRequest();
+      request.open('POST', url, true);
+      request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+      request.send(data);
+    }
+
+    const instance = new Vue({
+      el: '#app',
+      render: h => h(APP),
+    });
+
+    window.emulate = (type, detail = {}) => {
+      detail.type = type;
+      window.dispatchEvent(new CustomEvent('message', {
+        detail,
+      }));
+    };
+  </script>
+
+</body>
+
+</html>

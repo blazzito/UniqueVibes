@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MT Música</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/admin_radio_style.css">
+</head>
+
+<body>
+    <div id="speaker-container" class="hidden">
+        <div class="speaker-panel">
+            <div class="title-section">
+                <div class="title">
+                    <iconify-icon icon="lucide:music" class="icon"></iconify-icon>
+                    <span class="title-text">Música</span>
+                </div>
+                <div class="title-actions">
+                    <label class="hud-toggle-compact">
+                        <iconify-icon icon="lucide:fullscreen" class="icon"></iconify-icon>
+                        <input type="checkbox" id="hudToggle" checked>
+                        <span class="toggle-indicator"></span>
+                    </label>
+
+                    <button class="close-btn danger" id="closeBtn">
+                        <iconify-icon icon="lucide:music"></iconify-icon>
+                    </button>
+                </div>
+            </div>
+
+            <div class="content">
+                <div class="section current-section">
+                    <div class="now-playing-content">
+                        <div class="equalizer-standalone" id="equalizer">
+                            <div class="equalizer-bar"></div>
+                            <div class="equalizer-bar"></div>
+                            <div class="equalizer-bar"></div>
+                            <div class="equalizer-bar"></div>
+                            <div class="equalizer-bar"></div>
+                        </div>
+
+                        <div class="current-info" id="currentInfo">
+                            <div class="no-music">Sin música</div>
+                        </div>
+                    </div>
+
+                    <div class="progress-container" id="progressContainer" style="display: none;">
+                        <div class="progress-time">
+                            <span id="currentTime">0:00</span>
+                            <span id="totalTime">0:00</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                    </div>
+
+                    <div class="volume-container-inline">
+                        <iconify-icon icon="lucide:volume-2" class="volume-icon"></iconify-icon>
+                        <input type="range" id="volumeSlider" class="volume-slider" min="0" max="100" value="50">
+                        <span class="volume-value" id="volumeValue">50%</span>
+                    </div>
+                </div>
+
+                <div id="youtubePlayer" style="display: none;"></div>
+
+                <div class="input-section">
+                    <iconify-icon icon="lucide:search" class="icon"></iconify-icon>
+                    <input type="text" id="urlInput" class="url-input" placeholder="Busca a tu artista favorito o pega un link de YouTube...">
+                </div>
+
+                <div class="controls-section">
+                    <button class="control-btn primary" id="playBtn" data-state="play">
+                        <iconify-icon icon="lucide:play" class="icon-play icon"></iconify-icon>
+                        <iconify-icon icon="lucide:pause" class="icon-pause icon" style="display: none;"></iconify-icon>
+                        <span class="btn-text">Reproducir</span>
+                    </button>
+                    <button class="control-btn secondary" id="stopBtn">
+                        <iconify-icon icon="lucide:circle-stop" class="icon"></iconify-icon>
+                        Parar
+                    </button>
+                    <button class="control-btn secondary" id="addPlaylistBtn">
+                        <iconify-icon icon="lucide:plus" class="icon"></iconify-icon>
+                        Añadir
+                    </button>
+                </div>
+
+                <div class="section sync-section" id="syncSection">
+                    <div class="section-title-row">
+                        <div class="section-title">Sincronizar</div>
+
+                        <div class="sync-compact-container">
+                            <div class="sync-compact-status" id="syncNotSynced">
+                                <span class="sync-text">Sin sincronizar</span>
+                                <button class="sync-action-btn" id="openSyncBtn"
+                                    title="Sincronizar con altavoces cercanos">
+                                    <iconify-icon icon="lucide:refresh-ccw" class="icon"></iconify-icon>
+                                    <span>SYNC</span>
+                                </button>
+                            </div>
+
+                            <div class="sync-compact-status hidden" id="syncMaster">
+                                <span class="sync-text synced">
+                                    <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M17 8C17 5.239 14.761 3 12 3C9.584 3 7.567 4.769 7.107 7.107M3 12C3 14.761 5.239 17 8 17C10.416 17 12.433 15.231 12.893 12.893"
+                                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                        <circle cx="17" cy="8" r="1.5" fill="currentColor" />
+                                    </svg>
+                                    <span id="syncMasterText">Sincronizado (0)</span>
+                                </span>
+                                <button class="sync-action-btn danger" id="unsyncBtn"
+                                    title="Desincronizar todos los altavoces">
+                                    <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M6 6L14 14M6 14L14 6" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" />
+                                    </svg>
+                                    <span>DESINC</span>
+                                </button>
+                            </div>
+
+                            <div class="sync-compact-status hidden" id="syncSlave">
+                                <span class="sync-text slave">
+                                    <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M10 6V10M10 14H10.01M4 10C4 6.68629 6.68629 4 10 4C13.3137 4 16 6.68629 16 10C16 13.3137 13.3137 16 10 16C6.68629 16 4 13.3137 4 10Z"
+                                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                    </svg>
+                                    <span id="syncSlaveText">Sincronizado con principal</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section playlist-section">
+                    <div class="section-title-row">
+                        <div class="section-title">Listas</div>
+
+                        <div class="playlist-header-actions">
+                            <button class="playlist-tab" data-tab="my">Mis Listas</button>
+                            <button class="playlist-tab" data-tab="shared">Compartidas</button>
+                            <button class="playlist-tab" data-tab="search">Buscar</button>
+                            <button class="explore-playlist-btn" id="explorePlaylistBtn"
+                                title="Explorar Listas Públicas">
+                                <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="1.5" />
+                                    <path d="M14 14L18 18" stroke="currentColor" stroke-width="1.5"
+                                        stroke-linecap="round" />
+                                </svg>
+                                <span>EXPLORAR</span>
+                            </button>
+                            <button class="create-playlist-compact" id="createPlaylistBtn" title="Crear Lista">
+                                <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 5V15M5 10H15" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" />
+                                </svg>
+                                <span>CREAR</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="tab-content active" id="myPlaylistsTab">
+                        <div class="playlist-list" id="myPlaylistsList">
+                            <div class="empty-state">Sin listas aún</div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="sharedPlaylistsTab" style="display: none;">
+                        <div class="playlist-list" id="sharedPlaylistsList">
+                            <div class="empty-state">Sin listas compartidas</div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="searchTab" style="display: none;">
+                        <div class="search-container">
+                            <div class="search-results-list" id="searchResults">
+                                <div class="empty-state">
+                                    <iconify-icon icon="lucide:search" style="font-size: 3vh; opacity: 0.5; margin-bottom: 1vh;"></iconify-icon>
+                                    <p>Escribe arriba para buscar música</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content hidden" id="songsView">
+                        <div class="songs-view-top">
+                            <button class="back-btn-compact" id="backBtn" title="Volver">
+                                <iconify-icon icon="lucide:arrow-left" class="icon"></iconify-icon>
+                            </button>
+
+                            <div class="playlist-title-section">
+                                <div class="playlist-title" id="currentPlaylistName">Playlist</div>
+                                <div class="playlist-subtitle" id="currentPlaylistCount">0 canciones</div>
+                            </div>
+                        </div>
+
+                        <div class="songs-controls-row">
+                            <button class="play-all-btn" id="playAllBtn">
+                                <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 3L17 10L5 17V3Z" fill="currentColor" />
+                                </svg>
+                                Reproducir Todo
+                            </button>
+                            <button class="action-icon-btn" id="shuffleBtn">
+                                <iconify-icon icon="lucide:shuffle" class="icon"></iconify-icon>
+                            </button>
+                            <button class="action-icon-btn" id="loopBtn">
+                                <iconify-icon icon="lucide:refresh-ccw" class="icon"></iconify-icon>
+                            </button>
+                        </div>
+
+                        <div class="songs-list" id="songsList"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal hidden" id="playlistNameModal">
+        <div class="modal-content">
+            <h3 id="modalTitle">Crear Lista</h3>
+            <input type="text" id="playlistNameInput" class="modal-input" placeholder="Nombre de la lista"
+                maxlength="50">
+            <input type="text" id="playlistImageInput" class="modal-input" placeholder="URL de imagen (opcional)"
+                maxlength="500">
+            <div class="image-preview-container" id="imagePreviewContainer" style="display: none;">
+                <img id="imagePreview" src="" alt="Preview">
+            </div>
+            <div class="modal-actions">
+                <button class="modal-btn" onclick="closeModal()">Cancelar</button>
+                <button class="modal-btn primary" id="confirmPlaylistName">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal hidden" id="addToPlaylistModal">
+        <div class="modal-content">
+            <h3>Añadir a Lista</h3>
+            <div id="playlistsSelect" style="max-height: 30vh; overflow-y: auto; margin-bottom: 1.5vh;"></div>
+            <div class="modal-actions">
+                <button class="modal-btn" onclick="closeModal()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal hidden" id="sharePlaylistModal">
+        <div class="modal-content">
+            <h3>Compartir Lista</h3>
+            <input type="number" id="playerIdInput" class="modal-input" placeholder="ID del jugador" min="1">
+            <div class="modal-actions">
+                <button class="modal-btn" onclick="closeModal()">Cancelar</button>
+                <button class="modal-btn primary" id="confirmSharePlaylist">Compartir</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal hidden" id="syncSpeakersModal">
+        <div class="modal-content sync-modal-content">
+            <h3>Sincronizar Altavoces</h3>
+            <p class="sync-modal-subtitle">Selecciona los altavoces a sincronizar:</p>
+
+            <div class="sync-speakers-list" id="syncSpeakersList">
+                <div class="sync-empty-state">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="24" cy="24" r="18" stroke="currentColor" stroke-width="2" />
+                        <path d="M24 16V24L30 28" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                    </svg>
+                    <p>No se encontraron altavoces cercanos</p>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button class="modal-btn" id="cancelSyncBtn">Cancelar</button>
+                <button class="modal-btn primary" id="confirmSyncBtn">Sincronizar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="explore-modal hidden" id="explorePlaylistsModal">
+        <div class="explore-modal-content">
+            <div class="explore-header">
+                <button class="explore-back-btn" id="exploreBackBtn">
+                    <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 10H5M5 10L10 15M5 10L10 5" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </button>
+                <h2 class="explore-title">
+                    <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="1.5" />
+                        <path d="M14 14L18 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                    </svg>
+                    EXPLORAR LISTAS
+                </h2>
+            </div>
+
+            <div class="explore-filters">
+                <input type="text" id="exploreSearchInput" class="explore-search" placeholder="Buscar listas...">
+                <select id="exploreSortSelect" class="explore-sort">
+                    <option value="recent">Más Recientes</option>
+                    <option value="popular">Más Populares</option>
+                    <option value="songs">Más Canciones</option>
+                </select>
+            </div>
+
+            <div class="explore-playlists-container" id="explorePlaylists">
+                <div class="explore-loading">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="24" cy="24" r="18" stroke="currentColor" stroke-width="2" opacity="0.3" />
+                        <path d="M24 6C14.059 6 6 14.059 6 24" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round">
+                            <animateTransform attributeName="transform" type="rotate" from="0 24 24" to="360 24 24"
+                                dur="1s" repeatCount="indefinite" />
+                        </path>
+                    </svg>
+                    <p>Cargando listas públicas...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="adminRadioPanel" class="admin-radio-panel hidden">
+        <div class="title-section">
+            <div class="title">
+                <iconify-icon icon="lucide:radio" class="icon"></iconify-icon>
+                <span class="title-text">Radio Admin</span>
+            </div>
+            <div class="title-actions">
+                <button id="adminCloseBtn" class="close-btn">
+                    <iconify-icon icon="lucide:x"></iconify-icon>
+                </button>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="section current-section">
+                <div class="now-playing-content">
+                    <div class="equalizer-standalone" id="adminEqualizer">
+                        <div class="equalizer-bar"></div>
+                        <div class="equalizer-bar"></div>
+                        <div class="equalizer-bar"></div>
+                        <div class="equalizer-bar"></div>
+                        <div class="equalizer-bar"></div>
+                    </div>
+
+                    <div class="current-info" id="adminCurrentInfo">
+                        <div class="no-music">Sin música</div>
+                    </div>
+                </div>
+
+                <div class="progress-container" id="adminProgressContainer" style="display: none;">
+                    <div class="progress-time">
+                        <span id="adminCurrentTime">0:00</span>
+                        <span id="adminTotalTime">0:00</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="adminProgressFill"></div>
+                    </div>
+                </div>
+
+                <div class="volume-container-inline">
+                    <iconify-icon icon="lucide:volume-2" class="volume-icon"></iconify-icon>
+                    <input type="range" id="adminVolumeSlider" class="volume-slider" min="0" max="100" value="50">
+                    <span class="volume-value" id="adminVolumeValue">50%</span>
+                </div>
+            </div>
+
+            <div id="adminYoutubePlayer" style="display: none;"></div>
+
+            <div class="input-section">
+                <iconify-icon icon="lucide:search" class="icon"></iconify-icon>
+                <input type="text" id="adminUrlInput" class="url-input" placeholder="Busca una canción o pega un link...">
+            </div>
+
+            <div id="adminSearchResults" class="admin-search-results hidden"></div>
+
+            <div class="controls-section">
+                <button class="control-btn primary" id="adminPlayBtn" data-state="play">
+                    <iconify-icon icon="lucide:play" class="icon-play icon"></iconify-icon>
+                    <iconify-icon icon="lucide:pause" class="icon-pause icon" style="display: none;"></iconify-icon>
+                    <span class="btn-text">Reproducir</span>
+                </button>
+                <button class="control-btn secondary" id="adminStopBtn">
+                    <iconify-icon icon="lucide:circle-stop" class="icon"></iconify-icon>
+                    Parar
+                </button>
+                <button class="control-btn secondary" id="adminAddToPlaylistBtn">
+                    <iconify-icon icon="lucide:plus" class="icon"></iconify-icon>
+                    Añadir
+                </button>
+            </div>
+
+            <div class="section broadcast-section">
+                <button id="adminBroadcastBtn" class="broadcast-btn" data-broadcasting="false">
+                    <div class="broadcast-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" fill="currentColor" />
+                            <path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <div class="broadcast-waves">
+                            <div class="wave"></div>
+                            <div class="wave"></div>
+                            <div class="wave"></div>
+                        </div>
+                    </div>
+                    <div class="broadcast-text">
+                        <span class="broadcast-title">Transmisión de Voz</span>
+                        <span class="broadcast-subtitle" id="adminBroadcastSubtitle">Mantén para transmitir</span>
+                    </div>
+                </button>
+
+                <div class="broadcast-status hidden" id="adminBroadcastStatus">
+                    <div class="status-indicator pulsing"></div>
+                    <span class="status-text">TRANSMITIENDO</span>
+                </div>
+            </div>
+
+            <div class="mode-section">
+                <div class="section-title">
+                    <svg width="1.6vh" height="1.6vh" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <circle cx="12" cy="12" r="10" stroke-width="2" />
+                        <path d="M12 6v6l4 2" stroke-width="2" stroke-linecap="round" />
+                    </svg>
+                    <span>Modo de Reproducción</span>
+                </div>
+                <div class="mode-options">
+                    <label class="mode-option">
+                        <input type="radio" name="mode" value="zone" checked>
+                        <div class="mode-content">
+                            <svg width="2.5vh" height="2.5vh" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <circle cx="12" cy="10" r="3" stroke-width="2" />
+                                <path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 7 8 11.7z"
+                                    stroke-width="2" />
+                            </svg>
+                            <div class="mode-text">
+                                <span class="mode-title">Zona</span>
+                                <span class="mode-desc">Por Radio</span>
+                            </div>
+                        </div>
+                    </label>
+                    <label class="mode-option">
+                        <input type="radio" name="mode" value="private">
+                        <div class="mode-content">
+                            <svg width="2.5vh" height="2.5vh" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke-width="2"
+                                    stroke-linecap="round" />
+                                <circle cx="12" cy="7" r="4" stroke-width="2" />
+                            </svg>
+                            <div class="mode-text">
+                                <span class="mode-title">Privado</span>
+                                <span class="mode-desc">Solo Tú</span>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <div id="radiusSection" class="radius-section hidden">
+                <div class="radius-header">
+                    <span class="radius-label">Radio de Transmisión</span>
+                    <span class="radius-value"><span id="radiusValue">50</span>m</span>
+                </div>
+                <input type="range" id="radiusSlider" class="radius-slider" min="10" max="500" value="50" step="10">
+                <div class="radius-markers">
+                    <span>10m</span>
+                    <span>500m</span>
+                </div>
+            </div>
+
+            <div id="playersListSection" class="players-list-section hidden">
+                <div class="section-title">
+                    <svg width="1.6vh" height="1.6vh" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke-width="2" stroke-linecap="round" />
+                        <circle cx="9" cy="7" r="4" stroke-width="2" />
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke-width="2"
+                            stroke-linecap="round" />
+                    </svg>
+                    <span>Jugadores Escuchando (<span id="playersCount">0</span>)</span>
+                </div>
+                <div id="playersList" class="players-list">
+                    <div class="players-empty">
+                        <svg width="3vh" height="3vh" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <circle cx="12" cy="12" r="10" stroke-width="2" />
+                            <path d="M12 8v8M8 12h8" stroke-width="2" stroke-linecap="round" />
+                        </svg>
+                        <span>Sin jugadores en rango</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="section playlist-section">
+                <div class="section-title-row">
+                    <div class="section-title">Playlists</div>
+
+                    <div class="playlist-header-actions">
+                        <button class="playlist-tab active" data-tab="my">My Playlists</button>
+                        <button class="playlist-tab" data-tab="shared">Shared</button>
+                        <button class="explore-playlist-btn" id="adminExplorePlaylistBtn">
+                            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="1.5" />
+                                <path d="M14 14L18 18" stroke="currentColor" stroke-width="1.5"
+                                    stroke-linecap="round" />
+                            </svg>
+                            <span>EXPLORE</span>
+                        </button>
+                        <button class="create-playlist-compact" id="adminCreatePlaylistBtn">
+                            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 5V15M5 10H15" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" />
+                            </svg>
+                            <span>CREATE</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="tab-content active" id="adminMyPlaylistsTab">
+                    <div class="playlist-list" id="adminMyPlaylistsList">
+                        <div class="empty-state">No playlists yet</div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="adminSharedPlaylistsTab" style="display: none;">
+                    <div class="playlist-list" id="adminSharedPlaylistsList">
+                        <div class="empty-state">No shared playlists</div>
+                    </div>
+                </div>
+
+                <div class="tab-content hidden" id="adminSongsView">
+                    <div class="songs-view-top">
+                        <button class="back-btn-compact" id="adminBackBtn" title="Back">
+                            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 16L6 10L12 4" stroke="currentColor" stroke-width="2.5"
+                                    stroke-linecap="round" />
+                            </svg>
+                        </button>
+
+                        <div class="playlist-title-section">
+                            <div class="playlist-title" id="adminCurrentPlaylistName">Playlist</div>
+                            <div class="playlist-subtitle" id="adminCurrentPlaylistCount">0 songs</div>
+                        </div>
+                    </div>
+
+                    <div class="songs-controls-row">
+                        <button class="play-all-btn" id="adminPlayAllBtn">
+                            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 3L17 10L5 17V3Z" fill="currentColor" />
+                            </svg>
+                            Play All
+                        </button>
+                        <button class="action-icon-btn" id="adminShuffleBtn" title="Shuffle">
+                            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M16 3H13L7 9L4 6M16 17H13L7 11L4 14M16 3L20 7M16 3L20 3M16 17L20 13M16 17L20 17"
+                                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                        <button class="action-icon-btn" id="adminLoopBtn" title="Loop">
+                            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M17 8C17 5.239 14.761 3 12 3C9.584 3 7.567 4.769 7.107 7.107M3 12C3 14.761 5.239 17 8 17C10.416 17 12.433 15.231 12.893 12.893"
+                                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                <path d="M17 8L20 5M17 8L14 5M3 12L0 15M3 12L6 15" stroke="currentColor"
+                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="songs-list" id="adminSongsList"></div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+
+    <div id="now-playing-hud" class="hud-banner hidden">
+        <div class="hud-equalizer">
+            <div class="hud-bar"></div>
+            <div class="hud-bar"></div>
+            <div class="hud-bar"></div>
+        </div>
+        <div class="hud-content">
+            <div class="hud-title" id="hudTitle"><span>Sin música</span></div>
+        </div>
+    </div>
+
+    <div id="adminRadioHud" class="admin-radio-hud hidden">
+        <div class="hud-equalizer">
+            <div class="hud-eq-bar"></div>
+            <div class="hud-eq-bar"></div>
+            <div class="hud-eq-bar"></div>
+        </div>
+        <div class="hud-info">
+            <div class="hud-label">Radio Admin</div>
+            <div class="hud-title" id="adminRadioHudTitle"><span>Sin canción</span></div>
+            <div class="hud-progress" id="adminRadioHudProgress">
+                <div class="hud-progress-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="audioPlayers" style="position: absolute; top: -9999px; left: -9999px;"></div>
+    <div id="adminAudioPlayers" style="position: absolute; top: -9999px; left: -9999px;"></div>
+
+
+    <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="./js/script.js"></script>
+    <script src="./js/admin_radio_script.js"></script>
+</body>
+
+</html>

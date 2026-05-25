@@ -1,0 +1,13 @@
+{
+  "colonyislandstation": {
+    "name": "colonyislandstation",
+    "label": "Colony Island Station",
+    "active": true,
+    "street": "Unknown",
+    "author": "Admin",
+    "modified": "2026-05-22",
+    "jobs": {
+      "police": []
+    }
+  }
+}

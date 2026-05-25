@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Catálogo de Remolques</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Bebas+Neue&family=Material+Symbols+Outlined&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="theme premium-essence">
+  <div id="ui-root" class="ui hidden" aria-hidden="true">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo-wrap">
+          <div class="logo-bg"></div>
+          <div class="logo">
+            <svg viewBox="0 0 48 48" fill="currentColor">
+              <path
+                d="M36.7273 44C33.9891 44 31.6043 39.8386 30.3636 33.69C29.123 39.8386 26.7382 44 24 44C21.2618 44 18.877 39.8386 17.6364 33.69C16.3957 39.8386 14.0109 44 11.2727 44C7.25611 44 4 35.0457 4 24C4 12.9543 7.25611 4 11.2727 4C14.0109 4 16.3957 8.16144 17.6364 14.31C18.877 8.16144 21.2618 4 24 4C26.7382 4 29.123 8.16144 30.3636 14.31C31.6043 8.16144 33.9891 4 36.7273 4C40.7439 4 44 12.9543 44 24C44 35.0457 40.7439 44 36.7273 44Z" />
+            </svg>
+          </div>
+        </div>
+        <div class="title">
+          <h1 class="font-accent">TRAILER <span class="highlight">RENTALS</span></h1>
+          <span class="tag">Elite Catalog</span>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="btn-close" class="btn-exit" title="Cerrar">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="content">
+      <div class="hero">
+        <h2 class="font-accent">ELIGE TU <span style="color:var(--color-orange)">EQUIPO</span></h2>
+        <p>Catálogo urbano de remolques de alta resistencia. Elige, paga y sal a la calle.</p>
+      </div>
+
+      <section class="carousel-wrap">
+        <button id="prevBtn" class="nav left" aria-label="Anterior">
+          <span class="material-symbols-outlined">arrow_back_ios_new</span>
+        </button>
+
+        <div id="carousel" class="carousel no-scrollbar">
+          <!-- Cards injected by JS -->
+        </div>
+
+        <button id="nextBtn" class="nav right" aria-label="Siguiente">
+          <span class="material-symbols-outlined">arrow_forward_ios</span>
+        </button>
+      </section>
+    </main>
+
+  </div>
+
+  <div id="modal-details" class="modal hidden" aria-hidden="true">
+    <div class="modal-backdrop"></div>
+    <div class="modal-card lateral">
+      <div class="modal-header">
+        <button class="md-back-btn" id="md-back">
+          <span class="material-symbols-outlined">arrow_back</span> VOLVER
+        </button>
+      </div>
+
+      <div class="modal-info">
+        <h3 id="md-title">Remolque</h3>
+        <span id="md-subtitle" class="muted">Especificaciones</span>
+
+        <div class="specs">
+          <div class="row">
+            <span>Tarifa</span>
+            <strong id="md-price">$0</strong>
+          </div>
+          <div class="row">
+            <span>Capacidad</span>
+            <strong id="md-capacity">—</strong>
+          </div>
+          <div class="row">
+            <span>Medidas</span>
+            <strong id="md-size">—</strong>
+          </div>
+        </div>
+
+        <div class="pay">
+          <h4>PAGO</h4>
+          <label class="opt">
+            <input type="radio" name="pay" value="card" checked />
+            <span>TARJETA BANCARIA</span>
+          </label>
+          <label class="opt">
+            <input type="radio" name="pay" value="cash" />
+            <span>EFECTIVO</span>
+          </label>
+        </div>
+
+        <button id="md-confirm" class="btn-confirm" style="margin-top: 30px;">
+          CONFIRMAR ALQUILER
+        </button>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div id="modal-ok" class="modal hidden" aria-hidden="true">
+    <div class="modal-backdrop"></div>
+    <div class="modal-card small center-card">
+      <div class="ok-icon">
+        <span class="material-symbols-outlined">check_circle</span>
+      </div>
+      <h3>¡TODO LISTO!</h3>
+      <p>Tu remolque ha sido desplegado. Revisa el mapa.</p>
+      <button class="btn-confirm" data-close>ENTENDIDO</button>
+    </div>
+  </div>
+
+  <audio id="s-hover" src="sounds/hover.mp3" preload="auto"></audio>
+  <audio id="s-click" src="sounds/click.mp3" preload="auto"></audio>
+  <audio id="s-open" src="sounds/open.mp3" preload="auto"></audio>
+  <audio id="s-ok" src="sounds/ok.mp3" preload="auto"></audio>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

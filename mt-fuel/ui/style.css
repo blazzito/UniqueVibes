@@ -1,0 +1,555 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Quicksand:wght@300..700&display=swap");
+@import url("https://fonts.cdnfonts.com/css/evogria");
+
+:root {
+    --color-orange: #ff6b00;
+    --color-petrol: #00a8cc;
+    --color-bg-dark: #0f0f0f;
+    --glass-bg: rgba(12, 12, 14, 0.98);
+    --glass-border: rgba(255, 255, 255, 0.08);
+
+    --primary-color: var(--color-orange);
+    --primary-glow: rgba(255, 107, 0, 0.3);
+    --bg-dark: var(--color-bg-dark);
+    --bg-glass: var(--glass-bg);
+    --border-light: var(--glass-border);
+    --outline-dashed: rgba(255, 255, 255, 0.1);
+    --text-main: #ffffff;
+    --text-muted: rgba(255, 255, 255, 0.6);
+    --success: #40dc91;
+    --accent: var(--color-petrol);
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Quicksand', sans-serif;
+    transition: 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: transparent;
+    color: var(--text-main);
+}
+
+/* REFUEL MENU (Estilo UI lateral del dealership) */
+.refuel-menu {
+    position: absolute;
+    right: 2vh;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 34vh;
+    background: var(--bg-glass);
+    border: 0.1vh solid var(--border-light);
+    border-radius: 1.2vh;
+    box-shadow: 0 1.4vh 3.8vh rgba(0, 0, 0, 0.7);
+    padding: 2vh;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vh;
+    overflow: hidden;
+}
+
+/* Elite Essence Signature Fold */
+.refuel-menu::before, .modal-box::before, .admin-panel::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2.5vh;
+    height: 2.5vh;
+    background: linear-gradient(225deg, var(--color-orange) 50%, transparent 50%);
+    z-index: 10;
+}
+
+.menu-header {
+    display: flex;
+    align-items: center;
+    gap: 1vh;
+    background: rgba(0, 0, 0, 0.35);
+    border: 0.1vh solid var(--border-light);
+    border-radius: 0.8vh;
+    padding: 0.6vh 1vh;
+}
+
+.menu-header .icon-box {
+    color: var(--primary-color);
+}
+
+.menu-header span {
+    font-family: 'Evogria', sans-serif;
+    font-size: 1.2vh;
+    text-transform: uppercase;
+    letter-spacing: 0.05vh;
+}
+
+.fuel-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.8vh;
+}
+
+.fuel-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 0.1vh solid var(--border-light);
+    border-radius: 0.8vh;
+    padding: 1.2vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5vh;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+/* Elite Accent Line */
+.fuel-item::after, .station-card::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 35%;
+    background: linear-gradient(to bottom, var(--color-orange), var(--color-petrol));
+    transition: height 0.3s ease;
+}
+
+.fuel-item:hover::after, .fuel-item.selected::after, .station-card:hover::after {
+    height: 75%;
+}
+
+.fuel-item .price-tag {
+    position: absolute;
+    top: 0; right: 0;
+    font-size: 0.8vh;
+    background: var(--primary-color);
+    padding: 0.2vh 0.4vh;
+    border-bottom-left-radius: 0.4vh;
+    font-weight: 700;
+}
+
+.fuel-item i, .fuel-item svg {
+    width: 3.5vh; height: 3.5vh;
+    color: var(--text-muted);
+}
+
+.fuel-item .name {
+    font-family: 'Evogria', sans-serif;
+    font-size: 0.8vh;
+    text-align: center;
+}
+
+.fuel-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.05);
+}
+
+.fuel-item.selected {
+    background: rgba(var(--primary-color), 0.2);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 1vh var(--primary-glow);
+}
+
+.fuel-item.selected i, .fuel-item.selected svg {
+    color: var(--primary-color);
+}
+
+.fuel-gauge-panel {
+    background: rgba(0, 0, 0, 0.44);
+    border: 0.1vh solid var(--border-light);
+    border-radius: 0.8vh;
+    padding: 1vh;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+.gauge-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.info-item .label {
+    display: block;
+    font-size: 0.8vh;
+    color: var(--text-muted);
+    font-family: 'Evogria', sans-serif;
+}
+
+.info-item .value {
+    font-family: 'Evogria', sans-serif;
+    font-size: 1.4vh;
+}
+
+.info-item .value.price {
+    color: var(--success);
+}
+
+.progress-bar-container {
+    width: 100%;
+    height: 1vh;
+    background: rgba(255, 255, 255, 0.08);
+    border: 0.1vh solid rgba(255, 255, 255, 0.2);
+    border-radius: 0.5vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.bar-current {
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 0.4vh;
+    transition: none !important;
+}
+
+.bar-selected {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    background: var(--primary-color);
+    opacity: 0.6;
+    transition: none !important;
+}
+
+.action-footer {
+    display: flex;
+    gap: 0.8vh;
+}
+
+.pay-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5vh;
+    padding: 1vh;
+    background: rgba(255, 255, 255, 0.14);
+    border: 0.1vh solid var(--border-light);
+    border-radius: 0.8vh;
+    cursor: pointer;
+    font-family: 'Evogria', sans-serif;
+    font-size: 0.9vh;
+    text-transform: uppercase;
+}
+
+.pay-btn:hover {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.pay-btn i, .pay-btn svg {
+    width: 1.2vh; height: 1.2vh;
+}
+
+/* ADMIN PANEL (Estilo Dealership Management) */
+.admin-panel {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: var(--bg-dark);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.admin-header {
+    padding: 3vh 5vh;
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+
+.admin-title {
+    font-family: 'Evogria', sans-serif;
+    font-size: 2.5vh;
+    letter-spacing: 0.5vh;
+    color: var(--text-main);
+    border-left: 0.4vh solid var(--color-orange);
+    padding-left: 2vh;
+    position: relative;
+}
+
+.admin-tabs {
+    display: flex;
+    gap: 1vh;
+}
+
+.tab-item {
+    padding: 1vh 2.5vh;
+    background: rgba(255, 255, 255, 0.05);
+    border: 0.1vh solid var(--border-light);
+    border-radius: 0.6vh;
+    font-family: 'Evogria', sans-serif;
+    font-size: 1.2vh;
+    cursor: pointer;
+    color: var(--text-muted);
+}
+
+.tab-item.active, .tab-item:hover {
+    background: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 1.5vh var(--primary-glow);
+}
+
+.admin-content {
+    flex: 1;
+    padding: 0 5vh 5vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+}
+
+.admin-toolbar {
+    display: flex;
+    gap: 1.5vh;
+    align-items: center;
+}
+
+.search-wrapper {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.05);
+    border: 0.1vh solid var(--border-light);
+    border-radius: 0.8vh;
+    display: flex;
+    align-items: center;
+    padding: 0.5vh 2vh;
+}
+
+.search-wrapper input {
+    background: transparent;
+    border: none;
+    color: #fff;
+    padding: 1vh;
+    flex: 1;
+    outline: none;
+    font-size: 1.4vh;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    padding: 1.2vh 2.5vh;
+    border-radius: 0.8vh;
+    font-family: 'Evogria', sans-serif;
+    font-size: 1.3vh;
+    cursor: pointer;
+    display: flex; align-items: center; gap: 1vh;
+}
+
+.btn-refill {
+    background: rgba(64, 220, 145, 0.2);
+    border: 0.1vh solid var(--success);
+    color: var(--success);
+    padding: 1.2vh 2.5vh;
+    border-radius: 0.8vh;
+    font-family: 'Evogria', sans-serif;
+    font-size: 1.3vh;
+    cursor: pointer;
+}
+
+.stations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(38vh, 1fr));
+    gap: 2.5vh;
+    overflow-y: auto;
+    padding-right: 1vh;
+}
+
+.station-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 0.1vh solid var(--border-light);
+    border-radius: 1vh;
+    padding: 2.5vh;
+    position: relative;
+    box-shadow: 0 0.5vh 1.5vh rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.station-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--primary-color);
+}
+
+/* MODAL */
+.modal-wrapper {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.85);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 5000;
+}
+
+.modal-box {
+    background: #0a0a0a;
+    border: 0.1vh solid var(--border-light);
+    width: 65vh;
+    border-radius: 1.2vh;
+    outline: 0.1vh dashed var(--outline-dashed);
+    outline-offset: 0.3vh;
+    display: flex; flex-direction: column;
+}
+
+.confirm-box {
+    width: 45vh !important;
+    border-color: rgba(244, 67, 54, 0.4);
+}
+
+.modal-header {
+    padding: 2.5vh;
+    border-bottom: 0.1vh solid var(--border-light);
+    display: flex; justify-content: space-between; align-items: center;
+}
+
+.modal-header h3 {
+    font-family: 'Evogria', sans-serif;
+    font-size: 1.8vh;
+    letter-spacing: 0.2vh;
+}
+
+.capacity-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.modal-body {
+    padding: 3vh;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5vh;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8vh;
+}
+
+.form-group label {
+    font-family: 'Evogria', sans-serif;
+    font-size: 1vh;
+    color: var(--text-muted);
+    letter-spacing: 0.1vh;
+}
+
+.input-wrapper {
+    background: rgba(255, 255, 255, 0.05);
+    border: 0.1vh solid var(--border-light);
+    border-radius: 0.6vh;
+    display: flex;
+    align-items: center;
+    padding: 0 1.5vh;
+}
+
+.input-wrapper i, .input-wrapper svg {
+    width: 1.6vh;
+    height: 1.6vh;
+    color: var(--primary-color);
+}
+
+.input-wrapper input {
+    background: transparent;
+    border: none;
+    color: #fff;
+    padding: 1.2vh;
+    flex: 1;
+    outline: none;
+    font-size: 1.4vh;
+}
+
+.mini-input {
+    background: rgba(255, 255, 255, 0.04);
+    border: 0.1vh solid var(--border-light);
+    border-radius: 0.6vh;
+    padding: 1vh;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vh;
+}
+
+.mini-input span {
+    font-size: 0.8vh;
+    font-family: 'Evogria', sans-serif;
+    color: var(--primary-color);
+    text-transform: uppercase;
+}
+
+.mini-input input {
+    background: transparent;
+    border: none;
+    color: #fff;
+    outline: none;
+    font-size: 1.5vh;
+    width: 100%;
+    font-weight: 600;
+}
+
+.btn-action-outline {
+    background: rgba(133, 14, 73, 0.1);
+    border: 0.1vh solid var(--primary-color);
+    color: var(--text-main);
+    padding: 1vh;
+    border-radius: 0.6vh;
+    cursor: pointer;
+    font-family: 'Evogria', sans-serif;
+    font-size: 1vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1vh;
+}
+
+.btn-action-outline:hover {
+    background: var(--primary-color);
+}
+
+.modal-footer {
+    padding: 2.5vh 3vh;
+    border-top: 0.1vh solid var(--border-light);
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.5vh;
+}
+
+.btn-cancel {
+    background: rgba(255, 255, 255, 0.05);
+    border: 0.1vh solid var(--border-light);
+    color: var(--text-muted);
+    padding: 1.2vh 3vh;
+    border-radius: 0.6vh;
+    cursor: pointer;
+    font-family: 'Evogria', sans-serif;
+    font-size: 1.1vh;
+}
+
+.btn-save {
+    background: var(--primary-color);
+    border: none;
+    color: #fff;
+    padding: 1.2vh 4vh;
+    border-radius: 0.6vh;
+    cursor: pointer;
+    font-family: 'Evogria', sans-serif;
+    font-size: 1.1vh;
+    box-shadow: 0 0 1vh var(--primary-glow);
+}
+
+/* SCROLLBAR CUSTOM */
+::-webkit-scrollbar { width: 0.4vh; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--primary-color); border-radius: 1vh; }
+
+/* Animación de entrada */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.admin-panel, .refuel-menu {
+    animation: fadeIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}

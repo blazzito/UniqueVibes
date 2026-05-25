@@ -1,0 +1,1600 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MT Dealerships</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+        integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+        crossorigin=""></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+        integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+        crossorigin="" />
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.css" />
+    <link rel="stylesheet" href="./css/main.css">
+
+</head>
+
+<body>
+
+    <div id="app">
+        <!-- Global Loader Overlay -->
+        <div v-if="loadingVehicleStats && dealershipMenu.visible" class="global-loader-overlay">
+            <div class="loader-content">
+                <div class="spinner"></div>
+                <div class="loader-text">{{ T('ui.dealership_menu.loading_vehicle') || 'Cargando Vehículo...' }}</div>
+            </div>
+        </div>
+        <div class="test-drive" key="test-drive" v-if="testDriving">
+            <div class="test-drive-header">
+                {{ T('ui.test_drive.currently_testing') }}<div class="tag">{{currentVehicleLabel}}</div>
+            </div>
+            <div class="test-drive-timer" style="width: 100%;">
+                <div class="timer-label">{{ T('ui.test_drive.time_remaining') }}</div>
+                <div class="timer-display" :class="getTimerClass()">{{formatTimeRemaining(testDriveTimeRemaining)}}
+                </div>
+            </div>
+        </div>
+
+        <div class="modals"></div>
+        <div class="vehicle-scroller" key="vehicle-scroller" v-if="dealershipMenu.visible "></div>
+
+        <div class="dealership-creator-ui" v-if="creatorMode.active">
+            <div class="creator-header">
+                <h3>{{ T('ui.admin_panel.dealership_creator') }}</h3>
+            </div>
+
+            <div class="creator-tabs">
+                <div class="tab-header">
+                    <div class="tab-item" v-for="tab in creatorMode.tabs" :key="tab.id" :class="{ active: tab.active }"
+                        @click="setCreatorTab(tab.id)">
+                        <i :data-lucide="tab.icon"></i>
+                        <span>{{ T(tab.labelKey) }}</span>
+                        <div class="tab-counter">{{ getTabCounter(tab.id) }}</div>
+                    </div>
+                </div>
+
+                <div class="tab-content">
+                    <div class="tab-panel fade-tab"
+                        :class="{ 'tab-active': creatorMode.activeTab === 'cars_exhibitor' }"
+                        v-if="creatorMode.activeTab === 'cars_exhibitor'">
+                        <div class="panel-header">
+                            <h4><i data-lucide="car"></i> {{ T('ui.admin_panel.exhibition_vehicles') }}</h4>
+                            <div class="counter-badge">{{ creatorMode.points.cars_exhibitor.length }}</div>
+                        </div>
+                        <div class="panel-description">
+                            {{ T('ui.admin_panel.exhibition_description') }}
+                        </div>
+                        <div class="points-list">
+                            <div class="point-item" v-for="(point, index) in creatorMode.points.cars_exhibitor"
+                                :key="index">
+                                <div class="point-info">
+                                    <span class="point-label">{{ T('ui.admin_panel.point_label', index + 1) }}</span>
+                                    <span class="point-coords">{{ formatCoords(point) }}</span>
+                                </div>
+                                <div class="point-actions">
+                                    <button class="btn-point-action btn-config"
+                                        @click="configureExhibitorVehicles(index)" title="Configurar Autos">
+                                        <i data-lucide="settings"></i>
+                                    </button>
+                                    <button class="btn-point-action btn-delete"
+                                        @click="deleteCreatorPoint('cars_exhibitor', index)">
+                                        <i data-lucide="trash-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-panel fade-tab" :class="{ 'tab-active': creatorMode.activeTab === 'car_testdrive' }"
+                        v-if="creatorMode.activeTab === 'car_testdrive'">
+                        <div class="panel-header">
+                            <h4><i data-lucide="cone"></i> {{ T('ui.admin_panel.test_drive_point') }}</h4>
+                            <div class="counter-badge">{{ creatorMode.points.car_testdrive.length }}/1</div>
+                        </div>
+                        <div class="panel-description">
+                            {{ T('ui.admin_panel.test_drive_description') }}
+                        </div>
+                        <div class="points-list">
+                            <div class="point-item" v-for="(point, index) in creatorMode.points.car_testdrive"
+                                :key="index">
+                                <div class="point-info">
+                                    <span class="point-label">{{ T('ui.admin_panel.test_point_label') }}</span>
+                                    <span class="point-coords">{{ formatCoords(point) }}</span>
+                                </div>
+                                <div class="point-actions">
+                                    <button class="btn-point-action btn-delete"
+                                        @click="deleteCreatorPoint('car_testdrive', index)">
+                                        <i data-lucide="trash-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-panel fade-tab" :class="{ 'tab-active': creatorMode.activeTab === 'car_delivery' }"
+                        v-if="creatorMode.activeTab === 'car_delivery'">
+                        <div class="panel-header">
+                            <h4><i data-lucide="package"></i> {{ T('ui.admin_panel.delivery_point') }}</h4>
+                            <div class="counter-badge">{{ creatorMode.points.car_delivery.length }}/1</div>
+                        </div>
+                        <div class="panel-description">
+                            {{ T('ui.admin_panel.delivery_description') }}
+                        </div>
+                        <div class="points-list">
+                            <div class="point-item" v-for="(point, index) in creatorMode.points.car_delivery"
+                                :key="index">
+                                <div class="point-info">
+                                    <span class="point-label">{{ T('ui.admin_panel.delivery_point_label') }}</span>
+                                    <span class="point-coords">{{ formatCoords(point) }}</span>
+                                </div>
+                                <div class="point-actions">
+                                    <button class="btn-point-action btn-delete"
+                                        @click="deleteCreatorPoint('car_delivery', index)">
+                                        <i data-lucide="trash-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-panel fade-tab" :class="{ 'tab-active': creatorMode.activeTab === 'car_preview' }"
+                        v-if="creatorMode.activeTab === 'car_preview'">
+                        <div class="panel-header">
+                            <h4><i data-lucide="eye"></i> {{ T('ui.admin_panel.preview_point_full') }}</h4>
+                            <div class="counter-badge">{{ creatorMode.points.car_preview.length }}/1</div>
+                        </div>
+                        <div class="panel-description">
+                            {{ T('ui.admin_panel.preview_point_description') }}
+                        </div>
+                        <div class="points-list">
+                            <div class="point-item" v-for="(point, index) in creatorMode.points.car_preview"
+                                :key="index">
+                                <div class="point-info">
+                                    <span class="point-label">{{ T('ui.admin_panel.preview_point_label') }}</span>
+                                    <span class="point-coords">{{ formatCoords(point) }}</span>
+                                </div>
+                                <div class="point-actions">
+                                    <button class="btn-point-action btn-delete"
+                                        @click="deleteCreatorPoint('car_preview', index)">
+                                        <i data-lucide="trash-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-panel fade-tab" :class="{ 'tab-active': creatorMode.activeTab === 'npcs' }"
+                        v-if="creatorMode.activeTab === 'npcs'">
+                        <div class="panel-header">
+                            <h4><i data-lucide="user"></i> {{ T('ui.admin_panel.npcs_tab') }}</h4>
+                            <div class="counter-badge">{{ creatorMode.points.npcs.length }}/1</div>
+                        </div>
+                        <div class="panel-description">
+                            {{ T('ui.admin_panel.npc_description') }}
+                        </div>
+                        <div class="points-list">
+                            <div class="point-item" v-for="(point, index) in creatorMode.points.npcs" :key="index">
+                                <div class="point-info">
+                                    <span class="point-label">{{ T('ui.admin_panel.npc_seller') }}</span>
+                                    <span class="point-coords">{{ formatCoords(point) }}</span>
+                                </div>
+                                <div class="point-actions">
+                                    <button class="btn-point-action btn-delete"
+                                        @click="deleteCreatorPoint('npcs', index)">
+                                        <i data-lucide="trash-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-panel fade-tab" :class="{ 'tab-active': creatorMode.activeTab === 'markers' }"
+                        v-if="creatorMode.activeTab === 'markers'">
+                        <div class="panel-header">
+                            <h4><i data-lucide="map-pin"></i> {{ T('ui.admin_panel.markers_tab') }}</h4>
+                            <div class="counter-badge">{{ creatorMode.points.markers.length }}</div>
+                        </div>
+                        <div class="panel-description">
+                            {{ T('ui.admin_panel.markers_description') }}
+                        </div>
+                        <div class="points-list">
+                            <div class="point-item" v-for="(point, index) in creatorMode.points.markers" :key="index">
+                                <div class="point-info">
+                                    <span class="point-label">{{ T('ui.admin_panel.marker_label', index + 1) }}</span>
+                                    <span class="point-coords">{{ formatCoords(point) }}</span>
+                                </div>
+                                <div class="point-actions">
+                                    <button class="btn-point-action btn-delete"
+                                        @click="deleteCreatorPoint('markers', index)">
+                                        <i data-lucide="trash-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="setting-coords" v-if="creatorMode.active">
+            <div class="creator-controls">
+                <div class="control-item">
+                    <span class="key">E</span>
+                    <span class="action">{{ T('ui.admin_panel.place_point') }}</span>
+                </div>
+                <div class="control-item">
+                    <span class="key">Scroll</span>
+                    <span class="action">{{ T('ui.admin_panel.rotate') }}</span>
+                </div>
+                <div class="control-item">
+                    <span class="key">Shift+Scroll</span>
+                    <span class="action">{{ T('ui.admin_panel.slow_rotate') }}</span>
+                </div>
+                <div class="control-item">
+                    <span class="key">Enter</span>
+                    <span class="action">{{ T('ui.admin_panel.finish') }}</span>
+                </div>
+                <div class="control-item">
+                    <span class="key">⌫</span>
+                    <span class="action">{{ T('buttons.cancel') }}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="admin-menu" v-if="adminPanel.visible">
+            <div class="header">Dealership Management</div>
+            <div class="main-content" v-if="adminPanel.dealershipManagement.visible">
+
+                <div class="admin-layout">
+                    <div class="admin-sidebar">
+                        <div class="options-section">
+                            <div class="section-header">{{ T('ui.admin.options') }}</div>
+                            <div class="option" v-for="tab in adminPanel.tabs" :key="tab.id"
+                                @click="setTabActive(tab.id)" :class="{ active: tab.active }">
+                                <i :data-lucide="tab.icon"></i>
+                                {{ tab.name }}
+                            </div>
+                        </div>
+
+                        <div class="dealerships-section">
+                            <div class="section-header">
+                                {{ T('ui.admin.dealerships') }}
+                                <div class="btn-action" @click="createDealership()">
+                                    <i data-lucide="plus"></i>
+                                </div>
+                            </div>
+                            <div class="dealerships-list">
+                                <div class="dealership-item"
+                                    v-for="dealership in adminPanel.dealershipManagement.dealerships"
+                                    :key="dealership.id"
+                                    :class="{ active: dealership.id === adminPanel.dealershipManagement.selectedDealership }">
+                                    <div class="dealership-info" @click="editDealership(dealership.id)">
+                                        <div class="dealership-name">{{ dealership.name || dealership.id }}</div>
+                                    </div>
+                                    <div class="dealership-actions">
+                                        <div class="btn-action btn-small" @click="editDealership(dealership.id)"
+                                            :title="T('ui.admin.edit')">
+                                            <i data-lucide="edit"></i>
+                                        </div>
+                                        <div class="btn-action btn-small" @click="tpDealership(dealership.id)"
+                                            :title="T('ui.admin.teleport')">
+                                            <i data-lucide="map-pin"></i>
+                                        </div>
+                                        <div class="btn-action btn-small btn-danger"
+                                            @click="confirmDeleteDealership(dealership)" :title="T('ui.admin.delete')">
+                                            <i data-lucide="trash-2"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="admin-main-content">
+                        <div class="content-tab" v-if="adminPanel.tabs.map.active">
+                            <div id="map-container" class="map-container"></div>
+                        </div>
+
+                        <div class="content-tab" v-if="adminPanel.tabs.stock.active">
+                            <div class="dealership-not-selected"
+                                v-if="!adminPanel.dealershipManagement.selectedDealership">
+                                <div class="empty-state">
+                                    <i data-lucide="building"></i>
+                                    <h3>{{ T('ui.admin.no_dealership_selected') }}</h3>
+                                    <p>{{ T('ui.admin.select_dealership_message') }}</p>
+                                </div>
+                            </div>
+
+                            <div class="dealership-management"
+                                v-if="adminPanel.dealershipManagement.selectedDealership">
+                                <div v-for="dealership in adminPanel.dealershipManagement.dealerships"
+                                    :key="dealership.id"
+                                    v-if="dealership.id === adminPanel.dealershipManagement.selectedDealership">
+
+                                    <div class="management-header">
+                                        <div class="dealership-info-compact">
+                                            <div class="info-row">
+                                                <div class="info-group">
+                                                    <label>Name:</label>
+                                                    <input type="text" v-model="dealership.name"
+                                                        class="form-control-inline">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="management-actions">
+                                            <div class="btn-action" @click="saveDealershipInfo()"
+                                                :title="T('ui.admin.save_changes')">
+                                                <i data-lucide="save"></i>
+                                                <span>{{ T('buttons.save') }}</span>
+                                            </div>
+                                            <div class="btn-action btn-danger" @click="deleteDealership(dealership)"
+                                                :title="T('ui.admin.delete_dealership')">
+                                                <i data-lucide="trash-2"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="dealership-tabs">
+                                        <div class="dealership-tab-header">
+                                            <div class="dealership-tab-item" v-for="tab in adminPanel.dealershipTabs"
+                                                :key="tab.id" :class="{ active: tab.active }"
+                                                @click="setDealershipTab(tab.id)">
+                                                <i :data-lucide="tab.icon"></i>
+                                                <span>{{ T('ui.admin.' + tab.id) }}</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="dealership-tab-content">
+                                            <div class="dealership-tab-panel fade-tab"
+                                                :class="{ 'tab-active': adminPanel.activeDealershipTab === 'general' }"
+                                                v-show="adminPanel.activeDealershipTab === 'general'">
+                                                <div class="general-settings">
+                                                    <h4><i data-lucide="settings"></i> {{
+                                                        T('ui.admin_panel.general_settings') }}</h4>
+
+                                                    <div class="form-section">
+                                                        <div class="form-group">
+                                                            <label>{{ T('ui.admin_panel.dealership_name') }}</label>
+                                                            <input type="text" v-model="dealership.name"
+                                                                class="form-input">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label>{{ T('ui.admin_panel.description') }}</label>
+                                                            <textarea v-model="dealership.description" rows="3"
+                                                                class="form-input"
+                                                                :placeholder="T('ui.admin_panel.description_placeholder')"></textarea>
+                                                        </div>
+
+
+
+                                                        <div class="form-group">
+                                                            <input type="checkbox"
+                                                                v-model="dealership.settings.allowTestDrive"
+                                                                class="financing-checkbox" id="prueba_manejo">
+                                                            <label class="custom-checkbox" for="prueba_manejo">
+                                                                <span class="checkbox-box"></span>
+                                                                {{ T('ui.admin_panel.allow_test_drives') }}
+                                                            </label>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label>{{ T('ui.admin_panel.test_time_minutes') }}</label>
+                                                            <input type="number"
+                                                                v-model="dealership.settings.testDriveTime" min="1"
+                                                                max="30" class="form-input">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <input type="checkbox"
+                                                                v-model="dealership.settings.allowCatalog"
+                                                                class="financing-checkbox"
+                                                                :id="`catalogo_${dealership.id}`">
+                                                            <label class="custom-checkbox"
+                                                                :for="`catalogo_${dealership.id}`">
+                                                                <span class="checkbox-box"></span>
+                                                                Permitir catálogo en este concesionario
+                                                            </label>
+                                                        </div>
+
+                                                        <div class="form-section" style="margin-top: 20px;">
+                                                            <h4><i data-lucide="map-pin"></i> {{
+                                                                T('ui.admin_panel.blip_settings') }}</h4>
+
+                                                            <div class="form-group">
+                                                                <label>{{ T('ui.admin_panel.blip_sprite') }}</label>
+                                                                <input type="number"
+                                                                    v-model="dealership.blipConfig.sprite" min="1"
+                                                                    max="826" class="form-input"
+                                                                    :placeholder="T('ui.admin_panel.blip_sprite_placeholder')">
+                                                                <small style="color: #888;">{{
+                                                                    T('ui.admin_panel.blip_sprite_hint') }}</small>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label>{{ T('ui.admin_panel.blip_color') }}</label>
+                                                                <input type="number"
+                                                                    v-model="dealership.blipConfig.color" min="0"
+                                                                    max="85" class="form-input"
+                                                                    :placeholder="T('ui.admin_panel.blip_color_placeholder')">
+                                                                <small style="color: #888;">{{
+                                                                    T('ui.admin_panel.blip_color_hint') }}</small>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label>{{ T('ui.admin_panel.blip_scale') }}</label>
+                                                                <input type="number"
+                                                                    v-model="dealership.blipConfig.scale" min="0.1"
+                                                                    max="2.0" step="0.1" class="form-input"
+                                                                    :placeholder="T('ui.admin_panel.blip_scale_placeholder')">
+                                                                <small style="color: #888;">{{
+                                                                    T('ui.admin_panel.blip_scale_hint') }}</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="dealership-tab-panel fade-tab"
+                                                :class="{ 'tab-active': adminPanel.activeDealershipTab === 'vehicles' }"
+                                                v-show="adminPanel.activeDealershipTab === 'vehicles'">
+
+                                                <div class="content-body">
+                                                    <div class="categories-panel">
+                                                        <div class="panel-header">
+                                                            <h4>{{ T('ui.admin.categories') }}</h4>
+                                                            <div class="btn-action btn-small" @click="addNewCategory()"
+                                                                :title="T('ui.admin.add_category')">
+                                                                <i data-lucide="plus"></i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="categories-list">
+                                                            <div class="category-item-header"
+                                                                style="display: flex; gap: 0.8vh; margin-bottom: 0.5vh; padding-right: 4px;">
+                                                                <small
+                                                                    style="flex: 2; color: rgba(255,255,255,0.4); text-transform: uppercase; font-size: 1vh; font-weight: 700;">{{
+                                                                    T('ui.admin.name') }}</small>
+                                                                <small
+                                                                    style="flex: 1.2; color: rgba(255,255,255,0.4); text-transform: uppercase; font-size: 1vh; font-weight: 700;">{{
+                                                                    T('ui.admin.job_restriction') }}</small>
+                                                                <small style="width: 3.5vh;"></small>
+                                                            </div>
+                                                            <div class="category-item"
+                                                                v-for="(category, categoryKey) in dealership.stock"
+                                                                :key="categoryKey">
+                                                                <input type="text" v-model="category.label"
+                                                                    class="form-control-small"
+                                                                    :placeholder="T('ui.admin.category_label')"
+                                                                    style="flex: 2;">
+                                                                <input type="text" v-model="category.job"
+                                                                    class="form-control-small"
+                                                                    :placeholder="T('ui.admin.job_restriction')"
+                                                                    :title="T('ui.admin.job_restriction_hint')"
+                                                                    style="flex: 1.2;">
+                                                                <div class="btn-action btn-small btn-danger"
+                                                                    @click="deleteCategory(categoryKey)"
+                                                                    :title="T('ui.admin.delete_category')">
+                                                                    <i data-lucide="trash-2"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="vehicles-panel">
+                                                        <div class="vehicles-header">
+                                                            <div class="vehicles-title">
+                                                                <h4>{{ T('ui.admin.vehicles') }}</h4>
+                                                            </div>
+                                                            <div class="vehicles-actions">
+                                                                <div class="category-controls">
+                                                                    <div class="btn-action btn-small"
+                                                                        @click="expandAllCategories()"
+                                                                        title="Expandir todas las categorías">
+                                                                        <i data-lucide="chevrons-down"></i>
+                                                                    </div>
+                                                                    <div class="btn-action btn-small"
+                                                                        @click="collapseAllCategories()"
+                                                                        title="Colapsar todas las categorías">
+                                                                        <i data-lucide="chevrons-up"></i>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="search-vehicles-compact">
+                                                                    <i data-lucide="search" class="search-icon"></i>
+                                                                    <input type="text" v-model="searchQuery"
+                                                                        :placeholder="T('ui.admin.search_vehicles')"
+                                                                        class="search-input-compact"
+                                                                        @input="searchVehicles">
+                                                                    <div class="btn-clear" v-if="searchQuery"
+                                                                        @click="clearSearch">
+                                                                        <i data-lucide="x"></i>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="btn-action" @click="showAddVehicleModal()"
+                                                                    :title="T('ui.admin.add_vehicle')">
+                                                                    <i data-lucide="plus-circle"></i>
+                                                                    <span>{{ T('ui.admin.add_vehicle') }}</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="vehicles-grid-container" v-if="vehiclesReady">
+                                                            <div v-for="(categoryData, categoryKey) in dealership.stock"
+                                                                :key="categoryKey" class="category-section">
+                                                                <div class="category-header collapsible"
+                                                                    @click="toggleCategoryExpansion(categoryKey)"
+                                                                    :class="{ expanded: isCategoryExpanded(categoryKey) }">
+                                                                    <div class="category-info">
+                                                                        <span class="category-title">{{
+                                                                            categoryData.label }}</span>
+                                                                        <span class="category-count">({{
+                                                                            (categoryData.isFiltering ?
+                                                                            categoryData.filteredStock :
+                                                                            categoryData.categoryStock).length }}
+                                                                            vehículos)</span>
+                                                                    </div>
+                                                                    <i :data-lucide="isCategoryExpanded(categoryKey) ? 'chevron-down' : 'chevron-right'"
+                                                                        class="expand-icon"></i>
+                                                                </div>
+                                                                <div class="vehicles-grid"
+                                                                    v-if="isCategoryExpanded(categoryKey)"
+                                                                    :class="{ 'expanded': isCategoryExpanded(categoryKey) }">
+                                                                    <div class="vehicle-card-compact"
+                                                                        v-for="(vehicle, index) in categoryData.isFiltering ? categoryData.filteredStock : categoryData.categoryStock"
+                                                                        :key="index"
+                                                                        :class="{ 'vehicle-card-visible': true }"
+                                                                        :style="{ transitionDelay: (index * 30) + 'ms' }">
+                                                                        <div class="vehicle-image-small">
+                                                                            <img :src="vehicle.img" :alt="vehicle.label"
+                                                                                class="vehicle-img-small" @error="handleImageError">
+                                                                        </div>
+                                                                        <div class="vehicle-details">
+                                                                            <div class="vehicle-name">{{ vehicle.label
+                                                                                }}</div>
+                                                                            <div class="vehicle-model">{{ vehicle.model
+                                                                                }}</div>
+                                                                            <div class="vehicle-stats">
+                                                                                <span class="stat">{{ vehicle.class
+                                                                                    }}</span>
+                                                                                <span class="stat price">${{
+                                                                                    vehicle.price }}</span>
+                                                                                <span class="stat"
+                                                                                    v-if="vehicle.xp > 0">{{ vehicle.xp
+                                                                                    }} XP</span>
+                                                                                <span class="stat stock">Stock: {{
+                                                                                    vehicle.stock }}</span>
+                                                                            </div>
+                                                                            <div class="financing-status"
+                                                                                :class="{ enabled: vehicle.financing, disabled: !vehicle.financing }">
+                                                                                <i data-lucide="credit-card"></i>
+                                                                                {{ vehicle.financing ? 'Financing' :
+                                                                                'Cash Only' }}
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="vehicle-actions">
+                                                                            <div class="btn-action btn-small"
+                                                                                @click="spawnVehicle(vehicle)"
+                                                                                title="Spawn">
+                                                                                <i data-lucide="car"></i>
+                                                                            </div>
+                                                                            <div class="btn-action btn-small"
+                                                                                @click="editVehicle(vehicle, categoryKey)"
+                                                                                :title="T('ui.admin.edit')">
+                                                                                <i data-lucide="edit"></i>
+                                                                            </div>
+                                                                            <div class="btn-action btn-small btn-danger"
+                                                                                @click="deleteVehicle(vehicle, index, categoryKey)"
+                                                                                :title="T('ui.admin.delete')">
+                                                                                <i data-lucide="trash-2"></i>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="dealership-tab-panel fade-tab"
+                                                :class="{ 'tab-active': adminPanel.activeDealershipTab === 'locations' }"
+                                                v-show="adminPanel.activeDealershipTab === 'locations'">
+                                                <div class="locations-management">
+                                                    <div class="locations-header">
+                                                        <h4><i data-lucide="map-pin"></i> {{
+                                                            T('ui.admin_panel.location_management') }}</h4>
+                                                    </div>
+
+                                                    <div class="location-tabs">
+                                                        <div class="location-tab-header">
+                                                            <div class="location-tab-item"
+                                                                v-for="tab in adminPanel.locationTabs" :key="tab.id"
+                                                                :class="{ active: tab.active }"
+                                                                @click="setLocationTab(tab.id)">
+                                                                <i :data-lucide="tab.icon"></i>
+                                                                <span>{{ T(tab.labelKey) }}</span>
+                                                                <div class="location-counter">{{
+                                                                    getLocationCounter(dealership, tab.id) }}</div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="location-tab-content">
+                                                            <div class="location-tab-panel fade-tab"
+                                                                :class="{ 'tab-active': adminPanel.activeLocationTab === 'cars_exhibitor' }"
+                                                                v-if="adminPanel.activeLocationTab === 'cars_exhibitor'">
+                                                                <div class="location-section">
+                                                                    <div class="section-header">
+                                                                        <h5><i data-lucide="car"></i> {{
+                                                                            T('ui.admin_panel.exhibition_vehicles') }}
+                                                                        </h5>
+                                                                        <div class="section-actions">
+                                                                            <span class="location-count">{{
+                                                                                (dealership.cars_exhibitor || []).length
+                                                                                }} {{ T('ui.admin_panel.locations')
+                                                                                }}</span>
+                                                                            <button class="btn-action"
+                                                                                @click="setupLocationCoords(dealership, 'cars_exhibitor')"
+                                                                                title="{{ T('ui.admin_panel.configure_exhibitors') }}">
+                                                                                <i data-lucide="plus"></i>
+                                                                                <span>{{ T('ui.admin_panel.add')
+                                                                                    }}</span>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="location-description">
+                                                                        {{
+                                                                        T('ui.admin_panel.exhibition_points_description')
+                                                                        }}
+                                                                    </div>
+                                                                    <div class="locations-list">
+                                                                        <div class="location-item"
+                                                                            v-for="(location, index) in dealership.cars_exhibitor || []"
+                                                                            :key="index">
+                                                                            <div class="location-info">
+                                                                                <span class="location-label">{{
+                                                                                    T('ui.admin_panel.exhibitor_label',
+                                                                                    index + 1) }}</span>
+                                                                                <span class="location-coords">{{
+                                                                                    formatLocationCoords(location)
+                                                                                    }}</span>
+                                                                                <span
+                                                                                    v-if="location.allowedVehicles && location.allowedVehicles.length > 0"
+                                                                                    class="location-config-badge"
+                                                                                    title="Vehículos específicos configurados">
+                                                                                    <i data-lucide="settings"></i>
+                                                                                    {{ location.allowedVehicles.length
+                                                                                    }} auto{{
+                                                                                    location.allowedVehicles.length !==
+                                                                                    1 ? 's' : '' }}
+                                                                                </span>
+                                                                            </div>
+                                                                            <div class="location-actions">
+                                                                                <button
+                                                                                    class="btn-location-action btn-config"
+                                                                                    @click.stop="configureExhibitorVehiclesFromList(dealership, index)"
+                                                                                    title="Configurar Autos">
+                                                                                    <i data-lucide="settings"></i>
+                                                                                </button>
+                                                                                <button
+                                                                                    class="btn-location-action btn-teleport"
+                                                                                    @click="teleportToLocation(location)"
+                                                                                    :title="T('ui.admin_panel.go_to_location')">
+                                                                                    <i data-lucide="navigation"></i>
+                                                                                </button>
+                                                                                <button
+                                                                                    class="btn-location-action btn-delete"
+                                                                                    @click="deleteLocation(dealership, 'cars_exhibitor', index)"
+                                                                                    :title="T('buttons.delete')">
+                                                                                    <i data-lucide="trash-2"></i>
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="location-tab-panel fade-tab"
+                                                                :class="{ 'tab-active': adminPanel.activeLocationTab === 'car_testdrive' }"
+                                                                v-if="adminPanel.activeLocationTab === 'car_testdrive'">
+                                                                <div class="location-section">
+                                                                    <div class="section-header">
+                                                                        <h5><i data-lucide="cone"></i> {{
+                                                                            T('ui.admin_panel.test_drive_point_full') }}
+                                                                        </h5>
+                                                                        <div class="section-actions">
+                                                                            <span class="location-count">{{
+                                                                                (dealership.car_testdrive || []).length
+                                                                                }}/1 {{ T('ui.admin_panel.location')
+                                                                                }}</span>
+                                                                            <button class="btn-action"
+                                                                                @click="setupLocationCoords(dealership, 'car_testdrive')"
+                                                                                :title="T('ui.admin_panel.configure_test_point')"
+                                                                                :disabled="(dealership.car_testdrive || []).length >= 1">
+                                                                                <i data-lucide="plus"></i>
+                                                                                <span>{{ T('ui.admin_panel.add')
+                                                                                    }}</span>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="location-description">
+                                                                        {{
+                                                                        T('ui.admin_panel.test_drive_location_description')
+                                                                        }}
+                                                                    </div>
+                                                                    <div class="locations-list">
+                                                                        <div class="location-item"
+                                                                            v-for="(location, index) in dealership.car_testdrive || []"
+                                                                            :key="index">
+                                                                            <div class="location-info">
+                                                                                <span class="location-label">{{
+                                                                                    T('ui.admin.test_point') }}</span>
+                                                                                <span class="location-coords">{{
+                                                                                    formatLocationCoords(location)
+                                                                                    }}</span>
+                                                                            </div>
+                                                                            <div class="location-actions">
+                                                                                <button
+                                                                                    class="btn-location-action btn-teleport"
+                                                                                    @click="teleportToLocation(location)"
+                                                                                    :title="T('ui.admin.go_to_location')">
+                                                                                    <i data-lucide="navigation"></i>
+                                                                                </button>
+                                                                                <button
+                                                                                    class="btn-location-action btn-delete"
+                                                                                    @click="deleteLocation(dealership, 'car_testdrive', index)"
+                                                                                    :title="T('ui.admin.remove')">
+                                                                                    <i data-lucide="trash-2"></i>
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="location-tab-panel fade-tab"
+                                                                :class="{ 'tab-active': adminPanel.activeLocationTab === 'car_delivery' }"
+                                                                v-if="adminPanel.activeLocationTab === 'car_delivery'">
+                                                                <div class="location-section">
+                                                                    <div class="section-header">
+                                                                        <h5><i data-lucide="package"></i> {{
+                                                                            T('ui.admin_panel.delivery_point') }}</h5>
+                                                                        <div class="section-actions">
+                                                                            <span class="location-count">{{
+                                                                                (dealership.car_delivery || []).length
+                                                                                }}/1 {{ T('ui.admin_panel.location')
+                                                                                }}</span>
+                                                                            <button class="btn-action"
+                                                                                @click="setupLocationCoords(dealership, 'car_delivery')"
+                                                                                :title="T('ui.admin_panel.configure_delivery_point')"
+                                                                                :disabled="(dealership.car_delivery || []).length >= 1">
+                                                                                <i data-lucide="plus"></i>
+                                                                                <span>{{ T('ui.admin_panel.add')
+                                                                                    }}</span>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="location-description">
+                                                                        {{ T('ui.admin_panel.delivery_point_purchased')
+                                                                        }}
+                                                                    </div>
+                                                                    <div class="locations-list">
+                                                                        <div class="location-item"
+                                                                            v-for="(location, index) in dealership.car_delivery || []"
+                                                                            :key="index">
+                                                                            <div class="location-info">
+                                                                                <span class="location-label">{{
+                                                                                    T('ui.admin.delivery_point')
+                                                                                    }}</span>
+                                                                                <span class="location-coords">{{
+                                                                                    formatLocationCoords(location)
+                                                                                    }}</span>
+                                                                            </div>
+                                                                            <div class="location-actions">
+                                                                                <button
+                                                                                    class="btn-location-action btn-teleport"
+                                                                                    @click="teleportToLocation(location)"
+                                                                                    :title="T('ui.admin.go_to_location')">
+                                                                                    <i data-lucide="navigation"></i>
+                                                                                </button>
+                                                                                <button
+                                                                                    class="btn-location-action btn-delete"
+                                                                                    @click="deleteLocation(dealership, 'car_delivery', index)"
+                                                                                    :title="T('ui.admin.remove')">
+                                                                                    <i data-lucide="trash-2"></i>
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="location-tab-panel fade-tab"
+                                                                :class="{ 'tab-active': adminPanel.activeLocationTab === 'car_preview' }"
+                                                                v-if="adminPanel.activeLocationTab === 'car_preview'">
+                                                                <div class="location-section">
+                                                                    <div class="section-header">
+                                                                        <h5><i data-lucide="eye"></i> {{
+                                                                            T('ui.admin.preview_point') }}</h5>
+                                                                        <div class="section-actions">
+                                                                            <span class="location-count">{{
+                                                                                (dealership.car_preview || []).length
+                                                                                }}/1 {{ T('ui.admin.location') }}</span>
+                                                                            <button class="btn-action"
+                                                                                @click="setupLocationCoords(dealership, 'car_preview')"
+                                                                                :title="T('ui.admin.configure_preview_point')"
+                                                                                :disabled="(dealership.car_preview || []).length >= 1">
+                                                                                <i data-lucide="plus"></i>
+                                                                                <span>{{ T('ui.admin_panel.add')
+                                                                                    }}</span>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="location-description">
+                                                                        {{ T('ui.admin_panel.preview_point_description')
+                                                                        }}
+                                                                    </div>
+                                                                    <div class="locations-list">
+                                                                        <div class="location-item"
+                                                                            v-for="(location, index) in dealership.car_preview || []"
+                                                                            :key="index">
+                                                                            <div class="location-info">
+                                                                                <span class="location-label">{{
+                                                                                    T('ui.admin.preview_point')
+                                                                                    }}</span>
+                                                                                <span class="location-coords">{{
+                                                                                    formatLocationCoords(location)
+                                                                                    }}</span>
+                                                                            </div>
+                                                                            <div class="location-actions">
+                                                                                <button
+                                                                                    class="btn-location-action btn-teleport"
+                                                                                    @click="teleportToLocation(location)"
+                                                                                    :title="T('ui.admin.go_to_location')">
+                                                                                    <i data-lucide="navigation"></i>
+                                                                                </button>
+                                                                                <button
+                                                                                    class="btn-location-action btn-delete"
+                                                                                    @click="deleteLocation(dealership, 'car_preview', index)"
+                                                                                    :title="T('ui.admin.remove')">
+                                                                                    <i data-lucide="trash-2"></i>
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="location-tab-panel fade-tab"
+                                                                :class="{ 'tab-active': adminPanel.activeLocationTab === 'npcs' }"
+                                                                v-if="adminPanel.activeLocationTab === 'npcs'">
+                                                                <div class="location-section">
+                                                                    <div class="section-header">
+                                                                        <h5><i data-lucide="user"></i> {{
+                                                                            T('ui.admin.npc_seller') }}
+                                                                        </h5>
+                                                                        <div class="section-actions">
+                                                                            <span class="location-count">{{
+                                                                                (dealership.npcs || []).length }}/1
+                                                                                {{ T('ui.admin.location') }}</span>
+                                                                            <button class="btn-action"
+                                                                                @click="setupLocationCoords(dealership, 'npcs')"
+                                                                                :title="T('ui.admin.configure_npc')"
+                                                                                :disabled="(dealership.npcs || []).length >= 1">
+                                                                                <i data-lucide="plus"></i>
+                                                                                <span>{{ T('ui.admin_panel.add')
+                                                                                    }}</span>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="location-description">
+                                                                        {{ T('ui.admin_panel.npc_description') }}
+                                                                    </div>
+                                                                    <div class="locations-list">
+                                                                        <div class="location-item"
+                                                                            v-for="(location, index) in dealership.npcs || []"
+                                                                            :key="index">
+                                                                            <div class="location-info">
+                                                                                <span class="location-label">{{
+                                                                                    T('ui.admin.npc_seller') }}</span>
+                                                                                <span class="location-coords">{{
+                                                                                    formatLocationCoords(location)
+                                                                                    }}</span>
+                                                                            </div>
+                                                                            <div class="location-actions">
+                                                                                <button
+                                                                                    class="btn-location-action btn-teleport"
+                                                                                    @click="teleportToLocation(location)"
+                                                                                    :title="T('ui.admin.go_to_location')">
+                                                                                    <i data-lucide="navigation"></i>
+                                                                                </button>
+                                                                                <button
+                                                                                    class="btn-location-action btn-delete"
+                                                                                    @click="deleteLocation(dealership, 'npcs', index)"
+                                                                                    :title="T('ui.admin.remove')">
+                                                                                    <i data-lucide="trash-2"></i>
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="location-tab-panel fade-tab"
+                                                                :class="{ 'tab-active': adminPanel.activeLocationTab === 'markers' }"
+                                                                v-if="adminPanel.activeLocationTab === 'markers'">
+                                                                <div class="location-section">
+                                                                    <div class="section-header">
+                                                                        <h5><i data-lucide="map-pin"></i> {{
+                                                                            T('ui.admin.additional_markers') }}</h5>
+                                                                        <div class="section-actions">
+                                                                            <span class="location-count">{{
+                                                                                (dealership.markers || []).length }}
+                                                                                {{ T('ui.admin.locations') }}</span>
+                                                                            <button class="btn-action"
+                                                                                @click="setupLocationCoords(dealership, 'markers')"
+                                                                                :title="T('ui.admin.configure_markers')">
+                                                                                <i data-lucide="plus"></i>
+                                                                                <span>{{ T('ui.admin_panel.add')
+                                                                                    }}</span>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="location-description">
+                                                                        {{ T('ui.admin_panel.markers_description') }}
+                                                                    </div>
+                                                                    <div class="locations-list">
+                                                                        <div class="location-item"
+                                                                            v-for="(location, index) in dealership.markers || []"
+                                                                            :key="index">
+                                                                            <div class="location-info">
+                                                                                <span class="location-label">{{
+                                                                                    T('ui.admin.marker') }} {{
+                                                                                    index + 1 }}</span>
+                                                                                <span class="location-coords">{{
+                                                                                    formatLocationCoords(location)
+                                                                                    }}</span>
+                                                                            </div>
+                                                                            <div class="location-actions">
+                                                                                <button
+                                                                                    class="btn-location-action btn-teleport"
+                                                                                    @click="teleportToLocation(location)"
+                                                                                    :title="T('ui.admin.go_to_location')">
+                                                                                    <i data-lucide="navigation"></i>
+                                                                                </button>
+                                                                                <button
+                                                                                    class="btn-location-action btn-delete"
+                                                                                    @click="deleteLocation(dealership, 'markers', index)"
+                                                                                    :title="T('ui.admin.remove')">
+                                                                                    <i data-lucide="trash-2"></i>
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="add-vehicle-modal-overlay" v-if="addVehicleModal.visible && adminPanel.visible"
+                @click.self="closeAddVehicleModal">
+                <div class="add-vehicle-modal-container">
+                    <div class="add-vehicle-modal-header">
+                        <h2>{{ addVehicleModal.isEditing ? T('ui.admin_panel.edit_vehicle') :
+                            T('ui.admin_panel.add_vehicle') }}</h2>
+                        <button class="close-btn" @click="closeAddVehicleModal">×</button>
+                    </div>
+
+                    <div class="add-vehicle-modal-content">
+                        <div class="add-vehicle-left-panel">
+                            <div class="form-section">
+                                <h3>{{ T('ui.admin_panel.vehicle_info') }}</h3>
+
+                                <div class="form-group">
+                                    <label>{{ T('ui.admin_panel.category') }}</label>
+                                    <select v-model="addVehicleModal.form.category" class="form-select">
+                                        <option value="" disabled>{{ T('ui.admin_panel.select_category') }}</option>
+                                        <option v-for="(categoryData, categoryKey) in getCurrentDealershipStock()"
+                                            :key="categoryKey" :value="categoryKey">
+                                            {{ categoryData.label }}
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>{{ T('ui.admin_panel.vehicle_model') }}</label>
+                                    <input type="text" v-model="addVehicleModal.form.model" class="form-input"
+                                        :placeholder="T('ui.admin_panel.vehicle_model_placeholder')">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>{{ T('ui.admin_panel.vehicle_name') }}</label>
+                                    <input type="text" v-model="addVehicleModal.form.label" class="form-input"
+                                        :placeholder="T('ui.admin_panel.vehicle_name_placeholder')">
+                                </div>
+
+                                <input type="hidden" v-model="addVehicleModal.form.price">
+                                <input type="hidden" v-model="addVehicleModal.form.xp">
+
+                                <div class="form-group">
+                                    <label>{{ T('ui.admin_panel.image') }}</label>
+                                    <input type="text" v-model="addVehicleModal.form.image" class="form-input"
+                                        placeholder="https://r2.fivemanage.com/">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>{{ T('ui.admin_panel.class') }}</label>
+                                    <select v-model="addVehicleModal.form.class" class="form-select">
+                                        <option value="S+">S+</option>
+                                        <option value="S">S</option>
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                        <option value="C">C</option>
+                                        <option value="D">D</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="financing-toggle-label">
+                                        <input type="checkbox" v-model="addVehicleModal.form.financing"
+                                            class="financing-checkbox">
+                                        <span class="financing-slider">
+                                            <span class="financing-slider-circle"></span>
+                                        </span>
+                                        <span class="financing-text">{{ T('ui.admin_panel.allow_financing_vehicle')
+                                            }}</span>
+                                    </label>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="financing-toggle-label">
+                                        <input type="checkbox" v-model="addVehicleModal.form.stockEnabled"
+                                            class="financing-checkbox">
+                                        <span class="financing-slider">
+                                            <span class="financing-slider-circle"></span>
+                                        </span>
+                                        <span class="financing-text">{{ T('ui.admin_panel.enable_stock_system')
+                                            }}</span>
+                                    </label>
+                                    <div class="payment-price-input" v-if="addVehicleModal.form.stockEnabled"
+                                        style="margin-top: 10px;">
+                                        <input type="number" v-model="addVehicleModal.form.stock"
+                                            :placeholder="T('ui.admin_panel.stock_amount')" min="0" class="form-input">
+                                        <small
+                                            style="color: rgba(255,255,255,0.6); font-size: 11px; margin-top: 5px; display: block;">
+                                            {{ T('ui.admin_panel.stock_amount') }}
+                                        </small>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>{{ T('ui.admin_panel.payment_configuration') }}</label>
+                                    <div class="payment-methods-config">
+                                        <div class="payment-method-option">
+                                            <label class="payment-method-toggle">
+                                                <input type="checkbox"
+                                                    v-model="addVehicleModal.form.paymentMethods.cash">
+                                                <span class="payment-checkbox">
+                                                    <i data-lucide="banknote"></i>
+                                                </span>
+                                                <span class="payment-method-name">{{ T('ui.admin_panel.cash_purchase')
+                                                    }}</span>
+                                            </label>
+                                            <div class="payment-price-input"
+                                                v-if="addVehicleModal.form.paymentMethods.cash">
+                                                <input type="number" v-model="addVehicleModal.form.prices.cash"
+                                                    :placeholder="T('ui.admin_panel.cash_price_placeholder')" min="0"
+                                                    class="form-input">
+                                                <small
+                                                    style="color: rgba(255,255,255,0.6); font-size: 11px; margin-top: 5px; display: block;">
+                                                    {{ T('ui.admin_panel.cash_description') }}
+                                                </small>
+                                            </div>
+                                        </div>
+
+                                        <div class="payment-method-option">
+                                            <label class="payment-method-toggle">
+                                                <input type="checkbox" v-model="addVehicleModal.form.paymentMethods.xp">
+                                                <span class="payment-checkbox">
+                                                    <i data-lucide="star"></i>
+                                                </span>
+                                                <span class="payment-method-name">{{ T('ui.admin_panel.xp_purchase')
+                                                    }}</span>
+                                            </label>
+                                            <div class="payment-price-input"
+                                                v-if="addVehicleModal.form.paymentMethods.xp">
+                                                <input type="number" v-model="addVehicleModal.form.prices.xp"
+                                                    :placeholder="T('ui.admin_panel.xp_price_placeholder')" min="1"
+                                                    class="form-input">
+                                            </div>
+                                        </div>
+
+                                        <div class="payment-method-option">
+                                            <label class="payment-method-toggle">
+                                                <input type="checkbox"
+                                                    v-model="addVehicleModal.form.paymentMethods.company">
+                                                <span class="payment-checkbox">
+                                                    <i data-lucide="building"></i>
+                                                </span>
+                                                <span class="payment-method-name">{{
+                                                    T('ui.admin_panel.company_purchase')
+                                                    }}</span>
+                                            </label>
+                                            <div class="payment-price-input"
+                                                v-if="addVehicleModal.form.paymentMethods.company">
+                                                <input type="number" v-model="addVehicleModal.form.prices.company"
+                                                    :placeholder="T('ui.admin_panel.company_price_placeholder')" min="0"
+                                                    class="form-input">
+                                                <small
+                                                    style="color: rgba(255,255,255,0.6); font-size: 11px; margin-top: 5px; display: block;">
+                                                    {{ T('ui.admin_panel.company_description') }}
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="add-vehicle-right-panel">
+                            <div class="vehicles-section">
+                                <div class="vehicles-header">
+                                    <h3>{{ T('ui.admin_panel.vehicle_list') }}</h3>
+                                    <div class="search-container">
+                                        <i data-lucide="search" class="search-icon"></i>
+                                        <input type="text" v-model="addVehicleModal.searchQuery" class="search-input"
+                                            :placeholder="T('ui.admin_panel.search_vehicle')">
+                                        <button v-if="addVehicleModal.searchQuery"
+                                            @click="addVehicleModal.searchQuery = ''" class="clear-search-btn">
+                                            <i data-lucide="x"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="modal-sorting-controls">
+                                    <div class="sort-options-modal">
+                                        <div class="sort-option-modal" :class="{ active: sortBy === 'name' }"
+                                            @click="setSortBy('name')">
+                                            <i data-lucide="type"></i>
+                                            {{ T('ui.admin_panel.name') }}
+                                        </div>
+                                    </div>
+                                    <div class="sort-direction-modal" @click="toggleSortDirection()">
+                                        <i :data-lucide="sortOrder === 'asc' ? 'chevron-up' : 'chevron-down'"></i>
+                                        {{ sortOrder === 'asc' ? 'A-Z' : 'Z-A' }}
+                                    </div>
+                                </div>
+
+                                <div class="vehicles-grid">
+                                    <div class="vehicle-card" v-for="vehicle in sortedDefaultVehicles"
+                                        :key="vehicle.model" :class="{
+                                             selected: addVehicleModal.selectedVehicle === vehicle.model,
+                                             disabled: existingVehicleModels.includes(vehicle.model.toLowerCase())
+                                         }"
+                                        @click="!existingVehicleModels.includes(vehicle.model.toLowerCase()) && selectDefaultVehicle(vehicle)">
+                                        <div class="vehicle-image">
+                                            <img :src="getVehicleImageUrl(vehicle.model)" :alt="vehicle.label"
+                                                @error="handleVehicleImageLoadError($event, vehicle.model)">
+                                        </div>
+                                        <div class="vehicle-name">{{ vehicle.label }}</div>
+                                        <div class="vehicle-model">{{ vehicle.model }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="add-vehicle-modal-footer">
+                        <button class="btn-cancel" @click="closeAddVehicleModal">Cancelar</button>
+                        <button class="btn-confirm" @click="confirmAddVehicle" :disabled="!isAddVehicleFormValid">{{
+                            addVehicleModal.isEditing ? 'Actualizar Vehículo' : 'Agregar Vehículo' }}</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal de Configuración de Exhibidores -->
+            <div class="exhibitor-modal-overlay" v-if="exhibitorConfigModal.visible && adminPanel.visible"
+                @click.self="closeExhibitorConfigModal">
+                <div class="exhibitor-modal-container">
+                    <div class="exhibitor-modal-header">
+                        <h2>Configurar Vehículos del Exhibidor</h2>
+                        <button class="close-btn" @click="closeExhibitorConfigModal">×</button>
+                    </div>
+
+                    <div class="exhibitor-modal-content">
+                        <div class="exhibitor-content-wrapper">
+                            <!-- Estadísticas -->
+                            <div class="exhibitor-stats">
+                                <div class="stat-item">
+                                    <span class="stat-label">Total Disponibles:</span>
+                                    <span class="stat-value">{{ exhibitorConfigModal.availableVehicles.length }}</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Seleccionados:</span>
+                                    <span class="stat-value">{{ exhibitorConfigModal.selectedVehicles.length }}</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Filtrados:</span>
+                                    <span class="stat-value">{{ filteredExhibitorVehicles.length }}</span>
+                                </div>
+                            </div>
+
+                            <!-- Buscador -->
+                            <div class="exhibitor-search-section">
+                                <div class="search-container">
+                                    <i data-lucide="search" class="search-icon"></i>
+                                    <input type="text" v-model="exhibitorConfigModal.searchQuery" class="search-input"
+                                        placeholder="Buscar vehículo por nombre o modelo...">
+                                    <button v-if="exhibitorConfigModal.searchQuery"
+                                        @click="exhibitorConfigModal.searchQuery = ''" class="clear-search-btn">
+                                        <i data-lucide="x"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Botones de acción -->
+                            <div class="exhibitor-config-advanced">
+                                <div class="form-group">
+                                    <input type="checkbox" v-model="exhibitorConfigModal.rotateEnabled"
+                                        class="financing-checkbox" id="exhibitor_rotate_toggle">
+                                    <label class="custom-checkbox" for="exhibitor_rotate_toggle">
+                                        <span class="checkbox-box"></span>
+                                        Rotar vehículo automáticamente
+                                    </label>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="checkbox" v-model="exhibitorConfigModal.interactable"
+                                        class="financing-checkbox" id="exhibitor_interact_toggle">
+                                    <label class="custom-checkbox" for="exhibitor_interact_toggle">
+                                        <span class="checkbox-box"></span>
+                                        Permitir interacción "Revisar coche"
+                                    </label>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="checkbox" v-model="exhibitorConfigModal.allowPurchase"
+                                        class="financing-checkbox" id="exhibitor_purchase_toggle">
+                                    <label class="custom-checkbox" for="exhibitor_purchase_toggle">
+                                        <span class="checkbox-box"></span>
+                                        Permitir compra desde este exhibidor
+                                    </label>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="checkbox" v-model="exhibitorConfigModal.allowTestDrive"
+                                        class="financing-checkbox" id="exhibitor_testdrive_toggle">
+                                    <label class="custom-checkbox" for="exhibitor_testdrive_toggle">
+                                        <span class="checkbox-box"></span>
+                                        Permitir prueba de manejo desde este exhibidor
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="exhibitor-actions">
+                                <button @click="selectAllFilteredVehicles" class="btn-action btn-select-all">
+                                    <i data-lucide="check-circle"></i>
+                                    Seleccionar Todo
+                                </button>
+                                <button @click="clearAllVehicles" class="btn-action btn-clear-all">
+                                    <i data-lucide="x-circle"></i>
+                                    Limpiar Selección
+                                </button>
+                            </div>
+
+                            <!-- Lista de vehículos -->
+                            <div class="exhibitor-vehicles-grid">
+                                <div v-for="vehicle in filteredExhibitorVehicles" :key="vehicle.model"
+                                    class="vehicle-item"
+                                    :class="{ selected: exhibitorConfigModal.selectedVehicles.includes(vehicle.model) }"
+                                    @click="toggleVehicleSelection(vehicle.model)">
+
+                                    <div class="vehicle-checkbox">
+                                        <input type="checkbox"
+                                            :checked="exhibitorConfigModal.selectedVehicles.includes(vehicle.model)"
+                                            @click.stop @change="toggleVehicleSelection(vehicle.model)">
+                                    </div>
+
+                                    <div class="vehicle-image">
+                                        <img :src="vehicle.img" :alt="vehicle.label" @error="handleImageError">
+                                    </div>
+
+                                    <div class="vehicle-info">
+                                        <div class="vehicle-name">{{ vehicle.label }}</div>
+                                        <div class="vehicle-details">
+                                            <span class="vehicle-model">{{ vehicle.model }}</span>
+                                            <span class="vehicle-class">Clase {{ vehicle.class }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Mensaje cuando no hay resultados -->
+                            <div v-if="filteredExhibitorVehicles.length === 0" class="no-results">
+                                <i data-lucide="search-x"></i>
+                                <p v-if="exhibitorConfigModal.searchQuery">
+                                    No se encontraron vehículos que coincidan con "{{ exhibitorConfigModal.searchQuery
+                                    }}"
+                                </p>
+                                <p v-else>No hay vehículos disponibles</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="exhibitor-modal-footer">
+                        <button class="btn-cancel" @click="closeExhibitorConfigModal">
+                            <i data-lucide="x"></i>
+                            Cancelar
+                        </button>
+                        <button class="btn-confirm" @click="saveExhibitorConfig">
+                            <i data-lucide="check"></i>
+                            Guardar Configuración ({{ exhibitorConfigModal.selectedVehicles.length }})
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dealership" v-if="dealershipMenu.visible">
+            <div v-if="loadingVehicleStats && currentCategoryVehicles.length != 0 && selectedVehicle"
+                class="vehicle-stats-loader">
+                <span>{{ T('ui.admin_panel.loading_vehicle_data') }}</span>
+            </div>
+            <div class="selected-vehicle-info"
+                v-if="currentCategoryVehicles.length != 0 && selectedVehicle && !loadingVehicleStats">
+                <div class="header">
+                    <span class="header-title">{{currentVehicleLabel}}</span>
+                </div>
+                <div class="stats">
+                    <div class="quick-price" v-html="getVehicleListPrice(selectedVehicle)"></div>
+
+                    <div class="panel-advanced">
+                        <div class="stat" v-for="stat in dealershipMenu.currentVehicleStats" :key="stat.label">
+                            <div class="label">{{ stat.label }}</div>
+                            <div class="progress-bar">
+                                <div class="bar" :style="{ width: stat.value + '%' }"></div>
+                            </div>
+                        </div>
+                        <div class="label">{{ T('ui.admin_panel.colors') }}</div>
+                        <div class="color-pickers">
+                            <div class="color-picker-group">
+                                <label class="color-label">{{ T('ui.dealership_menu.primary_color') || 'Primario'
+                                    }}</label>
+                                <div class="color-picker">
+                                    <input type="color" class="color-input primary-color" v-model="dealershipMenu.primaryColor"
+                                        @input="handlePrimaryColorChange(dealershipMenu.primaryColor)"
+                                        id="primaryColorPicker">
+                                </div>
+                            </div>
+                            <div class="color-picker-group">
+                                <label class="color-label">{{ T('ui.dealership_menu.secondary_color') || 'Secundario'
+                                    }}</label>
+                                <div class="color-picker">
+                                    <input type="color" class="color-input secondary-color" v-model="dealershipMenu.secondaryColor"
+                                        @input="handleSecondaryColorChange(dealershipMenu.secondaryColor)"
+                                        id="secondaryColorPicker">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="btns-container">
+                        <div class="action-btn" v-if="canPurchaseCurrent" @click="purchaseVehicleModal()">{{
+                            T('ui.admin_panel.purchase') }}</div>
+                        <div class="action-btn" v-if="canTestDriveCurrent" @click="testDriveVehicle()">{{
+                            T('ui.admin_panel.test_drive') }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="vehicle-carrousel-wrapper" v-if="currentCategoryVehicles.length != 0 && catalogEnabled">
+                <div class="vehicle-controls">
+                    <div class="controls-topbar">
+                        <div class="vehicle-categories-inline">
+                            <div class="category" :class="{ active: selectedCategory === 'all_categories' }"
+                                @click="selectedCategory = 'all_categories'">
+                                {{ T('ui.admin_panel.all_categories') }}
+                            </div>
+
+                            <div class="category" v-for="(category, key) in dealershipMenu.dealershipStock" :key="key"
+                                :class="{ active: selectedCategory === key }" @click="selectedCategory = key">
+                                {{ category.label }}
+                            </div>
+                        </div>
+
+                        <div class="controls-right">
+                            <div class="results-info">
+                                <span class="results-count">{{ filteredByPriceVehicles.length }} {{
+                                    T('ui.admin_panel.vehicles') }}</span>
+                                <span class="filter-status" v-if="priceFilter.active">
+                                    ${{ formatPrice(priceFilter.min || 0) }} - ${{
+                                    formatPrice(priceFilter.max || 999999999) }}
+                                </span>
+                            </div>
+                            <button class="more-filters-btn" @click="toggleFilters()">
+                                <i data-lucide="sliders-horizontal"></i>
+                                {{ showFilters ? 'Ocultar filtros' : 'Filtros' }}
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="controls-row" v-if="showFilters">
+                        <div class="controls-section">
+                            <div class="section-label">
+                                <i data-lucide="arrow-up-down"></i>
+                                {{ T('ui.admin_panel.sort_by') }}
+                            </div>
+                            <div class="control-options">
+                                <div class="sort-option" :class="{ active: sortBy === 'name' }"
+                                    @click="setSortBy('name')">
+                                    <i data-lucide="type"></i>
+                                    {{ T('ui.admin_panel.name') }}
+                                </div>
+                                <div class="sort-option" :class="{ active: sortBy === 'price' }"
+                                    @click="setSortBy('price')">
+                                    <i data-lucide="dollar-sign"></i>
+                                    {{ T('ui.admin_panel.price') }}
+                                </div>
+                                <div class="sort-direction" @click="toggleSortDirection()">
+                                    <i :data-lucide="sortOrder === 'asc' ? 'chevron-up' : 'chevron-down'"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="controls-section advanced-filters">
+                            <div class="control-options">
+                                <div class="sort-option" :class="{ active: sortBy === 'xp' }" @click="setSortBy('xp')">
+                                    <i data-lucide="star"></i>
+                                    XP
+                                </div>
+                                <div class="sort-option" :class="{ active: sortBy === 'class' }"
+                                    @click="setSortBy('class')">
+                                    <i data-lucide="award"></i>
+                                    {{ T('ui.admin_panel.class') }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="controls-section advanced-filters">
+                            <div class="section-label">
+                                <i data-lucide="filter"></i>
+                                {{ T('ui.admin_panel.filter_by_price') }}
+                            </div>
+                            <div class="price-controls">
+                                <input type="number" v-model="priceFilter.min"
+                                    :placeholder="T('ui.admin_panel.minimum')" min="0" class="price-input">
+                                <span class="price-separator">-</span>
+                                <input type="number" v-model="priceFilter.max"
+                                    :placeholder="T('ui.admin_panel.maximum')" min="0" class="price-input">
+                                <button class="btn-apply-price" @click="applyPriceFilter()"
+                                    :disabled="!isPriceFilterValid" :title="T('ui.admin_panel.apply_price_filter')">
+                                    <i data-lucide="check"></i>
+                                </button>
+                                <button class="btn-clear-price" @click="clearPriceFilter()" v-if="priceFilter.active"
+                                    :title="T('ui.admin_panel.clear_price_filter')">
+                                    <i data-lucide="x"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="vehicle-carrousel" ref="carrousel">
+                    <div class="vehicle-card" v-for="vehicle in sortedVehicles" :key="vehicle.model"
+                        @click="dmSelectVehicle(vehicle)" :class="{ 
+                            selected: selectedVehicle && selectedVehicle.model === vehicle.model,
+                            'out-of-stock': vehicle.stockEnabled && vehicle.stock <= 0
+                        }">
+
+                        <div class="vehicle-image-container">
+                            <img :src="vehicle.img" :alt="vehicle.label" class="vehicle-image"
+                                @error="handleImageError">
+                            <div class="vehicle-class-badge" :class="'class-' + vehicle.class.toLowerCase()">
+                                {{ vehicle.class }}
+                            </div>
+                        </div>
+
+                        <div class="vehicle-info">
+                            <div class="vehicle-label">{{ vehicle.label }}</div>
+                            <div class="vehicle-price" v-html="getVehicleListPrice(vehicle)"></div>
+                            <div class="vehicle-details">
+                                <span v-if="vehicle.financing" class="financing-available">{{
+                                    T('ui.admin_panel.financeable') }}</span>
+                                <span v-if="vehicle.stockEnabled" class="stock-badge"
+                                    :class="{ 'out-of-stock': vehicle.stock <= 0, 'in-stock': vehicle.stock > 0 }">
+                                    {{ vehicle.stock <= 0 ? T('ui.admin_panel.out_of_stock') :
+                                        `${T('ui.admin_panel.stock')}: ${vehicle.stock}` }} </span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div v-if="currentCategoryVehicles.length === 0" class="no-vehicles">
+                        {{ T('ui.admin_panel.no_vehicles_available') }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="financing-modal-overlay" v-if="financingModal.visible" @click.self="closeFinancingModal">
+                <div class="financing-modal-container">
+                    <div class="financing-modal-header">
+                        <h2>{{ T('ui.admin_panel.vehicle_financing') }}</h2>
+                        <button class="close-btn" @click="closeFinancingModal">×</button>
+                    </div>
+
+                    <div class="financing-modal-content">
+                        <div class="vehicle-summary">
+                            <div class="vehicle-name-price">
+                                <span>{{ financingModal.vehicleName }}</span>
+                                <span>${{ financingModal.vehiclePrice }}</span>
+                            </div>
+                        </div>
+                        <div class="financing-plans">
+                            <h3>{{ T('ui.admin_panel.financing_plans') }}</h3>
+                            <div id="financing-options-container">
+                                <div v-for="(option, index) in financingModal.options" :key="index"
+                                    class="financing-option"
+                                    :class="{ selected: financingModal.selectedOption === index }"
+                                    @click="selectFinancingOption(index)">
+                                    <div class="option-header">
+                                        <span class="period-text">{{ option.period }} {{
+                                            getTimeUnitText(option.timeUnit, option.period) }}</span>
+                                        <span class="payment-amount">${{ option.monthlyPayment }}</span>
+                                    </div>
+                                    <div class="option-details">
+                                        <span class="total-cost">{{ T('ui.admin_panel.total') }}: ${{ option.totalAmount
+                                            }}</span>
+                                        <span class="interest-info">{{ T('ui.admin_panel.interest') }}: {{
+                                            option.interestRate }}%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="payment-method">
+                            <div class="payment-info">
+                                <i data-lucide="credit-card"></i>
+                                <div class="payment-info-text">
+                                    <strong>{{ T('ui.admin_panel.payment_method') }}:</strong> {{
+                                    T('ui.admin_panel.automatic_bank_debit') }}
+                                    <p>{{ T('ui.admin_panel.automatic_debit_description') }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="financing-modal-footer">
+                        <button class="btn-cancel" @click="closeFinancingModal">{{ T('buttons.cancel') }}</button>
+                        <button class="btn-confirm" @click="confirmFinancingPurchase"
+                            :disabled="financingModal.selectedOption === null">{{ T('ui.admin_panel.confirm_financing')
+                            }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.7.1.js"
+            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+        <script src="./js/mapLogic.js"></script>
+        <script src="./js/main.js"></script>
+    </div>
+
+    <div id="notifications-container" class="notifications-container"></div>
+</body>
+
+</html>
+
+

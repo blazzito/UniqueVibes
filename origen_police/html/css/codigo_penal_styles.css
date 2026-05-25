@@ -1,0 +1,294 @@
+/* ========================================
+   ESTILOS DEL CÓDIGO PENAL - ESTILO ORIGEN
+   ======================================== */
+
+/* Contenedor principal del código penal */
+.police-redesign .tab-content-menu .app-codigo-penal {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.police-redesign .tab-content-menu .app-codigo-penal .row {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+.police-redesign .tab-content-menu .app-codigo-penal .col-12 {
+    height: 100%;
+    padding: 0;
+}
+
+.police-redesign .tab-content-menu .app-codigo-penal .bg-box {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Barra de búsqueda */
+.police-redesign .tab-content-menu .app-codigo-penal .search-cp {
+    background: rgba(0, 0, 0, 0.3);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5vh;
+    padding: 1vh 1.5vh;
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.1vh;
+    outline: none;
+    transition: all 0.3s ease;
+    margin-bottom: 1.5vh;
+    flex-shrink: 0;
+}
+
+.police-redesign .tab-content-menu .app-codigo-penal .search-cp:focus {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Contenedor de la tabla */
+.police-redesign .tab-content-menu .app-codigo-penal .scroll-codigopenal {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-height: 0;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) rgba(0, 0, 0, 0.2);
+}
+
+.police-redesign .tab-content-menu .app-codigo-penal .scroll-codigopenal::-webkit-scrollbar {
+    width: 0.5vh;
+}
+
+.police-redesign .tab-content-menu .app-codigo-penal .scroll-codigopenal::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 0.5vh;
+}
+
+.police-redesign .tab-content-menu .app-codigo-penal .scroll-codigopenal::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
+    border-radius: 0.5vh;
+}
+
+.police-redesign .tab-content-menu .app-codigo-penal .scroll-codigopenal::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2));
+}
+
+/* Tabla del código penal */
+.police-redesign .tab-content-menu .app-codigo-penal .tabla-codigo-penal {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    table-layout: fixed;
+}
+
+/* Encabezado de la tabla */
+.police-redesign .tab-content-menu .app-codigo-penal .tabla-codigo-penal thead tr {
+    background: rgba(255, 255, 255, 0.05);
+    border-bottom: 0.2vh solid rgba(255, 255, 255, 0.1);
+}
+
+.police-redesign .tab-content-menu .app-codigo-penal .tabla-codigo-penal thead th {
+    padding: 1vh 1vh;
+    font-family: 'Evogria', sans-serif;
+    font-size: 1vh;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.9);
+    text-align: left;
+    letter-spacing: 0.05vh;
+    position: sticky;
+    top: 0;
+    background: rgba(0, 0, 0, 0.4);
+    border-bottom: 0.1vh solid rgba(255, 255, 255, 0.15);
+    z-index: 10;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.police-redesign .tab-content-menu .app-codigo-penal .tabla-codigo-penal thead th.text-center {
+    text-align: center;
+}
+
+/* Anchos específicos de columnas */
+.police-redesign .tab-content-menu .app-codigo-penal .tabla-codigo-penal thead th.h-articulo {
+    width: 18%;
+}
+
+.police-redesign .tab-content-menu .app-codigo-penal .tabla-codigo-penal thead th.h-descripcion {
+    width: 45%;
+}
+
+.police-redesign .tab-content-menu .app-codigo-penal .tabla-codigo-penal thead th.h-importe {
+    width: 10%;
+}
+
+.police-redesign .tab-content-menu .app-codigo-penal .tabla-codigo-penal thead th.h-pena {
+    width: 12%;
+}
+
+.police-redesign .tab-content-menu .app-codigo-penal .tabla-codigo-penal thead th.h-accion {
+    width: 15%;
+}
+
+/* Filas de capítulos */
+.police-redesign .tab-content-menu .app-codigo-penal .tabla-codigo-penal tbody tr.capitulos {
+    background: rgba(255, 255, 255, 0.08);
+    border-top: 0.2vh solid rgba(255, 255, 255, 0.15);
+    border-bottom: 0.1vh solid rgba(255, 255, 255, 0.1);
+}
+
+.police-redesign .tab-content-menu .app-codigo-penal .tabla-codigo-penal tbody tr.capitulos td {
+    padding: 1.2vh 1vh;
+    font-family: 'Evogria', sans-serif;
+    font-size: 1.1vh;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--primary-color);
+    letter-spacing: 0.05vh;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Filas de artículos */
+.police-redesign .tab-content-menu .app-codigo-penal .tabla-codigo-penal tbody tr.articulos {
+    background: rgba(255, 255, 255, 0.02);
+    border-bottom: 0.1vh solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+
+.police-redesign .tab-content-menu .app-codigo-penal .tabla-codigo-penal tbody tr.articulos:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.police-redesign .tab-content-menu .app-codigo-penal .tabla-codigo-penal tbody tr.articulos td {
+    padding: 0.8vh 1vh;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1vh;
+    color: rgba(255, 255, 255, 0.9);
+    vertical-align: middle;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow: hidden;
+}
+
+/* Columna de artículo */
+.police-redesign .tab-content-menu .app-codigo-penal .tabla-codigo-penal tbody tr.articulos td:first-child {
+    font-family: 'Evogria', sans-serif;
+    font-weight: 700;
+    color: white;
+    white-space: nowrap;
+}
+
+/* Columna de descripción */
+.police-redesign .tab-content-menu .app-codigo-penal .tabla-codigo-penal tbody tr.articulos td:nth-child(2) {
+    white-space: normal;
+    word-break: break-word;
+}
+
+/* Columnas de cantidad y sentencia */
+.police-redesign .tab-content-menu .app-codigo-penal .tabla-codigo-penal tbody tr.articulos td.text-center {
+    text-align: center;
+    font-weight: 600;
+    color: var(--primary-color);
+    white-space: nowrap;
+}
+
+/* Botones de acción */
+.police-redesign .tab-content-menu .app-codigo-penal .tabla-codigo-penal tbody tr.articulos .td-accion {
+    text-align: center;
+}
+
+.police-redesign .tab-content-menu .app-codigo-penal .tabla-codigo-penal tbody tr.articulos .btn-eliminar {
+    padding: 0.5vh 1vh;
+    background: rgba(239, 68, 68, 0.2);
+    border: 0.1vh solid rgba(239, 68, 68, 0.4);
+    border-radius: 0.4vh;
+    color: #ef4444;
+    font-family: 'Evogria', sans-serif;
+    font-size: 0.9vh;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.police-redesign .tab-content-menu .app-codigo-penal .tabla-codigo-penal tbody tr.articulos .btn-eliminar:hover {
+    background: rgba(239, 68, 68, 0.3);
+    border-color: rgba(239, 68, 68, 0.6);
+    transform: scale(1.05);
+}
+
+/* Botón eliminar en capítulos */
+.police-redesign .tab-content-menu .app-codigo-penal .tabla-codigo-penal tbody tr.capitulos .btn-eliminar {
+    padding: 0.6vh 1.2vh;
+    background: rgba(239, 68, 68, 0.2);
+    border: 0.1vh solid rgba(239, 68, 68, 0.4);
+    border-radius: 0.4vh;
+    color: #ef4444;
+    font-family: 'Evogria', sans-serif;
+    font-size: 0.9vh;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    float: right;
+}
+
+.police-redesign .tab-content-menu .app-codigo-penal .tabla-codigo-penal tbody tr.capitulos .btn-eliminar:hover {
+    background: rgba(239, 68, 68, 0.3);
+    border-color: rgba(239, 68, 68, 0.6);
+    transform: scale(1.05);
+}
+
+/* Editable spans */
+.police-redesign .tab-content-menu .app-codigo-penal .tabla-codigo-penal tbody tr span[contenteditable="true"] {
+    padding: 0.3vh 0.5vh;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 0.3vh;
+    border: 0.1vh dashed rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.police-redesign .tab-content-menu .app-codigo-penal .tabla-codigo-penal tbody tr span[contenteditable="true"]:focus {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+/* Botones del header - Código Penal */
+.police-redesign .police-action-btn.add-capitulo,
+.police-redesign .police-action-btn.add-articulo {
+    display: flex;
+    align-items: center;
+    gap: 0.8vh;
+    padding: 1vh 2vh;
+    background: rgba(255, 255, 255, 0.08);
+    border: 0.1vh solid rgba(255, 255, 255, 0.15);
+    border-radius: 0.8vh;
+    color: white;
+    font-family: 'Evogria', sans-serif;
+    font-size: 1.2vh;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 0.05vh;
+}
+
+.police-redesign .police-action-btn.add-capitulo:hover,
+.police-redesign .police-action-btn.add-articulo:hover {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    transform: translateY(-0.2vh);
+}
+
+.police-redesign .police-action-btn.add-capitulo i,
+.police-redesign .police-action-btn.add-articulo i {
+    font-size: 1.2vh;
+}

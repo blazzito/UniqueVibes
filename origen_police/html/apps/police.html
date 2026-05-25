@@ -1,0 +1,1328 @@
+<div class="app police police-redesign">
+	<!-- Wrapper principal -->
+	<div class="police-wrapper">
+		<!-- Background -->
+		<div class="police-bg-wrapper">
+			<div class="bg-gradient"></div>
+		</div>
+
+		<div class="police-header">
+			<div class="police-header-top">
+				<div class="police-header-left">
+					<div class="inner-header">
+						<img src="./img/lspdlogo.webp" class="police-logo-icon" alt="LSPD Logo" />
+
+						<div class="police-header-info">
+							<h1 class="police-logo-text" translate="PublicServices">SERVICIOS PÚBLICOS</h1>
+							<span class="subtitle">Red Interna de Policía</span>
+						</div>
+					</div>
+					<button class="police-action-btn duty-button btn-sound off-duty">
+						<i class="fas fa-shield"></i>
+						<span class="service-tag" translate="OutDuty">FUERA DE SERVICIO</span>
+					</button>
+					<div class="police-actions-bar" style="display: none;">
+						<button class="police-action-btn radio-shortcuts-header btn-sound btn-teclas"
+							style="display: none;">
+							<i class="fas fa-plus"></i>
+							<span translate="ShortCuts">Atajos</span>
+						</button>
+						<button class="police-action-btn new-report-button btn-sound" style="display: none;">
+							<i class="fas fa-plus"></i>
+							<span translate="NewReport">NUEVO INFORME</span>
+						</button>
+						<button class="police-action-btn new-denuncia-button btn-sound" style="display: none;">
+							<i class="fas fa-plus"></i>
+							<span>NUEVA DENUNCIA</span>
+						</button>
+						<button class="police-action-btn add-federal-button btn-sound" style="display: none;">
+							<i class="fas fa-gavel"></i>
+							<span translate="AddConden">Añadir condena</span>
+						</button>
+						<button class="police-action-btn add-agent-button add-agente btn-sound" style="display: none;">
+							<i class="fas fa-plus"></i>
+							<span translate="AddPolice">Añadir policía</span>
+						</button>
+						<button class="police-action-btn refresh-cameras-button btn-sound" style="display: none;">
+							<i class="fas fa-rotate-right"></i>
+							<span translate="Refresh">Actualizar</span>
+						</button>
+						<button class="police-action-btn add-capitulo btn-sound" style="display: none;">
+							<i class="fas fa-plus"></i>
+							<span translate="NewChapter">Nuevo Capítulo</span>
+						</button>
+						<button class="police-action-btn add-articulo btn-sound" style="display: none;">
+							<i class="fas fa-plus"></i>
+							<span translate="NewArticle">Nuevo Artículo</span>
+						</button>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="tabs-bar">
+				<div class="tab add btn-sound">
+					<i class="fas fa-plus"></i>
+				</div>
+				<div class="tabs-list">
+					<!-- Los tabs se crean dinámicamente -->
+				</div>
+			</div>
+		</div>
+
+		<!-- CONTENT -->
+		<div class="police-content">
+			<!-- Contenedor de tabs -->
+			<div class="tab-content-menu"></div>
+
+			<div class="police-main">
+				<!-- SIDEBAR IZQUIERDA: Servicios -->
+				<div class="police-sidebar">
+					<div class="police-sidebar-header">
+						<i class="fas fa-th-large"></i>
+						<span translate="Services">Servicios Policiales</span>
+					</div>
+
+					<div class="police-sidebar-content">
+						<!-- Lista de Servicios -->
+						<div class="police-services-list">
+							<!-- DISPATCH -->
+							<div class="police-service-card btn-police-central btn-sound" data-module="dispatch">
+								<div class="service-icon">
+									<i class="fas fa-tower-broadcast"></i>
+								</div>
+								<div class="service-name" translate="Dispatch">DISPATCH</div>
+							</div>
+
+							<!-- BUSCAR CIUDADANO -->
+							<div class="police-service-card btn-police-citizen btn-sound" data-module="citizens">
+								<div class="service-icon">
+									<i class="fas fa-id-card"></i>
+								</div>
+								<div class="service-name" translate="CitizenSearch">BUSCAR CIUDADANO</div>
+							</div>
+
+							<!-- INFORMES -->
+							<div class="police-service-card btn-police-reports btn-sound" data-module="reports">
+								<div class="service-badge reports-badge" style="display:none;">0</div>
+								<div class="service-icon">
+									<i class="fas fa-file-lines"></i>
+								</div>
+								<div class="service-name" translate="Reports">INFORMES</div>
+							</div>
+
+							<!-- VEHÍCULOS -->
+							<div class="police-service-card btn-vehicles btn-sound" data-module="vehicles">
+								<div class="service-icon">
+									<i class="fas fa-car"></i>
+								</div>
+								<div class="service-name" translate="Vehicles">VEHÍCULOS</div>
+							</div>
+
+							<!-- CÓDIGO PENAL -->
+							<div class="police-service-card btn-codigopenal btn-sound" data-module="code">
+								<div class="service-icon">
+									<i class="fas fa-scale-balanced"></i>
+								</div>
+								<div class="service-name" translate="CriminalCode">CÓDIGO PENAL</div>
+							</div>
+
+							<!-- BUSCA Y CAPTURA -->
+							<div class="police-service-card btn-byc btn-sound" data-module="wanted">
+								<div class="service-icon">
+									<i class="fas fa-crosshairs"></i>
+								</div>
+								<div class="service-name" translate="SearchCapture">BUSCA Y CAPTURA</div>
+							</div>
+
+							<!-- DEUDORES -->
+							<div class="police-service-card btn-deudores btn-sound" data-module="debtors">
+								<div class="service-badge debtors-badge" style="display:none;">0</div>
+								<div class="service-icon">
+									<i class="fas fa-money-bill-wave"></i>
+								</div>
+								<div class="service-name" translate="Debtors">DEUDORES</div>
+							</div>
+
+							<!-- ADMINISTRACIÓN FEDERAL -->
+							<div class="police-service-card btn-federal btn-sound" data-module="federal">
+								<div class="service-badge federal-badge" style="display:none;">0</div>
+								<div class="service-icon">
+									<i class="fas fa-building-shield"></i>
+								</div>
+								<div class="service-name">GESTIÓN DE CONDENAS</div>
+							</div>
+
+							<!-- GESTIÓN DE AGENTES -->
+							<div class="police-service-card btn-agentes btn-sound" data-module="agents">
+								<div class="service-icon">
+									<i class="fas fa-users-gear"></i>
+								</div>
+								<div class="service-name" translate="AgentManagement">GESTIÓN DE AGENTES</div>
+							</div>
+
+							<!-- CÁMARAS DE SEGURIDAD -->
+							<div class="police-service-card btn-camaras btn-sound" data-module="cameras">
+								<div class="service-icon">
+									<i class="fas fa-video"></i>
+								</div>
+								<div class="service-name" translate="SecurityCameras">CÁMARAS DE SEGURIDAD</div>
+							</div>
+						</div>
+
+						<!-- Botón de Radio -->
+						<div class="police-action-buttons">
+							<!-- RADIO -->
+							<div class="police-action-card radio-button btn-sound">
+								<div class="action-label" translate="Radio">RADIO</div>
+								<div class="action-status radio-state-text">DESCONECTADA</div>
+							</div>
+						</div>
+
+						<!-- Barra de botones inferior -->
+						<div class="police-bottom-bar">
+							<button class="police-bottom-btn times-button btn-sound btn-action">
+								<i class="fa-solid fa-business-time"></i>
+								<span translate="TimeControl">Control de Tiempo</span>
+							</button>
+							<button class="police-bottom-btn operations-button btn-sound btn-action">
+								<i class="fa-solid fa-draw-polygon"></i>
+								<span translate="Operations">Operaciones</span>
+							</button>
+							<button class="police-bottom-btn settings-button btn-sound btn-action"
+								style="display: none;">
+								<i class="fa-solid fa-gear"></i>
+								<span translate="Settings">Configuración</span>
+							</button>
+							<button class="police-bottom-btn open-admin-panel-btn btn-sound btn-action"
+								style="display: none;">
+								<i class="fa-solid fa-server"></i>
+								<span>Panel Radios</span>
+							</button>
+						</div>
+					</div>
+				</div>
+
+				<!-- CONTENEDOR MAPA + ROBOS -->
+				<div class="police-map-wrapper">
+					<div class="police-map-section">
+						<div class="police-map-header">
+							<div class="police-map-title">
+								<i class="fas fa-map-location-dot"></i>
+								<span translate="Map">Mapa de Los Santos</span>
+							</div>
+						</div>
+
+						<div class="police-map-container" id="police-home-map">
+							<!-- Aquí se renderizará el mapa con Leaflet -->
+							<div class="police-map-duty-badge police-stats-btn">
+								<i class="fas fa-user-police stat-icon"></i>
+								<div class="stat-info">
+									<span class="stat-value"><span class="number-polices">0</span></span>
+								</div>
+							</div>
+
+							<!-- PANEL DE AVISOS SUPERPUESTO A LA DERECHA -->
+							<div class="police-alerts-panel">
+								<div class="alerts-panel-header">
+									<div class="alerts-panel-title">
+										<i class="fas fa-bullhorn"></i>
+										<span translate="Alerts">Avisos de Entorno</span>
+									</div>
+									<div class="alerts-count">
+										<span class="alerts-badge">0</span>
+									</div>
+								</div>
+
+								<div class="alerts-panel-list" id="alerts-panel-list">
+									<!-- Mensaje cuando no hay avisos -->
+									<div class="no-alerts">
+										<i class="fas fa-info-circle"></i>
+										<span translate="NoAlerts">No hay avisos de entorno</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- SECCIÓN DE ROBOS PENDIENTES -->
+					<div class="police-robberies-section">
+						<div class="robberies-header">
+							<div class="robberies-title">
+								<i class="fas fa-bell"></i>
+								<span translate="PendingRobberies">Robos Pendientes</span>
+							</div>
+							<div class="robberies-count">
+								<span class="count-badge">0</span>
+							</div>
+						</div>
+
+						<div class="robberies-list" id="robberies-list">
+							<!-- Mensaje cuando no hay robos -->
+							<div class="no-robberies">
+								<i class="fas fa-check-circle"></i>
+								<span translate="NoRobberies">No hay robos pendientes de confirmación</span>
+							</div>
+
+							<!-- Ejemplo de robo (se generará dinámicamente) -->
+							<!-- <div class="robbery-item" data-id="1">
+							<div class="robbery-info">
+								<div class="robbery-type">
+									<i class="fas fa-store"></i>
+									<span>Robo a Tienda</span>
+								</div>
+								<div class="robbery-location">
+									<i class="fas fa-location-dot"></i>
+									<span>Grove Street 24/7</span>
+								</div>
+								<div class="robbery-player">
+									<i class="fas fa-user"></i>
+									<span>ID: 123</span>
+								</div>
+								<div class="robbery-time">
+									<i class="fas fa-clock"></i>
+									<span>Hace 2 min</span>
+								</div>
+							</div>
+							<div class="robbery-actions">
+								<button class="robbery-btn confirm-robbery" data-id="1">
+									<i class="fas fa-check"></i>
+									<span translate="Confirm">Confirmar</span>
+								</button>
+								<button class="robbery-btn deny-robbery" data-id="1">
+									<i class="fas fa-times"></i>
+									<span translate="Deny">Denegar</span>
+								</button>
+							</div>
+						</div> -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Contenedor viejo del home (mantener oculto para compatibilidad) -->
+		<div class="app-container police-home" style="display: none;">
+			<div class="scale-in home">
+				<div class="other-buttons"></div>
+			</div>
+		</div>
+
+		<div class="app-container police-citizen">
+			<!-- <div class="back-section text-white d-flex align-items-center"><i class="fas fa-chevron-left"></i> Volver</div> -->
+			<div class="scale-in citizen-layout">
+				<div class="row">
+					<div class="col-3">
+						<div class="bg-box h-max">
+							<div class="title-2 m-titles" translate="CitizenList">Citizen List</div>
+							<div class="row m-titles search-box">
+								<div class="col-10 p-0">
+									<input type="text" placeholder="{{SearchCitizen}}" translate="placeholder"
+										class="search-input w-100 input-search-citizen" />
+								</div>
+								<div class="col-2 p-0">
+									<div class="btn btn-search btn-search-citizen w-100">
+										<i class="fas fa-search"></i>
+									</div>
+								</div>
+							</div>
+							<div class="search-list citizen-list">
+								<div class="citizen-item m-titles text-muted">
+									<div class="citizen-name" translate="PerformSearch">
+										Perform a search to display results
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-9">
+						<div class="bg-box h-max">
+							<div class="m-titles">
+								<div class="title-2" translate="CitizenProfile">Citizen Profile</div>
+								<div class="citizen-scroll citizen-ficha">
+									<div class="empty-state">
+										<div class="empty-icon">
+											<i class="fas fa-user-slash"></i>
+										</div>
+										<div class="empty-text" translate="SelectACitizen">Selecciona un ciudadano para
+											cargar su información</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="app-container police-reports">
+			<!-- <div class="back-section text-white d-flex align-items-center"><i class="fas fa-chevron-left"></i> Volver</div> -->
+			<div class="scale-in informes report-layout">
+				<div class="row" style="height: 100%;">
+					<div class="col-3">
+						<div class="bg-box h-max">
+							<div class="title-2 m-titles d-flex" style="gap: 1.5vh;">
+								<span class="report-type-tab active" data-type="informe"
+									style="cursor: pointer;">INFORMES</span>
+								<span class="report-type-tab" data-type="denuncia"
+									style="cursor: pointer; opacity: 0.5;">DENUNCIAS</span>
+							</div>
+							<div class="row m-titles search-box">
+								<div class="col-10 p-0">
+									<input type="text" translate="placeholder" placeholder="{{SearchReport}}"
+										class="search-input w-100 input-search-report" />
+								</div>
+								<div class="col-2 p-0">
+									<div class="btn btn-search btn-search-report w-100">
+										<i class="fas fa-search"></i>
+									</div>
+								</div>
+							</div>
+							<div class="row m-titles">
+								<div class="col-12 p-0">
+									<select class="input select-tags-filter w-100">
+										<option value="0" translate="AllTags">All tags</option>
+									</select>
+								</div>
+							</div>
+							<div class="search-list report-list"></div>
+						</div>
+					</div>
+					<div class="col-9">
+						<div class="bg-box h-max">
+							<div class="m-titles">
+								<div class="title-2 d-flex justify-content-between align-items-center">
+									<span translate="Report">INFORME</span>
+									<button class="btn-edit-report" style="display: none;">
+										<i class="fas fa-edit"></i> <span translate="EditReport">Editar Informe</span>
+									</button>
+								</div>
+								<div class="citizen-scroll informe-report">
+									<div class="empty-state">
+										<div class="empty-state-icon">
+											<i class="fas fa-file-lines"></i>
+										</div>
+										<div class="empty-state-text" translate="SelectReport">Selecciona un informe
+											para cargar su información</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="app-container police-federal">
+			<div class="scale-in informes federal-admin federal-layout">
+				<div class="row" style="height: 100%;">
+					<div class="col-3">
+						<div class="bg-box h-max">
+							<div class="title-2 m-titles" translate="FederalManagement">ADMINISTRACION FEDERAL</div>
+							<div class="row m-titles search-box">
+								<div class="col-10 p-0">
+									<input type="text" class="search-input w-100 input-search-federal"
+										placeholder="Buscar interno..." />
+								</div>
+								<div class="col-2 p-0">
+									<div class="btn btn-search btn-search-federal w-100">
+										<i class="fas fa-search"></i>
+									</div>
+								</div>
+							</div>
+							<div class="search-list federal-list report-list"></div>
+						</div>
+					</div>
+					<div class="col-9">
+						<div class="bg-box h-max">
+							<div class="m-titles">
+								<div class="title-2 d-flex justify-content-between align-items-center">
+									<span>REGISTRO FEDERAL</span>
+								</div>
+								<div class="citizen-scroll federal-detail informe-report">
+									<div class="empty-state">
+										<div class="empty-state-icon">
+											<i class="fas fa-building-shield"></i>
+										</div>
+										<div class="empty-state-text">Selecciona un interno para ver su informacion
+											federal</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="app-container police-debtors">
+			<div class="scale-in informes debtors-admin debtors-layout">
+				<div class="row" style="height: 100%;">
+					<div class="col-3">
+						<div class="bg-box h-max">
+							<div class="title-2 m-titles" translate="Debtors">DEUDORES</div>
+							<div class="row m-titles search-box">
+								<div class="col-10 p-0">
+									<input type="text" class="search-input w-100 input-search-debtor"
+										placeholder="Buscar deudor..." />
+								</div>
+								<div class="col-2 p-0">
+									<div class="btn btn-search btn-search-debtor w-100">
+										<i class="fas fa-search"></i>
+									</div>
+								</div>
+							</div>
+							<div class="search-list debtors-list report-list"></div>
+						</div>
+					</div>
+					<div class="col-9">
+						<div class="bg-box h-max">
+							<div class="m-titles">
+								<div class="title-2 d-flex justify-content-between align-items-center">
+									<span>REGISTRO DE DEUDA</span>
+								</div>
+								<div class="citizen-scroll debtors-detail informe-report">
+									<div class="empty-state">
+										<div class="empty-state-icon">
+											<i class="fas fa-file-invoice-dollar"></i>
+										</div>
+										<div class="empty-state-text">Selecciona una ficha para ver la informacion de
+											deuda</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="app-container police-settings">
+			<!-- <div class="back-section text-white d-flex align-items-center"><i class="fas fa-chevron-left"></i> Volver</div> -->
+			<div class="scale-in settings">
+				<!-- <h1 class="display-5 app-title d-flex align-items-center justify-content-between"
+				style="border-radius: 10px 10px 0px 0px;">
+				<div translate="Settings">Settings</div>
+			</h1> -->
+				<!-- <div class="settings-options">
+				<div tab="station" class="setting-option active col-12" style="border-radius: 0px 0px 10px 10px;">
+					<div class="d-flex align-items-center">
+						<img src="./img/setting-icon.png" class="button-image p-3">
+						<div class="button-title">POLICE STATIONS</div>
+					</div>
+				</div>
+				<div tab="permissions" class="setting-option col-4" style="border-radius: 0px 0px 0px 0px;">
+					<div class="d-flex align-items-center">
+						<img src="./img/setting-icon.png" class="button-image p-3">
+						<div class="button-title">AGENTS PERMISSIONS</div>
+					</div>
+				</div>
+				<div tab="alerts" class="setting-option col-4" style="border-radius: 0px 0px 10px 0px;">
+					<div class="d-flex align-items-center">
+						<img src="./img/setting-icon.png" class="button-image p-3">
+						<div class="button-title">ALERTS ZONES</div>
+					</div>
+				</div>
+			</div> -->
+
+				<div class="setting-container" tab="station">
+					<div class="row mt-4">
+						<div class="col-3" style="padding-left: 0;">
+							<div class="setting-tab">
+								<div class="mb-0 m-4 title-2 m-titles">STATIONS LIST</div>
+								<div class="search-list station-list p-4">
+
+
+								</div>
+								<div class="add-button" onclick="settingsFunctions.createStation()">
+									<i class="fas fa-plus"></i>
+								</div>
+							</div>
+						</div>
+						<div class="col-9" style="padding-right: 0;">
+							<div class="setting-tab" style="padding: 2vh;">
+								<div class="m-titles">
+									<div class="title-2">STATION DATA</div>
+									<div class="ficha-station">
+										<div id="station-data-placeholder"
+											class="d-flex w-100 align-items-center flex-column" style="height: 73vh">
+											<h1>SELECT A STATION TO LOAD INFORMATION</h1>
+											<img src="./img/webp/finger.webp">
+										</div>
+										<div id="station-data" style="display: none;" class="row m-titles">
+											<div class="col-6 p-0">
+												<div class="info-box m-1 h-100">
+													<div class="info-box-title">
+														Name
+													</div>
+													<div class="info-box-value" id="station-name">
+														LOADING...
+													</div>
+												</div>
+											</div>
+											<div class="col-6 p-0">
+												<div class="info-box m-1 h-100">
+													<div class="info-box-title">
+														Label
+													</div>
+													<div class="info-box-value id-informe" id="station-label">
+														LOADING...
+													</div>
+												</div>
+											</div>
+											<div class="col-3 p-0 mt-2">
+												<div class="info-box m-1 h-100">
+													<div class="info-box-title">
+														Last Modified User
+													</div>
+													<div class="info-box-value id-informe" id="station-user">
+														LOADING...
+													</div>
+												</div>
+											</div>
+											<div class="col-3 p-0 mt-2">
+												<div class="info-box m-1 h-100">
+													<div class="info-box-title">
+														Last Modified Date
+													</div>
+													<div class="info-box-value id-informe" id="station-date">
+														LOADING...
+													</div>
+												</div>
+											</div>
+											<div class="col-6 p-0 mt-2">
+												<div class="info-box m-1 h-100">
+													<div class="info-box-title">
+														IS ACTIVE
+													</div>
+													<div class="info-box-value">
+														<div class="btn-group mt-2 w-100" role="group"
+															aria-label="Basic radio toggle button group">
+															<input type="radio" class="btn-check si" id="station-active"
+																autocomplete="off">
+															<label class="btn btn-outline-primary"
+																id="station-active-l">YES</label>
+
+															<input type="radio" class="btn-check" id="station-unactive"
+																autocomplete="off" checked="">
+															<label class="btn btn-outline-primary no"
+																id="station-unactive-l">NO</label>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col-4 p-0 mt-2">
+												<div class="info-box m-1 h-100">
+													<div class="info-box-title"
+														style="display: flex;position: relative;">
+														Markers List
+														<div class="new-button marker-list-info"
+															style="position: absolute;right: 0;">
+															<i class="fa-solid fa-circle-info"></i>
+														</div>
+													</div>
+													<div class="citizen-info-container-mini mt-2" style="height: 35vh;">
+														<ul class="list-group marker-list">
+
+
+
+														</ul>
+													</div>
+												</div>
+											</div>
+											<div class="col-4 p-0 mt-2">
+												<div class="info-box m-1 h-100">
+													<div class="info-box-title">
+														Current Markers
+													</div>
+													<div class="citizen-info-container-mini mt-2" style="height: 35vh;">
+														<ul class="list-group current-marker-list">
+
+															<li class="list-group-item list-group-item-action">
+																<div
+																	class="d-flex justify-content-between align-items-center">
+																	<div
+																		class="d-flex align-items-center marker-option">
+
+																		<h5>Request Vehicle</h5>
+
+																		<div
+																			style="display: flex;right: 0;position: absolute;gap: 2vh;">
+																			<div class="marker-btn"
+																				style="position: relative;">
+																				<i class="fa-solid fa-street-view"></i>
+																			</div>
+																			<div class="marker-btn"
+																				style="position: relative;">
+																				<i class="fa-solid fa-location-dot"></i>
+																			</div>
+																			<div class="marker-btn"
+																				style="position: relative;">
+																				<i class="fa-solid fa-trash"></i>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</li>
+
+														</ul>
+													</div>
+												</div>
+											</div>
+											<div class="col-4 p-0 mt-2">
+												<div class="info-box m-1 h-100">
+													<div class="info-box-title"
+														style="display: flex;position: relative;">
+														Allowed Jobs
+														<div class="new-button"
+															onclick="settingsFunctions.addJobCatModal(this)"
+															style="position: absolute;right: 0;">
+															<i class="fas fa-plus"></i> ADD JOB CATEGORY
+														</div>
+													</div>
+													<div class="citizen-info-container-mini mt-2" style="height: 35vh;">
+														<ul class="list-group job-list">
+
+															<li class="list-group-item list-group-item-action">
+																<h5>Police Category</h5>
+																<ul>
+																	<li>
+																		<p>police</p>
+																	</li>
+																	<li>
+																		<p>sheriff</p>
+																	</li>
+																</ul>
+																<div class="delete-button">
+																	<i class="fa-solid fa-trash"></i>
+																</div>
+															</li>
+
+														</ul>
+													</div>
+												</div>
+											</div>
+											<div class="col-12 text-center">
+												<button class="btn btn-danger mt-3 mb-2"
+													onclick="settingsFunctions.deleteStation()">
+													<i class="lni lni-trash-can"></i>
+													DELETE STATION
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="setting-container" tab="permissions" style="display: none;">
+					<div class="row mt-4">
+						<div class="col-3" style="padding-left: 0;">
+							<div class="setting-tab">
+								<div class="mb-0 m-4 title-2 m-titles">PERMISSIONS</div>
+								<div class="search-list station-list p-4">
+
+
+								</div>
+							</div>
+						</div>
+						<div class="col-9" style="padding-right: 0;">
+							<div class="setting-tab"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="app-container police-vehicles">
+			<!-- <div class="back-section text-white d-flex align-items-center"><i class="fas fa-chevron-left"></i> Volver</div> -->
+			<div class="scale-in informes vehicle-layout">
+				<div class="row" style="height: 100%;">
+					<div class="col-3">
+						<div class="bg-box h-max">
+							<div class="title-2 m-titles" translate="VehicleList">Vehicle list</div>
+							<div class="row m-titles search-box">
+								<div class="col-10 p-0">
+									<input type="text" translate="placeholder" placeholder="{{TypeLicense}}"
+										class="search-input w-100 input-search-vehicles" />
+								</div>
+								<div class="col-2 p-0">
+									<div class="btn btn-search btn-search-vehicle w-100">
+										<i class="fas fa-search"></i>
+									</div>
+								</div>
+							</div>
+							<div class="search-list vehicle-list">
+								<div class="citizen-item m-titles text-muted">
+									<div class="citizen-name" translate="PerformSearchVehicle">
+										Perform a search to display results
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-9">
+						<div class="bg-box h-max">
+							<div class="m-titles">
+								<div class="title-2" translate="VehicleData">Vehicle data</div>
+								<div class="citizen-scroll ficha-vehiculo" id="vehicle-4234"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="app-container police-codigopenal">
+			<!-- <div class="back-section text-white d-flex align-items-center"><i class="fas fa-chevron-left"></i> Volver</div> -->
+			<div class="scale-in app-codigo-penal">
+				<div class="row" style="height: 100%;">
+					<div class="col-12">
+						<div class="bg-box">
+							<input type="text" class="input w-100 search-cp" translate="placeholder"
+								placeholder="{{SearchCriminalCode}}" />
+							<div class="scroll-codigopenal">
+								<table border="0" class="tabla-codigo-penal info-box gtable">
+									<thead>
+										<tr>
+											<th class="h-articulo" translate="Article">Article</th>
+											<th class="h-descripcion" translate="Description">Description</th>
+											<th class="h-importe text-center" translate="Amount">Amount</th>
+											<th class="h-pena text-center" translate="Sentence">Sentence</th>
+											<th class="h-accion text-center" translate="Action">Action</th>
+										</tr>
+									</thead>
+									<tbody></tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="app-container police-radio">
+			<!-- <div class="back-section text-white d-flex align-items-center"><i class="fas fa-chevron-left"></i> Volver</div> -->
+			<div class="scale-in informes radio report-layout radio-layout">
+				<div class="row" style="height: 100%;">
+					<div class="col-12">
+						<div class="bg-box h-max radio-main-panel">
+							<div class="radio-toolbar">
+								<div class="title-2 radio-title-inline" translate="InternalRadio">RADIO INTERNA</div>
+								<div id="radioCategoryToggles" class="radio-category-toggles"></div>
+								<div class="zona-conectar">
+									<p translate="ConnectedTo">CONNECTED TO</p>
+									<div class="badge connected">
+										<div class="frecuencia-actual">ADAM-10</div>
+										<div class="desconectar" translate="Disconnect">Disconnect</div>
+									</div>
+								</div>
+							</div>
+							<div id="radioContainerFreqs" class="radio-columns"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="app-container police-central">
+			<!-- <div class="back-section text-white d-flex align-items-center"><i class="fas fa-chevron-left"></i> Volver</div> -->
+			<div class="scale-in central">
+				<div class="report-layout dispatch-layout-base">
+					<div class="row">
+						<div class="col-3">
+							<div class="bg-box h-max dispatch-left-stack">
+								<div class="dispatch-section dispatch-summary-box">
+									<h4>UNIDADES DISPONIBLES</h4>
+									<div class="dept-availability-grid">
+										<div class="dept-availability-card">
+											<span class="dept-name">LSPD</span>
+											<span class="dept-count" data-dept="LSPD">0</span>
+										</div>
+										<div class="dept-availability-card">
+											<span class="dept-name">BCSD</span>
+											<span class="dept-count" data-dept="BCSD">0</span>
+										</div>
+										<div class="dept-availability-card">
+											<span class="dept-name">LSFD</span>
+											<span class="dept-count" data-dept="LSFD">0</span>
+										</div>
+										<div class="dept-availability-card">
+											<span class="dept-name">EMS</span>
+											<span class="dept-count" data-dept="EMS">0</span>
+										</div>
+										<div class="dept-availability-card">
+											<span class="dept-name">SAMS</span>
+											<span class="dept-count" data-dept="SAMS">0</span>
+										</div>
+									</div>
+								</div>
+
+								<div class="dispatch-section dispatch-agents-box">
+									<h4 translate="AgentsOnDuty">Agents on Duty</h4>
+									<div class="table-agentes-container">
+										<table class="ctable agentes-servicio">
+											<thead>
+												<tr>
+													<th style="width: 12%" translate="DeptAbrev">Dept.</th>
+													<th style="width: 21%" translate="Rank">Rank</th>
+													<th style="width: 33%" translate="Agent">Agent</th>
+													<th style="width: 24%" translate="Status">Status</th>
+													<th style="width: 10%" translate="LocAbrev">Loc.</th>
+												</tr>
+											</thead>
+											<tbody></tbody>
+										</table>
+									</div>
+								</div>
+
+								<div class="dispatch-section dispatch-radio-box">
+									<div class="d-flex justify-content-between align-items-center">
+										<h4 translate="Radio">RADIO</h4>
+										<div class="actions-title-buttons d-flex"></div>
+									</div>
+									<div class="radio-dept-filters"></div>
+									<div class="central-freq"></div>
+								</div>
+							</div>
+						</div>
+						<div class="col-5">
+							<div class="bg-box h-max">
+								<div class="dispatch-main-grid">
+									<div class="zona-mapa dispatch-main-map" disablehuerotate>
+										<div id="mapCentral" class="map"></div>
+										<div class="info-mapa">
+											<div class="close-button">
+												<i class="fa-solid fa-xmark"></i>
+											</div>
+											<div class="d-flex">
+												<img src="img/webp/alert.webp"
+													style="width: 9vh; transform: translate(0vh, -1.1vh);" />
+												<div class="info-data">
+													<div class="info-title"></div>
+													<div class="info-metadata">
+														<div class="id-label">
+															<i class="lni lni-list text-warning"></i>
+															<span class="label">#125</span>
+														</div>
+														<div class="location-label">
+															<i class="lni lni-map-marker text-warning"></i>
+															<span class="location">Spanish Avenue</span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="info-box" style="height: 25.6vh; margin-top: 1vh">
+										<h4 translate="InternalRadio">Internal Radio</h4>
+										<div class="chat-messages"></div>
+										<div class="chat-input">
+											<input type="text" placeholder="{{TypeMessage}}"
+												class="form-control input-rpol" translate="placeholder" />
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-4 d-flex align-center flex-column" style="gap: 1.5vh;">
+							<div class="info-box">
+								<div class="d-flex justify-content-between align-items-center">
+									<h4 translate="Emergencies">EMERGENCIES</h4>
+									<div class="actions-title">
+										<div class="delete-alert d-flex align-items-center">
+											<i class="lni lni-trash-can me-1"></i>
+											<div translate="DeleteAlert">Delete Alert</div>
+										</div>
+									</div>
+								</div>
+								<div class="alerts-container">
+									<div class="row">
+										<div class="col-2">
+											<div translate="Notice">NOTICE</div>
+											<div class="box-info text-center id-alert">-</div>
+										</div>
+										<div class="col-10">
+											<div translate="Title">TITLE</div>
+											<div class="box-info title-alert">-</div>
+										</div>
+										<div class="col-6">
+											<div translate="Location">LOCATION</div>
+											<div class="box-info text-center street-alert">-</div>
+										</div>
+										<div class="col-6">
+											<div translate="Time">TIME</div>
+											<div class="box-info text-center time-alert">-</div>
+										</div>
+										<div class="col-12">
+											<div translate="DetailedDesc">DETAILED DESCRIPTION</div>
+											<div class="box-info">
+												<div class="box-scroll-emergencias message-alert">-</div>
+											</div>
+										</div>
+										<div class="col-12">
+											<div translate="Notes">NOTES</div>
+											<div class="box-info">
+												<textarea disabled class="box-scroll-emergencias input-note-alert"
+													translate="placeholder"
+													placeholder="{{AddNoteToEmergency}}"></textarea>
+											</div>
+											<button class="btn-action-mini w-100 btn-save-note-alert"
+												translate="SaveNote">Save Note</button>
+										</div>
+									</div>
+									<div class="selector-container">
+										<div class="selector-title" translate="SendToUnit">SEND TO UNIT</div>
+										<div class="unidad-selector">
+											<div translate="AvailableUnits">Available Units</div>
+											<div class="unidades-dispo"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="info-box">
+								<h4 translate="LastAlerts">Last Alerts</h4>
+								<div class="table-alerts-container">
+									<table class="ctable tabla-dispatch">
+										<thead>
+											<tr>
+												<th style="width: 8%" translate="RefAbrev">REF.</th>
+												<th style="width: 30%" translate="Emergency">EMERGENCY</th>
+												<th style="width: 34%" translate="Location">Location</th>
+												<th style="width: 16%" translate="Ago">AGO</th>
+												<th style="width: 12%" translate="Units">UNITS</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td colspan="5" class="text-muted text-center no-alerts"
+													translate="NoRecived">No alerts received.</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="app-container police-manage">
+			<!-- <div class="back-section text-white d-flex align-items-center"><i class="fas fa-chevron-left"></i> Volver</div> -->
+			<div class="scale-in agentes manage-layout">
+				<div class="row">
+					<div class="col-3">
+						<div class="bg-box h-max">
+							<div class="title-2 m-titles" translate="PoliceManagement">GESTIÓN DE AGENTES</div>
+							<div class="search-list agent-list"></div>
+						</div>
+					</div>
+					<div class="col-9">
+						<div class="bg-box h-max">
+							<div class="m-titles">
+								<div class="title-2 d-flex justify-content-between align-items-center">
+									<span translate="PoliceFile">Police File</span>
+									<div class="d-flex gap-2 w-auto">
+										<button class="btn-action generar-placa"
+											style="display: flex;align-items: center;gap: .25vw;">
+											<i class="fa-solid fa-id-badge"></i> <span
+												translate="GenerateBadge">Generate Badge</span>
+										</button>
+									</div>
+								</div>
+								<div class="citizen-scroll agent-ficha">
+									<div class="empty-state agent-empty-state">
+										<div class="empty-state-icon">
+											<i class="fa-solid fa-fingerprint"></i>
+										</div>
+										<div class="empty-state-text" translate="SelectAnAgent">Selecciona un agente
+											para ver su ficha policial</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="app-container police-cameras">
+			<!-- <div class="back-section text-white d-flex align-items-center"><i class="fas fa-chevron-left"></i> Volver</div> -->
+			<div class="scale-in cameras cameras-layout">
+				<div class="row" style="height: 100%;">
+					<div class="col-3">
+						<div class="bg-box h-max">
+							<div class="title-2 m-titles" translate="BusinessCameras">Business Cameras</div>
+							<div class="camera-list business"></div>
+						</div>
+					</div>
+					<div class="col-3">
+						<div class="bg-box h-max">
+							<div class="title-2 m-titles" translate="VehicleCameras">Vehicle Cameras</div>
+							<div class="camera-list vehicles">
+								<div class="camera">
+									<img src="img/icons/46IfeYQ.png" />
+									<div class="camera-info">
+										<div class="camera-title">Badulake</div>
+										<div class="camera-owner">Business</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-3">
+						<div class="bg-box h-max">
+							<div class="title-2 m-titles" translate="BodyCam">Bodycam Cameras</div>
+							<div class="camera-list bodycam"></div>
+						</div>
+					</div>
+					<!-- NUEVA COLUMNA: CÁMARAS CCTV INSTALADAS -->
+					<div class="col-3">
+						<div class="bg-box h-max">
+							<div class="title-2 m-titles d-flex justify-content-between align-items-center">
+								<span translate="InstalledCCTV">Cámaras Instaladas</span>
+								<i class="fas fa-rotate-right refresh-installed-cams"
+									style="cursor: pointer; font-size: 1.5vh; color: rgba(255, 255, 255, 0.7); transition: color 0.2s;"
+									onmouseover="this.style.color='#fff'"
+									onmouseout="this.style.color='rgba(255, 255, 255, 0.7)'" title="Actualizar"></i>
+							</div>
+							<div class="camera-list installed-cctv" id="installed-cctv-list">
+								<div class="text-muted text-center" style="font-size:1.1vh; padding: 2vh;"
+									translate="NoCCTVInstalled">No hay cámaras instaladas</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="app-container police-operations">
+			<div class="scale-in operations">
+				<div class="row">
+					<div class="col-3">
+						<div class="bg-box h-max" id="operations-list-view">
+							<div class="d-flex justify-content-between align-items-center mb-3">
+								<div class="title-2 m-titles m-0" translate="Operations">Operaciones</div>
+								<button class="btn btn-outline-light btn-sm btn-new-operation"><i
+										class="fas fa-plus"></i></button>
+							</div>
+							<div class="mt-2 mb-2">
+								<select class="form-select shape-division-filter bg-dark text-white border-secondary"
+									style="font-size: 1.2vh;">
+									<option value="all" translate="AllDivisions">Todas las divisiones</option>
+								</select>
+							</div>
+							<div class="operations-list mt-3">
+								<div class="operation-item m-titles text-muted text-center mb-3">
+									<div class="no-operations" translate="NoOperations">
+										No hay operaciones
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="bg-box h-max" id="operations-detail-view" style="display: none;">
+							<div class="d-flex justify-content-between align-items-center mb-3">
+								<button class="btn btn-outline-light btn-sm btn-back-operations"><i
+										class="fas fa-arrow-left"></i></button>
+								<div class="title-2 m-titles m-0 operation-detail-title"
+									style="flex-grow: 1; margin-left: 1vh !important; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+								</div>
+								<button class="btn btn-outline-warning btn-sm btn-edit-operation ms-2"
+									title="Editar divisiones"><i class="fas fa-pen"></i></button>
+								<button class="btn btn-outline-danger btn-sm btn-delete-operation ms-2"><i
+										class="fas fa-trash"></i></button>
+							</div>
+							<div class="title-2 m-titles mt-3" style="font-size: 1.5vh;" translate="ShapesCreated">
+								Shapes created</div>
+							<div class="shape-list mt-3">
+							</div>
+						</div>
+					</div>
+					<div class="col-9">
+						<div class="zona-mapa h-max">
+							<div id="mapShapes" disablehuerotate class="s-map"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="multas-container">
+			<div class="multas-bg">
+				<div class="multas-box scale-in" data-name="" data-id="">
+					<div class="close-button">
+						<i class="fas fa-times"></i>
+					</div>
+					<h1 class="display-5 app-title" translate="AddFine">Add a fine</h1>
+					<div class="row">
+						<div class="col-8">
+							<h4 class="title-1-menu mt-3" translate="CriminalCode">Criminal Code</h4>
+							<input type="text" class="input w-100 search-cp-multas" translate="placeholder"
+								placeholder="{{SearchCriminalCode}}" />
+							<div class="container-cp-multas">
+								<table border="0" class="tabla-codigo-penal-multas gtable">
+									<thead>
+										<tr>
+											<th class="h-articulo" translate="Article">Article</th>
+											<th class="h-descripcion" translate="Description">Description</th>
+											<th class="h-importe text-center" translate="Amount">Amount</th>
+											<th class="h-pena text-center" translate="Sentence">Sentence</th>
+											<th class="h-accion text-center" translate="Action">Action</th>
+										</tr>
+									</thead>
+									<tbody></tbody>
+								</table>
+							</div>
+							<h4 class="title-1-menu mt-3" translate="CustomFine">Custom fine</h4>
+							<div class="custom-multa d-flex">
+								<div class="concepto">
+									<h5 class="title-2" translate="Concept">Concept</h5>
+									<input type="text" class="input w-100 input-concepto" maxlength="150"
+										translate="placeholder" placeholder="{{EnterConcept}}" />
+								</div>
+								<div class="importe">
+									<h5 class="title-2" translate="Amount">Amount</h5>
+									<input type="number" min="0" class="input w-100 input-importe"
+										translate="placeholder" placeholder="{{EnterAmount}}" />
+								</div>
+								<div class="pena">
+									<h5 class="title-2" translate="Sentence">Sentence</h5>
+									<input type="number" class="input w-100 input-meses" translate="placeholder"
+										placeholder="{{EnterSentence}}" />
+								</div>
+								<div class="agregar d-flex">
+									<button class="btn btn-search btn-add-custom-art" translate="Add">
+										Agregar
+									</button>
+								</div>
+							</div>
+						</div>
+						<div class="col-4">
+							<h4 class="title-1-menu mt-3" translate="More">More</h4>
+							<div class="bg-box zona-poner-multas">
+								<h5 translate="FineConcepts">Fine concepts</h5>
+								<ul class="list-group lista-articulos-multa"></ul>
+							</div>
+							<h4 class="title-1-menu mt-3" translate="ProcessFine">Process fine</h4>
+							<div class="finalizar-multa d-flex">
+								<div class="pena-total">
+									<div class="info-box-title" translate="TotalSentence">Total sentence</div>
+									<h4 class="total-meses" translate="Default0Months">0 months</h4>
+								</div>
+								<div class="importe-total">
+									<div class="info-box-title" translate="TotalAmount">Total Amount</div>
+									<h4 class="total-importe text-danger fw-bold">0$</h4>
+								</div>
+								<button class="btn btn-secondary w-100 btn-save-multa" translate="ConfirmFine">
+									Confirm the fine
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="personas-container">
+			<div class="multas-bg">
+				<div class="personas-box scale-in">
+					<div class="close-button">
+						<i class="fas fa-times"></i>
+					</div>
+					<h1 class="display-5 app-title" translate="AddFine">Select a citizen</h1>
+					<div class="row m-titles search-box">
+						<div class="col-10 p-0">
+							<input type="text" translate="placeholder" placeholder="{{FindACitizen}}"
+								class="search-input w-100 input-search-citizen-selector" />
+						</div>
+						<div class="col-2 p-0">
+							<div class="btn btn-search btn-search-citizen-selector w-100">
+								<i class="fas fa-search"></i>
+							</div>
+						</div>
+					</div>
+					<div class="citizen-box-list">
+						<div class="row m-titles">
+							<div class="col-12 text-muted">
+								<h4 class="citizen-name" translate="AddFine">
+									Introduces a name to the search engine to show the results
+								</h4>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="vehiculos-container">
+			<div class="multas-bg">
+				<div class="personas-box scale-in">
+					<div class="close-button">
+						<i class="fas fa-times"></i>
+					</div>
+					<h1 class="display-5 app-title" translate="SelectVehicle">Select a vehicle</h1>
+					<div class="row m-titles search-box">
+						<div class="col-10 p-0">
+							<input type="text" translate="placeholder" placeholder="{{FindVehicles}}"
+								class="search-input w-100 input-search-vehicle-selector" />
+						</div>
+						<div class="col-2 p-0">
+							<div class="btn btn-search btn-search-vehicle-selector w-100">
+								<i class="fas fa-search"></i>
+							</div>
+						</div>
+					</div>
+					<div class="vehicles-box-list">
+						<div class="row m-titles">
+							<div class="col-12 text-muted">
+								<h4 class="citizen-name" translate="EnterNameEngine">
+									Introduces a name to the search engine to show the results
+								</h4>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="evidencias-container">
+			<div class="multas-bg">
+				<div class="personas-box scale-in">
+					<div class="close-button">
+						<i class="fas fa-times"></i>
+					</div>
+					<h1 class="display-5 app-title" translate="SelectEvidence">Select evidence</h1>
+
+					<div class="row m-titles mb-3">
+						<div class="col-12">
+							<h4 translate="AddFromURL"
+								style="color: white; font-weight: 500; font-size: 1.5vh; margin-bottom: 1vh;">Attach
+								from URL</h4>
+							<div class="d-flex align-items-center" style="gap: 1vh;">
+								<input type="text" class="input w-100 input-evidence-url" translate="placeholder"
+									placeholder="{{EvidenceURL}}" />
+								<div class="btn btn-search btn-add-evidence-url" style="width: auto; padding: 0 2vh;"
+									translate="Add">
+									Add
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<h4 translate="InventoryEvidence"
+						style="color: white; font-weight: 500; font-size: 1.5vh; margin-bottom: 1vh; margin-top: 2vh;"
+						class="m-titles">From Inventory</h4>
+					<div class="evidencias-box-list">
+						<div class="row m-titles">
+							<div class="col-12 text-muted">
+								<h4 class="citizen-name" translate="NoEvidenceInv">
+									There is no evidence in your inventory
+								</h4>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="informe-view w-100 h-100">
+			<div class="d-flex align-items-center justify-content-center scale-in h-100">
+				<img src="img/gDMmmRQ.png" />
+			</div>
+		</div>
+		<div class="duty-alert w-100 h-100">
+			<div class="d-flex align-items-center justify-content-center w-100 h-100">
+				<div class="animate__animated animate__shakeX" translate="NotInDuty"></div>
+			</div>
+		</div>
+	</div>

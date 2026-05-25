@@ -1,0 +1,553 @@
+/* ========================================
+   ESTILOS DEL BOTÓN NUEVO INFORME EN HEADER
+   ======================================== */
+
+.police-redesign .police-action-btn.new-report-button,
+.police-redesign .police-action-btn.new-denuncia-button {
+    display: flex;
+    align-items: center;
+    gap: 0.8vh;
+    padding: 1vh 2vh;
+    background: rgba(255, 255, 255, 0.08);
+    border: 0.1vh solid rgba(255, 255, 255, 0.15);
+    border-radius: 0.8vh;
+    color: white;
+    font-family: 'Evogria', sans-serif;
+    font-size: 1.2vh;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 0.05vh;
+}
+
+.police-redesign .police-action-btn.new-report-button:hover,
+.police-redesign .police-action-btn.new-denuncia-button:hover {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    transform: translateY(-0.2vh);
+}
+
+.police-redesign .police-action-btn.new-report-button i,
+.police-redesign .police-action-btn.new-denuncia-button i {
+    font-size: 1.2vh;
+}
+
+/* ========================================
+   ESTILOS DE LA SECCIÓN DE INFORMES
+   ======================================== */
+
+/* Lista de informes - FORMATO LISTA COMPACTA */
+.police-redesign .tab-content-menu .informes .report-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4vh;
+    padding: 0.5vh 0;
+}
+
+.police-redesign .tab-content-menu .informes .report-list .report {
+    background: rgba(255, 255, 255, 0.03);
+    border: 0.1vh solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.4vh;
+    padding: 0.8vh 0.8vh 0.8vh 1.2vh;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex !important;
+    align-items: center;
+    gap: 1vh;
+    position: relative;
+    overflow: hidden;
+    min-height: 7vh;
+    height: fit-content;
+}
+
+.police-redesign .tab-content-menu .informes .report-list .report:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+.police-redesign .tab-content-menu .informes .report-list .report.selected {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* Icono del informe */
+.police-redesign .tab-content-menu .informes .report-list .report>i {
+    font-size: 1.4vh;
+    color: var(--primary-color);
+    flex-shrink: 0;
+}
+
+/* Título del informe */
+.police-redesign .tab-content-menu .informes .report-list .report .report-name {
+    font-family: 'Evogria', sans-serif;
+    font-size: 1vh;
+    color: white;
+    margin: 0;
+    text-transform: uppercase;
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1;
+    min-width: 0;
+}
+
+.police-redesign .tab-content-menu .informes .report-list .report .report-name span {
+    color: var(--primary-color);
+    font-size: 0.95vh;
+}
+
+/* Contenedor de autor y fecha */
+.police-redesign .tab-content-menu .informes .report-list .report>.d-flex {
+    display: flex;
+    gap: 1.5vh;
+    flex-shrink: 0;
+}
+
+.police-redesign .tab-content-menu .informes .report-list .report .d-flex .w-50 {
+    display: flex;
+    flex-shrink: 0;
+}
+
+/* Autor y Fecha */
+.police-redesign .tab-content-menu .informes .report-list .report .report-owner,
+.police-redesign .tab-content-menu .informes .report-list .report .report-date {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.9vh;
+    color: rgba(255, 255, 255, 0.5);
+    display: flex;
+    align-items: center;
+    gap: 0.4vh;
+    white-space: nowrap;
+}
+
+.police-redesign .tab-content-menu .informes .report-list .report .report-owner span,
+.police-redesign .tab-content-menu .informes .report-list .report .report-date span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 12vh;
+}
+
+.police-redesign .tab-content-menu .informes .report-list .report .report-owner i,
+.police-redesign .tab-content-menu .informes .report-list .report .report-date i {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.8vh;
+    flex-shrink: 0;
+}
+
+.police-redesign .tab-content-menu .informes .report-list .report.open-case {
+    background: rgba(59, 130, 246, 0.05);
+}
+
+.police-redesign .tab-content-menu .informes .report-list .report.open-case:hover {
+    background: rgba(59, 130, 246, 0.08);
+}
+
+.police-redesign .tab-content-menu .informes .report-list .report.open-case>i {
+    color: rgba(59, 130, 246, 0.9);
+}
+
+.police-redesign .tab-content-menu .informes .report-list .report.closed-case {
+    background: rgba(34, 197, 94, 0.05);
+}
+
+.police-redesign .tab-content-menu .informes .report-list .report.closed-case:hover {
+    background: rgba(34, 197, 94, 0.08);
+}
+
+.police-redesign .tab-content-menu .informes .report-list .report.closed-case>i {
+    color: rgba(34, 197, 94, 0.9);
+}
+
+.police-redesign .tab-content-menu .informes .report-list .report.null-case {
+    background: rgba(239, 68, 68, 0.05);
+}
+
+.police-redesign .tab-content-menu .informes .report-list .report.null-case:hover {
+    background: rgba(239, 68, 68, 0.08);
+}
+
+.police-redesign .tab-content-menu .informes .report-list .report.null-case>i {
+    color: rgba(239, 68, 68, 0.9);
+}
+
+/* Barra de búsqueda de informes */
+.police-redesign .tab-content-menu .informes .search-box {
+    margin-top: 1.5vh;
+    margin-bottom: 1.5vh;
+}
+
+.police-redesign .tab-content-menu .informes .search-input {
+    background: rgba(0, 0, 0, 0.3);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5vh 0 0 0.5vh;
+    padding: 1vh 1.5vh;
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.1vh;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.police-redesign .tab-content-menu .informes .search-input:focus {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.police-redesign .tab-content-menu .informes .btn-search {
+    background: rgba(255, 255, 255, 0.05);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-left: none;
+    border-radius: 0 0.5vh 0.5vh 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 1vh;
+}
+
+.police-redesign .tab-content-menu .informes .btn-search:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+.police-redesign .tab-content-menu .informes .select-tags-filter {
+    background: rgba(0, 0, 0, 0.3);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5vh;
+    padding: 1vh 1.5vh;
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.1vh;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.police-redesign .tab-content-menu .informes .select-tags-filter:focus {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Contenido del informe */
+.police-redesign .tab-content-menu .informes .informe-report {
+    height: 100%;
+    overflow-y: auto;
+}
+
+/* Estado vacio: sin informe seleccionado */
+.police-redesign .tab-content-menu .informes .informe-report .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+    gap: 1.2vh;
+    padding: 4vh 2vh;
+    text-align: center;
+}
+
+.police-redesign .tab-content-menu .informes .informe-report .empty-state-icon {
+    width: 5.5vh;
+    height: 5.5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+}
+
+.police-redesign .tab-content-menu .informes .informe-report .empty-state-icon i {
+    font-size: 2vh;
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.police-redesign .tab-content-menu .informes .informe-report .empty-state-text {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.15vh;
+    color: rgba(255, 255, 255, 0.55);
+    text-transform: uppercase;
+    letter-spacing: 0.05vh;
+    max-width: 42vh;
+    line-height: 1.45;
+}
+
+.police-redesign .tab-content-menu .informes .info-box {
+    background: rgba(255, 255, 255, 0.03);
+    border: 0.1vh solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.8vh;
+    padding: 1.5vh;
+}
+
+.police-redesign .tab-content-menu .informes .info-box-title {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1vh;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.05vh;
+    margin-bottom: 0.8vh;
+}
+
+.police-redesign .tab-content-menu .informes .info-box-value {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.2vh;
+    color: white;
+    font-weight: 600;
+}
+
+.police-redesign .tab-content-menu .informes .input-report-name,
+.police-redesign .tab-content-menu .informes .input-report-ubi,
+.police-redesign .tab-content-menu .informes .input-report-desc {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.2vh;
+    font-weight: 600;
+    outline: none;
+    padding: 0;
+}
+
+.police-redesign .tab-content-menu .informes .input-report-desc {
+    background: rgba(0, 0, 0, 0.3);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5vh;
+    padding: 1vh;
+    resize: vertical;
+}
+
+.police-redesign .tab-content-menu .informes .input-report-name:not([readonly]),
+.police-redesign .tab-content-menu .informes .input-report-ubi:not([readonly]),
+.police-redesign .tab-content-menu .informes .input-report-desc:not([readonly]) {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.5vh 1vh;
+    border-radius: 0.5vh;
+}
+
+/* Botones de acción en informes */
+.police-redesign .tab-content-menu .informes .btn-action,
+.police-redesign .tab-content-menu .informes .btn-edit-report,
+.police-redesign .tab-content-menu .informes .btn-finish-report {
+    padding: 0.8vh 1.5vh;
+    background: rgba(255, 255, 255, 0.05);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5vh;
+    color: white;
+    font-family: 'Evogria', sans-serif;
+    font-size: 1vh;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5vh;
+}
+
+.police-redesign .tab-content-menu .informes .btn-action:hover,
+.police-redesign .tab-content-menu .informes .btn-edit-report:hover,
+.police-redesign .tab-content-menu .informes .btn-finish-report:hover {
+    background: var(--primary-color);
+}
+
+/* Botón editar en el título */
+.police-redesign .tab-content-menu .informes .title-2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.police-redesign .tab-content-menu .informes .title-2 .btn-edit-report,
+.police-redesign .tab-content-menu .informes .title-2 .btn-finish-report {
+    padding: 0.6vh 1.2vh;
+    font-size: 1vh;
+    flex-shrink: 0;
+}
+
+/* Listas dentro del informe */
+.police-redesign .tab-content-menu .informes .list-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8vh;
+}
+
+.police-redesign .tab-content-menu .informes .list-group-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 0.1vh solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.6vh;
+    padding: 1.2vh;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.police-redesign .tab-content-menu .informes .list-group-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.police-redesign .tab-content-menu .informes .list-group-item h5 {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.1vh;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+    font-weight: 600;
+}
+
+.police-redesign .tab-content-menu .informes .list-group-item .persona-cid {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1vh;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Tags en informes */
+.police-redesign .tab-content-menu .informes .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8vh;
+}
+
+.police-redesign .tab-content-menu .informes .tag {
+    background: rgba(255, 255, 255, 0.1);
+    border: 0.1vh solid rgba(255, 255, 255, 0.15);
+    border-radius: 2vh;
+    padding: 0.6vh 1.5vh;
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.1vh;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8vh;
+    transition: all 0.3s ease;
+}
+
+.police-redesign .tab-content-menu .informes .tag:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: scale(1.05);
+}
+
+.police-redesign .tab-content-menu .informes .tag i {
+    cursor: pointer;
+    font-size: 1vh;
+}
+
+/* Evidencias */
+.police-redesign .tab-content-menu .informes .evidence {
+    position: relative;
+    border-radius: 0.8vh;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.3);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+}
+
+.police-redesign .tab-content-menu .informes .evidence img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.police-redesign .tab-content-menu .informes .delete-evidence {
+    position: absolute;
+    top: 1vh;
+    right: 1vh;
+    background: rgba(239, 68, 68, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 3vh;
+    height: 3vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.police-redesign .tab-content-menu .informes .delete-evidence:hover {
+    background: rgba(239, 68, 68, 1);
+    transform: scale(1.1);
+}
+
+/* Botones en items de lista */
+.police-redesign .tab-content-menu .informes .delete-button,
+.police-redesign .tab-content-menu .informes .multa-button {
+    padding: 0.6vh 1vh;
+    background: rgba(255, 255, 255, 0.05);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.4vh;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1vh;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.police-redesign .tab-content-menu .informes .delete-button:hover {
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+}
+
+.police-redesign .tab-content-menu .informes .multa-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+/* Select de tags */
+.police-redesign .tab-content-menu .informes .select-tags {
+    background: rgba(0, 0, 0, 0.3);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5vh;
+    padding: 0.8vh 1.2vh;
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.1vh;
+    outline: none;
+    cursor: pointer;
+}
+
+/* Botón eliminar informe */
+.police-redesign .tab-content-menu .informes .delete-report {
+    background: rgba(239, 68, 68, 0.2);
+    border: 0.1vh solid rgba(239, 68, 68, 0.4);
+    border-radius: 0.5vh;
+    color: #ef4444;
+    font-family: 'Evogria', sans-serif;
+    font-size: 1.1vh;
+    text-transform: uppercase;
+    padding: 1vh 2vh;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.police-redesign .tab-content-menu .informes .delete-report:hover {
+    background: rgba(239, 68, 68, 0.3);
+    transform: scale(1.05);
+}
+
+/* Scrollbar para listas de informes */
+.police-redesign .tab-content-menu .informes .report-list,
+.police-redesign .tab-content-menu .informes .informe-report {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) rgba(0, 0, 0, 0.2);
+}
+
+.police-redesign .tab-content-menu .informes .report-list::-webkit-scrollbar,
+.police-redesign .tab-content-menu .informes .informe-report::-webkit-scrollbar {
+    width: 0.5vh;
+}
+
+.police-redesign .tab-content-menu .informes .report-list::-webkit-scrollbar-track,
+.police-redesign .tab-content-menu .informes .informe-report::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 0.5vh;
+}
+
+.police-redesign .tab-content-menu .informes .report-list::-webkit-scrollbar-thumb,
+.police-redesign .tab-content-menu .informes .informe-report::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
+    border-radius: 0.5vh;
+}
+
+.police-redesign .tab-content-menu .informes .report-list::-webkit-scrollbar-thumb:hover,
+.police-redesign .tab-content-menu .informes .informe-report::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2));
+}

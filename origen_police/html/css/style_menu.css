@@ -1,0 +1,5990 @@
+/*IMPORTA LA FUENTE bankgothic.ttf que se encuentra en la carpeta fonts*/
+@font-face {
+    font-family: 'bankgothic';
+    src: url('../fonts/bankgothic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'gang';
+    src: url('../fonts/gang.otf') format('truetype');
+}
+
+@font-face {
+    font-family: 'eth';
+    src: url('../fonts/eth.otf') format('truetype');
+}
+
+@font-face {
+    font-family: 'display';
+    src: url('../fonts/display.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: '"Quicksand"';
+    src: url('../fonts/"Quicksand".ttf');
+}
+
+@font-face {
+    font-family: 'Creattion';
+    src: url('../fonts/Creattion.otf');
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+::selection {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+option:disabled {
+    opacity: 0.5 !important;
+    color: rgba(206, 29, 118, 0.514);
+}
+
+:root {
+    --color-green: #8aff8a;
+    --color-blue: #8adfff;
+    --color-danger: #ff223f;
+    --cubic: cubic-bezier(0, 0.53, 0.11, 0.995);
+
+
+    --first-color: #8adfff;
+    --second-color: #3aa6f3ad;
+    --third-color: #055ba5ad;
+    --fourth-color: #2355a1f5;
+    --fifth-color: #3162ab8a;
+    --sixth-color: #89ceff8c;
+    --seventh-color: #767676;
+    --eighth-color: #848484;
+    --ninth-color: #929292;
+    --tenth-color: #a0a0a0;
+}
+
+body {
+    color: white;
+    background-color: unset !important;
+    font-family: 'Quicksand';
+}
+
+* {
+    -webkit-font-smoothing: subpixel-antialiased;
+    user-select: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: 'Quicksand';
+    font-weight: 300 !important;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+h5 {
+    font-size: 2vh;
+}
+
+input,
+textarea {
+    outline: unset;
+}
+
+label {
+    font-size: 1.5vh;
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+
+select option {
+    padding: 1vh 1vh;
+    background-color: #09111e;
+    color: white;
+}
+
+.form-control {
+    font-size: 1.5vh;
+    padding: 0.5vh 1vh;
+    background-color: #c9c9c9;
+    border: unset !important;
+    font-weight: 600;
+}
+
+.form-control:focus {
+    box-shadow: unset !important;
+}
+
+.badge-acent {
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 1.5vh;
+    padding: 0.1vh 0.5vh;
+    border-radius: 5px;
+    font-weight: 600;
+    width: max-content;
+}
+
+.bankgothic {
+    font-family: 'Evogria' !important;
+}
+
+.gradient-text {
+    background: #eb0299;
+    background: linear-gradient(to right, #eb0299 0%, #b3005b 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.text-muted {
+    --bs-text-opacity: 1;
+    color: #ffffff8c !important;
+}
+
+.input {
+    background-color: #00000052;
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    padding: 0.5vh 1vh;
+    line-height: 2vh;
+    border-radius: 5px;
+    color: white;
+    transition: var(--cubic) 0.5s all;
+    /* font-size:1vh; */
+    font-family: 'Quicksand';
+}
+
+.input:hover {
+    background-color: #00000069;
+}
+
+select {
+    outline: none;
+    /* border: 0.1vh solid rgba(255, 255, 255, 0.1) !important; */
+}
+
+p {
+    font-size: 1.2vh;
+    font-weight: 100;
+    letter-spacing: 0.1vh;
+    margin: 0;
+}
+
+h4 {
+    font-size: 1.7vh;
+}
+
+.text-success {
+    color: var(--color-green) !important;
+}
+
+.btn {
+    font-size: 1.4vh !important;
+}
+
+.btn-action {
+    padding: 1vh 1.5vh;
+    border-radius: 0.6vh;
+    border: 0.1vh solid rgba(255, 255, 255, 0.03);
+    text-transform: uppercase;
+    /* backdrop-filter: blur(10px); */
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.3);
+    transition: opacity 0.3s ease;
+    font-size: 1.2vh;
+    color: white;
+    font-family: 'Evogria';
+    font-weight: 400;
+    letter-spacing: 0.1vh;
+
+    background: var(--primary-color);
+}
+
+.btn-action:hover {
+    opacity: 0.8;
+}
+
+.btn-action:active {
+    transform: scale(0.98);
+}
+
+/* .btn-action-mini {
+    padding: 1vh 1.8vh;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.25), rgba(59, 130, 246, 0.15));
+    border-radius: 0.7vh;
+    border: 0.15vh solid rgba(59, 130, 246, 0.5);
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 1vh;
+    color: #3b82f6;
+    box-shadow: 0 0.4vh 1.2vh rgba(59, 130, 246, 0.2);
+    text-shadow: none;
+    font-family: 'Evogria', 'Quicksand', sans-serif;
+    font-weight: 800;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-action-mini::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.btn-action-mini:hover {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.4), rgba(59, 130, 246, 0.25));
+    border-color: rgba(59, 130, 246, 0.8);
+    box-shadow: 0 0.8vh 2vh rgba(59, 130, 246, 0.4);
+    color: #3b82f6;
+    transform: translateY(-0.3vh);
+    text-shadow: 0 0 1vh rgba(59, 130, 246, 0.8);
+}
+
+.btn-action-mini:hover::before {
+    opacity: 1;
+}
+
+.btn-action-mini:active {
+    transform: translateY(-0.1vh) scale(0.98);
+} */
+
+.btn-small {
+    font-size: 1.1vh !important;
+    padding: 0 0.5vh;
+}
+
+.bg-morado {
+    background-color: #b55821;
+    color: white;
+}
+
+.wanted-tag {
+    background: linear-gradient(90deg, #ff0000 0%, #aa0000 100%);
+    color: white;
+    font-family: 'Evogria';
+    font-size: 1.2vh;
+    padding: 0.3vh 0.8vh;
+    border-radius: 0.3vh;
+    text-align: center;
+    text-shadow: 0 0.1vh 0.2vh rgba(0,0,0,0.8);
+    box-shadow: 0 0 1vh rgba(255, 0, 0, 0.5);
+    border: 1px solid #ff4444;
+    font-weight: bold;
+    letter-spacing: 0.05vh;
+}
+
+.screen {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-size: cover;
+    background-position: center;
+    transition: 0.5s var(--cubic) all;
+    transform: scale(1.2);
+    opacity: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.screen.show {
+    transform: scale(1);
+    opacity: 1;
+    z-index: 4;
+    pointer-events: auto;
+}
+
+.w-33 {
+    width: 33.33%;
+}
+
+.app {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 7vh;
+    max-width: 1920px;
+}
+
+.apps {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+}
+
+.card {
+    border-radius: 10px;
+    background: linear-gradient(1deg, #dfdfdf, white);
+    border: unset;
+    box-shadow: 0.5vh 0.5vh 20px #0000002e, inset 0 0 30px #0000001f;
+    transition: var(--cubic) 0.5s all;
+    color: black;
+}
+
+.card:hover {
+    /* background-color:rgba(255, 255, 255, 0.582); */
+    box-shadow: 0.5vh 0.5vh 20px #ffffff56, inset 0 0 30px #0000001f;
+}
+
+.secondary-box {
+    background: linear-gradient(135deg, rgba(20, 20, 20, 0.8) 0%, rgba(10, 10, 10, 1) 100%);
+    border-radius: 1.5vh;
+    color: #ffffffb8;
+    padding: 1vh;
+    box-shadow: 0 0 1vh rgb(0, 0, 0);
+    width: max-content;
+    box-shadow: 0 0 10px #0000002b, inset 0 0 40px rgb(0 0 0 / 0%);
+    transition: 0.5s var(--cubic) all;
+    cursor: pointer;
+    border: unset !important;
+
+    outline: 0.1vh dashed rgba(255, 255, 255, 0.1);
+    outline-offset: 0.3vh;
+}
+
+.secondary-box:hover {
+    background-color: rgb(255 255 255 / 22%);
+    box-shadow: 0 0 20px rgb(255 255 255 / 18%);
+}
+
+.secondary-box .title {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 2vh;
+}
+
+.livenow {
+    width: 1.6vh;
+    height: 1.3vh;
+    /* padding: 2vh; */
+    margin: 0 auto;
+    display: inline-block;
+}
+
+.livenow>div {
+    vertical-align: middle;
+    width: 1.5vh;
+    height: 1.5vh;
+    border-radius: 100%;
+    position: absolute;
+    margin: 0 auto;
+    border: 3px solid rgba(0, 128, 68, 0.418);
+    -webkit-animation: live 1.4s infinite ease-in-out;
+    animation: live 1.4s infinite ease-in-out;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+.livenow>div:nth-child(1) {
+    background-color: rgba(49, 170, 114, 0.514);
+    -webkit-animation-delay: -0.1s;
+    animation-delay: -0.1s;
+}
+
+.livenow>div:nth-child(2) {
+    -webkit-animation-delay: 0.16s;
+    animation-delay: 0.16s;
+}
+
+.livenow>div:nth-child(3) {
+    -webkit-animation-delay: 0.42s;
+    animation-delay: 0.42s;
+    border: 3px solid rgba(32, 165, 103, 0.37);
+}
+
+.livenow>div:nth-child(4) {
+    border: 3px solid rgba(0, 128, 68, 0.411);
+    -webkit-animation-delay: -0.42s;
+    animation-delay: -0.42s;
+}
+
+.title-1-menu {
+    text-align: center;
+    border-radius: 5px;
+    padding: 0 1vh;
+    text-shadow: 0 0 10px rgb(255 255 255 / 62%);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1vh;
+    font-size: 2.2vh;
+    font-family: 'Evogria', cursive !important;
+    background: var(--primary-color);
+    border: 1px solid rgb(249 249 249 / 9%);
+    letter-spacing: 2px;
+}
+
+.title-2 {
+    font-family: 'Evogria', sans-serif;
+    font-size: 1.4vh;
+    color: white;
+    margin: 0;
+    padding-bottom: 1vh;
+    border-bottom: 0.1vh solid rgba(255, 255, 255, 0.05);
+    margin-bottom: 1.5vh;
+    text-transform: uppercase;
+    letter-spacing: 0.05vh;
+}
+
+/* Ocultar título "LISTA DE VEHÍCULOS" y "DATOS DEL VEHÍCULO" porque ya está en el header */
+.police-redesign .tab-content-menu .police-vehicles .title-2 {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+}
+
+/* Selectores adicionales más directos */
+.police .police-vehicles .title-2,
+.police-vehicles .title-2,
+.police .app-container.police-vehicles .title-2 {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+}
+
+/* Selector ultra específico para cada columna */
+.police .app-container.police-vehicles .col-3 .bg-box .title-2,
+.police .app-container.police-vehicles .col-9 .bg-box .title-2,
+.app-container.police-vehicles .col-3 .title-2,
+.app-container.police-vehicles .col-9 .title-2,
+.police-vehicles .bg-box .title-2 {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+}
+
+/* Selector para m-titles que contenga title-2 */
+.police-vehicles .m-titles .title-2,
+.police-vehicles div[translate="VehicleList"],
+.police-vehicles div[translate="VehicleData"] {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+}
+
+.app-title {
+    color: white;
+    padding: 1.5vh 0;
+    border-radius: 1vh;
+    font-size: 2vh;
+    /* border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.7); */
+    font-family: 'Evogria';
+    text-transform: uppercase;
+    font-weight: 300 !important;
+    letter-spacing: 0.2vh;
+}
+
+/* Ocultar app-title solo en la sección de vehículos porque ya está en el header principal */
+.police-vehicles .app-title {
+    display: none !important;
+}
+
+.btn-secondary {
+    color: white;
+    background-color: var(--primary-color);
+    font-family: 'Evogria';
+    text-transform: uppercase;
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.6vh;
+    /* box-shadow: 0 0 10px #ffffff54; */
+    transform: var(--cubic) 0.5s all;
+}
+
+.btn-secondary:hover {
+    opacity: 0.7;
+}
+
+.btn-danger {
+    font-family: 'Evogria';
+    text-transform: uppercase;
+    border-radius: 5px;
+    background: linear-gradient(45deg, #910404db, #e900007a);
+    background-color: transparent;
+    border-color: #e1252526 !important;
+    letter-spacing: 0.1vh;
+    font-size: 1.6vh !important;
+}
+
+.btn-warning {
+    letter-spacing: 0.1vh;
+    font-size: 1.6vh !important;
+    color: #fff !important;
+    background-color: #cd9700 !important;
+    border-color: #ffc107 !important;
+    font-family: Evogria;
+}
+
+.btn-warning:hover {
+    background-color: #ffc928;
+    box-shadow: 0 0 10px #ffc92856 !important;
+}
+
+.btn-success {
+    letter-spacing: 0.1vh;
+    font-size: 1.6vh !important;
+    color: #fff !important;
+    background-color: #6fa94a;
+    border-color: #92bf75;
+    font-family: Evogria;
+}
+
+.btn-success:hover {
+    background-color: #7fb45e !important;
+    box-shadow: 0 0 10px #6ea94a42 !important;
+    border-color: #92bf75 !important;
+}
+
+.btn-group>.btn-success:focus {
+    background-color: #7fb45e !important;
+}
+
+.btn-search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    color: white;
+    height: 100%;
+    border-radius: 0 0.5vh 0.5vh 0;
+    /* border-left: none; */
+    transition: var(--cubic) 0.3s all;
+    cursor: pointer;
+}
+
+.btn-search:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.btn-search:active {
+    background: rgba(255, 255, 255, 0.15);
+    transition: var(--cubic) 0.1s;
+}
+
+.btn-search i {
+    transform: translateY(0.1vh);
+    color: white !important;
+}
+
+.search-box {
+    margin-top: 1vh !important;
+    margin-bottom: 1vh !important;
+    /* box-shadow: 0 0 20px #00000042; */
+    border-radius: 5px;
+    transition: var(--cubic) 0.3s all;
+}
+
+.search-box:hover {
+    box-shadow: 0 0 20px #00000059;
+}
+
+.search-input {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 1vh 1.5vh;
+    border-radius: 0.5vh 0 0 0.5vh;
+    font-size: 1.2vh;
+    color: white;
+    transition: var(--cubic) 0.3s all;
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-right: none;
+    font-family: 'Quicksand', sans-serif;
+    outline: none;
+}
+
+.search-input:hover,
+.search-input:focus {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.btn-check:active+.btn-outline-primary,
+.btn-check:checked+.btn-outline-primary,
+.btn-outline-primary.active,
+.btn-outline-primary.dropdown-toggle.show,
+.btn-outline-primary:active {
+    color: #fff;
+    /* background-color: #00b8ff87; */
+    border-color: rgb(255 255 255);
+    /* background: linear-gradient(45deg, rgb(172 0 123 / 42%), rgb(172 0 123 / 18%)); */
+    background-color: transparent;
+    box-shadow: 0 0 20px rgba(172, 0, 123, 0);
+}
+
+.btn-group-vertical>.btn-check:checked+.btn,
+.btn-group-vertical>.btn-check:focus+.btn,
+.btn-group-vertical>.btn.active,
+.btn-group-vertical>.btn:active,
+.btn-group-vertical>.btn:focus,
+.btn-group-vertical>.btn:hover,
+.btn-group>.btn-check:checked+.btn,
+.btn-group>.btn-check:focus+.btn,
+.btn-group>.btn.active,
+.btn-group>.btn:active,
+.btn-group>.btn:focus,
+.btn-group>.btn:hover {
+    z-index: 1;
+    background-color: var(--primary-color);
+    /* box-shadow: 0 0 20px rgb(255 177 0); */
+}
+
+.btn-outline-primary {
+    color: #ffffff;
+    border-color: rgb(255 255 255);
+    font-size: 2vh;
+    padding: 0 1vh;
+    font-family: 'Evogria';
+    font-size: 1.7vh !important;
+    padding-top: 0.2vh;
+    letter-spacing: 0.1vh;
+}
+
+.btn-outline-primary:hover {
+    color: #fff;
+    background-color: rgb(69 128 163 / 96%);
+    border-color: rgb(255 255 255);
+}
+
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: 0.5rem 1rem;
+    color: #ffffff;
+    text-decoration: none;
+    background-color: rgb(255 255 255 / 3%);
+    border: 0.1vh solid rgb(255 255 255 / 3%);
+    transition: var(--cubic) 0.5s all;
+}
+
+.list-group-item-action:focus,
+.list-group-item-action:hover {
+    z-index: 1;
+    color: #ffffff;
+    text-decoration: none;
+    background-color: rgb(255 255 255 / 7%);
+}
+
+*::-webkit-scrollbar {
+    width: 0.3vw;
+    /* width of the entire scrollbar */
+}
+
+*::-webkit-scrollbar-track {
+    background: transparent;
+    /* color of the tracking area */
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.829);
+    /* color of the scroll thumb */
+    border-radius: 20px;
+    /* roundness of the scroll thumb */
+    border: 3px solid rgba(255, 166, 0, 0);
+    /* creates padding around scroll thumb */
+}
+
+.c-modal {
+    background: rgba(0, 0, 0, 0.85);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.modal-block {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-body {
+    padding: 2vh 3vh;
+}
+
+.modal-content {
+    width: max-content;
+    background: rgba(0, 0, 0, 0.9);
+    border-radius: 1vh !important;
+    overflow: hidden;
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-header {
+	border: unset;
+	padding: 2vh;
+}
+
+.modal-footer {
+    margin-top: 0;
+    border-top: 0.1vh solid rgba(255, 255, 255, 0.05);
+    background: rgba(0, 0, 0, 0.5);
+    padding: 1.5vh 2vh;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1vh;
+}
+
+.c-modal .title {
+    color: #ffffff;
+    padding: 0.5vh 0.5vh;
+    border-radius: 1vh;
+    font-size: 2vh;
+    border: 0.1vh solid #ffffff1f;
+    background-color: var(--primary-color);
+    font-family: 'Evogria';
+    text-transform: uppercase;
+    letter-spacing: 0.3vh;
+    width: max-content;
+}
+
+.c-modal .btn-cancel {
+    font-family: 'Evogria', sans-serif;
+    text-transform: uppercase;
+    padding: 1vh 2vh;
+    border-radius: 0.5vh;
+    background: transparent;
+    color: white;
+    border: 0.1vh solid rgba(255, 255, 255, 0.2);
+    font-size: 1.4vh;
+    transition: opacity 0.2s;
+    cursor: pointer;
+}
+
+.c-modal .btn-cancel:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.c-modal .btn-modal {
+	font-family: 'Evogria', sans-serif;
+	text-transform: uppercase;
+	padding: 1vh 2vh;
+	border-radius: 0.5vh;
+	background: var(--primary-color);
+	color: white;
+	border: none;
+	font-size: 1.4vh;
+	transition: opacity 0.2s;
+	cursor: pointer;
+}
+
+.c-modal .btn-modal:focus-visible {
+    box-shadow: unset;
+    border: unset;
+    outline: unset;
+}
+
+.c-modal .btn-modal:hover {
+    opacity: 0.7;
+}
+
+.c-modal .citizen-box .citizen-image {
+    width: 100%;
+    height: 18vh;
+    /* background-image:url("../img/temp-user.png"); */
+    background-size: cover;
+    background-position: center;
+}
+
+.c-modal .citizen-box .citizen-name {
+    font-family: 'Evogria';
+    font-size: 1.2vh;
+    line-height: 2vh;
+    text-align: center;
+    border-bottom: 1px solid #ffffff29;
+    padding: 0.5vh 0 0.5vh 0;
+    margin-bottom: 0.5vh;
+    font-weight: normal;
+}
+
+.c-modal .citizen-box .citizen-id,
+.c-modal .citizen-box .meses,
+.c-modal .citizen-box .meses-r,
+.c-modal .citizen-box .fecha,
+.c-modal .citizen-box .dangerous,
+.c-modal .citizen-box .joined {
+    color: rgba(255, 255, 255, 0.767);
+    text-transform: uppercase;
+    font-size: 1.3vh;
+    font-family: 'Quicksand';
+    font-weight: 300;
+    width: 100%;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.c-modal .scroll-citizen-modal {
+    max-height: 66vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 1vh;
+}
+
+.c-modal .citizen-box {
+    background-color: rgb(74 74 74 / 75%);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: var(--cubic) 0.5s all;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgb(0 0 0 / 5%);
+}
+
+.c-modal .citizen-box:hover {
+    transform: scale(1.05);
+    background-color: rgb(82 82 82 / 75%);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.233);
+}
+
+.c-modal .modal-cargado {
+    max-height: 70vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0 0.5vh;
+    padding-bottom: 0.5vh;
+}
+
+.bg-box {
+    padding: 2vh;
+    border-radius: 1vh;
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 2vh;
+    background: rgba(0, 0, 0, 0.7);
+    outline: 0.1vh dashed rgba(255, 255, 255, 0.15);
+    outline-offset: 0.3vh;
+}
+
+.info-box {
+    background-color: rgb(0 0 0 / 33%);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    box-sizing: border-box;
+    border-radius: 5px;
+    color: white;
+    padding: 1vh;
+    user-select: text !important;
+}
+
+.central .info-box {
+    background: rgba(0, 0, 0, 0.4);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 1vh;
+    outline: 0.1vh dashed rgba(255, 255, 255, 0.15);
+    outline-offset: 0.3vh;
+    color: white;
+    padding: 1.5vh;
+    font-size: 1.3vh;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+/* .central .info-box:hover {
+    outline-color: rgba(255, 255, 255, 0.25);
+    transform: translateY(-0.2vh);
+} */
+
+.central .info-box h4 {
+    font-family: 'Evogria', 'Quicksand', sans-serif;
+    font-size: 1.3vh;
+    font-weight: 800;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.12vh;
+    margin-bottom: 1.2vh;
+    padding-bottom: 1vh;
+    border-bottom: 0.1vh solid rgba(255, 255, 255, 0.1);
+}
+
+.h-max {
+    height: 83vh;
+}
+
+table.gtable {
+    border-spacing: 0.3vh !important;
+    border-collapse: separate;
+    table-layout: fixed;
+}
+
+.gtable th {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 0.5vh 1vh;
+    font-size: 1.3vh;
+    font-family: 'Quicksand';
+    text-transform: uppercase;
+    color: white;
+    border-radius: 0.5vh;
+}
+
+.gtable td {
+    background-color: #ffffff2f;
+    padding: 0.5vh 1vh;
+    font-size: 1.3vh;
+    font-family: 'Quicksand';
+    text-transform: uppercase;
+    color: white;
+}
+
+.btn-list-action {
+    opacity: 0.5;
+    transition: 0.5s var(--cubic) all;
+    margin-left: 1vh;
+    cursor: pointer;
+    color: white;
+}
+
+.btn-list-action:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.bg-ems {
+    background: linear-gradient(135deg, #b1741b, #936016);
+    color: white;
+    padding: 0.5vh 1.2vh;
+    border-radius: 0.5vh;
+    font-weight: 700;
+    box-shadow: 0 0 1vh rgba(177, 116, 27, 0.4);
+}
+
+.bg-police {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+    padding: 0.5vh 1.2vh;
+    border-radius: 0.5vh;
+    font-weight: 700;
+    box-shadow: 0 0 1vh rgba(59, 130, 246, 0.4);
+}
+
+.bg-fire {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: white;
+    padding: 0.5vh 1.2vh;
+    border-radius: 0.5vh;
+    font-weight: 700;
+    box-shadow: 0 0 1vh rgba(239, 68, 68, 0.4);
+}
+
+.m-titles {
+    margin: 0 0.5vh;
+}
+
+.cam-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/cam.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: -99999;
+    display: none;
+}
+
+.cam-recording {
+    position: fixed;
+    top: 8vh;
+    left: 9vh;
+    background-image: url('../img/cam-recording.png');
+}
+
+.cam-info {
+    position: fixed;
+    bottom: 8vh;
+    left: 9vh;
+    font-size: 5vh;
+    font-family: 'display';
+    color: white;
+    line-height: 5vh;
+}
+
+.cam-overlay .other {
+    font-size: 4vh;
+    line-height: 4vh;
+}
+
+.quicksand {
+    font-family: 'Quicksand';
+}
+
+.entrada-menu {
+    transform: translateY(5vh);
+    opacity: 0;
+    transition: 0.5s cubic-bezier(0.78, 0, 0, 1) all;
+    transition-delay: 0s;
+}
+
+.show .entrada-menu {
+    transform: translateY(0vh);
+    opacity: 1;
+    /* transition-delay: 0.1s; */
+}
+
+.scale-in {
+    transform: scale(0.98);
+    opacity: 0;
+    animation: scale-in 0.3s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
+}
+
+.scale-out {
+    transform: scale(1);
+    opacity: 1;
+    animation: scale-out 0.3s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
+}
+
+.scale-in-2 {
+    transform: scale(1.2);
+    opacity: 0;
+    animation: scale-in 0.5s var(--cubic) forwards;
+}
+
+.scale-out-2 {
+    transform: scale(1);
+    opacity: 1;
+    animation: scale-out-2 0.7s var(--cubic) forwards !important;
+}
+
+.fadeIn {
+    animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+.leaflet-container {
+    background-color: #00a8ce !important;
+}
+
+.leaflet-bottom {
+    display: none;
+}
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+    background: #00000085 !important;
+    color: #fff !important;
+    box-shadow: 0 3px 14px rgb(0 0 0 / 40%);
+    font-family: 'Evogria';
+    font-weight: 100;
+    font-size: 1.5vh;
+    text-align: center;
+    border-radius: 5px !important;
+}
+
+.leaflet-container a.leaflet-popup-close-button {
+    color: white !important;
+}
+
+img.leaflet-marker-icon {
+    filter: drop-shadow(0px 0px 10px rgb(0, 0, 0)) !important;
+}
+
+/*NOTIFICACIONES*/
+
+.notifications {
+    display: flex;
+    width: 100%;
+    position: fixed;
+    top: 1.4vh;
+    left: 0;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 0;
+    height: 0px;
+    z-index: 9999999;
+    pointer-events: none;
+}
+
+.notifications .notification {
+    width: min(60vh, 78vw);
+    padding: 1.1vh 1.25vh;
+    color: white;
+    display: flex;
+    background: linear-gradient(135deg, rgba(11, 14, 20, 0.94), rgba(8, 10, 14, 0.9));
+    border-radius: 0.8vh;
+    box-shadow: 0 0.8vh 2.2vh rgba(0, 0, 0, 0.35);
+    text-transform: uppercase;
+    align-items: center;
+    margin-bottom: 0.65vh;
+    border: 0.1vh solid rgba(255, 255, 255, 0.12);
+    border-left: 0.35vh solid rgba(255, 255, 255, 0.22);
+    gap: 1vh;
+    pointer-events: none;
+}
+
+.notifications .notification .icon {
+    font-size: 2vh;
+    width: 2.6vh;
+    min-width: 2.6vh;
+    height: 2.6vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    border: 0.1vh solid rgba(255, 255, 255, 0.15);
+}
+
+.notifications .notification .name {
+    font-family: 'Evogria';
+    font-size: 1.18vh;
+    line-height: 1.2;
+    margin-top: 0;
+    letter-spacing: 0.05vh;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.notifications .notification .message {
+    font-size: 0.98vh;
+    opacity: 0.75;
+    font-weight: 600;
+    margin-top: 0.2vh;
+    color: rgba(255, 255, 255, 0.84);
+}
+
+.notifications .notification .info {
+    min-width: 0;
+    flex: 1;
+}
+
+.notifications .notification.success {
+    border-left-color: rgba(34, 197, 94, 0.95);
+}
+
+.notifications .notification.success .icon {
+    color: #22c55e;
+    border-color: rgba(34, 197, 94, 0.45);
+    background: rgba(34, 197, 94, 0.14);
+}
+
+.notifications .notification.error {
+    border-left-color: rgba(239, 68, 68, 0.95);
+}
+
+.notifications .notification.error .icon {
+    color: #ef4444;
+    border-color: rgba(239, 68, 68, 0.45);
+    background: rgba(239, 68, 68, 0.14);
+}
+
+.notifications .notification.info {
+    border-left-color: rgba(59, 130, 246, 0.95);
+}
+
+.notifications .notification.info .icon {
+    color: #3b82f6;
+    border-color: rgba(59, 130, 246, 0.45);
+    background: rgba(59, 130, 246, 0.14);
+}
+
+/*NOTIFICACIONES*/
+
+/*UNLOCK*/
+.item-gift-container {
+    background: radial-gradient(ellipse at center,
+            rgb(0 0 0 / 72%) 0%,
+            rgba(0, 0, 0, 0.9) 100%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+}
+
+.item-gift-flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+.item-gift-container .gift-title {
+    font-family: 'eth';
+    font-size: 5.5vh;
+    font-weight: 100;
+    color: white;
+    text-align: center;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.692);
+}
+
+.item-gift-container .img-gift {
+    width: 60vh;
+    filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.486));
+}
+
+.item-gift-container #confeti {
+    position: absolute;
+    top: 2vh;
+    left: 0;
+}
+
+.item-gift-container .gift-name {
+    font-family: 'Evogria';
+    font-size: 4vh;
+    font-weight: 100;
+    color: white;
+    text-align: center;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.692);
+    margin-top: 3vh;
+}
+
+.item-gift-container .gift-description {
+    font-family: 'quicksand';
+    text-transform: uppercase;
+    font-size: 2vh;
+    font-weight: 100;
+    color: white;
+    text-align: center;
+}
+
+.item-gift-container .btn-aceptar-gift {
+    font-size: 2.5vh !important;
+}
+
+.btn-check:focus+.btn,
+.btn:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.list-fade {
+    mask-image: linear-gradient(0deg, rgb(0 0 0 / 0%) 0%, black 4%, black 100%);
+    -webkit-mask-image: linear-gradient(0deg, rgb(0 0 0 / 0%) 0%, black 4%, black 100%);
+}
+
+.unlock {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.unlock .radial-bg {
+    background: radial-gradient(#000000d1, black) !important;
+}
+
+.unlock .title {
+    font-family: 'Evogria';
+    font-size: 8vh;
+    color: white;
+    text-shadow: 0 0 30px #ffffff8f;
+    animation: fadeInUp 1s cubic-bezier(0.74, -0.01, 0.39, 1) forwards;
+}
+
+.unlock img {
+    width: 40vh;
+    margin: 2vh 0;
+    animation-delay: 1s;
+}
+
+.unlock .continue-button {
+    opacity: 0;
+    animation: fadeInUp 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    animation-delay: 1.5s;
+}
+
+.btn-anim {
+    background-color: rgb(255 0 64 / 61%);
+    color: white;
+    font-family: 'Evogria';
+    font-size: 3.6vh;
+    line-height: 2.6vh;
+    width: 25vh;
+    text-align: center;
+    padding: 2.9vh 0 2.9vh 0;
+    border-radius: 3px;
+    text-shadow: 0 0 10px white;
+    box-shadow: 0 0 30px rgba(235, 0, 71, 0.603);
+    position: relative;
+    transition: all cubic-bezier(0, 0.53, 0.3, 1) 0.3s;
+    cursor: pointer;
+    margin-top: 8vh;
+}
+
+.btn-anim:hover {
+    transform: scale(1.05);
+    background-color: rgba(255, 0, 64, 0.815);
+}
+
+.btn-anim .btn-bg {
+    position: absolute;
+    top: -0.5vh;
+    left: -0.5vh;
+    width: 26vh;
+    height: 9.4vh;
+    border-radius: 3px;
+    border: 1px solid rgba(255, 255, 255, 0.349);
+    opacity: 0;
+    transition: all cubic-bezier(0.01, 0.73, 0.33, 1.55) 0.3s;
+    z-index: 2;
+    transform: scale(0.9);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.322),
+        inset 0 0 20px rgba(255, 255, 255, 0.322);
+    clip-path: polygon(0 0,
+            20px 0,
+            0 20px,
+            0 0,
+            100% 0,
+            calc(100% - 20px) 0,
+            100% 20px,
+            100% 0,
+            100% 100%,
+            calc(100% - 20px) 100%,
+            100% calc(100% - 20px),
+            100% 100%,
+            0 100%,
+            20px 100%,
+            0 calc(100% - 20px),
+            0 100%);
+}
+
+.btn-anim.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.btn-anim:hover .btn-bg {
+    opacity: 0.8;
+    transform: scale(1);
+    /* border-radius:3px; */
+}
+
+.title-3 {
+    text-align: center;
+    border-radius: 10px;
+    padding: 0 0.5vh;
+    text-shadow: 0 0 10px rgb(255 255 255 / 62%);
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    margin-bottom: 1vh;
+    font-size: 2.3vh;
+    font-family: 'Evogria', cursive !important;
+    background: linear-gradient(13deg, #660078, #d9237f80);
+    /* border: 1px solid rgb(249 249 249 / 9%); */
+    letter-spacing: 2px;
+    line-height: 3vh;
+    box-shadow: 0 0 20px #a505a56b;
+    padding-top: 0.3vh;
+}
+
+.radial-bg {
+    background: radial-gradient(#000000d1, black) !important;
+}
+
+@keyframes scale-in {
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes scale-out {
+    100% {
+        transform: scale(0.98);
+        opacity: 0;
+    }
+}
+
+@keyframes scale-out-2 {
+    100% {
+        transform: scale(1.2);
+        opacity: 0;
+    }
+}
+
+@keyframes live {
+
+    0%,
+    80%,
+    100% {
+        transform: scale(0.6);
+        -webkit-transform: scale(0.6);
+    }
+
+    40% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotateZ(0deg);
+    }
+
+    100% {
+        transform: rotateZ(360deg);
+    }
+}
+
+.page-link {
+    color: #ffffff !important;
+    background-color: #ffffff2e !important;
+    border: unset !important;
+}
+
+.page-link:hover {
+    z-index: 2;
+    color: unset !important;
+    background-color: #e9ecef5c;
+}
+
+.page-item.active .page-link {
+    color: #fff;
+    background-color: var(--primary-color) !important;
+    box-shadow: 0 0 1vh var(--primary-color);
+}
+
+.page-item.disabled .page-link {
+    color: #ffffff6b !important;
+    background-color: #ffffff14 !important;
+}
+
+.list-item {
+    margin-bottom: 1vh;
+    padding: 1vh;
+    display: flex;
+    border-radius: 0.5vh;
+    background-color: rgb(255 255 255 / 15%);
+    user-select: none;
+    transition: 0.5s var(--cubic) all;
+    align-items: center;
+    border: 1px solid #ffffff3b;
+    /* margin-right: 0.5vh; */
+    width: 100%;
+    cursor: pointer;
+}
+
+.list-item:hover {
+    background-color: rgb(255 255 255 / 32%);
+    box-shadow: 0 0 20px #ffffff2e;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.police .operations .zona-mapa {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1.2vh;
+    background: rgba(0, 0, 0, 0.6);
+    border: 0.2vh solid rgba(59, 130, 246, 0.3);
+    box-shadow: 0 1vh 3vh rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+.police .operations .zona-mapa:hover {
+    border-color: rgba(59, 130, 246, 0.5);
+    box-shadow: 0 1.2vh 3.5vh rgba(59, 130, 246, 0.3);
+}
+
+.police .operations .zona-mapa .s-map {
+    width: 100%;
+    min-height: 100%;
+    outline: none;
+    border-radius: 10px;
+    box-shadow: 0 0 20px #00000080;
+}
+
+.police .operations .shape-list {
+    height: 95%;
+    overflow-y: auto;
+    width: 100%;
+    padding: 0.7vh;
+    -webkit-mask-image: linear-gradient(0deg, rgb(0 0 0 / 0%) 0%, black 11%, black 100%);
+    mask-image: linear-gradient(0deg, rgb(0 0 0 / 0%) 0%, black 11%, black 100%);
+}
+
+.police .operations .shape-block {
+    padding: 0.5vh 1vh;
+    border-radius: 5px;
+    margin-bottom: 1vh;
+    background: linear-gradient(45deg, #ffffffc4, #ffffff75);
+    color: black;
+    border-top: 0.1vh solid #ffffff63;
+    cursor: pointer;
+}
+
+.police .operations .shape-info {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.police .operations .shape-info .shape-title {
+    font-family: 'Evogria';
+    font-size: 2vh;
+}
+
+.police .operations .shape-info .shape-data {
+    font-size: 1.3vh;
+    color: #0000009c;
+    text-transform: uppercase;
+}
+
+
+
+.police .operations .shape-button {
+    width: fit-content;
+    height: 3vh;
+    width: 3vh;
+    padding: 1vh;
+    color: white;
+    font-size: 1.6vh;
+    border-radius: 0.4vh;
+    transition: var(--cubic) 0.5s all;
+    transform: scale(0.9);
+}
+
+.police .operations .shape-button:hover {
+    transform: scale(1);
+}
+
+.police .operations .s_view {
+    background: rgb(77, 77, 77);
+}
+
+/* Leaflet draw */
+
+
+.leaflet-draw-toolbar {
+    display: flex;
+    position: absolute;
+    top: 1vh !important;
+    left: 4.8vh !important;
+    border: none !important;
+    outline: none;
+    z-index: 1300 !important;
+}
+
+.leaflet-draw-toolbar a:not(.leaflet-draw-draw-circlemarker, .leaflet-draw-edit-edit) {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 4vh !important;
+    height: 4vh !important;
+    margin: 0 0.1vh;
+    border-radius: 0.4vh !important;
+    box-shadow: 0 0 1vh rgb(0 0 0 / 17%) !important;
+    transition: 0.3s var(--cubic) all !important;
+    background-image: none !important;
+    border: none !important;
+    background: linear-gradient(110.3deg, rgba(170, 170, 170, 0.7) 8.8%, rgba(137, 137, 137, 0.8) 95.1%) !important;
+    transform: scale(0.8);
+}
+
+.leaflet-draw-toolbar a:before {
+    content: "";
+    display: inline-block;
+    width: 1.8vh;
+    height: 1.8vh;
+    background-size: contain;
+    background-repeat: no-repeat;
+    filter: invert(1);
+    padding: 1vh !important;
+}
+
+.leaflet-draw-toolbar a:hover {
+    transform: scale(1);
+}
+
+.leaflet-draw-draw-polyline:before {
+    background-image: url('../img/icons/T0AUrQQ.png');
+}
+
+.leaflet-draw-draw-polygon:before {
+    background-image: url('../img/icons/myhJ3I7.png');
+}
+
+.leaflet-draw-draw-rectangle:before {
+    background-image: url('../img/icons/ZYvlKwL.png');
+}
+
+.leaflet-draw-draw-circle:before {
+    background-image: url('../img/icons/jZDnjBb.png');
+}
+
+.leaflet-draw-draw-marker:before {
+    background-image: url('../img/icons/WeyMrHN.png');
+}
+
+.leaflet-draw-draw-circlemarker,
+.leaflet-draw-edit-edit {
+    display: none !important;
+}
+
+.leaflet-draw-actions {
+    position: absolute !important;
+    left: 4.8vh !important;
+    top: 5.1vh !important;
+
+}
+
+
+
+.leaflet-draw-actions li a {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 4vh !important;
+    height: 4vh !important;
+    margin: 0 0.1vh;
+    border-radius: 0.4vh !important;
+    box-shadow: 0 0 1vh rgb(0 0 0 / 17%) !important;
+    transition: 0.3s var(--cubic) all !important;
+    background-image: none !important;
+    border: none !important;
+    background: linear-gradient(110.3deg, rgba(170, 170, 170, 0.7) 8.8%, rgba(137, 137, 137, 0.8) 95.1%) !important;
+    cursor: pointer;
+    font-size: 0vh !important;
+    font-display: none;
+    margin: 0 0.3vh;
+    font-weight: bold !important;
+    font-family: 'quicksand' !important;
+    text-transform: uppercase;
+    transform: scale(0.9);
+}
+
+.leaflet-draw-actions li a:before {
+    content: "";
+    display: inline-block;
+    width: 2vh;
+    height: 2vh;
+    background-size: contain;
+    background-repeat: no-repeat;
+    filter: invert(1);
+    padding: 1vh !important;
+}
+
+.leaflet-draw-actions li a[title="Finish drawing"]::before {
+    background-image: url('../img/icons/KYx2N2X.png') !important;
+}
+
+.leaflet-draw-actions li a[title="Delete last point drawn"]::before {
+    background-image: url('../img/icons/LGBGZsm.png') !important;
+}
+
+.leaflet-draw-actions li a[title="Cancel drawing"]::before {
+    background-image: url('../img/icons/n7BGnkX.png') !important;
+}
+
+.leaflet-draw-actions li a:hover {
+    transform: scale(1);
+}
+
+/*  */
+
+/* Licenses */
+
+.license {
+    width: 95%;
+    background: rgba(95, 94, 94, 0.03);
+    border: 0.1vh solid rgb(255, 255, 255, 0.1);
+    font-size: 1.7vh;
+    transition: 0.5s var(--cubic) all;
+    cursor: pointer;
+}
+
+/*  */
+
+@-webkit-keyframes i {
+    0% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+
+    to {
+        -webkit-transform: translateY(-2000px);
+        transform: translateY(-2000px);
+    }
+}
+
+@keyframes i {
+    0% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+
+    to {
+        -webkit-transform: translateY(-2000px);
+        transform: translateY(-2000px);
+    }
+}
+
+.item-flex-box {
+    margin-bottom: 1vh;
+    padding: 1vh;
+    display: flex;
+    border-radius: 5px;
+    background-color: rgb(255 255 255 / 15%);
+    user-select: none;
+    transition: 0.5s var(--cubic) all;
+    align-items: center;
+    border: 1px solid #ffffff3b;
+    margin-right: 0.5vh;
+}
+
+.item-flex-box:hover {
+    background-color: rgb(255 255 255 / 32%);
+    box-shadow: 0 0 20px #ffffff2e;
+}
+
+.item-flex-box .icon {
+    width: 2.3vh;
+    height: 2.3vh;
+    margin-right: 1vh;
+    transition: 1s var(--cubic) all;
+    font-size: 2.3vh;
+}
+
+.lni.display-6 {
+    font-size: calc(1.375rem + 1.5vw) !important;
+}
+
+.mt-2vh {
+    margin-top: 2vh;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+/* K9 PROGRESS BAR */
+.k9-training-container {
+    padding: 1.5vh;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 1vh;
+    margin: 1vh;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.k9-xp-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1vh;
+    font-family: 'Evogria';
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 0.8vh;
+    text-transform: uppercase;
+}
+
+.k9-xp-bar-outer {
+    width: 100%;
+    height: 1vh;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 1vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.k9-xp-bar-inner {
+    height: 100%;
+    background: linear-gradient(90deg, #10b981, #34d399);
+    width: 0%;
+    transition: width 0.5s ease-out;
+    box-shadow: 0 0 1vh rgba(16, 185, 129, 0.3);
+}
+
+.k9-slots-info {
+    font-size: 1vh;
+    color: rgba(255, 255, 255, 0.4);
+    margin-top: 0.6vh;
+    text-align: right;
+    font-weight: 400;
+}
+
+.k9-specialty-item.active .com-item {
+    border-color: #10b981 !important;
+    background-color: rgba(16, 185, 129, 0.15) !important;
+    box-shadow: 0 0 1vh rgba(16, 185, 129, 0.2) !important;
+    cursor: default !important;
+    pointer-events: none !important;
+}
+
+.k9-specialty-item.active .com-title {
+    color: #10b981 !important;
+}
+
+.k9-specialty-item.locked {
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.k9-cur-val {
+    position: absolute !important;
+    right: 1.5vh !important;
+    font-size: 1.1vh !important;
+    color: rgba(255, 255, 255, 0.5) !important;
+    font-family: 'Quicksand', sans-serif !important;
+    display: block !important;
+    pointer-events: none !important;
+}
+
+.action-police:hover .k9-cur-val {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.leaflet-container img.leaflet-tile {
+    mix-blend-mode: multiply !important;
+}
+
+/* ========================================
+   ESTILOS DEL DISPATCH - DISEÑO ORIGEN
+   ======================================== */
+
+/* Contenedor de acceso rápido */
+.central-acceso-rapido {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.2vh;
+    margin-bottom: 1.5vh;
+}
+
+/* Botones de acceso rápido */
+.central-access-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2vh;
+    padding: 1.5vh 2vh;
+    background: rgba(0, 0, 0, 0.4);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 1vh;
+    outline: 0.1vh dashed rgba(255, 255, 255, 0.15);
+    outline-offset: 0.3vh;
+    cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.central-access-button:hover {
+    outline-color: rgba(255, 255, 255, 0.25);
+    transform: translateY(-0.4vh);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.central-access-button:active {
+    transform: translateY(-0.2vh) scale(0.98);
+}
+
+.central-access-button img {
+    width: 3.5vh;
+    height: 3.5vh;
+    filter: brightness(0) saturate(100%) invert(100%);
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+}
+
+.central-access-button:hover img {
+    transform: scale(1.1);
+}
+
+.central-access-button div {
+    font-family: 'Evogria', 'Quicksand', sans-serif;
+    font-size: 1.05vh;
+    font-weight: 800;
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 0.08vh;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 0.2vh 0.8vh rgba(0, 0, 0, 0.5);
+}
+
+/* Botones de broadcast y radio */
+.broadcast {
+    padding: 1vh 2vh;
+    background: rgba(255, 255, 255, 0.05);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5vh;
+    color: white;
+    font-family: 'Evogria', 'Quicksand', sans-serif;
+    font-size: 1.1vh;
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: 0.1vh;
+    cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.broadcast:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-0.3vh);
+}
+
+.broadcast:active {
+    transform: translateY(-0.1vh) scale(0.98);
+}
+
+.actions-title-buttons {
+    display: flex;
+    gap: 0.8vh;
+    margin-top: 1vh;
+}
+
+/* Campos de emergencia y campos de información */
+.box-info {
+    padding: 1.5vh;
+    background: rgba(0, 0, 0, 0.3);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5vh;
+    color: rgba(255, 255, 255, 0.95);
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.1vh;
+    font-weight: 500;
+    min-height: 4vh;
+    transition: all 0.3s ease;
+}
+
+.box-info:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.box-info input,
+.box-info textarea {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.95);
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.1vh;
+    width: 100%;
+    outline: none;
+}
+
+.box-scroll-emergencias {
+    max-height: 10vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(59, 130, 246, 0.6) rgba(0, 0, 0, 0.3);
+    padding-right: 0.5vh;
+}
+
+.box-scroll-emergencias::-webkit-scrollbar {
+    width: 0.5vh;
+}
+
+.box-scroll-emergencias::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 1vh;
+}
+
+.box-scroll-emergencias::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba(59, 130, 246, 0.8), rgba(59, 130, 246, 0.5));
+    border-radius: 1vh;
+    transition: all 0.3s ease;
+}
+
+.box-scroll-emergencias::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, rgba(59, 130, 246, 1), rgba(59, 130, 246, 0.7));
+}
+
+/* Selector de unidades */
+.selector-container {
+    padding: 2vh;
+    background: rgba(0, 0, 0, 0.3);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5vh;
+    margin-top: 2vh;
+}
+
+.selector-title {
+    font-family: 'Evogria', 'Quicksand', sans-serif;
+    font-size: 1.2vh;
+    font-weight: 800;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.1vh;
+    margin-bottom: 1.5vh;
+}
+
+.zona-mapa {
+    height: 45vh;
+    background: rgba(0, 0, 0, 0.4);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 1vh;
+    outline: 0.1vh dashed rgba(255, 255, 255, 0.15);
+    outline-offset: 0.3vh;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 1vh;
+}
+
+.zona-mapa .map {
+    width: 100%;
+    height: 100%;
+    background: #1a1a1a;
+}
+
+/* Info del mapa (emergencias) */
+.info-mapa {
+    position: absolute;
+    top: 2vh;
+    right: 2vh;
+    background: rgba(0, 0, 0, 0.85);
+    border: 0.1vh solid rgba(255, 255, 255, 0.2);
+    border-radius: 1vh;
+    outline: 0.1vh dashed rgba(255, 255, 255, 0.25);
+    outline-offset: 0.3vh;
+    padding: 2vh;
+    min-width: 30vh;
+    z-index: 1000;
+}
+
+.info-mapa .close-button {
+    position: absolute;
+    top: 1vh;
+    right: 1vh;
+    width: 3vh;
+    height: 3vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(239, 68, 68, 0.2);
+    border: 0.1vh solid rgba(239, 68, 68, 0.5);
+    border-radius: 50%;
+    color: #ef4444;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.info-mapa .close-button:hover {
+    background: rgba(239, 68, 68, 0.4);
+    border-color: #ef4444;
+    transform: scale(1.1);
+    box-shadow: 0 0 1vh rgba(239, 68, 68, 0.6);
+}
+
+.info-mapa .info-title {
+    font-family: 'Evogria', 'Quicksand', sans-serif;
+    font-size: 1.4vh;
+    font-weight: 800;
+    color: #3b82f6;
+    text-transform: uppercase;
+    margin-bottom: 1vh;
+}
+
+.info-mapa .info-metadata {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8vh;
+    margin-top: 1vh;
+}
+
+/* Tablas */
+.ctable {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.ctable thead th {
+    /* background: rgba(255, 255, 255, 0.05);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1); */
+    padding: 1vh 1.5vh;
+    font-family: 'Evogria', 'Quicksand', sans-serif;
+    font-size: 1.1vh;
+    font-weight: normal;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.08vh;
+    text-align: left;
+    border-radius: 0;
+}
+
+.ctable tbody tr {
+    transition: all 0.3s ease;
+}
+
+.ctable tbody tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.ctable tbody td {
+    padding: 1vh 1.5vh;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.1vh;
+    color: rgba(255, 255, 255, 0.9);
+    border-bottom: 0.1vh solid rgba(255, 255, 255, 0.1);
+}
+
+/* Contenedor de tabla de agentes */
+.table-agentes-container {
+    max-height: 25vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(59, 130, 246, 0.6) rgba(0, 0, 0, 0.3);
+    padding-right: 0.5vh;
+}
+
+.table-agentes-container::-webkit-scrollbar {
+    width: 0.5vh;
+}
+
+.table-agentes-container::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 1vh;
+}
+
+.table-agentes-container::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba(59, 130, 246, 0.8), rgba(59, 130, 246, 0.5));
+    border-radius: 1vh;
+}
+
+.table-agentes-container::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, rgba(59, 130, 246, 1), rgba(59, 130, 246, 0.7));
+}
+
+/* Chat de radio interna */
+.chat-messages {
+    max-height: 15vh;
+    overflow-y: auto;
+    margin-bottom: 1vh;
+    padding-right: 0.5vh;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(59, 130, 246, 0.6) rgba(0, 0, 0, 0.3);
+}
+
+.chat-messages::-webkit-scrollbar {
+    width: 0.5vh;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 1vh;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba(59, 130, 246, 0.8), rgba(59, 130, 246, 0.5));
+    border-radius: 1vh;
+}
+
+.chat-messages::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, rgba(59, 130, 246, 1), rgba(59, 130, 246, 0.7));
+}
+
+.chat-input input {
+    width: 100%;
+    padding: 1vh 1.5vh;
+    background: rgba(255, 255, 255, 0.1);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5vh;
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.1vh;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.chat-input input:focus {
+    background: rgba(255, 255, 255, 0.1);
+    outline: none;
+    color: white;
+}
+
+.chat-input input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.btn-action-mini {
+	padding: 0 0.5vh;
+	background: linear-gradient(45deg, #ffffff38, #ffffff54);
+	border-radius: 5px;
+	/* border: 1px solid #ff00571a; */
+	text-transform: uppercase;
+	backdrop-filter: blur(10px);
+	cursor: pointer;
+	background-color: rgba(255, 2, 120, 0);
+	transition: 0.3s var(--cubic) all;
+	font-size: 1.4vh;
+	color: #ffffff;
+	box-shadow: 0 0 10px rgb(255 255 255 / 19%);
+	text-shadow: 0 0 10px #9bb6d100;
+	border: 1px solid #ffffff42;
+	font-family: 'Quicksand';
+	font-weight: 500;
+}
+
+.btn-action-mini:hover {
+	background-color: #ffffffa4;
+	box-shadow: 0 0 20px #ffffffa8;
+	color: black;
+}
+
+.btn-action-mini:active {
+	border-color: rgba(255, 255, 255, 0.432);
+	transform: scale(0.95);
+}
+
+/* Delete alert button */
+.delete-alert {
+    padding: 0.8vh 1.5vh;
+    background: rgba(239, 68, 68, 0.15);
+    border: 0.1vh solid rgba(239, 68, 68, 0.3);
+    border-radius: 0.5vh;
+    color: #ef4444;
+    font-family: 'Evogria', 'Quicksand', sans-serif;
+    font-size: 1vh;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08vh;
+    cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.delete-alert:hover {
+    background: rgba(239, 68, 68, 0.25);
+    border-color: rgba(239, 68, 68, 0.5);
+    transform: translateY(-0.3vh);
+}
+
+.delete-alert:active {
+    transform: translateY(-0.1vh) scale(0.98);
+}
+
+.actions-title {
+    display: flex;
+    gap: 0.8vh;
+}
+
+/* Ajustes para el contenedor de columnas */
+.police-redesign .tab-content-menu .police-central .centra-container>.row {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 1.5vh;
+    height: 100%;
+    min-height: 0;
+}
+
+.police-redesign .tab-content-menu .police-central .centra-container>.row>.col-4 {
+    flex: 0 0 calc(33.333% - 1vh);
+    max-width: calc(33.333% - 1vh);
+    display: flex;
+    flex-direction: column;
+    gap: 1.2vh;
+    min-height: 0;
+    overflow: visible;
+}
+
+/* Tabla de alertas recientes */
+.table-alerts-container {
+    max-height: 26vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(59, 130, 246, 0.6) rgba(0, 0, 0, 0.3);
+    padding-right: 0.5vh;
+}
+
+.table-alerts-container::-webkit-scrollbar {
+    width: 0.5vh;
+}
+
+.table-alerts-container::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 1vh;
+}
+
+.table-alerts-container::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba(59, 130, 246, 0.8), rgba(59, 130, 246, 0.5));
+    border-radius: 1vh;
+}
+
+.table-alerts-container::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, rgba(59, 130, 246, 1), rgba(59, 130, 246, 0.7));
+}
+
+.tabla-dispatch tbody tr {
+    cursor: pointer;
+}
+
+.tabla-dispatch tbody tr:hover {
+    background: rgba(59, 130, 246, 0.15);
+}
+
+.tabla-dispatch .no-alerts {
+    padding: 3vh;
+    color: rgba(255, 255, 255, 0.5);
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.2vh;
+    font-style: italic;
+}
+
+.unidades-dispo {
+	height: 22vh;
+	overflow-y: auto;
+	padding: 0 1vh;
+	display: flex;
+	flex-wrap: wrap;
+	justify-items: flex-start;
+	align-items: flex-start;
+	align-content: flex-start;
+}
+
+.unidades-dispo::-webkit-scrollbar {
+    width: 0.5vh;
+}
+
+.unidades-dispo::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 1vh;
+}
+
+.unidades-dispo::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba(59, 130, 246, 0.8), rgba(59, 130, 246, 0.5));
+    border-radius: 1vh;
+}
+
+.unidades-dispo::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, rgba(59, 130, 246, 1), rgba(59, 130, 246, 0.7));
+}
+
+.unidad-item {
+    padding: 0.8vh 1.5vh;
+    background: rgba(255, 255, 255, 0.05);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5vh;
+    color: rgba(255, 255, 255, 0.9);
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.1vh;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.unidad-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+
+.unidad-item.selected {
+    background: rgba(34, 197, 94, 0.15);
+    border-color: rgba(34, 197, 94, 0.4);
+    color: #22c55e;
+}
+
+/* Frecuencias de radio */
+.central-freq {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8vh;
+    margin-top: 1vh;
+}
+
+.freq-item {
+    padding: 1vh 1.5vh;
+    background: rgba(0, 0, 0, 0.3);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5vh;
+    color: rgba(255, 255, 255, 0.9);
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.1vh;
+    transition: all 0.3s ease;
+}
+
+.freq-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.freq-item.active {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Labels de información en el mapa */
+.id-label,
+.location-label {
+    display: flex;
+    align-items: center;
+    gap: 0.8vh;
+    padding: 0.8vh 1.2vh;
+    background: rgba(0, 0, 0, 0.4);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5vh;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.1vh;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.id-label i,
+.location-label i {
+    font-size: 1.3vh;
+}
+
+/* Emergencias header */
+.emergencias {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0;
+}
+
+.alerts-container {
+    padding: 0;
+}
+
+.alerts-container .row {
+    margin: 0;
+}
+
+
+.alerts-container .row>div>div:first-child {
+    font-family: 'Evogria', 'Quicksand', sans-serif;
+    font-size: 1vh;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.08vh;
+    margin-bottom: 0.5vh;
+}
+
+/* Ajustes específicos para columnas del Dispatch */
+.police-central .col-4:first-child {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2vh;
+    min-height: 0;
+}
+
+.police-central .col-4:first-child>.info-box:first-child {
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: 50%;
+}
+
+.police-central .col-4:first-child>.info-box:nth-child(2) {
+    flex: 0 0 auto;
+    max-height: 45%;
+}
+
+.police-central .col-4:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2vh;
+    min-height: 0;
+}
+
+.police-central .col-4:nth-child(3) {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2vh;
+    min-height: 0;
+}
+
+.police-central .col-4:nth-child(3)>.info-box:first-child {
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: 55%;
+}
+
+.police-central .col-4:nth-child(3)>.info-box:nth-child(2) {
+    flex: 0 0 auto;
+    max-height: 40%;
+}
+
+/* Ajustes de altura para los info-box */
+.police-central .info-box[style*="height: 35vh"],
+.police-central .info-box[style*="height: 33.7vh"] {
+    height: auto !important;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.police-central .info-box[style*="height: 25.6vh"] {
+    height: auto !important;
+    flex: 0 0 auto;
+    min-height: 20vh;
+    max-height: 30vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Altura fija para la zona del mapa */
+.police-central .zona-mapa {
+    height: 35vh !important;
+    max-height: 35vh;
+    flex-shrink: 0;
+}
+
+/* Ajustes globales del contenedor central del Dispatch */
+.police-redesign .tab-content-menu .police-central {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.police-redesign .tab-content-menu .police-central .scale-in {
+    width: 100%;
+    height: 100%;
+    max-height: calc(100vh - 20vh);
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 1.5vh;
+    box-sizing: border-box;
+}
+
+.police-redesign .tab-content-menu .police-central .scale-in::-webkit-scrollbar {
+    width: 0.5vh;
+}
+
+.police-redesign .tab-content-menu .police-central .scale-in::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 0.5vh;
+}
+
+.police-redesign .tab-content-menu .police-central .scale-in::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba(59, 130, 246, 0.8), rgba(59, 130, 246, 0.5));
+    border-radius: 0.5vh;
+}
+
+.police-redesign .tab-content-menu .police-central .scale-in::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, rgba(59, 130, 246, 1), rgba(59, 130, 246, 0.7));
+}
+
+/* Asegurar que el contenido del Dispatch esté correctamente espaciado */
+.police-redesign .tab-content-menu .police-central .centra-container {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+/* Override de Bootstrap para mejor control */
+.police-redesign .tab-content-menu .police-central .row {
+    margin: 0 !important;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 2vh;
+}
+
+.police-redesign .tab-content-menu .police-central .row>[class*="col-"] {
+    padding: 0 !important;
+}
+
+/* Animación suave al abrir */
+.police-redesign .tab-content-menu .police-central.show {
+    animation: fadeIn 0.3s ease;
+}
+
+/* ======================================================
+   DISPATCH FIT: todo el contenido en una sola pantalla
+   ====================================================== */
+.police-redesign .tab-content-menu .police-central .scale-in {
+    padding: 0.9vh !important;
+    max-height: none !important;
+    overflow: hidden !important;
+}
+
+.police-redesign .tab-content-menu .police-central .centra-container,
+.police-redesign .tab-content-menu .police-central .centra-container > .row {
+    height: 100% !important;
+    min-height: 0 !important;
+}
+
+.police-redesign .tab-content-menu .police-central .centra-container > .row {
+    gap: 1vh !important;
+}
+
+.police-redesign .tab-content-menu .police-central .centra-container > .row > .col-4 {
+    gap: 0.9vh !important;
+    min-height: 0 !important;
+}
+
+/* Columna izquierda */
+.police-redesign .tab-content-menu .police-central .col-4:first-child > .info-box:first-child {
+    flex: 0 0 44% !important;
+    max-height: 44% !important;
+    min-height: 0 !important;
+}
+
+.police-redesign .tab-content-menu .police-central .col-4:first-child > .info-box:nth-child(2) {
+    flex: 1 1 auto !important;
+    max-height: none !important;
+    min-height: 0 !important;
+}
+
+/* Columna central */
+.police-redesign .tab-content-menu .police-central .col-4:nth-child(2) {
+    min-height: 0 !important;
+}
+
+.police-redesign .tab-content-menu .police-central .central-acceso-rapido {
+    flex: 0 0 4.8vh !important;
+    min-height: 4.8vh !important;
+}
+
+.police-redesign .tab-content-menu .police-central .zona-mapa {
+    flex: 1 1 auto !important;
+    height: auto !important;
+    max-height: none !important;
+    min-height: 0 !important;
+}
+
+.police-redesign .tab-content-menu .police-central .col-4:nth-child(2) > .info-box:last-child {
+    flex: 0 0 23% !important;
+    max-height: 23% !important;
+    min-height: 0 !important;
+}
+
+/* Columna derecha */
+.police-redesign .tab-content-menu .police-central .col-4:nth-child(3) > .info-box:first-child {
+    flex: 1 1 auto !important;
+    max-height: none !important;
+    min-height: 0 !important;
+}
+
+.police-redesign .tab-content-menu .police-central .col-4:nth-child(3) > .info-box:nth-child(2) {
+    flex: 0 0 31% !important;
+    max-height: 31% !important;
+    min-height: 0 !important;
+}
+
+/* Neutralizar alturas inline antiguas */
+.police-redesign .tab-content-menu .police-central .info-box[style*="height:"] {
+    height: auto !important;
+    min-height: 0 !important;
+}
+
+/* Scroll interno por bloque (no scroll global) */
+.police-redesign .tab-content-menu .police-central .table-agentes-container,
+.police-redesign .tab-content-menu .police-central .table-alerts-container,
+.police-redesign .tab-content-menu .police-central .chat-messages,
+.police-redesign .tab-content-menu .police-central .alerts-container,
+.police-redesign .tab-content-menu .police-central .central-freq {
+    min-height: 0 !important;
+    overflow-y: auto !important;
+}
+
+/* Dispatch polish: densidad visual igual a Informes */
+.police-redesign .tab-content-menu .police-central .scale-in {
+    padding: 0.8vh !important;
+}
+
+.police-redesign .tab-content-menu .police-central .centra-container > .row {
+    gap: 0.85vh !important;
+}
+
+.police-redesign .tab-content-menu .police-central .centra-container > .row > .col-4 {
+    gap: 0.8vh !important;
+}
+
+.police-redesign .tab-content-menu .police-central .info-box {
+    padding: 0.78vh !important;
+    border-radius: 0.75vh !important;
+}
+
+.police-redesign .tab-content-menu .police-central h4 {
+    margin-bottom: 0.45vh !important;
+}
+
+.police-redesign .tab-content-menu .police-central .actions-title-buttons {
+    gap: 0.35vh !important;
+    margin-top: 0 !important;
+}
+
+.police-redesign .tab-content-menu .police-central .broadcast {
+    padding: 0.28vh 0.62vh !important;
+    min-height: 2.2vh !important;
+    border-radius: 0.42vh !important;
+    font-size: 0.84vh !important;
+    letter-spacing: 0.03vh !important;
+    line-height: 1.1 !important;
+}
+
+.police-redesign .tab-content-menu .police-central .broadcast i {
+    margin-right: 0.28vh !important;
+    font-size: 0.82vh !important;
+}
+
+.police-redesign .tab-content-menu .police-central .central-freq {
+    margin-top: 0.55vh !important;
+    gap: 0.45vh !important;
+    max-height: 16.5vh !important;
+}
+
+.police-redesign .tab-content-menu .police-central .central-freq .title-1-menu {
+    border-radius: 0.5vh !important;
+    padding: 0.32vh 0.58vh !important;
+    margin-bottom: 0.45vh !important;
+    font-size: 1.1vh !important;
+    line-height: 1.5vh !important;
+}
+
+.police-redesign .tab-content-menu .police-central .category-header-central {
+    gap: 0.36vh !important;
+}
+
+.police-redesign .tab-content-menu .police-central .central-btn-central,
+.police-redesign .tab-content-menu .police-central .broadcast-category-btn-central {
+    padding: 0.24vh 0.44vh !important;
+    border-radius: 0.38vh !important;
+    font-size: 0.8vh !important;
+}
+
+.police-redesign .tab-content-menu .police-central .selector-container,
+.police-redesign .tab-content-menu .police-central .selector-container.toggle {
+    margin-top: 0.6vh !important;
+    padding: 0.62vh !important;
+    border-radius: 0.62vh !important;
+}
+
+.police-redesign .tab-content-menu .police-central .selector-title {
+    margin-bottom: 0.36vh !important;
+    font-size: 0.88vh !important;
+    letter-spacing: 0.04vh !important;
+}
+
+.police-redesign .tab-content-menu .police-central .unidades-dispo {
+    max-height: 6.2vh !important;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-1vh);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========================================
+   AJUSTES PARA BÚSQUEDA DE CIUDADANOS
+   ======================================== */
+
+/* Ajuste del contenedor principal para evitar overflow */
+.police-redesign .tab-content-menu .police-citizen {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.police-redesign .tab-content-menu .police-citizen .scale-in {
+    width: 100%;
+    height: 100%;
+    max-height: calc(100vh - 20vh);
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 1.5vh;
+    box-sizing: border-box;
+}
+
+.police-redesign .tab-content-menu .police-citizen .scale-in::-webkit-scrollbar {
+    width: 0.5vh;
+}
+
+.police-redesign .tab-content-menu .police-citizen .scale-in::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 0.5vh;
+}
+
+.police-redesign .tab-content-menu .police-citizen .scale-in::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
+    border-radius: 0.5vh;
+}
+
+.police-redesign .tab-content-menu .police-citizen .scale-in::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2));
+}
+
+/* Ajustes de layout para las columnas */
+.police-redesign .tab-content-menu .police-citizen .row {
+    margin: 0 !important;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 1.5vh;
+    min-height: 0;
+}
+
+.police-redesign .tab-content-menu .police-citizen .row>[class*="col-"] {
+    padding: 0 !important;
+    min-height: 0;
+}
+
+.police-redesign .tab-content-menu .police-citizen .col-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.police-redesign .tab-content-menu .police-citizen .col-9 {
+    flex: 0 0 calc(75% - 1.5vh);
+    max-width: calc(75% - 1.5vh);
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+/* Ajustes para bg-box */
+.police-redesign .tab-content-menu .police-citizen .bg-box {
+    background: rgba(0, 0, 0, 0.4);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 1vh;
+    outline: 0.1vh dashed rgba(255, 255, 255, 0.15);
+    outline-offset: 0.3vh;
+    padding: 1.5vh;
+    margin-bottom: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.police-redesign .tab-content-menu .police-citizen .bg-box.h-max {
+    height: 100%;
+    max-height: 100%;
+}
+
+/* Estilos para la sección de VEHÍCULOS con estilo ORIGEN */
+.police-redesign .tab-content-menu .police-vehicles .bg-box {
+    background: rgba(0, 0, 0, 0.4);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 1vh;
+    outline: 0.1vh dashed rgba(255, 255, 255, 0.15);
+    outline-offset: 0.3vh;
+    padding: 1.5vh;
+    margin-bottom: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.police-redesign .tab-content-menu .police-vehicles .bg-box.h-max {
+    height: 100%;
+    max-height: 100%;
+}
+
+/* Lista de vehículos */
+.police-redesign .tab-content-menu .police-vehicles .search-list {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) rgba(0, 0, 0, 0.2);
+}
+
+.police-redesign .tab-content-menu .police-vehicles .search-list::-webkit-scrollbar {
+    width: 0.5vh;
+}
+
+.police-redesign .tab-content-menu .police-vehicles .search-list::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 0.5vh;
+}
+
+.police-redesign .tab-content-menu .police-vehicles .search-list::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 0.5vh;
+}
+
+.police-redesign .tab-content-menu .police-vehicles .search-list::-webkit-scrollbar-thumb:hover {
+    background: rgba(var(--primary-rgb), 0.8);
+}
+
+/* Estilos para la sección de CÁMARAS con estructura estable */
+.police-redesign .tab-content-menu .police-cameras .cameras {
+    height: 100%;
+    padding: 0.25vh 0;
+    box-sizing: border-box;
+}
+
+.police-redesign .tab-content-menu .police-cameras .row {
+    height: calc(100% - 1.6vh) !important;
+    margin: 0;
+    gap: 1.2vh;
+    box-sizing: border-box;
+}
+
+.police-redesign .tab-content-menu .police-cameras .row>[class*="col-"] {
+    padding: 0 !important;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.8vh;
+    margin-bottom: 0.8vh;
+}
+
+.police-redesign .tab-content-menu .police-cameras .col-4 {
+    flex: 1 1 0;
+    max-width: none;
+    width: auto;
+}
+
+.police-redesign .tab-content-menu .police-cameras .bg-box {
+    background: rgba(0, 0, 0, 0.4);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 1vh;
+    outline: none;
+    padding: 1.2vh;
+    margin-bottom: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.police-redesign .tab-content-menu .police-cameras .bg-box::before {
+    content: "";
+    position: absolute;
+    inset: 0.35vh;
+    border: 0.1vh dashed rgba(255, 255, 255, 0.15);
+    border-radius: 0.75vh;
+    pointer-events: none;
+}
+
+.police-redesign .tab-content-menu .police-cameras .bg-box.h-max {
+    height: 100%;
+    max-height: 100%;
+}
+
+.police-redesign .tab-content-menu .police-cameras .camera-list {
+    flex: 1;
+    min-height: 0;
+    height: auto !important;
+    margin-top: 0.8vh !important;
+    padding: 0.2vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.police-redesign .tab-content-menu .police-cameras .camera-list.bodycam .camera {
+    padding: 0.45vh 0.6vh;
+    margin-bottom: 0.55vh;
+    border-radius: 0.7vh;
+    min-height: 4.1vh;
+}
+
+.police-redesign .tab-content-menu .police-cameras .camera-list.bodycam .camera img {
+    width: 3.2vh;
+    height: 3.2vh;
+    margin-right: 0.55vh;
+}
+
+.police-redesign .tab-content-menu .police-cameras .camera-list.bodycam .camera .camera-title {
+    font-size: 1.15vh;
+    line-height: 1.25vh;
+    max-width: 16vh;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.police-redesign .tab-content-menu .police-cameras .camera-list.bodycam .camera .camera-owner {
+    font-size: 0.92vh;
+    line-height: 1.05vh;
+    padding: 0.2vh 0.4vh;
+    margin-top: 0.2vh;
+    max-width: 16vh;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Ajuste vertical real para FEDERAL/DEUDORES (evita que quede pegado abajo) */
+.police-redesign .tab-content-menu .police-federal .informes,
+.police-redesign .tab-content-menu .police-debtors .informes {
+    height: 100%;
+    box-sizing: border-box;
+    padding-bottom: 0.8vh;
+}
+
+.police-redesign .tab-content-menu .police-federal .informes > .row,
+.police-redesign .tab-content-menu .police-debtors .informes > .row {
+    height: calc(100% - 1.6vh) !important;
+    margin-top: 0.8vh;
+    margin-bottom: 0.8vh;
+}
+
+.police-redesign .tab-content-menu .police-federal .bg-box.h-max,
+.police-redesign .tab-content-menu .police-debtors .bg-box.h-max {
+    height: 100% !important;
+    max-height: 100% !important;
+}
+
+/* Recuperación visual/funcional: OPERACIONES (rehecho limpio) */
+.police-redesign .tab-content-menu .police-operations,
+.police-redesign .tab-content-menu .police-operations .operations {
+    height: 100% !important;
+    min-height: 0 !important;
+}
+
+.police-redesign .tab-content-menu .police-operations .operations {
+    box-sizing: border-box;
+    padding: 0.8vh 0 !important; /* mismo aire arriba y abajo */
+    display: flex;
+    flex-direction: column;
+}
+
+.police-redesign .tab-content-menu .police-operations .operations > .row {
+    height: 100% !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 1.5vh;
+}
+
+.police-redesign .tab-content-menu .police-operations .operations > .row > .col-3 {
+    flex: 0 0 24% !important;
+    max-width: 24% !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    display: flex;
+    flex-direction: column;
+}
+
+.police-redesign .tab-content-menu .police-operations .operations > .row > .col-9 {
+    flex: 1 1 auto !important;
+    max-width: none !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    display: flex;
+    flex-direction: column;
+}
+
+.police-redesign .tab-content-menu .police-operations .bg-box.h-max,
+.police-redesign .tab-content-menu .police-operations .zona-mapa,
+.police-redesign .tab-content-menu .police-operations .zona-mapa.h-max {
+    height: 100% !important;
+    max-height: 100% !important;
+    min-height: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.police-redesign .tab-content-menu .police-operations .operations > .row > .col-3 > .bg-box {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.police-redesign .tab-content-menu .police-operations #mapShapes,
+.police-redesign .tab-content-menu .police-operations .zona-mapa .s-map,
+.police-redesign .tab-content-menu .police-operations .zona-mapa .leaflet-container {
+    width: 100%;
+    height: 100% !important;
+    min-height: 100% !important;
+}
+
+.police-redesign .tab-content-menu .police-operations .shape-list {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+}
+
+/* Botones draw dentro del mapa, visibles */
+.police-redesign .tab-content-menu .police-operations .leaflet-control-container {
+    z-index: 1200 !important;
+}
+
+.police-redesign .tab-content-menu .police-operations .leaflet-top.leaflet-left {
+    top: auto !important;
+    bottom: 1vh !important;
+    left: 1vh !important;
+}
+
+.police-redesign .tab-content-menu .police-operations .leaflet-draw-toolbar {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.police-redesign .tab-content-menu .police-operations .leaflet-draw-actions {
+    top: auto !important;
+    bottom: 4.8vh !important;
+    left: 0.2vh !important;
+}
+
+/* HOTFIX REAL: Operaciones renderizada dentro de .tab (sin clase police-operations) */
+.police-redesign .tab-content-menu .tab.show .operations {
+    position: relative !important;
+    height: calc(100% - 2.6vh) !important;
+    min-height: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    margin: 0.8vh 0 1.8vh 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .operations > .row {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 1.5vh !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .operations > .row > .col-3 {
+    flex: 0 0 24% !important;
+    max-width: 24% !important;
+    width: auto !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .operations > .row > .col-9 {
+    flex: 1 1 auto !important;
+    max-width: none !important;
+    width: auto !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .operations .h-max,
+.police-redesign .tab-content-menu .tab.show .operations .bg-box,
+.police-redesign .tab-content-menu .tab.show .operations .zona-mapa {
+    height: 100% !important;
+    max-height: 100% !important;
+    min-height: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .operations #mapShapes,
+.police-redesign .tab-content-menu .tab.show .operations .s-map,
+.police-redesign .tab-content-menu .tab.show .operations .leaflet-container {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 100% !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .operations .shape-list {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    overflow-y: auto !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .operations .leaflet-control-container {
+    z-index: 1300 !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .operations .leaflet-top.leaflet-left {
+    top: 1vh !important;
+    bottom: auto !important;
+    left: 1vh !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .operations .leaflet-draw-toolbar {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    top: 1vh !important;
+    left: 4.8vh !important;
+    z-index: 1300 !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .operations .leaflet-draw-actions {
+    top: 5.1vh !important;
+    bottom: auto !important;
+    left: 4.8vh !important;
+    z-index: 1301 !important;
+}
+
+/* Cards de Formas Creadas - estilo redesign consistente */
+.police-redesign .tab-content-menu .tab.show .operations .shape-list {
+    padding: 0.35vh !important;
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .operations .shape-block {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.65vh !important;
+    padding: 0.62vh 0.72vh !important;
+    margin-bottom: 0.55vh !important;
+    border-radius: 0.62vh !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 0.1vh solid rgba(255, 255, 255, 0.14) !important;
+    border-top: 0.1vh solid rgba(255, 255, 255, 0.14) !important;
+    color: rgba(255, 255, 255, 0.95) !important;
+    box-shadow: none !important;
+    transition: all 0.2s ease !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .operations .shape-block:hover {
+    background: rgba(255, 255, 255, 0.09) !important;
+    border-color: rgba(255, 255, 255, 0.22) !important;
+    transform: none !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .operations .shape-info .shape-title {
+    font-family: 'Evogria', sans-serif !important;
+    font-size: 1.02vh !important;
+    line-height: 1.2 !important;
+    color: rgba(255, 255, 255, 0.96) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.03vh !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .operations .shape-info .shape-data {
+    font-family: 'Quicksand', sans-serif !important;
+    font-size: 0.8vh !important;
+    color: rgba(255, 255, 255, 0.72) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.02vh !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .operations .shape-button {
+    width: 2.15vh !important;
+    height: 2.15vh !important;
+    min-width: 2.15vh !important;
+    padding: 0 !important;
+    border-radius: 0.34vh !important;
+    transform: none !important;
+    border: 0.1vh solid rgba(255, 255, 255, 0.15) !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    box-shadow: none !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .operations .shape-button:hover {
+    background: rgba(255, 255, 255, 0.12) !important;
+    border-color: rgba(255, 255, 255, 0.24) !important;
+    transform: none !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .operations .shape-button i {
+    font-size: 0.9vh !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .operations .shape-button.bg-danger,
+.police-redesign .tab-content-menu .tab.show .operations .shape-button.bg-danger.bg-gradient {
+    background: rgba(239, 68, 68, 0.18) !important;
+    border-color: rgba(239, 68, 68, 0.36) !important;
+    color: #ffb4b4 !important;
+}
+
+/* Fallback para cuando Operaciones no cuelga de .tab.show */
+.police .operations .leaflet-control-container {
+    z-index: 1300 !important;
+}
+
+.police .operations .leaflet-top.leaflet-left {
+    top: 1vh !important;
+    left: 1vh !important;
+}
+
+.police .operations .leaflet-draw-toolbar {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    top: 1vh !important;
+    left: 4.8vh !important;
+}
+
+.police .operations .leaflet-draw-actions {
+    top: 5.1vh !important;
+    left: 4.8vh !important;
+}
+
+/* Plantilla replicada en BÚSQUEDA DE CIUDADANOS */
+.police-redesign .tab-content-menu .tab.show .citizen-layout {
+    position: relative !important;
+    height: calc(100% - 2.6vh) !important;
+    min-height: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    margin: 0.8vh 0 1.8vh 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .citizen-layout > .row {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 1.5vh !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .citizen-layout > .row > .col-3 {
+    flex: 0 0 24% !important;
+    max-width: 24% !important;
+    width: auto !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .citizen-layout > .row > .col-9 {
+    flex: 1 1 auto !important;
+    max-width: none !important;
+    width: auto !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .citizen-layout .h-max,
+.police-redesign .tab-content-menu .tab.show .citizen-layout .bg-box {
+    height: 100% !important;
+    max-height: 100% !important;
+    min-height: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .citizen-layout > .row > .col-3 > .bg-box {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .citizen-layout .search-list,
+.police-redesign .tab-content-menu .tab.show .citizen-layout .citizen-scroll {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    overflow-y: auto !important;
+}
+
+/* Plantilla replicada en INFORMES */
+.police-redesign .tab-content-menu .tab.show .report-layout {
+    position: relative !important;
+    height: calc(100% - 2.6vh) !important;
+    min-height: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    margin: 0.8vh 0 1.8vh 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .report-layout > .row {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 1.5vh !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .report-layout > .row > .col-3 {
+    flex: 0 0 24% !important;
+    max-width: 24% !important;
+    width: auto !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .report-layout > .row > .col-9 {
+    flex: 1 1 auto !important;
+    max-width: none !important;
+    width: auto !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .report-layout .h-max,
+.police-redesign .tab-content-menu .tab.show .report-layout .bg-box {
+    height: 100% !important;
+    max-height: 100% !important;
+    min-height: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .report-layout > .row > .col-3 > .bg-box {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .report-layout .search-list,
+.police-redesign .tab-content-menu .tab.show .report-layout .citizen-scroll {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    overflow-y: auto !important;
+}
+
+/* Mantener TODO el contenido del informe dentro del contenedor derecho */
+.police-redesign .tab-content-menu .tab.show .report-layout .bg-box {
+    overflow: hidden !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .report-layout > .row > .col-9 > .bg-box > .m-titles {
+    height: 100% !important;
+    min-height: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .report-layout > .row > .col-9 .informe-report {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    max-height: 100% !important;
+    padding-right: 0.35vh;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(var(--primary-rgb), 0.85) rgba(255, 255, 255, 0.08);
+}
+
+/* Tipografía de títulos dentro de INFORMES */
+.police-redesign .tab-content-menu .tab.show .report-layout .informe-report .info-box-title,
+.police-redesign .tab-content-menu .tab.show .report-layout .informe-report h4 {
+    font-family: 'Evogria', sans-serif !important;
+    letter-spacing: 0.05vh;
+    text-transform: uppercase;
+}
+
+/* Empty state para listas sin datos dentro de INFORMES */
+.police-redesign .tab-content-menu .tab.show .report-layout .informe-report .list-group .list-group-item.no-notes {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0.4vh 0 !important;
+    min-height: 8.5vh;
+    width: 100%;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.52) !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .report-layout .informe-report .list-group .list-group-item.no-notes h5 {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    font-family: 'Quicksand', sans-serif !important;
+    font-size: 1vh !important;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.5) !important;
+    text-transform: uppercase;
+    letter-spacing: 0.03vh;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55vh;
+    width: 100%;
+}
+
+.police-redesign .tab-content-menu .tab.show .report-layout .informe-report .list-group .list-group-item.no-notes h5::before {
+    content: '\f05a';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    width: 2.8vh;
+    height: 2.8vh;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1vh;
+    color: rgba(255, 255, 255, 0.45);
+    background: rgba(255, 255, 255, 0.05);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+}
+
+/* Tags compactos en informes (para alta densidad) */
+.police-redesign .tab-content-menu .tab.show .report-layout .informe-report .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45vh;
+    width: 100%;
+    min-height: 8.5vh;
+    align-items: flex-start;
+    align-content: flex-start;
+}
+
+/* Tags vacio: centrar icono + texto como el resto */
+.police-redesign .tab-content-menu .tab.show .report-layout .informe-report .tag-list .empty-collection {
+    flex: 1 1 100%;
+    width: 100%;
+    min-height: 8.5vh;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55vh;
+    text-align: center;
+}
+
+.police-redesign .tab-content-menu .tab.show .report-layout .informe-report .empty-collection {
+    width: 100%;
+    min-height: 8.5vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55vh;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.52);
+}
+
+.police-redesign .tab-content-menu .tab.show .report-layout .informe-report .empty-collection i {
+    width: 2.8vh;
+    height: 2.8vh;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1vh;
+    color: rgba(255, 255, 255, 0.45);
+    background: rgba(255, 255, 255, 0.05);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+}
+
+.police-redesign .tab-content-menu .tab.show .report-layout .informe-report .empty-collection span {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1vh;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.03vh;
+}
+
+/* Centrado consistente del empty-state en Evidencias */
+.police-redesign .tab-content-menu .tab.show .report-layout .informe-report .row.evidences {
+    min-height: 100%;
+    align-content: center;
+}
+
+.police-redesign .tab-content-menu .tab.show .report-layout .informe-report .row.evidences > .col-12.p-0 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.police-redesign .tab-content-menu .tab.show .report-layout .informe-report .row.evidences > .col-12.p-0 .empty-collection {
+    min-height: 100%;
+}
+
+.police-redesign .tab-content-menu .tab.show .report-layout .informe-report .row.evidences > .col-12.p-0 .empty-collection i {
+    margin: 0 auto !important;
+    left: auto !important;
+    right: auto !important;
+    float: none !important;
+}
+
+/* Centrado consistente SOLO para listas vacias (sin afectar Tags) */
+.police-redesign .tab-content-menu .tab.show .report-layout .informe-report .multas-list,
+.police-redesign .tab-content-menu .tab.show .report-layout .informe-report .agentes-list,
+.police-redesign .tab-content-menu .tab.show .report-layout .informe-report .victimas-list,
+.police-redesign .tab-content-menu .tab.show .report-layout .informe-report .vehiculos-list {
+    min-height: 8.5vh;
+    margin: 0;
+    height: 100%;
+}
+
+.police-redesign .tab-content-menu .tab.show .report-layout .informe-report .multas-list .no-notes,
+.police-redesign .tab-content-menu .tab.show .report-layout .informe-report .agentes-list .no-notes,
+.police-redesign .tab-content-menu .tab.show .report-layout .informe-report .victimas-list .no-notes,
+.police-redesign .tab-content-menu .tab.show .report-layout .informe-report .vehiculos-list .no-notes {
+    min-height: 8.5vh;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 100%;
+}
+
+.police-redesign .tab-content-menu .tab.show .report-layout .informe-report .tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    max-width: 17vh;
+    min-width: 12.5vh;
+    padding: 0.22vh 1.9vh 0.22vh 0.9vh;
+    border-radius: 0.95vh;
+    background: rgba(255, 255, 255, 0.08);
+    border: 0.1vh solid rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.9);
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.92vh;
+    line-height: 1.15;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.police-redesign .tab-content-menu .tab.show .report-layout .informe-report .tag > span {
+    display: block;
+    width: 100%;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.police-redesign .tab-content-menu .tab.show .report-layout .informe-report .tag i {
+    position: absolute;
+    right: 0.55vh;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.82vh;
+    line-height: 1;
+    opacity: 0.88;
+    color: rgba(255, 255, 255, 0.92);
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    border-radius: 0 !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .report-layout .informe-report .tag:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.22);
+    transform: none;
+}
+
+/* ========================================
+   MODALES SELECTOR (CIUDADANO / EVIDENCIA)
+   ======================================== */
+.police.police-redesign .personas-container,
+.police.police-redesign .vehiculos-container,
+.police.police-redesign .evidencias-container {
+    z-index: 1400;
+}
+
+.police.police-redesign .personas-container .personas-box,
+.police.police-redesign .vehiculos-container .personas-box,
+.police.police-redesign .evidencias-container .personas-box {
+    background: rgba(0, 0, 0, 1);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 1vh;
+    outline: 0.1vh dashed rgba(255, 255, 255, 0.15);
+    outline-offset: 0.3vh;
+    width: 60%;
+    max-width: 100vh;
+    height: 82vh;
+    padding: 2vh 2.5vh;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2vh;
+    overflow: hidden;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 1401;
+}
+
+.police.police-redesign .personas-container .personas-box .app-title,
+.police.police-redesign .vehiculos-container .personas-box .app-title,
+.police.police-redesign .evidencias-container .personas-box .app-title {
+    margin: 0;
+    padding: 0.45vh 0.8vh;
+    border-radius: 0.55vh;
+    background: rgba(0, 0, 0, 0.45);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    font-family: 'Evogria', sans-serif;
+    font-size: 2.15vh;
+    line-height: 1.1;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.08vh;
+    width: fit-content;
+}
+
+.police.police-redesign .personas-container .close-button,
+.police.police-redesign .vehiculos-container .close-button,
+.police.police-redesign .evidencias-container .close-button {
+    position: absolute;
+    top: 2.2vh;
+    right: 2.2vh;
+    width: 3.3vh;
+    height: 3.3vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.6vh;
+    background: rgba(255, 255, 255, 0.08);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.7);
+    transition: all 0.25s ease;
+}
+
+.police.police-redesign .personas-container .close-button:hover,
+.police.police-redesign .vehiculos-container .close-button:hover,
+.police.police-redesign .evidencias-container .close-button:hover {
+    color: #fff;
+    background: rgba(239, 68, 68, 0.25);
+    border-color: rgba(239, 68, 68, 0.5);
+}
+
+.police.police-redesign .personas-container .close-button,
+.police.police-redesign .vehiculos-container .close-button,
+.police.police-redesign .evidencias-container .close-button {
+    /* display: none !important; */
+}
+
+/* ========================================
+   MODALES GENERICOS (OpenModal)
+   ======================================== */
+.police.police-redesign .c-modal {
+    z-index: 1500 !important;
+    background: radial-gradient(circle at center, rgb(0 0 0 / 52%) 0%, rgb(0 0 0 / 82%) 62%, rgb(0 0 0 / 92%) 100%) !important;
+}
+
+.police.police-redesign .c-modal .modal-content {
+    width: min(62vh, 92vw) !important;
+    max-width: 92vw !important;
+    background: rgba(0, 0, 0, 0.45) !important;
+    border: 0.1vh solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 1vh !important;
+    outline: 0.1vh dashed rgba(255, 255, 255, 0.15) !important;
+    outline-offset: 0.26vh !important;
+    overflow: hidden !important;
+    box-shadow: 0 2.4vh 4.8vh rgba(0, 0, 0, 0.45) !important;
+}
+
+.police.police-redesign .c-modal .modal-header {
+    border: 0 !important;
+    padding: 1.45vh 1.55vh 0.95vh 1.55vh !important;
+}
+
+.police.police-redesign .c-modal .title {
+    margin: 0 !important;
+    padding: 0.5vh 0.9vh !important;
+    border-radius: 0.55vh !important;
+    border: 0.1vh solid rgba(255, 255, 255, 0.12) !important;
+    background: rgba(var(--primary-rgb), 0.9) !important;
+    color: rgba(255, 255, 255, 0.96) !important;
+    text-shadow: none !important;
+    font-family: 'Evogria', sans-serif !important;
+    font-size: 1.9vh !important;
+    line-height: 1.1 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.08vh !important;
+    width: fit-content !important;
+}
+
+.police.police-redesign .c-modal .modal-body {
+    padding: 0.35vh 1.55vh 1.3vh 1.55vh !important;
+}
+
+.police.police-redesign .c-modal .modal-body .row {
+    margin: 0 !important;
+}
+
+.police.police-redesign .c-modal .modal-body [class^='col-'],
+.police.police-redesign .c-modal .modal-body [class*=' col-'] {
+    padding: 0 !important;
+}
+
+.police.police-redesign .c-modal .modal-body .form-control,
+.police.police-redesign .c-modal .modal-body .input,
+.police.police-redesign .c-modal .modal-body input,
+.police.police-redesign .c-modal .modal-body textarea,
+.police.police-redesign .c-modal .modal-body select {
+    width: 100% !important;
+    height: 4.2vh !important;
+    min-height: 4.2vh !important;
+    background: rgba(0, 0, 0, 0.33) !important;
+    border: 0.1vh solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 0.62vh !important;
+    color: rgba(255, 255, 255, 0.95) !important;
+    font-family: 'Quicksand', sans-serif !important;
+    font-size: 1.2vh !important;
+    letter-spacing: 0.03vh !important;
+    box-shadow: none !important;
+}
+
+.police.police-redesign .c-modal .modal-body input::placeholder,
+.police.police-redesign .c-modal .modal-body textarea::placeholder {
+    color: rgba(255, 255, 255, 0.52) !important;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.police.police-redesign .c-modal .modal-body .form-control:focus,
+.police.police-redesign .c-modal .modal-body .input:focus,
+.police.police-redesign .c-modal .modal-body input:focus,
+.police.police-redesign .c-modal .modal-body textarea:focus,
+.police.police-redesign .c-modal .modal-body select:focus {
+    border-color: rgba(var(--primary-rgb), 0.75) !important;
+    box-shadow: 0 0 0 0.12vh rgba(var(--primary-rgb), 0.28) !important;
+    outline: none !important;
+}
+
+input#note-title-vehicle,
+textarea#note-text-vehicle {
+    background: rgba(255, 255, 255, 0.1);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1) !important;
+    color: white !important;
+}
+
+input#note-title-vehicle::placeholder,
+textarea#note-text-vehicle::placeholder {
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.police.police-redesign .c-modal .modal-footer {
+    margin-top: 0 !important;
+    padding: 1.15vh 1.55vh !important;
+    background: rgba(0, 0, 0, 0.26) !important;
+    border-top: 0.1vh solid rgba(255, 255, 255, 0.08) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 0.9vh !important;
+}
+
+.police.police-redesign .c-modal .btn-modal,
+.police.police-redesign .c-modal .btn-cancel {
+    min-width: 11.5vh !important;
+    height: 3.9vh !important;
+    padding: 0 1.2vh !important;
+    border-radius: 0.56vh !important;
+    border: 0.1vh solid rgba(255, 255, 255, 0.14) !important;
+    font-family: 'Evogria', sans-serif !important;
+    font-size: 1.18vh !important;
+    line-height: 1 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.06vh !important;
+    box-shadow: none !important;
+    transition: all 0.2s ease !important;
+}
+
+.police.police-redesign .c-modal .btn-modal {
+    background: rgba(255, 255, 255, 0.9) !important;
+    color: rgba(0, 0, 0, 0.9) !important;
+}
+
+.police.police-redesign .c-modal .btn-modal:hover {
+    background: rgba(255, 255, 255, 0.98) !important;
+    border-color: rgba(255, 255, 255, 0.35) !important;
+}
+
+.police.police-redesign .c-modal .btn-cancel {
+    background: rgba(255, 255, 255, 0.06) !important;
+    color: rgba(255, 255, 255, 0.82) !important;
+}
+
+.police.police-redesign .c-modal .btn-cancel:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: rgba(255, 255, 255, 0.24) !important;
+    color: rgba(255, 255, 255, 0.95) !important;
+}
+
+.police.police-redesign .personas-container .search-box.row {
+    display: flex;
+    align-items: stretch;
+    gap: 0.8vh;
+    margin: 0;
+}
+
+.police.police-redesign .personas-container .search-box .col-10 {
+    flex: 1 1 auto;
+    width: auto;
+}
+
+.police.police-redesign .personas-container .search-box .col-2 {
+    flex: 0 0 auto;
+    width: auto;
+}
+
+.police.police-redesign .personas-container .input-search-citizen-selector {
+    height: 100%;
+    background: rgba(0, 0, 0, 0.35);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.65vh;
+    padding: 1vh 1.2vh;
+    color: #fff;
+    font-size: 1.15vh;
+}
+
+.police.police-redesign .personas-container .btn-search-citizen-selector {
+    min-width: 4.5vh;
+    height: 100%;
+    border-radius: 0.65vh;
+    border: 0.1vh solid rgba(var(--primary-rgb), 0.7);
+    background: rgba(var(--primary-rgb), 0.22);
+    color: #fff;
+}
+
+.police.police-redesign .personas-container .citizen-box-list,
+.police.police-redesign .evidencias-container .evidencias-box-list {
+    flex: 1 1 auto;
+    min-height: 0;
+    height: auto;
+    margin-top: 0.3vh;
+    padding-top: 0.2vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(var(--primary-rgb), 0.85) rgba(255, 255, 255, 0.08);
+}
+
+.police.police-redesign .personas-container .citizen-box-list .row,
+.police.police-redesign .evidencias-container .evidencias-box-list .row {
+    margin: 0;
+}
+
+.police.police-redesign .personas-container .citizen-box-list .citizen-box {
+    background: rgba(255, 255, 255, 0.03);
+    border: 0.1vh solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.65vh;
+    overflow: hidden;
+    transition: all 0.25s ease;
+    cursor: pointer;
+}
+
+.police.police-redesign .personas-container .citizen-box-list .citizen-box:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.14);
+    transform: none;
+}
+
+.police.police-redesign .personas-container .citizen-box-list .citizen-image {
+    height: 13vh;
+}
+
+.police.police-redesign .personas-container .citizen-box-list .citizen-name {
+    font-family: 'Evogria', sans-serif;
+    font-size: 1.02vh;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.police.police-redesign .personas-container .citizen-box-list .citizen-id {
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0.95vh;
+}
+
+.police.police-redesign .personas-container .citizen-box-list .text-muted,
+.police.police-redesign .evidencias-container .evidencias-box-list .text-muted {
+    min-height: 46vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.police.police-redesign .personas-container .citizen-box-list .text-muted h4,
+.police.police-redesign .evidencias-container .evidencias-box-list .text-muted h4 {
+    margin: 0;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.15vh;
+    color: rgba(255, 255, 255, 0.52);
+    text-transform: uppercase;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8vh;
+}
+
+.police.police-redesign .personas-container .citizen-box-list .text-muted h4::before,
+.police.police-redesign .evidencias-container .evidencias-box-list .text-muted h4::before {
+    content: '\f05a';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    width: 3.4vh;
+    height: 3.4vh;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35vh;
+    color: rgba(255, 255, 255, 0.46);
+    background: rgba(255, 255, 255, 0.05);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+}
+
+/* Ciudadanos: permitir bajar hasta vehículos/propiedades sin cortar */
+.police-redesign .tab-content-menu .tab.show .citizen-layout > .row > .col-9 .citizen-scroll {
+    padding-bottom: 0.8vh !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain;
+}
+
+.police-redesign .tab-content-menu .tab.show .citizen-layout > .row > .col-9 .citizen-ficha .citizen-info-all {
+    padding-bottom: 4vh !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .citizen-layout > .row > .col-9 .citizen-ficha .citizen-info-all > .col-12:last-child {
+    padding-bottom: 2.2vh !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .report-layout > .row > .col-9 .informe-report::-webkit-scrollbar {
+    width: 0.45vh;
+}
+
+.police-redesign .tab-content-menu .tab.show .report-layout > .row > .col-9 .informe-report::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 0.4vh;
+}
+
+.police-redesign .tab-content-menu .tab.show .report-layout > .row > .col-9 .informe-report::-webkit-scrollbar-thumb {
+    background: rgba(var(--primary-rgb), 0.85);
+    border-radius: 0.4vh;
+}
+
+.police-redesign .tab-content-menu .tab.show .report-layout > .row > .col-9 .informe-report::-webkit-scrollbar-thumb:hover {
+    background: rgba(var(--primary-rgb), 1);
+}
+
+/* Plantilla replicada en VEHÍCULOS */
+.police-redesign .tab-content-menu .tab.show .vehicle-layout {
+    position: relative !important;
+    height: calc(100% - 2.6vh) !important;
+    min-height: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    margin: 0.8vh 0 1.8vh 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .vehicle-layout > .row {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 1.5vh !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .vehicle-layout > .row > .col-3 {
+    flex: 0 0 24% !important;
+    max-width: 24% !important;
+    width: auto !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .vehicle-layout > .row > .col-9 {
+    flex: 1 1 auto !important;
+    max-width: none !important;
+    width: auto !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .vehicle-layout .h-max,
+.police-redesign .tab-content-menu .tab.show .vehicle-layout .bg-box {
+    height: 100% !important;
+    max-height: 100% !important;
+    min-height: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .vehicle-layout > .row > .col-3 > .bg-box {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .vehicle-layout .search-list,
+.police-redesign .tab-content-menu .tab.show .vehicle-layout .ficha-vehiculo {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    overflow-y: auto !important;
+}
+
+/* Plantilla replicada en DEUDORES */
+.police-redesign .tab-content-menu .tab.show .debtors-layout {
+    position: relative !important;
+    height: calc(100% - 2.6vh) !important;
+    min-height: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    margin: 0.8vh 0 1.8vh 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .debtors-layout > .row {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 1.5vh !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .debtors-layout > .row > .col-3 {
+    flex: 0 0 24% !important;
+    max-width: 24% !important;
+    width: auto !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .debtors-layout > .row > .col-9 {
+    flex: 1 1 auto !important;
+    max-width: none !important;
+    width: auto !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .debtors-layout .h-max,
+.police-redesign .tab-content-menu .tab.show .debtors-layout .bg-box {
+    height: 100% !important;
+    max-height: 100% !important;
+    min-height: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .debtors-layout > .row > .col-3 > .bg-box {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .debtors-layout .search-list,
+.police-redesign .tab-content-menu .tab.show .debtors-layout .debtors-detail {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    overflow-y: auto !important;
+}
+
+/* Plantilla replicada en ADMINISTRACIÓN FEDERAL */
+.police-redesign .tab-content-menu .tab.show .federal-layout {
+    position: relative !important;
+    height: calc(100% - 2.6vh) !important;
+    min-height: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    margin: 0.8vh 0 1.8vh 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .federal-layout > .row {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 1.5vh !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .federal-layout > .row > .col-3 {
+    flex: 0 0 24% !important;
+    max-width: 24% !important;
+    width: auto !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .federal-layout > .row > .col-9 {
+    flex: 1 1 auto !important;
+    max-width: none !important;
+    width: auto !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .federal-layout .h-max,
+.police-redesign .tab-content-menu .tab.show .federal-layout .bg-box {
+    height: 100% !important;
+    max-height: 100% !important;
+    min-height: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .federal-layout > .row > .col-3 > .bg-box {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .federal-layout .search-list,
+.police-redesign .tab-content-menu .tab.show .federal-layout .federal-detail {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    overflow-y: auto !important;
+}
+
+/* Plantilla replicada en GESTIÓN DE AGENTES */
+.police-redesign .tab-content-menu .tab.show .manage-layout {
+    position: relative !important;
+    height: calc(100% - 2.6vh) !important;
+    min-height: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    margin: 0.8vh 0 1.8vh 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout > .row {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 1.5vh !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout > .row > .col-3 {
+    flex: 0 0 24% !important;
+    max-width: 24% !important;
+    width: auto !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout > .row > .col-9 {
+    flex: 1 1 auto !important;
+    max-width: none !important;
+    width: auto !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .h-max,
+.police-redesign .tab-content-menu .tab.show .manage-layout .bg-box {
+    height: 100% !important;
+    max-height: 100% !important;
+    min-height: 0 !important;
+    margin-bottom: 0 !important;
+    overflow: hidden !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout > .row > .col-3 > .bg-box {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .search-list,
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-ficha {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    overflow-y: auto !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-ficha .agent-empty-state {
+    min-height: 100%;
+    padding: 4vh 2vh;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-ficha .agent-empty-state .empty-state-icon {
+    width: 14vh;
+    height: 14vh;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-ficha .agent-empty-state .empty-state-icon i {
+    font-size: 7.2vh;
+    color: rgba(255, 255, 255, 0.88);
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-ficha .agent-empty-state .empty-state-text {
+    font-size: 2.2vh;
+    letter-spacing: 0.12vh;
+    line-height: 1.25;
+    color: rgba(255, 255, 255, 0.92);
+    max-width: 90vh;
+}
+
+.citizen-ficha .empty-icon {
+    font-size: 5.4vh;
+}
+
+.condecoracion:not(.no-condecoracion),
+.condecoracion:not(.no-divisions) {
+    flex-direction: column;
+}
+
+@keyframes agentEmptyPulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 0 rgba(255, 255, 255, 0); }
+    50% { transform: scale(1.03); box-shadow: 0 0 2vh rgba(255, 255, 255, 0.15); }
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+    flex: 1 1 auto;
+    height: 100% !important;
+    min-height: 0;
+    overflow: hidden !important;
+    padding: 0 !important;
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agents-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8vh;
+    flex: 0 0 auto;
+    margin-top: 1vh;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6vh;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-filter-btn {
+    border: 0.1vh solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.78);
+    border-radius: 0.6vh;
+    padding: 0.45vh 0.8vh;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.02vh;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03vh;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-filter-btn:hover {
+    background: rgba(var(--primary-rgb), 0.14);
+    border-color: rgba(var(--primary-rgb), 0.34);
+    color: #fff;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-filter-btn.active {
+    background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.34), rgba(var(--primary-rgb), 0.2));
+    border-color: rgba(var(--primary-rgb), 0.6);
+    color: #fff;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agents-items {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    padding-right: 0.2vh;
+    max-height: 100%;
+    padding-bottom: 0.5vh;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(var(--primary-rgb), 0.85) rgba(255, 255, 255, 0.08);
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agents-items::-webkit-scrollbar {
+    width: 0.45vh;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agents-items::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 0.4vh;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agents-items::-webkit-scrollbar-thumb {
+    background: rgba(var(--primary-rgb), 0.85);
+    border-radius: 0.4vh;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agents-items::-webkit-scrollbar-thumb:hover {
+    background: rgba(var(--primary-rgb), 1);
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-card {
+    border-radius: 0.75vh;
+    padding: 0.65vh 0.7vh;
+    margin-bottom: 0.7vh;
+    transition: all 0.2s ease;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-card .citizen-image {
+    width: 4.2vh;
+    height: 4.2vh;
+    border-radius: 0.65vh;
+    margin-right: 0.8vh;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-card .agent-name {
+    font-size: 1.2vh;
+    line-height: 1.35vh;
+    margin-bottom: 0.35vh;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-card .agente-rango,
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-card .agente-placa {
+    width: auto;
+    padding-right: 0;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-card .agente-rango .citizen-id {
+    font-size: 1.04vh;
+    border-radius: 0.35vh;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-card .agente-placa {
+    font-size: 1.02vh;
+    color: rgba(255, 255, 255, 0.68);
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-card:last-child {
+    margin-bottom: 0;
+}
+
+/* Estilo moderno para toda la ficha de agentes */
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-ficha {
+    padding: 1.2vh;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(var(--primary-rgb), 0.85) rgba(255, 255, 255, 0.08);
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-ficha .row {
+    --bs-gutter-x: 1.1vh;
+    --bs-gutter-y: 0.95vh;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-ficha .citizen-info-all {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    row-gap: 1vh;
+    padding-bottom: 3vh;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-ficha::-webkit-scrollbar {
+    width: 0.45vh;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-ficha::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 0.4vh;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-ficha::-webkit-scrollbar-thumb {
+    background: rgba(var(--primary-rgb), 0.85);
+    border-radius: 0.4vh;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-ficha::-webkit-scrollbar-thumb:hover {
+    background: rgba(var(--primary-rgb), 1);
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-ficha .citizen-photo {
+    width: 100%;
+    height: 21vh;
+    border-radius: 1vh;
+    border: 0.1vh solid rgba(255, 255, 255, 0.14);
+    outline: 0.1vh dashed rgba(255, 255, 255, 0.16);
+    outline-offset: 0.2vh;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-ficha .citizen-photo .edit-photo {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-ficha .citizen-photo:hover .edit-photo {
+    opacity: 1;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-ficha .flex-data {
+    display: grid !important; /* override bootstrap d-flex */
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 0.7vh;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-ficha .flex-data > .w-33 {
+    width: auto !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-ficha .info-box {
+    background: rgba(255, 255, 255, 0.03);
+    border: 0.1vh solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.8vh;
+    padding: 1.1vh;
+    margin: 0 !important;
+    min-height: 6vh;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-ficha .info-box-title {
+    font-size: 1vh;
+    color: rgba(255, 255, 255, 0.52);
+    text-transform: uppercase;
+    letter-spacing: 0.03vh;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-ficha .info-box-value {
+    font-size: 1.28vh;
+    color: #fff;
+    font-weight: 600;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-ficha .agent-grade,
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-ficha .agent-placa {
+    background: rgba(255, 255, 255, 0.03);
+    border: 0.1vh solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.6vh;
+    padding: 0.35vh 0.8vh;
+    font-size: 1.2vh;
+    line-height: 1.5;
+    box-shadow: none;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-ficha h5 {
+    font-family: 'Evogria', sans-serif;
+    font-size: 1.2vh;
+    letter-spacing: 0.05vh;
+    color: rgba(255, 255, 255, 0.95);
+    margin: 0;
+    padding-bottom: 0.8vh;
+    border-bottom: 0.1vh solid rgba(255, 255, 255, 0.1);
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-ficha .new-button {
+    font-size: 1.02vh;
+    color: rgba(255, 255, 255, 0.62);
+    text-transform: uppercase;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-ficha .new-button:hover {
+    color: #fff;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-ficha .list-group {
+    gap: 0.6vh;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-ficha .list-group-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 0.1vh solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.55vh;
+    padding: 0.85vh;
+    color: #fff;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-ficha .list-group-item h5 {
+    border: none;
+    padding-bottom: 0;
+    margin-bottom: 0.35vh;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.1vh;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-ficha .list-group-item p {
+    margin: 0;
+    font-size: 1.03vh;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-ficha .note-info {
+    margin-top: 0.45vh;
+    gap: 0.9vh;
+    font-size: 0.92vh;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-ficha .citizen-info-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7vh;
+    max-height: 24vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-ficha .condecoracion {
+    width: calc(33.333% - 0.5vh);
+    /* min-height: 10vh; */
+    height: 100%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 0.1vh solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.65vh;
+    padding: 0.6vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-ficha .condecoracion .text-muted {
+    font-size: 1.2vh;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-ficha .condecoracion .condecoracion-title {
+    font-size: 0.95vh;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-ficha .btn.btn-danger {
+    margin-top: 0.8vh !important;
+    margin-bottom: 1.8vh !important;
+    min-height: 3.2vh;
+    padding: 0.55vh 1.3vh;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.55vh;
+}
+
+.police-redesign .tab-content-menu .tab.show .manage-layout .agent-ficha .citizen-info-all > .col-12:last-child {
+    padding-bottom: 1.6vh;
+}
+
+/* Plantilla replicada en CÁMARAS */
+.police-redesign .tab-content-menu .tab.show .cameras-layout {
+    position: relative !important;
+    height: calc(100% - 2.6vh) !important;
+    min-height: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    margin: 0.8vh 0 1.8vh 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .cameras-layout > .row {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 1.5vh !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .cameras-layout > .row > .col-4 {
+    flex: 1 1 0 !important;
+    max-width: none !important;
+    width: auto !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .cameras-layout .h-max,
+.police-redesign .tab-content-menu .tab.show .cameras-layout .bg-box {
+    height: 100% !important;
+    max-height: 100% !important;
+    min-height: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .cameras-layout > .row > .col-4 > .bg-box {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .cameras-layout .camera-list {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    overflow-y: auto !important;
+}
+
+/* ==============================
+   CAMARAS - CARDS CONSOLIDADAS
+   (single source of truth)
+   ============================== */
+.police-redesign .tab-content-menu .tab.show .cameras-layout .camera-list {
+    width: 100% !important;
+    margin-top: 0.8vh !important;
+    padding: 0.2vh !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .cameras-layout .camera-list .camera {
+    display: flex !important;
+    align-items: center !important;
+    align-self: stretch !important;
+    flex: 0 0 auto !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    gap: 0.7vh !important;
+    min-height: 6.2vh !important;
+    padding: 0.72vh 0.78vh !important;
+    margin-bottom: 0.55vh !important;
+    border-radius: 0.7vh !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 0.1vh solid rgba(255, 255, 255, 0.14) !important;
+    box-shadow: none !important;
+    transition: all 0.2s ease !important;
+    cursor: pointer !important;
+}
+
+/* La regla global .scale-in (height:100%) rompe las cards de cámaras */
+.police-redesign .tab-content-menu .tab.show .cameras-layout .camera-list .camera.scale-in {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 6.2vh !important;
+    max-height: none !important;
+    display: flex !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .cameras-layout .camera-list .camera:hover {
+    background: rgba(255, 255, 255, 0.09) !important;
+    border-color: rgba(255, 255, 255, 0.22) !important;
+    transform: none !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .cameras-layout .camera-list .camera img {
+    width: 4.2vh !important;
+    height: 4.2vh !important;
+    min-width: 4.2vh !important;
+    margin-right: 0 !important;
+    border-radius: 0.45vh !important;
+    object-fit: cover !important;
+    border: 0.1vh solid rgba(255, 255, 255, 0.12) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .cameras-layout .camera-list .camera .camera-info {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.2vh !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .cameras-layout .camera-list .camera .camera-title {
+    font-family: 'Evogria', sans-serif !important;
+    font-size: 1.1vh !important;
+    line-height: 1.15 !important;
+    text-transform: uppercase !important;
+    color: rgba(255, 255, 255, 0.95) !important;
+    letter-spacing: 0.03vh !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+.police-redesign .tab-content-menu .tab.show .cameras-layout .camera-list .camera .camera-owner {
+    width: max-content !important;
+    max-width: 100% !important;
+    font-family: 'Quicksand', sans-serif !important;
+    font-size: 0.9vh !important;
+    line-height: 1.1 !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    background: rgba(var(--primary-rgb), 0.85) !important;
+    border-radius: 0.3vh !important;
+    padding: 0.16vh 0.38vh !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+/* Tarjetas de vehículos en la lista con estilo ORIGEN */
+.police-redesign .tab-content-menu .police-vehicles .white-block.vehicle {
+    background: rgba(0, 0, 0, 0.8);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.8vh;
+    outline: 0.1vh dashed rgba(255, 255, 255, 0.15);
+    outline-offset: 0.3vh;
+    padding: 1.2vh 1.5vh;
+    margin-bottom: 1vh;
+    transition: all 0.3s cubic-bezier(0, .53, .11, .995);
+    cursor: pointer;
+    animation: slideDown 0.5s ease;
+}
+
+.police-redesign .tab-content-menu .police-vehicles .white-block.vehicle:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--primary-color);
+    outline-color: rgba(var(--primary-rgb), 0.3);
+    box-shadow: 0 0.5vh 2vh rgba(0, 0, 0, 0.4), 0 0 1.5vh rgba(var(--primary-rgb), 0.4);
+}
+
+.police-redesign .tab-content-menu .police-vehicles .white-block.vehicle .icon {
+    color: var(--primary-color);
+    font-size: 1.8vh;
+    margin-right: 1vh;
+}
+
+.police-redesign .tab-content-menu .police-vehicles .white-block.vehicle .vehicle-name {
+    font-family: 'Evogria', sans-serif;
+    font-size: 1.6vh;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.1vh;
+}
+
+.police-redesign .tab-content-menu .police-vehicles .white-block.vehicle span {
+    color: var(--primary-color);
+    text-shadow: 0 0 0.5vh rgba(var(--primary-rgb), 0.5);
+}
+
+/* Panel de datos del vehículo (lado derecho) */
+.police-redesign .tab-content-menu .police-vehicles .ficha-vehiculo {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) rgba(0, 0, 0, 0.2);
+}
+
+.police-redesign .tab-content-menu .police-vehicles .ficha-vehiculo::-webkit-scrollbar {
+    width: 0.5vh;
+}
+
+.police-redesign .tab-content-menu .police-vehicles .ficha-vehiculo::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 0.5vh;
+}
+
+.police-redesign .tab-content-menu .police-vehicles .ficha-vehiculo::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 0.5vh;
+}
+
+.police-redesign .tab-content-menu .police-vehicles .ficha-vehiculo::-webkit-scrollbar-thumb:hover {
+    background: rgba(var(--primary-rgb), 0.8);
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-2vh);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Citizen list */
+.police-redesign .tab-content-menu .police-citizen .search-list {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) rgba(0, 0, 0, 0.2);
+}
+
+.police-redesign .tab-content-menu .police-citizen .search-list::-webkit-scrollbar {
+    width: 0.5vh;
+}
+
+.police-redesign .tab-content-menu .police-citizen .search-list::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 0.5vh;
+}
+
+.police-redesign .tab-content-menu .police-citizen .search-list::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
+    border-radius: 0.5vh;
+}
+
+.police-redesign .tab-content-menu .police-citizen .search-list::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2));
+}
+
+/* Citizen items */
+.police-redesign .tab-content-menu .police-citizen .citizen {
+    padding: 1vh 1.2vh;
+    background: rgba(255, 255, 255, 0.03);
+    border: 0.1vh solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.7vh;
+    margin-bottom: 0.8vh;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.police-redesign .tab-content-menu .police-citizen .citizen:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.police-redesign .tab-content-menu .police-citizen .citizen.active,
+.police-redesign .tab-content-menu .police-citizen .citizen.selected {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Citizen ficha (profile scroll) */
+.police-redesign .tab-content-menu .police-citizen .citizen-scroll {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) rgba(0, 0, 0, 0.2);
+}
+
+.police-redesign .tab-content-menu .police-citizen .citizen-scroll::-webkit-scrollbar {
+    width: 0.5vh;
+}
+
+.police-redesign .tab-content-menu .police-citizen .citizen-scroll::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 0.5vh;
+}
+
+.police-redesign .tab-content-menu .police-citizen .citizen-scroll::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
+    border-radius: 0.5vh;
+}
+
+.police-redesign .tab-content-menu .police-citizen .citizen-scroll::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2));
+}
+
+/* Search box ajustes */
+.police-redesign .tab-content-menu .police-citizen .search-box {
+    box-shadow: none;
+}
+
+.police-redesign .tab-content-menu .police-citizen .search-box:hover {
+    box-shadow: none;
+}
+
+/* Empty state para cuando no hay ciudadano seleccionado */
+.police-redesign .tab-content-menu .police-citizen .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 1.5vh;
+    padding: 4vh;
+}
+
+.police-redesign .tab-content-menu .police-citizen .empty-icon {
+    width: 8vh;
+    height: 8vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.police-redesign .tab-content-menu .police-citizen .empty-icon i {
+    font-size: 3.5vh;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.police-redesign .tab-content-menu .police-citizen .empty-text {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.2vh;
+    color: rgba(255, 255, 255, 0.4);
+    text-align: center;
+    line-height: 1.6;
+    max-width: 35vh;
+}
+
+/* Mensaje de "Realiza una búsqueda" */
+.police-redesign .tab-content-menu .police-citizen .citizen-item.text-muted {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5vh;
+    padding: 4vh 2vh;
+    background: transparent;
+    border: none;
+}
+
+.police-redesign .tab-content-menu .police-citizen .citizen-item.text-muted .citizen-name {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1vh;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.2vh;
+    color: rgba(255, 255, 255, 0.4);
+    text-align: center;
+}
+
+.police-redesign .tab-content-menu .police-citizen .citizen-item.text-muted .citizen-name::before {
+    content: '\f002';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 3.5vh;
+    color: rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 8vh;
+    height: 8vh;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+}
+
+/* Mensaje de placeholder (selecciona un ciudadano) */
+.police-redesign .tab-content-menu .police-citizen .citizen-scroll h1 {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.4vh;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: none;
+    letter-spacing: 0.05vh;
+    margin-bottom: 2vh;
+}
+
+.police-redesign .tab-content-menu .police-citizen .citizen-scroll img {
+    width: 15vh;
+    height: auto;
+    opacity: 0.3;
+    filter: grayscale(100%);
+}
+
+/* Placeholder cuando no hay ciudadano seleccionado */
+.police-redesign .tab-content-menu .police-citizen .citizen-scroll>div[style*="height: 73vh"] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2vh;
+    height: 100% !important;
+    padding: 3vh;
+}
+
+.police-redesign .tab-content-menu .police-citizen .citizen-scroll>div[style*="height: 73vh"] h1 {
+    font-family: 'Evogria', 'Quicksand', sans-serif;
+    font-size: 1.6vh;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.1vh;
+    text-align: center;
+    margin: 0;
+}
+
+.police-redesign .tab-content-menu .police-citizen .citizen-scroll>div[style*="height: 73vh"] img {
+    width: 12vh;
+    height: 12vh;
+    opacity: 0.3;
+    filter: grayscale(100%);
+}
+
+/* ========================================
+   ESTILOS DE LA FICHA DE CIUDADANO
+   ======================================== */
+
+/* Foto del ciudadano */
+.police-redesign .tab-content-menu .police-citizen .citizen-photo {
+    width: 100%;
+    height: 25vh;
+    background-size: cover;
+    background-position: center;
+    border-radius: 1vh;
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    outline: 0.1vh dashed rgba(255, 255, 255, 0.15);
+    outline-offset: 0.3vh;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    margin-bottom: 2vh;
+}
+
+.police-redesign .tab-content-menu .police-citizen .citizen-photo .edit-photo {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.police-redesign .tab-content-menu .police-citizen .citizen-photo:hover .edit-photo {
+    opacity: 1;
+}
+
+.police-redesign .tab-content-menu .police-citizen .citizen-photo .edit-photo img {
+    width: 8vh;
+    height: 8vh;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.police-redesign .tab-content-menu .police-citizen .citizen-photo:hover .edit-photo img {
+    transform: rotate(45deg) scale(1.1);
+}
+
+/* Grid de información del ciudadano */
+.police-redesign .tab-content-menu .police-citizen .flex-data {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5vh;
+    margin-bottom: 2vh;
+}
+
+.police-redesign .tab-content-menu .police-citizen .info-box-title {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1vh;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.05vh;
+    margin-bottom: 0.5vh;
+}
+
+.police-redesign .tab-content-menu .police-citizen .info-box-value {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.2vh;
+    color: white;
+    font-weight: 600;
+}
+
+/* Sección de búsqueda/captura y peligrosidad */
+.police-redesign .tab-content-menu .police-citizen .wanted,
+.police-redesign .tab-content-menu .police-citizen .dangerous {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+    padding: 1.5vh;
+    background: rgba(0, 0, 0, 0.3);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.8vh;
+    margin-bottom: 2vh;
+}
+
+.police-redesign .tab-content-menu .police-citizen .wanted h5,
+.police-redesign .tab-content-menu .police-citizen .dangerous h5 {
+    font-family: 'Evogria', sans-serif;
+    font-size: 1.2vh;
+    color: white;
+    text-transform: uppercase;
+    margin: 0;
+    letter-spacing: 0.05vh;
+}
+
+.police-redesign .tab-content-menu .police-citizen .btn-group {
+    display: flex;
+    gap: 0.8vh;
+    width: 100%;
+}
+
+.police-redesign .tab-content-menu .police-citizen .btn-check {
+    display: none;
+}
+
+.police-redesign .tab-content-menu .police-citizen .btn-outline-primary {
+    flex: 1;
+    padding: 1vh 2vh;
+    background: rgba(255, 255, 255, 0.05);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 0.5vh;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: 'Evogria', sans-serif;
+    font-size: 1.2vh;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.police-redesign .tab-content-menu .police-citizen .btn-outline-primary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+.police-redesign .tab-content-menu .police-citizen .btn-check:checked+.btn-outline-primary {
+    background: var(--primary-color);
+    border-color: var(--primary-color) !important;
+    color: white;
+}
+
+/* Secciones expandibles (notas, multas, etc) */
+.police-redesign .tab-content-menu .police-citizen .citizen-info-all>div {
+    background: rgba(0, 0, 0, 0.3);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.8vh;
+    padding: 1.5vh;
+    margin-bottom: 1.5vh;
+}
+
+.police-redesign .tab-content-menu .police-citizen .citizen-info-all h5 {
+    font-family: 'Evogria', sans-serif;
+    font-size: 1.3vh;
+    color: white;
+    text-transform: uppercase;
+    margin: 0 0 1.5vh 0;
+    padding-bottom: 1vh;
+    border-bottom: 0.1vh solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    letter-spacing: 0.05vh;
+    font-weight: 700;
+}
+
+.police-redesign .tab-content-menu .police-citizen .new-button {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.1vh;
+    color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.police-redesign .tab-content-menu .police-citizen .new-button:hover {
+    color: white;
+}
+
+/* Listas (notas, multas, etc) */
+.police-redesign .tab-content-menu .police-citizen .list-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8vh;
+}
+
+.police-redesign .tab-content-menu .police-citizen .list-group-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 0.1vh solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.6vh;
+    padding: 1.2vh;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.police-redesign .tab-content-menu .police-citizen .list-group-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+.police-redesign .tab-content-menu .police-citizen .list-group-item h5 {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.1vh;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.police-redesign .tab-content-menu .police-citizen .list-group-item p {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.1vh;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0.5vh 0 0 0;
+}
+
+/* No notes/multas/etc */
+.police-redesign .tab-content-menu .police-citizen .no-notes {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.4);
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.1vh;
+    padding: 2vh;
+}
+
+/* Scrolls de las listas */
+.police-redesign .tab-content-menu .police-citizen .citizen-info-container,
+.police-redesign .tab-content-menu .police-citizen .citizen-info-container-mini {
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) rgba(0, 0, 0, 0.2);
+}
+
+.police-redesign .tab-content-menu .police-citizen .citizen-info-container::-webkit-scrollbar,
+.police-redesign .tab-content-menu .police-citizen .citizen-info-container-mini::-webkit-scrollbar {
+    width: 0.5vh;
+}
+
+.police-redesign .tab-content-menu .police-citizen .citizen-info-container::-webkit-scrollbar-track,
+.police-redesign .tab-content-menu .police-citizen .citizen-info-container-mini::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 0.5vh;
+}
+
+.police-redesign .tab-content-menu .police-citizen .citizen-info-container::-webkit-scrollbar-thumb,
+.police-redesign .tab-content-menu .police-citizen .citizen-info-container-mini::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
+    border-radius: 0.5vh;
+}
+
+.police-redesign .tab-content-menu .police-citizen .citizen-info-container::-webkit-scrollbar-thumb:hover,
+.police-redesign .tab-content-menu .police-citizen .citizen-info-container-mini::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2));
+}
+
+/* Ajuste de altura para los contenedores */
+.police-redesign .tab-content-menu .police-citizen .citizen-info-container {
+    max-height: 30vh;
+}
+
+.police-redesign .tab-content-menu .police-citizen .citizen-info-container-mini {
+    max-height: 20vh;
+}
+
+/* Botones de acción en items */
+.police-redesign .tab-content-menu .police-citizen .delete-button,
+.police-redesign .tab-content-menu .police-citizen .edit-button,
+.police-redesign .tab-content-menu .police-citizen .pin-button {
+    padding: 0.6vh 1vh;
+    background: rgba(255, 255, 255, 0.05);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.4vh;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1vh;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.police-redesign .tab-content-menu .police-citizen .delete-button:hover {
+    background: rgba(239, 68, 68, 0.2);
+    border-color: rgba(239, 68, 68, 0.4);
+    color: #ef4444;
+}
+
+.police-redesign .tab-content-menu .police-citizen .edit-button:hover,
+.police-redesign .tab-content-menu .police-citizen .pin-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.15);
+    color: white;
+}
+
+/* Tags/informes */
+.police-redesign .tab-content-menu .police-citizen .citizen-informes .informe {
+    background: rgba(255, 255, 255, 0.1);
+    border: 0.1vh solid rgba(255, 255, 255, 0.15);
+    border-radius: 2vh;
+    padding: 0.6vh 1.5vh;
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.1vh;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    margin-right: 0.8vh;
+    margin-bottom: 0.8vh;
+}
+
+.police-redesign .tab-content-menu .police-citizen .citizen-informes .informe:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.25);
+    transform: scale(1.05);
+}
+
+/* Contenedor principal de citizen-ficha */
+.police-redesign .tab-content-menu .police-citizen .citizen-ficha {
+    height: 100%;
+    overflow-y: auto;
+}
+
+/* Multas pagadas */
+.police-redesign .tab-content-menu .police-citizen .multa-pagada {
+    background: rgba(34, 197, 94, 0.1) !important;
+    border-color: rgba(34, 197, 94, 0.2) !important;
+}
+
+/* Nota información */
+.police-redesign .tab-content-menu .police-citizen .note-info {
+    display: flex;
+    gap: 1vh;
+    margin-top: 0.5vh;
+    font-size: 1vh;
+    color: rgba(255, 255, 255, 0.5);
+    font-family: 'Quicksand', sans-serif;
+}
+
+/* Inputs en notas */
+.police-redesign .tab-content-menu .police-citizen .note-title,
+.police-redesign .tab-content-menu .police-citizen .note-text {
+    width: 100%;
+    padding: 1vh;
+    background: rgba(0, 0, 0, 0.3);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5vh;
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.1vh;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.police-redesign .tab-content-menu .police-citizen .note-title:focus,
+.police-redesign .tab-content-menu .police-citizen .note-text:focus {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.police-redesign .tab-content-menu .police-citizen .note-text {
+    min-height: 8vh;
+    resize: vertical;
+}
+
+/* Botones secundarios (cancel, save, etc) */
+.police-redesign .tab-content-menu .police-citizen .btn-secondary {
+    padding: 0.8vh 1.5vh;
+    background: rgba(255, 255, 255, 0.05);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5vh;
+    color: white;
+    font-family: 'Evogria', sans-serif;
+    font-size: 1.1vh;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.police-redesign .tab-content-menu .police-citizen .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Botones de acción (añadir licencia, añadir multa, etc) */
+.police-redesign .tab-content-menu .police-citizen .new-license,
+.police-redesign .tab-content-menu .police-citizen .new-multa,
+.police-redesign .tab-content-menu .police-citizen .new-weapon,
+.police-redesign .tab-content-menu .police-citizen .add-insurance {
+    padding: 0.8vh 1.5vh;
+    background: rgba(255, 255, 255, 0.05);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5vh;
+    color: white;
+    font-family: 'Evogria', sans-serif;
+    font-size: 1vh;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5vh;
+}
+
+.police-redesign .tab-content-menu .police-citizen .new-license:hover,
+.police-redesign .tab-content-menu .police-citizen .new-multa:hover,
+.police-redesign .tab-content-menu .police-citizen .new-weapon:hover,
+.police-redesign .tab-content-menu .police-citizen .add-insurance:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-0.2vh);
+}
+
+/* ========================================
+   ESTILOS DE LA FICHA DE CIUDADANO
+   ======================================== */
+
+/* Foto del ciudadano */
+.police-redesign .tab-content-menu .police-citizen .citizen-photo {
+    width: 100%;
+    height: 25vh;
+    background-size: cover;
+    background-position: center;
+    border-radius: 1vh;
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    outline: 0.1vh dashed rgba(255, 255, 255, 0.15);
+    outline-offset: 0.3vh;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    margin-bottom: 2vh;
+}
+
+.police-redesign .tab-content-menu .police-citizen .citizen-photo .edit-photo {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.police-redesign .tab-content-menu .police-citizen .citizen-photo:hover .edit-photo {
+    opacity: 1;
+}
+
+.police-redesign .tab-content-menu .police-citizen .citizen-photo .edit-photo img {
+    width: 8vh;
+    height: 8vh;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.police-redesign .tab-content-menu .police-citizen .citizen-photo:hover .edit-photo img {
+    transform: rotate(45deg) scale(1.1);
+}
+
+/* Grid de información del ciudadano */
+.police-redesign .tab-content-menu .police-citizen .flex-data {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5vh;
+    margin-bottom: 2vh;
+}
+
+.police-redesign .tab-content-menu .police-citizen .info-box-title {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1vh;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.05vh;
+    margin-bottom: 0.5vh;
+}
+
+.police-redesign .tab-content-menu .police-citizen .info-box-value {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.2vh;
+    color: white;
+    font-weight: 600;
+}
+
+/* Sección de búsqueda/captura y peligrosidad */
+.police-redesign .tab-content-menu .police-citizen .wanted,
+.police-redesign .tab-content-menu .police-citizen .dangerous {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+    padding: 1.5vh;
+    background: rgba(0, 0, 0, 0.3);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.8vh;
+    margin-bottom: 2vh;
+}
+
+.police-redesign .tab-content-menu .police-citizen .wanted h5,
+.police-redesign .tab-content-menu .police-citizen .dangerous h5 {
+    font-family: 'Evogria', sans-serif;
+    font-size: 1.2vh;
+    color: white;
+    text-transform: uppercase;
+    margin: 0;
+    letter-spacing: 0.05vh;
+}
+
+.police-redesign .tab-content-menu .police-citizen .btn-group {
+    display: flex;
+    gap: 0.8vh;
+    width: 100%;
+}
+
+.police-redesign .tab-content-menu .police-citizen .btn-check {
+    display: none;
+}
+
+.police-redesign .tab-content-menu .police-citizen .btn-outline-primary {
+    flex: 1;
+    padding: 1vh 2vh;
+    background: rgba(255, 255, 255, 0.05);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 0.5vh;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: 'Evogria', sans-serif;
+    font-size: 1.2vh;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.police-redesign .tab-content-menu .police-citizen .btn-outline-primary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+.police-redesign .tab-content-menu .police-citizen .btn-check:checked+.btn-outline-primary {
+    background: var(--primary-color);
+    border-color: var(--primary-color) !important;
+    color: white;
+}
+
+/* Secciones expandibles (notas, multas, etc) */
+.police-redesign .tab-content-menu .police-citizen .citizen-info-all>div {
+    background: rgba(0, 0, 0, 0.3);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.8vh;
+    padding: 1.5vh;
+    margin-bottom: 1.5vh;
+}
+
+.police-redesign .tab-content-menu .police-citizen .citizen-info-all h5 {
+    font-family: 'Evogria', sans-serif;
+    font-size: 1.3vh;
+    color: white;
+    text-transform: uppercase;
+    margin: 0 0 1.5vh 0;
+    padding-bottom: 1vh;
+    border-bottom: 0.1vh solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.police-redesign .tab-content-menu .police-citizen .new-button {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.1vh;
+    color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.police-redesign .tab-content-menu .police-citizen .new-button:hover {
+    color: white;
+}
+
+/* Listas (notas, multas, etc) */
+.police-redesign .tab-content-menu .police-citizen .list-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8vh;
+}
+
+.police-redesign .tab-content-menu .police-citizen .list-group-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 0.1vh solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.6vh;
+    padding: 1.2vh;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.police-redesign .tab-content-menu .police-citizen .list-group-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+.police-redesign .tab-content-menu .police-citizen .list-group-item h5 {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.1vh;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.police-redesign .tab-content-menu .police-citizen .list-group-item p {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.1vh;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0.5vh 0 0 0;
+}
+
+/* No notes/multas/etc */
+.police-redesign .tab-content-menu .police-citizen .no-notes {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.4);
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.1vh;
+    padding: 2vh;
+}
+
+/* Scrolls de las listas */
+.police-redesign .tab-content-menu .police-citizen .citizen-info-container,
+.police-redesign .tab-content-menu .police-citizen .citizen-info-container-mini {
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) rgba(0, 0, 0, 0.2);
+}
+
+.police-redesign .tab-content-menu .police-citizen .citizen-info-container::-webkit-scrollbar,
+.police-redesign .tab-content-menu .police-citizen .citizen-info-container-mini::-webkit-scrollbar {
+    width: 0.5vh;
+}
+
+.police-redesign .tab-content-menu .police-citizen .citizen-info-container::-webkit-scrollbar-track,
+.police-redesign .tab-content-menu .police-citizen .citizen-info-container-mini::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 0.5vh;
+}
+
+.police-redesign .tab-content-menu .police-citizen .citizen-info-container::-webkit-scrollbar-thumb,
+.police-redesign .tab-content-menu .police-citizen .citizen-info-container-mini::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
+    border-radius: 0.5vh;
+}
+
+.police-redesign .tab-content-menu .police-citizen .citizen-info-container::-webkit-scrollbar-thumb:hover,
+.police-redesign .tab-content-menu .police-citizen .citizen-info-container-mini::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2));
+}
+
+/* Ajuste de altura para los contenedores */
+.police-redesign .tab-content-menu .police-citizen .citizen-info-container {
+    max-height: 30vh;
+}
+
+.police-redesign .tab-content-menu .police-citizen .citizen-info-container-mini {
+    max-height: 20vh;
+}
+
+/* Botones de acción en items */
+.police-redesign .tab-content-menu .police-citizen .delete-button,
+.police-redesign .tab-content-menu .police-citizen .edit-button,
+.police-redesign .tab-content-menu .police-citizen .pin-button {
+    padding: 0.6vh 1vh;
+    background: rgba(255, 255, 255, 0.05);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.4vh;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1vh;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.police-redesign .tab-content-menu .police-citizen .delete-button:hover {
+    background: rgba(239, 68, 68, 0.2);
+    border-color: rgba(239, 68, 68, 0.4);
+    color: #ef4444;
+}
+
+.police-redesign .tab-content-menu .police-citizen .edit-button:hover,
+.police-redesign .tab-content-menu .police-citizen .pin-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.15);
+    color: white;
+}
+
+/* Tags/informes */
+.police-redesign .tab-content-menu .police-citizen .citizen-informes .informe {
+    background: rgba(255, 255, 255, 0.1);
+    border: 0.1vh solid rgba(255, 255, 255, 0.15);
+    border-radius: 2vh;
+    padding: 0.6vh 1.5vh;
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.1vh;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    margin-right: 0.8vh;
+    margin-bottom: 0.8vh;
+}
+
+.police-redesign .tab-content-menu .police-citizen .citizen-informes .informe:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.25);
+    transform: scale(1.05);
+}
+
+/* Contenedor principal de citizen-ficha */
+.police-redesign .tab-content-menu .police-citizen .citizen-ficha {
+    height: 100%;
+    overflow-y: auto;
+}
+
+/* Multas pagadas */
+.police-redesign .tab-content-menu .police-citizen .multa-pagada {
+    background: rgba(34, 197, 94, 0.1) !important;
+    border-color: rgba(34, 197, 94, 0.2) !important;
+}
+
+/* Nota información */
+.police-redesign .tab-content-menu .police-citizen .note-info {
+    display: flex;
+    gap: 1vh;
+    margin-top: 0.5vh;
+    font-size: 1vh;
+    color: rgba(255, 255, 255, 0.5);
+    font-family: 'Quicksand', sans-serif;
+}
+
+/* Inputs en notas */
+.police-redesign .tab-content-menu .police-citizen .note-title,
+.police-redesign .tab-content-menu .police-citizen .note-text {
+    width: 100%;
+    padding: 1vh;
+    background: rgba(0, 0, 0, 0.3);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5vh;
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.1vh;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.police-redesign .tab-content-menu .police-citizen .note-title:focus,
+.police-redesign .tab-content-menu .police-citizen .note-text:focus {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.police-redesign .tab-content-menu .police-citizen .note-text {
+    min-height: 8vh;
+    resize: vertical;
+}
+
+/* Botones secundarios (cancel, save, etc) */
+.police-redesign .tab-content-menu .police-citizen .btn-secondary {
+    padding: 0.8vh 1.5vh;
+    background: rgba(255, 255, 255, 0.05);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5vh;
+    color: white;
+    font-family: 'Evogria', sans-serif;
+    font-size: 1.1vh;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.police-redesign .tab-content-menu .police-citizen .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Botones de acción (añadir licencia, añadir multa, etc) */
+.police-redesign .tab-content-menu .police-citizen .new-license,
+.police-redesign .tab-content-menu .police-citizen .new-multa,
+.police-redesign .tab-content-menu .police-citizen .new-weapon,
+.police-redesign .tab-content-menu .police-citizen .add-insurance {
+    padding: 0.8vh 1.5vh;
+    background: rgba(255, 255, 255, 0.05);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5vh;
+    color: white;
+    font-family: 'Evogria', sans-serif;
+    font-size: 1vh;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5vh;
+}
+
+.police-redesign .tab-content-menu .police-citizen .new-license:hover,
+.police-redesign .tab-content-menu .police-citizen .new-multa:hover,
+.police-redesign .tab-content-menu .police-citizen .new-weapon:hover,
+.police-redesign .tab-content-menu .police-citizen .add-insurance:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-0.2vh);
+}
+
+.police .central .lista-unidades .unidad {
+	background-color: rgba(255, 255, 255, 67%);
+	border-radius: 10px;
+	padding: 0.7vh;
+	color: black;
+	font-weight: 500;
+	font-size: 1.5vh;
+	transition: 0.5s var(--cubic) all;
+	user-select: none;
+	margin: 0.5vh;
+}
+
+.police .central .lista-unidades .unidad:hover {
+	background-color: rgba(255, 255, 255, 0.925);
+}
+
+.police .tab .central .unidad:nth-child(odd) {
+	margin-right: 0.3vh;
+}
+
+.police .tab .central .unidad:nth-child(even) {
+	margin-left: 0.3vh;
+}
+
+.police .tab .central .unidad:hover {
+	background-color: rgb(255, 255, 255);
+}
+
+.police .tab .central .unidad i {
+	margin-right: 1vh;
+}

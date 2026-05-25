@@ -1,0 +1,190 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Bebas+Neue&family=Outfit:wght@400;900&display=swap");
+
+:root {
+    --color-orange: #ff6b00;
+    --color-petrol: #00a8cc;
+    --color-bg-dark: #0f0f0f;
+    --glass-bg: rgba(12, 12, 14, 0.92);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --font-main: 'Quicksand', sans-serif;
+    --font-accent: 'Bebas Neue', sans-serif;
+    --radius-lg: 16px;
+    --radius-md: 10px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+    height: 100vh;
+    width: 100vw;
+}
+
+main.svelte-15i9213 {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 100;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 5vh;
+}
+
+.card-container.svelte-14wand6 {
+    position: relative;
+    width: 52vh;
+    height: 32.7vh;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    padding: 2.5vh;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vh;
+    overflow: hidden;
+    font-family: var(--font-main);
+    color: #fff;
+    backdrop-filter: none;
+}
+
+/* Elite Essence Signature Corner Fold */
+.card-container.svelte-14wand6::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(225deg, var(--color-orange) 50%, transparent 50%);
+    z-index: 20;
+}
+
+.comic-bg.svelte-14wand6 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(135deg, rgba(255, 107, 0, 0.05) 0%, transparent 50%, rgba(0, 168, 204, 0.05) 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.header.svelte-14wand6 {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-bottom: 2px solid var(--color-orange);
+    padding-bottom: 0.5vh;
+    margin-right: 3vh; /* Room for the corner fold */
+}
+
+.main-title.svelte-14wand6 {
+    font-family: var(--font-accent);
+    font-size: 4.5vh;
+    color: #fff;
+    line-height: 1;
+    margin: 0;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.sub-label.svelte-14wand6 {
+    font-family: var(--font-main);
+    font-weight: 600;
+    font-size: 1.4vh;
+    color: var(--color-orange);
+    margin: 0.2vh 0 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.content.svelte-14wand6 {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    gap: 2.5vh;
+    align-items: center;
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+.photo-frame.svelte-14wand6 {
+    width: 17vh;
+    height: 17vh;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.photo-frame img.svelte-14wand6 {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.info-grid.svelte-14wand6 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1vh 1.5vh;
+    flex-grow: 1;
+}
+
+.info-item.svelte-14wand6 {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1vh;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 0.6vh 1vh;
+    border-radius: 6px;
+    position: relative;
+}
+
+/* Left Accent Line */
+.info-item.svelte-14wand6::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 60%;
+    background: linear-gradient(to bottom, var(--color-orange), var(--color-petrol));
+}
+
+.label.svelte-14wand6 {
+    font-family: var(--font-main);
+    font-weight: 700;
+    color: var(--color-petrol);
+    font-size: 1.1vh;
+    text-transform: uppercase;
+    line-height: normal;
+}
+
+.value.svelte-14wand6 {
+    font-family: var(--font-main);
+    font-weight: 500;
+    color: #fff;
+    font-size: 1.6vh;
+    text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 14.5vh;
+}
+

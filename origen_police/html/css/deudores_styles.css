@@ -1,0 +1,134 @@
+/* ========================================
+   ESTILOS DE DEUDORES (MODAL) - ESTILO ORIGEN
+   ======================================== */
+
+/* Input de búsqueda en modal de deudores */
+.c-modal .buscar-deudor {
+    background: rgba(0, 0, 0, 0.3) !important;
+    border: 0.1vh solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 0.5vh !important;
+    padding: 1vh 1.5vh !important;
+    color: white !important;
+    font-family: 'Quicksand', sans-serif !important;
+    font-size: 1.1vh !important;
+    outline: none !important;
+    transition: all 0.3s ease !important;
+}
+
+.c-modal .buscar-deudor:focus {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.c-modal .buscar-deudor::placeholder {
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Contenedor scroll del modal */
+.c-modal .scroll-citizen-modal {
+    max-height: 66vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 1vh;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) rgba(0, 0, 0, 0.2);
+}
+
+.c-modal .scroll-citizen-modal::-webkit-scrollbar {
+    width: 0.5vh;
+}
+
+.c-modal .scroll-citizen-modal::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 0.5vh;
+}
+
+.c-modal .scroll-citizen-modal::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
+    border-radius: 0.5vh;
+}
+
+.c-modal .scroll-citizen-modal::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2));
+}
+
+/* Tarjetas de ciudadanos deudores */
+.c-modal .citizen-box {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 0.1vh solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 0.8vh !important;
+    overflow: hidden !important;
+    transition: all 0.3s ease !important;
+    cursor: pointer !important;
+    box-shadow: none !important;
+}
+
+.c-modal .citizen-box:hover {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border-color: var(--primary-color) !important;
+    transform: translateY(-0.3vh) !important;
+    box-shadow: 0 0.5vh 2vh rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Imagen del ciudadano */
+.c-modal .citizen-box .citizen-image {
+    width: 100%;
+    height: 18vh;
+    background-size: cover;
+    background-position: center;
+    border-bottom: 0.1vh solid rgba(255, 255, 255, 0.1);
+}
+
+/* Nombre del ciudadano */
+.c-modal .citizen-box .citizen-name {
+    font-family: 'Evogria', sans-serif !important;
+    font-size: 1.2vh !important;
+    line-height: 1.5 !important;
+    text-align: center !important;
+    border-bottom: 0.1vh solid rgba(255, 255, 255, 0.1) !important;
+    padding: 1vh 0.5vh !important;
+    margin-bottom: 0.8vh !important;
+    color: white !important;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+/* Información del ciudadano */
+.c-modal .citizen-box .citizen-id {
+    color: rgba(255, 255, 255, 0.7) !important;
+    text-transform: uppercase !important;
+    font-size: 1vh !important;
+    font-family: 'Quicksand', sans-serif !important;
+    font-weight: 400 !important;
+    width: 100% !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.5vh !important;
+}
+
+.c-modal .citizen-box .citizen-id i {
+    color: var(--primary-color);
+    font-size: 1.1vh;
+}
+
+/* Cantidad de deuda (en rojo) */
+.c-modal .citizen-box .citizen-id.text-danger {
+    color: #ef4444 !important;
+    font-weight: 700 !important;
+    font-size: 1.3vh !important;
+    margin-top: 0.5vh !important;
+}
+
+/* Mensaje de no deudores */
+.c-modal .scroll-citizen-modal h5 {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.2vh;
+    padding: 3vh;
+}

@@ -1,0 +1,17 @@
+import { c as createLucideIcon } from './index-f7c7acfe.js';
+
+/**
+ * @license lucide-react v0.476.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+
+
+const __iconNode = [
+  ["path", { d: "m9 7-5 5 5 5", key: "j5w590" }],
+  ["path", { d: "m15 7 5 5-5 5", key: "1bl6da" }]
+];
+const ChevronsLeftRight = createLucideIcon("ChevronsLeftRight", __iconNode);
+
+export { __iconNode, ChevronsLeftRight as default };

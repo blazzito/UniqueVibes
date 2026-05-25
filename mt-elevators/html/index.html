@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elevator UI</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+</head>
+
+<body class="hidden">
+
+    <div id="background-window">
+        <img src="https://r2.fivemanage.com/5nOEpfNnpHW9tfpLTFBoV/8sk1d.jpg" alt="Background Image" id="background-image">
+        <div class="elevator-container hidden">
+            <div class="graffiti-overlay">ELEVADOR</div>
+
+            <div class="elevator-ui">
+                <div class="display-panel">
+                    <div class="glitch-overlay"></div>
+                    <div class="scanlines"></div>
+                    <div class="display-header">
+                        <i id="direction-up" class="fas fa-chevron-up arrow"></i>
+                        <span>PISO</span>
+                        <i id="direction-down" class="fas fa-chevron-down arrow"></i>
+                    </div>
+                    <div class="floor-display" id="current-floor">
+                        <span id="digit-1">0</span><span id="digit-2">1</span>
+                    </div>
+                </div>
+
+                <div class="control-pad">
+                    <div class="floor-columns" id="floor-columns"></div>
+                    <div class="emergency-section">
+                        <button id="stop-button" class="stop-button">
+                            <i class="fas fa-hand-paper"></i>
+                            <span>PARAR</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" id="close-password-modal"><i class="fas fa-times"></i></span>
+            <h2>Acceso Restringido</h2>
+            <label for="password-input">Introduce el código:</label>
+            <input type="password" id="password-input" placeholder="Código de acceso">
+            <button id="submit-password">INGRESAR</button>
+            <div id="error-message" class="error-message"></div>
+        </div>
+    </div>
+
+    <!-- NEW CUSTOM CONFIRMATION MODAL -->
+    <div id="confirmation-modal" class="modal">
+        <div class="modal-content">
+            <h2 id="confirm-title">Confirmación</h2>
+            <p id="confirm-message">¿Estás seguro de realizar esta acción?</p>
+            <div class="confirm-actions" style="display: flex; gap: 10px; margin-top: 20px;">
+                <button id="confirm-yes" class="comic-btn Success" style="flex: 1;">ACEPTAR</button>
+                <button id="confirm-no" class="comic-btn Danger" style="flex: 1;">CANCELAR</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="admin-panel" class="hidden">
+        <div class="admin-sidebar">
+            <h1 class="comic-title">ADMIN PANEL</h1>
+            <div class="admin-actions">
+                <button id="btn-create-group" class="comic-btn Primary">NUEVO GRUPO</button>
+            </div>
+            <div id="admin-elevator-list">
+                <!-- Group list items will go here -->
+            </div>
+            <button id="btn-close-admin" class="comic-btn Danger">CERRAR</button>
+        </div>
+
+        <div id="admin-editor" class="admin-main hidden">
+            <h2 class="comic-subtitle" id="editor-title">EDITAR GRUPO</h2>
+            <div class="comic-card">
+                <div class="input-group">
+                    <label>ID DEL GRUPO</label>
+                    <input type="text" id="input-group-name" placeholder="ej: ems-1" class="comic-input">
+                </div>
+                <div id="floors-container">
+                    <!-- Floors list will go here -->
+                </div>
+                <div class="editor-actions">
+                    <button id="btn-add-floor" class="comic-btn Success">AÑADIR PISO</button>
+                    <button id="btn-save-group" class="comic-btn Primary">GUARDAR TODO</button>
+                    <button id="btn-delete-group" class="comic-btn Danger">ELIMINAR GRUPO</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <audio id="button-sound" src="sounds/button.ogg"></audio>
+    <audio id="arrival-sound" src="sounds/arrival.ogg"></audio>
+    <audio id="ambient-sound" src="sounds/ambient.ogg" loop></audio>
+</body>
+
+</html>

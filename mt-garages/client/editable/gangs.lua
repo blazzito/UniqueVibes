@@ -1,0 +1,114 @@
+gangName = nil
+gangGrade = nil
+oldGangName = nil
+oldGangGrade = nil
+
+---------------------------------------------------
+-- GANGS
+---------------------------------------------------
+
+CreateThread(function()
+    while Framework == nil do Wait(5) end
+    
+    function loadGang()
+        while (Fr.GetPlayerData() == nil) do
+            Wait(100)
+        end
+
+        PlayerData = Fr.GetPlayerData()
+        oldGangGrade = gangGrade
+        oldGangName = gangName
+        gangName = getGangName()
+        getGangGrade(function(gr)
+            gangGrade = gr
+
+            if oldGangName then
+                for k, v in pairs(createdGarages) do
+                    local cfg = garages[tostring(k)]
+                    if cfg.Gang then
+                        if cfg.Gang.name == oldGangName then
+                            RemoveBlip(v.Blip)
+                        end
+                    end
+                end
+            end
+
+            if gangName then
+                for k, v in pairs(createdGarages) do
+                    local cfg = garages[tostring(k)]
+                    if cfg.Gang then
+                        -- For owned type, show blip if gang matches (grade check not needed)
+                        local shouldShowBlip = false
+                        if cfg.Gang.type == "owned" then
+                            shouldShowBlip = true
+                        elseif gangGrade and cfg.Gang.grade and gangGrade >= cfg.Gang.grade then
+                            shouldShowBlip = true
+                        end
+                        
+                        if cfg.Gang.name == gangName and shouldShowBlip then
+                            local coords 
+                            if cfg.Type ~= "car" then
+                                coords = vec3(cfg.AccessPoint.x, cfg.AccessPoint.y, cfg.AccessPoint.z)
+                            else
+                                coords = vec3(cfg.CenterOfZone.x, cfg.CenterOfZone.y, cfg.CenterOfZone.z)
+                            end
+
+                            if cfg.blipDisabled == 0 or not cfg.blipDisabled then
+                                createdGarages[k].Blip = SH.addBlip(coords, Config.Blips[cfg.Type].blipId, Config.Blips[cfg.Type].blipColor, TranslateIt('blip_type_' .. cfg.Type) .. ": " .. capitalizeWords(gangName))
+                            end
+                        end
+                    end
+                end
+            end
+        end)
+    end
+
+    function reloadGangGarages(gang)
+        oldGangGrade = gangGrade
+        oldGangName = gangName
+        gangName = getGangName()
+        getGangGrade(function(gr)
+            gangGrade = gr
+            hideTextUI() 
+
+            if oldGangName then
+                for k, v in pairs(createdGarages) do
+                    local cfg = garages[tostring(k)]
+                    if cfg.Gang then
+                        if cfg.Gang.name == oldGangName then
+                            RemoveBlip(v.Blip)
+                        end
+                    end
+                end
+            end
+
+            if gangName then
+                for k, v in pairs(createdGarages) do
+                    local cfg = garages[tostring(k)]
+                    if cfg.Gang then
+                        -- For owned type, show blip if gang matches (grade check not needed)
+                        local shouldShowBlip = false
+                        if cfg.Gang.type == "owned" then
+                            shouldShowBlip = true
+                        elseif gangGrade and cfg.Gang.grade and gangGrade >= cfg.Gang.grade then
+                            shouldShowBlip = true
+                        end
+                        
+                        if cfg.Gang.name == gangName and shouldShowBlip then
+                            local coords 
+                            if cfg.Type ~= "car" then
+                                coords = vec3(cfg.AccessPoint.x, cfg.AccessPoint.y, cfg.AccessPoint.z)
+                            else
+                                coords = vec3(cfg.CenterOfZone.x, cfg.CenterOfZone.y, cfg.CenterOfZone.z)
+                            end
+
+                            if cfg.blipDisabled == 0 or not cfg.blipDisabled then
+                                createdGarages[k].Blip = SH.addBlip(coords, Config.Blips[cfg.Type].blipId, Config.Blips[cfg.Type].blipColor, TranslateIt('blip_type_' .. cfg.Type) .. ": " .. capitalizeWords(gangName))
+                            end
+                        end
+                    end
+                end
+            end
+        end)
+    end
+end)

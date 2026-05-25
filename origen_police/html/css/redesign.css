@@ -1,0 +1,3646 @@
+.police-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vh;
+}
+
+.police-bg-wrapper {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.police-bg-wrapper .bg-gradient {
+    position: absolute;
+    inset: 0;
+    background: #000000d9;
+}
+
+.police-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8vh;
+    padding: 1.2vh 2vh 0.8vh 2vh;
+    flex-shrink: 0;
+    margin: 2vh 3vh 0 3vh;
+    background: rgba(0, 0, 0, 0.7);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 1vh;
+    outline: 0.1vh dashed rgba(255, 255, 255, 0.15);
+    outline-offset: 0.3vh;
+    animation: slideDown 0.5s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-2vh);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.police-header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.police-header-left {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3vh;
+    width: 100%;
+}
+
+.police-header-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    min-width: 23vh;
+}
+
+.police-logo-icon {
+    width: 4vh;
+    height: 4vh;
+    object-fit: contain;
+    filter: drop-shadow(0 0 1vh rgba(var(--primary-rgb), 0.5));
+}
+
+.police-header-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3vh;
+}
+
+.police-header-info .police-logo-text {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 2vh;
+    letter-spacing: 0.05vh;
+    font-family: 'Evogria', sans-serif;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.police-header-info .subtitle {
+    font-size: 1vh;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 500;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.police-agent-badge {
+    display: flex;
+    align-items: center;
+    gap: 1.5vh;
+}
+
+.police-agent-badge .badge-icon {
+    width: 3vh;
+    height: 3vh;
+    color: var(--primary-color);
+}
+
+.police-agent-badge .badge-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2vh;
+}
+
+.police-agent-badge .badge-name {
+    font-family: 'Evogria', sans-serif;
+    font-size: 1.3vh;
+    color: white;
+}
+
+.police-agent-badge .badge-rank {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1vh;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+}
+
+.police-duty-badge {
+    display: flex;
+    align-items: center;
+    gap: 1vh;
+    padding: 0.6vh 1.2vh;
+    background: rgba(255, 255, 255, 0.05);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.6vh;
+    cursor: pointer;
+    transition: all 0.3s var(--cubic);
+}
+
+.police-duty-badge i {
+    font-size: 1.4vh;
+    width: 1.4vh;
+    height: 1.4vh;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.police-duty-badge .duty-status {
+    font-family: 'Evogria', sans-serif;
+    font-size: 1vh;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.police-duty-badge.on-duty i,
+.police-duty-badge.on-duty .duty-status {
+    color: #22c55e;
+}
+
+.police-duty-badge.on-duty {
+    background: rgba(34, 197, 94, 0.1);
+    border-color: rgba(34, 197, 94, 0.3);
+}
+
+.police-duty-badge.off-duty i,
+.police-duty-badge.off-duty .duty-status {
+    color: #ef4444;
+}
+
+.police-duty-badge.off-duty {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: rgba(239, 68, 68, 0.3);
+}
+
+.police-actions-bar {
+    display: flex;
+    gap: 0.8vh;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.police.police-redesign .multas-container {
+    z-index: 1600 !important;
+}
+
+.police-action-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.6vh;
+    padding: 0.6vh 1.2vh;
+    background: rgba(255, 255, 255, 0.05);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5vh;
+    color: white;
+    font-size: 1vh;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s var(--cubic);
+    outline: none;
+}
+
+.police-action-btn i {
+    font-size: 1.2vh;
+}
+
+.police-action-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+
+/* BotÃ³n de Duty/Servicio en el header */
+.police-header-left .police-action-btn.duty-button {
+    padding: 0.6vh 1.2vh;
+    gap: 1vh;
+    font-size: 1vh;
+    font-family: 'Evogria', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.police-header-left .police-action-btn.duty-button i {
+    font-size: 1.4vh;
+    width: 1.4vh;
+    height: 1.4vh;
+}
+
+.police-header-left .police-action-btn.duty-button .service-tag {
+    font-family: 'Evogria', sans-serif;
+    font-size: 1vh;
+    text-transform: uppercase;
+    letter-spacing: 0.05vh;
+}
+
+.police-header-left .police-action-btn.duty-button.on-duty {
+    background: rgba(34, 197, 94, 0.1);
+}
+
+.police-header-left .police-action-btn.duty-button.on-duty i,
+.police-header-left .police-action-btn.duty-button.on-duty .service-tag {
+    color: #22c55e;
+}
+
+.police-header-left .police-action-btn.duty-button.on-duty:hover {
+    background: rgba(34, 197, 94, 0.2);
+}
+
+.police-header-left .police-action-btn.duty-button.off-duty {
+    background: rgba(239, 68, 68, 0.1);
+}
+
+.police-header-left .police-action-btn.duty-button.off-duty i,
+.police-header-left .police-action-btn.duty-button.off-duty .service-tag {
+    color: #ef4444;
+}
+
+.police-header-left .police-action-btn.duty-button.off-duty:hover {
+    background: rgba(239, 68, 68, 0.2);
+}
+
+.inner-header {
+    display: flex;
+    align-items: center;
+    gap: 2vh;
+}
+
+.police .duty-button {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.85) 0%, rgba(16, 185, 129, 0.65) 100%);
+    padding: 2vh;
+    border-radius: 1vh;
+    text-transform: uppercase;
+    font-family: 'Quicksand';
+    color: white;
+    cursor: pointer;
+    user-select: none;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+}
+
+.police-action-btn.radio {
+    position: relative;
+}
+
+.police-action-btn.radio.active::after {
+    content: '';
+    position: absolute;
+    top: 0.5vh;
+    right: 0.5vh;
+    width: 0.8vh;
+    height: 0.8vh;
+    background: #22c55e;
+    border-radius: 50%;
+    box-shadow: 0 0 0.5vh #22c55e;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(1.2);
+    }
+}
+
+.police-stats-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8vh;
+    padding: 0.6vh 1vh;
+    min-height: 4.2vh;
+    background: rgba(0, 0, 0, 0.3);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5vh;
+}
+
+.police-stats-btn .stat-icon {
+    width: 2vh;
+    height: 2vh;
+    color: var(--primary-color);
+    font-size: 1.6vh;
+}
+
+.police-stats-btn .stat-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1vh;
+}
+
+.police-stats-btn .stat-value {
+    font-family: 'Evogria', sans-serif;
+    font-size: 1.2vh;
+    color: white;
+    line-height: 1;
+}
+
+.police-stats-btn .stat-label {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.9vh;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    line-height: 1;
+}
+
+/* Stats sin info (solo valor) */
+.police-stats-btn .stat-value:only-child {
+    font-size: 1.3vh;
+}
+
+/* Estado de servicio activo */
+.police-stats-btn.on-service,
+.police-stats-btn.service-tag.on-service {
+    background: rgba(var(--primary-rgb), 0.2);
+    border-color: rgba(var(--primary-rgb), 0.4);
+    box-shadow: 0 0 1vh rgba(var(--primary-rgb), 0.3);
+}
+
+.police-stats-btn.on-service .stat-icon {
+    color: #22c55e;
+    filter: drop-shadow(0 0 0.5vh rgba(34, 197, 94, 0.6));
+}
+
+.police-stats-btn.on-service .stat-value {
+    color: #22c55e;
+}
+
+/* ===== TABS REDESIGN ===== */
+.police-redesign .tabs-list {
+    display: flex !important;
+    align-items: center;
+    gap: 0.5vh;
+    flex: 1;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.police-redesign .tabs-list::-webkit-scrollbar {
+    height: 0.3vh;
+}
+
+.police-redesign .tabs-list::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.police-redesign .tabs-list::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 0.2vh;
+}
+
+.police-redesign .tabs-bar .tab {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8vh;
+    height: 2.95vh;
+    min-height: 2.95vh;
+    padding: 0 1.15vh !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 0.1vh solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 0.8vh !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-size: 1.05vh !important;
+    font-family: 'Evogria', sans-serif !important;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease !important;
+    white-space: nowrap;
+    backdrop-filter: none !important;
+}
+
+.police-redesign .tabs-bar .tab:hover:not(.active) {
+    opacity: 0.7;
+}
+
+.police-redesign .tabs-bar .tab.active {
+    background: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    color: white !important;
+}
+
+.police-redesign .tabs-bar .tab-name {
+    padding: 0 !important;
+}
+
+.police-redesign .tabs-bar .tab-close {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 1.4vh;
+    height: 1.4vh;
+    border-radius: 0.3vh;
+    margin: 0 !important;
+    transition: all 0.3s;
+}
+
+.police-redesign .tabs-bar .tab-close i {
+    font-size: 0.8vh !important;
+    background: none !important;
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.police-redesign .tabs-bar .tab-close:hover {
+    background: rgba(239, 68, 68, 0.3) !important;
+}
+
+.police-redesign .tabs-bar .tab-close:hover i {
+    color: #ef4444 !important;
+}
+
+.police-redesign .tabs-bar .tab.add {
+    width: 2.95vh;
+    min-width: 2.95vh !important;
+    height: 2.95vh;
+    min-height: 2.95vh;
+    padding: 0 !important;
+    font-size: 1.05vh !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 0.1vh solid rgba(255, 255, 255, 0.1) !important;
+    margin-right: 0.45vh !important;
+}
+
+.police-redesign .tabs-bar .tab.add:hover {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-color: rgba(255, 255, 255, 0.25) !important;
+    color: white !important;
+}
+
+/* ===== TAB CONTENT CONTAINER ===== */
+.police-redesign .tab-content-menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    display: none;
+}
+
+.police-redesign .tab-content-menu.has-tabs {
+    display: block;
+}
+
+.police-redesign .tab-content-menu .tab {
+    display: none;
+    width: 100%;
+    /* height: 100%; */
+    animation: fadeSlideIn 0.28s ease;
+    padding: 0 3vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Ajuste vertical para FEDERAL/DEUDORES: evita recorte inferior */
+.police-redesign .tab-content-menu .police-federal .informes > .row,
+.police-redesign .tab-content-menu .police-debtors .informes > .row {
+    height: calc(100% - 1.6vh) !important;
+    margin-top: 0.8vh;
+    margin-bottom: 0.8vh;
+}
+
+@keyframes fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(0.6vh);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.police-redesign .tab-content-menu .tab.show {
+    display: block !important;
+    height: 100%;
+}
+
+/* Ocultar el home cuando hay tabs activos */
+.police-redesign .tab-content-menu.has-tabs ~ .police-main {
+    display: none !important;
+}
+
+/* Asegurar que los app-container dentro de tabs funcionen correctamente */
+.police-redesign .tab-content-menu .app-container {
+    width: 100%;
+    height: 100%;
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.police-redesign .tab-content-menu .scale-in {
+    display: block !important;
+    width: 100%;
+    height: 100%;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: scale(1) !important;
+}
+
+/* Forzar visibilidad de todos los contenedores de tabs */
+.police-redesign .tab-content-menu .tab.show .app-container,
+.police-redesign .tab-content-menu .tab.show .scale-in,
+.police-redesign .tab-content-menu .tab.show > div {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* AnimaciÃ³n para nuevos tabs */
+@keyframes slideInTab {
+    from {
+        opacity: 0;
+        transform: translateY(-1vh);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.police-redesign .tabs-list .tab.new-tab {
+    animation: slideInTab 0.3s ease;
+}
+
+/* ===== CONTENT AREA ===== */
+.police-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vh;
+    flex: 1;
+    height: 100%;
+    position: relative;
+    padding: 0 3vh 2vh 3vh;
+    overflow: hidden;
+}
+
+.police-redesign .police-content {
+    position: relative;
+}
+
+.police-main {
+    display: flex;
+    flex-direction: row;
+    gap: 2vh;
+    height: 100%;
+    overflow: hidden;
+    flex: 1;
+}
+
+/* ===== SIDEBAR IZQUIERDA (Servicios) ===== */
+.police-sidebar {
+    width: 42vh;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8vh;
+    background: rgba(0, 0, 0, 0.7);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 1vh;
+    padding: 1.3vh;
+    flex-shrink: 0;
+    overflow-y: auto;
+    box-sizing: border-box;
+    animation: slideInLeft 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-5vh);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.police-sidebar-header {
+    display: flex;
+    align-items: center;
+    gap: 0.8vh;
+    font-size: 1.2vh;
+    color: rgba(255, 255, 255, 0.95);
+    font-family: 'Evogria', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.08vh;
+    padding-bottom: 1vh;
+    border-bottom: 0.1vh solid rgba(255, 255, 255, 0.1);
+}
+
+.police-sidebar-header i {
+    font-size: 1.4vh;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* ===== MAIN CONTENT AREA (Mapa) ===== */
+.police-main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+    background: rgba(0, 0, 0, 0.7);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 1vh;
+    padding: 2vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Ocultar elementos del diseÃ±o viejo */
+.police-redesign .logo {
+    display: none !important;
+}
+
+/* Tabs bar visible con nuevo diseÃ±o */
+.police-redesign .tabs-bar {
+    position: static !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0.5vh 0 0 0 !important;
+    background: transparent !important;
+    display: flex !important;
+    align-items: center;
+    gap: 0.6vh;
+    flex-direction: row !important;
+}
+
+/* Reglas eliminadas - causaban conflicto con la visualizaciÃ³n de tabs */
+
+/* ===== UTILITIES ===== */
+.spinning {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* ===== HOME/DASHBOARD ===== */
+.police-home-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vh;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Cards de Servicios en Sidebar - GRID */
+.police-services-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.65vh;
+    flex: 0 0 auto;
+    overflow: visible;
+    padding-right: 0;
+}
+
+.police-services-list::-webkit-scrollbar {
+    width: 0.4vh;
+}
+
+.police-services-list::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 0.2vh;
+}
+
+.police-services-list::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 0.2vh;
+}
+
+.police-services-list::-webkit-scrollbar-thumb:hover {
+    background: rgba(var(--primary-rgb), 0.8);
+}
+
+.police-service-card {
+    background: rgba(27, 27, 27, 0.05);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.7vh;
+    padding: 1.2vh 0.8vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6vh;
+    cursor: pointer;
+    transition: all 0.3s var(--cubic);
+    position: relative;
+    overflow: hidden;
+    min-height: 7.8vh;
+}
+
+.police-service-card .service-badge {
+    position: absolute;
+    top: 0.55vh;
+    right: 0.55vh;
+    min-width: 1.75vh;
+    height: 1.75vh;
+    padding: 0 0.45vh;
+    border-radius: 0.9vh;
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.95), rgba(220, 38, 38, 0.95));
+    color: #fff;
+    font-family: 'Evogria', sans-serif;
+    font-size: 0.82vh;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 0.8vh rgba(239, 68, 68, 0.45);
+    z-index: 2;
+    pointer-events: none;
+    display: none !important; /* Badges de notificacion desactivados */
+}
+
+.police-service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 0.3vh;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(var(--primary-rgb), 0.4) 20%, 
+        rgba(var(--primary-rgb), 0.8) 50%, 
+        rgba(var(--primary-rgb), 0.4) 80%, 
+        transparent 100%
+    );
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.police-service-card:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(var(--primary-rgb), 0.65);
+    transform: none;
+    box-shadow: 0 0.8vh 2vh rgba(0, 0, 0, 0.7), 0 0 2vh rgba(var(--primary-rgb), 0.28);
+}
+
+.police-service-card:hover::before {
+    opacity: 1;
+}
+
+.police-service-card.active-service {
+    background: rgba(var(--primary-rgb), 0.2);
+    border-color: rgba(var(--primary-rgb), 0.8);
+    box-shadow: 0 0 1.8vh rgba(var(--primary-rgb), 0.35), inset 0 0 0 0.1vh rgba(var(--primary-rgb), 0.3);
+}
+
+.police-service-card.active-service::before {
+    opacity: 1;
+}
+
+.police-service-card .service-icon {
+    width: 4vh;
+    height: 4vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    flex-shrink: 0;
+}
+
+.police-service-card .service-icon i {
+    font-size: 1.8vh;
+    color: white;
+}
+
+.police-service-card .service-icon img {
+    width: 1.8vh;
+    height: 1.8vh;
+    object-fit: contain;
+}
+
+.police-service-card .service-name {
+    font-family: 'Evogria', sans-serif;
+    font-size: 1.02vh;
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.05vh;
+    line-height: 1.2;
+}
+
+/* Card de Radio */
+.police-action-buttons {
+    display: flex;
+    gap: 0.8vh;
+    margin-bottom: 0.8vh;
+    margin-top: 0.5vh;
+    height: 100%;
+}
+
+.police-action-card {
+    flex: 1;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3));
+    border: 0.15vh solid rgba(255, 255, 255, 0.15);
+    border-radius: 0.7vh;
+    padding: 1vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5vh;
+    cursor: pointer;
+    transition: all 0.3s var(--cubic);
+    position: relative;
+    overflow: hidden;
+    min-height: 7.5vh;
+}
+
+.police-action-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(var(--primary-rgb), 0.1), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.police-action-card:hover {
+    border-color: rgba(var(--primary-rgb), 0.5);
+    transform: translateY(-0.3vh);
+    box-shadow: 0 1vh 2vh rgba(0, 0, 0, 0.7), 0 0 1.5vh rgba(var(--primary-rgb), 0.3);
+}
+
+.police-action-card:hover::after {
+    opacity: 1;
+}
+
+.police-action-card.active {
+    background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.3), rgba(var(--primary-rgb), 0.1));
+    border-color: var(--primary-color);
+    box-shadow: 0 0 2vh rgba(var(--primary-rgb), 0.5);
+}
+
+.police-action-card .action-icon {
+    width: 4vh;
+    height: 4vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.3), rgba(var(--primary-rgb), 0.15));
+    border-radius: 50%;
+    border: 0.12vh solid rgba(var(--primary-rgb), 0.4);
+    transition: all 0.3s;
+    position: relative;
+    z-index: 1;
+}
+
+.police-action-card.active .action-icon {
+    background: rgba(var(--primary-rgb), 0.4);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 2vh rgba(var(--primary-rgb), 0.7);
+}
+
+.police-action-card:hover .action-icon {
+    transform: scale(1.12);
+    box-shadow: 0 0 1.8vh rgba(var(--primary-rgb), 0.7);
+}
+
+.police-action-card .action-icon i,
+.police-action-card .action-icon img {
+    font-size: 1.9vh;
+    color: var(--primary-color);
+    width: 1.9vh;
+    height: 1.9vh;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    object-fit: contain;
+}
+
+.police-action-card.active .action-icon i,
+.police-action-card.active .action-icon img {
+    color: var(--primary-color);
+    filter: drop-shadow(0 0 0.5vh rgba(var(--primary-rgb), 0.8));
+}
+
+.police-action-card .action-label {
+    font-family: 'Evogria', sans-serif;
+    font-size: 1.16vh;
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.15vh;
+    position: relative;
+    z-index: 1;
+}
+
+/* Radio sin icono: subir tamaÃ±o para equilibrar el bloque */
+.police-action-card.radio-button .action-label {
+    font-size: 1.35vh;
+    letter-spacing: 0.18vh;
+}
+
+.police-action-card.radio-button .action-status {
+    font-size: 0.9vh;
+    letter-spacing: 0.08vh;
+    opacity: 0.8;
+}
+
+.police-action-card.radio-button.active .action-status {
+    color: #22c55e;
+    text-shadow: 0 0 0.6vh rgba(34, 197, 94, 0.55);
+}
+
+.police-action-card .action-status {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.1vh;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+}
+
+.police-action-card.active .action-status {
+    color: var(--primary-color);
+}
+
+/* SecciÃ³n de bienvenida */
+.police-welcome-section {
+    background: rgba(0, 0, 0, 0.3);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 1vh;
+    padding: 3vh;
+    text-align: center;
+}
+
+.police-welcome-section h3 {
+    font-family: 'Evogria', sans-serif;
+    font-size: 2vh;
+    color: white;
+    margin: 0 0 1.5vh 0;
+    text-transform: uppercase;
+    letter-spacing: 0.1vh;
+}
+
+.police-welcome-section p {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.2vh;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+    margin: 0;
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+/* Botones de la barra inferior */
+.police-bottom-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6vh;
+    padding-top: 0.8vh;
+    border-top: 0.1vh solid rgba(255, 255, 255, 0.1);
+    margin-top: auto;
+}
+
+.police-bottom-btn {
+    flex: 1;
+    min-width: calc(50% - 0.3vh);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5vh;
+    padding: 0.7vh 0.8vh;
+    background: rgba(255, 255, 255, 0.05);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5vh;
+    color: white;
+    font-size: 0.96vh;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s var(--cubic);
+    outline: none;
+}
+
+.police-bottom-btn i {
+    font-size: 1.1vh;
+}
+
+.police-bottom-btn:hover {
+    background: rgba(var(--primary-rgb), 0.2);
+    border-color: rgba(var(--primary-rgb), 0.5);
+}
+
+/* Empty state reusable for all modules */
+.police-redesign .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2vh;
+    text-align: center;
+    height: 100%;
+}
+
+/* .police-redesign .empty-state .empty-state-icon {
+    width: 5.4vh;
+    height: 5.4vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+}
+
+.police-redesign .empty-state .empty-state-icon i {
+    font-size: 2vh;
+    color: rgba(255, 255, 255, 0.45);
+} */
+
+.police-redesign .empty-state .empty-state-text {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 5vh;
+    text-transform: uppercase;
+    letter-spacing: 0.05vh;
+    color: rgba(255, 255, 255, 0.56);
+}
+
+/* Scrollbars unificadas */
+.police-redesign .tabs-list,
+.police-redesign .tab-content-menu .tab,
+.police-redesign .search-list,
+.police-redesign .citizen-scroll,
+.police-redesign .alerts-panel-list,
+.police-redesign .robberies-list {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) rgba(0, 0, 0, 0.22);
+}
+
+.police-redesign .tabs-list::-webkit-scrollbar,
+.police-redesign .tab-content-menu .tab::-webkit-scrollbar,
+.police-redesign .search-list::-webkit-scrollbar,
+.police-redesign .citizen-scroll::-webkit-scrollbar,
+.police-redesign .alerts-panel-list::-webkit-scrollbar,
+.police-redesign .robberies-list::-webkit-scrollbar {
+    width: 0.48vh;
+    height: 0.48vh;
+}
+
+.police-redesign .tabs-list::-webkit-scrollbar-track,
+.police-redesign .tab-content-menu .tab::-webkit-scrollbar-track,
+.police-redesign .search-list::-webkit-scrollbar-track,
+.police-redesign .citizen-scroll::-webkit-scrollbar-track,
+.police-redesign .alerts-panel-list::-webkit-scrollbar-track,
+.police-redesign .robberies-list::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.18);
+    border-radius: 0.5vh;
+}
+
+.police-redesign .tabs-list::-webkit-scrollbar-thumb,
+.police-redesign .tab-content-menu .tab::-webkit-scrollbar-thumb,
+.police-redesign .search-list::-webkit-scrollbar-thumb,
+.police-redesign .citizen-scroll::-webkit-scrollbar-thumb,
+.police-redesign .alerts-panel-list::-webkit-scrollbar-thumb,
+.police-redesign .robberies-list::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.12));
+    border-radius: 0.5vh;
+}
+
+/* Microfeedback uniforme */
+.police-redesign .btn-sound,
+.police-redesign .police-action-btn,
+.police-redesign .police-service-card,
+.police-redesign .police-action-card,
+.police-redesign .police-bottom-btn,
+.police-redesign .tabs-bar .tab,
+.police-redesign .btn-search,
+.police-redesign .white-block {
+    transition: all 0.25s var(--cubic);
+}
+
+.police-redesign .btn-sound:active,
+.police-redesign .police-action-btn:active,
+.police-redesign .police-service-card:active,
+.police-redesign .police-action-card:active,
+.police-redesign .police-bottom-btn:active,
+.police-redesign .tabs-bar .tab:active {
+    transform: scale(0.985);
+}
+
+/* Modo compacto opcional (Ctrl+Shift+M) */
+.police.police-redesign.compact-mode .police-header {
+    padding: 0.8vh 1.4vh 0.6vh 1.4vh;
+    margin: 1.2vh 2.2vh 0 2.2vh;
+}
+
+.police.police-redesign.compact-mode .police-content {
+    padding: 0.8vh 2.2vh 1.2vh;
+    gap: 1vh;
+}
+
+.police.police-redesign.compact-mode .police-sidebar {
+    max-width: 22.5vh;
+    min-width: 22.5vh;
+}
+
+.police.police-redesign.compact-mode .police-service-card {
+    min-height: 7.5vh;
+    padding: 0.9vh 0.7vh;
+}
+
+/* ======================================================
+   DISPATCH (CENTRAL) - FIT A UNA PANTALLA (REDESIGN)
+   ====================================================== */
+.police.police-redesign .tab-content-menu .police-central,
+.police.police-redesign .tab-content-menu .police-central .central,
+.police.police-redesign .tab-content-menu .police-central .centra-container {
+    height: 100% !important;
+    min-height: 0 !important;
+}
+
+.police.police-redesign .tab-content-menu .police-central .central {
+    padding: 0.9vh !important;
+    overflow: hidden !important;
+}
+
+.police.police-redesign .tab-content-menu .police-central .centra-container > .row {
+    height: 100% !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 1vh !important;
+}
+
+.police.police-redesign .tab-content-menu .police-central .centra-container > .row > .col-4 {
+    flex: 0 0 calc(33.333% - 0.7vh) !important;
+    max-width: calc(33.333% - 0.7vh) !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.9vh !important;
+    min-height: 0 !important;
+}
+
+/* Neutralizar alturas inline legacy */
+.police.police-redesign .tab-content-menu .police-central .info-box[style*="height:"] {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+}
+
+.police.police-redesign .tab-content-menu .police-central .info-box {
+    outline: none !important;
+}
+
+/* Columna 1: agentes + radio/frecuencias */
+.police.police-redesign .tab-content-menu .police-central .col-4:first-child > .info-box:first-child {
+    flex: 0 0 44% !important;
+    min-height: 0 !important;
+}
+
+.police.police-redesign .tab-content-menu .police-central .col-4:first-child > .info-box:nth-child(2) {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+}
+
+/* Columna 2: accesos + mapa + radio interna */
+.police.police-redesign .tab-content-menu .police-central .col-4:nth-child(2) .central-acceso-rapido {
+    flex: 0 0 4.8vh !important;
+    min-height: 4.8vh !important;
+    margin-bottom: 0 !important;
+}
+
+.police.police-redesign .tab-content-menu .police-central .col-4:nth-child(2) .zona-mapa {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    height: auto !important;
+    max-height: none !important;
+}
+
+.police.police-redesign .tab-content-menu .police-central .col-4:nth-child(2) > .info-box:last-child {
+    flex: 0 0 24% !important;
+    min-height: 0 !important;
+}
+
+/* Columna 3: emergencias + Ãºltimas alertas */
+.police.police-redesign .tab-content-menu .police-central .col-4:nth-child(3) > .info-box:first-child {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+}
+
+.police.police-redesign .tab-content-menu .police-central .col-4:nth-child(3) > .info-box:nth-child(2) {
+    flex: 0 0 31% !important;
+    min-height: 0 !important;
+}
+
+/* Evitar desborde legacy en emergencias */
+.police.police-redesign .tab-content-menu .police-central .alerts-container {
+    padding-bottom: 0 !important;
+    position: relative !important;
+    min-height: 0 !important;
+}
+
+.police.police-redesign .tab-content-menu .police-central .selector-container {
+    position: static !important;
+    margin-top: 0.8vh !important;
+}
+
+.police.police-redesign .tab-content-menu .police-central .unidad-selector {
+    height: auto !important;
+    min-height: 3.2vh !important;
+}
+
+.police.police-redesign .tab-content-menu .police-central .unidades-dispo {
+    height: auto !important;
+    max-height: 10vh !important;
+}
+
+/* Scroll interno por bloque */
+.police.police-redesign .tab-content-menu .police-central .table-agentes-container,
+.police.police-redesign .tab-content-menu .police-central .table-alerts-container,
+.police.police-redesign .tab-content-menu .police-central .chat-messages,
+.police.police-redesign .tab-content-menu .police-central .central-freq,
+.police.police-redesign .tab-content-menu .police-central .box-scroll-emergencias {
+    min-height: 0 !important;
+    overflow-y: auto !important;
+}
+
+/* Fallback real runtime: Dispatch se inyecta como ".tab .central" */
+.police.police-redesign .tab-content-menu .tab .central {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    padding: 1.1vh !important;
+    overflow: hidden !important;
+}
+
+.police.police-redesign .tab-content-menu .tab .central .centra-container,
+.police.police-redesign .tab-content-menu .tab .central .centra-container > .row {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+}
+
+.police.police-redesign .tab-content-menu .tab .central .centra-container > .row {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 1.15vh !important;
+    margin: 0 !important;
+}
+
+.police.police-redesign .tab-content-menu .tab .central .centra-container > .row > .col-4 {
+    flex: 0 0 calc(33.333% - 0.7vh) !important;
+    max-width: calc(33.333% - 0.7vh) !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1vh !important;
+    min-height: 0 !important;
+}
+
+.police.police-redesign .tab-content-menu .tab .central .info-box {
+    padding: 0.95vh !important;
+}
+
+.police.police-redesign .tab-content-menu .tab .central .info-box[style*="height"] {
+    min-height: 0 !important;
+    max-height: none !important;
+}
+
+.police.police-redesign .tab-content-menu .tab .central .col-4:first-child > .info-box:first-child {
+    flex: 0 0 44% !important;
+}
+
+.police.police-redesign .tab-content-menu .tab .central .col-4:first-child > .info-box:nth-child(2) {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+}
+
+.police.police-redesign .tab-content-menu .tab .central .col-4:nth-child(2) .central-acceso-rapido {
+    flex: 0 0 4.8vh !important;
+    min-height: 4.8vh !important;
+    margin-bottom: 0 !important;
+}
+
+.police.police-redesign .tab-content-menu .tab .central .col-4:nth-child(2) .zona-mapa {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    height: auto !important;
+    max-height: none !important;
+}
+
+.police.police-redesign .tab-content-menu .tab .central .col-4:nth-child(2) > .info-box:last-child {
+    flex: 0 0 26% !important;
+    min-height: 0 !important;
+}
+
+.police.police-redesign .tab-content-menu .tab .central .col-4:nth-child(3) > .info-box:first-child {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+}
+
+.police.police-redesign .tab-content-menu .tab .central .col-4:nth-child(3) > .info-box:nth-child(2) {
+    flex: 0 0 33% !important;
+    min-height: 0 !important;
+}
+
+.police.police-redesign .tab-content-menu .tab .central .alerts-container {
+    padding-bottom: 0 !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+}
+
+.police.police-redesign .tab-content-menu .tab .central .selector-container {
+    position: static !important;
+    margin-top: 0.8vh !important;
+}
+
+.police.police-redesign .tab-content-menu .tab .central .unidad-selector {
+    height: auto !important;
+    min-height: 3.2vh !important;
+}
+
+.police.police-redesign .tab-content-menu .tab .central .unidades-dispo {
+    height: auto !important;
+    max-height: 10vh !important;
+}
+
+.police.police-redesign .tab-content-menu .tab .central .table-agentes-container,
+.police.police-redesign .tab-content-menu .tab .central .table-alerts-container,
+.police.police-redesign .tab-content-menu .tab .central .chat-messages,
+.police.police-redesign .tab-content-menu .tab .central .central-freq,
+.police.police-redesign .tab-content-menu .tab .central .box-scroll-emergencias {
+    min-height: 0 !important;
+    max-height: 100% !important;
+    overflow-y: auto !important;
+}
+
+.police.police-redesign .tab-content-menu .tab .central .table-agentes-container,
+.police.police-redesign .tab-content-menu .tab .central .table-alerts-container,
+.police.police-redesign .tab-content-menu .tab .central .chat-messages,
+.police.police-redesign .tab-content-menu .tab .central .central-freq,
+.police.police-redesign .tab-content-menu .tab .central .box-scroll-emergencias,
+.police.police-redesign .tab-content-menu .tab .central .unidades-dispo {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.34) rgba(0, 0, 0, 0.28);
+}
+
+.police.police-redesign .tab-content-menu .tab .central .table-agentes-container::-webkit-scrollbar,
+.police.police-redesign .tab-content-menu .tab .central .table-alerts-container::-webkit-scrollbar,
+.police.police-redesign .tab-content-menu .tab .central .chat-messages::-webkit-scrollbar,
+.police.police-redesign .tab-content-menu .tab .central .central-freq::-webkit-scrollbar,
+.police.police-redesign .tab-content-menu .tab .central .box-scroll-emergencias::-webkit-scrollbar,
+.police.police-redesign .tab-content-menu .tab .central .unidades-dispo::-webkit-scrollbar {
+    width: 0.5vh;
+}
+
+.police.police-redesign .tab-content-menu .tab .central .table-agentes-container::-webkit-scrollbar-track,
+.police.police-redesign .tab-content-menu .tab .central .table-alerts-container::-webkit-scrollbar-track,
+.police.police-redesign .tab-content-menu .tab .central .chat-messages::-webkit-scrollbar-track,
+.police.police-redesign .tab-content-menu .tab .central .central-freq::-webkit-scrollbar-track,
+.police.police-redesign .tab-content-menu .tab .central .box-scroll-emergencias::-webkit-scrollbar-track,
+.police.police-redesign .tab-content-menu .tab .central .unidades-dispo::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 0.5vh;
+}
+
+.police.police-redesign .tab-content-menu .tab .central .table-agentes-container::-webkit-scrollbar-thumb,
+.police.police-redesign .tab-content-menu .tab .central .table-alerts-container::-webkit-scrollbar-thumb,
+.police.police-redesign .tab-content-menu .tab .central .chat-messages::-webkit-scrollbar-thumb,
+.police.police-redesign .tab-content-menu .tab .central .central-freq::-webkit-scrollbar-thumb,
+.police.police-redesign .tab-content-menu .tab .central .box-scroll-emergencias::-webkit-scrollbar-thumb,
+.police.police-redesign .tab-content-menu .tab .central .unidades-dispo::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.14));
+    border-radius: 0.5vh;
+}
+
+/* Evitar "fugas" visuales entre Emergencias -> Ãšltimas alertas */
+.police.police-redesign .tab-content-menu .tab .central .col-4:nth-child(3) > .info-box:first-child {
+    overflow: hidden !important;
+}
+
+.police.police-redesign .tab-content-menu .tab .central .selector-container {
+    overflow: hidden !important;
+}
+
+/* Simplificar bloque azul de categorÃ­as de radio en dispatch */
+.police.police-redesign .tab-content-menu .tab .central .central-freq .title-1-menu {
+    background: rgba(59, 130, 246, 0.15) !important;
+    border: 0.1vh solid rgba(59, 130, 246, 0.35) !important;
+    border-radius: 0.55vh !important;
+    font-size: 1.45vh !important;
+    line-height: 1.8vh !important;
+    letter-spacing: 0.06vh !important;
+    text-shadow: none !important;
+    margin-bottom: 0.6vh !important;
+    padding: 0.45vh 0.7vh !important;
+}
+
+.police.police-redesign .tab-content-menu .tab .central .category-header-central {
+    gap: 0.5vh !important;
+    padding-right: 0.2vh !important;
+}
+
+.police.police-redesign .tab-content-menu .tab .central .category-action-buttons-central {
+    gap: 0.4vh !important;
+}
+
+.police.police-redesign .tab-content-menu .tab .central .central-btn-central,
+.police.police-redesign .tab-content-menu .tab .central .broadcast-category-btn-central {
+    background: rgba(255, 255, 255, 0.12) !important;
+    border: 0.1vh solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 0.45vh !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-size: 0.95vh !important;
+    font-weight: 700 !important;
+    padding: 0.3vh 0.55vh !important;
+    box-shadow: none !important;
+    text-transform: uppercase !important;
+    gap: 0.35vh !important;
+}
+
+.police.police-redesign .tab-content-menu .tab .central .central-btn-central i,
+.police.police-redesign .tab-content-menu .tab .central .broadcast-category-btn-central i {
+    font-size: 0.9vh !important;
+}
+
+/* Tabla de agentes: evitar solape entre columnas */
+.police.police-redesign .tab-content-menu .tab .central .agentes-servicio {
+    table-layout: fixed;
+    width: 100%;
+}
+
+.police.police-redesign .tab-content-menu .tab .central .agentes-servicio th,
+.police.police-redesign .tab-content-menu .tab .central .agentes-servicio td {
+    font-size: 0.88vh !important;
+    padding: 0.62vh 0.6vh !important;
+    line-height: 1.15 !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.police.police-redesign .tab-content-menu .tab .central .agentes-servicio th:nth-child(1),
+.police.police-redesign .tab-content-menu .tab .central .agentes-servicio td:nth-child(1) { width: 12% !important; }
+.police.police-redesign .tab-content-menu .tab .central .agentes-servicio th:nth-child(2),
+.police.police-redesign .tab-content-menu .tab .central .agentes-servicio td:nth-child(2) { width: 21% !important; }
+.police.police-redesign .tab-content-menu .tab .central .agentes-servicio th:nth-child(3),
+.police.police-redesign .tab-content-menu .tab .central .agentes-servicio td:nth-child(3) { width: 33% !important; }
+.police.police-redesign .tab-content-menu .tab .central .agentes-servicio th:nth-child(4),
+.police.police-redesign .tab-content-menu .tab .central .agentes-servicio td:nth-child(4) { width: 24% !important; }
+.police.police-redesign .tab-content-menu .tab .central .agentes-servicio th:nth-child(5),
+.police.police-redesign .tab-content-menu .tab .central .agentes-servicio td:nth-child(5) { width: 10% !important; text-align: center; }
+
+/* Dispatch refinement: mas aire + scroll interno claro */
+.police.police-redesign .tab-content-menu .tab .central .centra-container > .row {
+    gap: 1.3vh !important;
+}
+
+.police.police-redesign .tab-content-menu .tab .central .centra-container > .row > .col-4 {
+    gap: 1.15vh !important;
+}
+
+.police.police-redesign .tab-content-menu .tab .central .info-box {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 0 !important;
+    padding: 1.05vh !important;
+}
+
+.police.police-redesign .tab-content-menu .tab .central h4 {
+    margin-bottom: 0.65vh !important;
+}
+
+.police.police-redesign .tab-content-menu .tab .central .table-agentes-container,
+.police.police-redesign .tab-content-menu .tab .central .table-alerts-container,
+.police.police-redesign .tab-content-menu .tab .central .chat-messages,
+.police.police-redesign .tab-content-menu .tab .central .central-freq,
+.police.police-redesign .tab-content-menu .tab .central .alerts-container {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+}
+
+.police.police-redesign .tab-content-menu .tab .central .alerts-container {
+    padding-right: 0.35vh !important;
+}
+
+/* Evitar que el selector de unidades "sangre" a la caja de abajo */
+.police.police-redesign .tab-content-menu .tab .central .selector-container,
+.police.police-redesign .tab-content-menu .tab .central .selector-container.toggle {
+    position: static !important;
+    overflow: hidden !important;
+    margin-top: 0.75vh !important;
+}
+
+.police.police-redesign .tab-content-menu .tab .central .unidad-selector,
+.police.police-redesign .tab-content-menu .tab .central .selector-container.toggle .unidad-selector {
+    height: auto !important;
+    min-height: 3.3vh !important;
+    max-height: 14vh !important;
+    box-shadow: none !important;
+    background: rgba(255, 255, 255, 0.12) !important;
+    border: 0.1vh solid rgba(255, 255, 255, 0.22) !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.police.police-redesign .tab-content-menu .tab .central .unidad-selector > div:first-child {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Evogria', sans-serif;
+    letter-spacing: 0.05vh;
+}
+
+.police.police-redesign .tab-content-menu .tab .central .selector-container:not(.toggle) .unidad-selector > div:first-child {
+    min-height: 2.9vh;
+}
+
+.police.police-redesign .tab-content-menu .tab .central .unidades-dispo {
+    max-height: 8.5vh !important;
+}
+
+/* ===== CONTENEDOR MAPA + ROBOS ===== */
+.police-map-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vh;
+    overflow: hidden;
+    height: 100%;
+}
+
+/* ===== MAP SECTION ===== */
+.police-map-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0vh;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    position: relative;
+    min-height: 0;
+}
+
+.police-map-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5vh 2vh;
+    padding-bottom: 1.2vh;
+    border-bottom: 0.1vh solid rgba(255, 255, 255, 0.1);
+    flex-shrink: 0;
+    background: rgba(0, 0, 0, 0.7);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 1vh 1vh 0 0;
+}
+
+.police-map-title {
+    display: flex;
+    align-items: center;
+    gap: 1vh;
+    font-size: 1.4vh;
+    color: rgba(255, 255, 255, 0.95);
+    font-family: 'Evogria', sans-serif;
+    text-transform: uppercase;
+}
+
+.police-map-title i {
+    font-size: 1.6vh;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.police-map-container {
+    flex: 1;
+    height: 100%;
+    background: #1a1a1a;
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-top: none;
+    border-radius: 0 0 1vh 1vh;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+}
+
+.police-map-duty-badge {
+    position: absolute;
+    left: 1.2vh;
+    bottom: 1.2vh;
+    z-index: 1001;
+    background: rgba(0, 0, 0, 0.72);
+    border: 0.1vh solid rgba(255, 255, 255, 0.14);
+    border-radius: 0.7vh;
+    padding: 0.55vh 0.9vh;
+    min-height: 3.8vh;
+}
+
+/* Leaflet overrides para el mapa */
+.police-map-container .leaflet-container {
+    width: 100%;
+    height: 100%;
+    background: #1a1a1a !important;
+    font-family: 'Quicksand', sans-serif;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.police-map-container .leaflet-tile-pane {
+    z-index: 2 !important;
+}
+
+.police-map-container .leaflet-control-zoom {
+    border: 0.1vh solid rgba(255, 255, 255, 0.1) !important;
+    background: rgba(0, 0, 0, 0.8) !important;
+    border-radius: 0.5vh !important;
+}
+
+.police-map-container .leaflet-control-zoom a {
+    color: rgba(255, 255, 255, 0.9) !important;
+    background: rgba(0, 0, 0, 0.8) !important;
+    border-bottom: 0.1vh solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.police-map-container .leaflet-control-zoom a:hover {
+    background: rgba(var(--primary-rgb), 0.3) !important;
+}
+
+/* Sidebar con scroll */
+.police-sidebar-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1vh;
+    overflow-y: auto;
+    padding-right: 0.5vh;
+    min-height: 0;
+    padding-bottom: 0.8vh;
+}
+
+.police-sidebar-content::-webkit-scrollbar {
+    width: 0.4vh;
+}
+
+.police-sidebar-content::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 0.2vh;
+}
+
+.police-sidebar-content::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 0.2vh;
+}
+
+.police-sidebar-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(var(--primary-rgb), 0.8);
+}
+
+/* ===== MEJORAS ADICIONALES ===== */
+/* BotÃ³n de radio activo */
+.police-action-btn.radio-button.active {
+    background: rgba(0, 123, 255, 0.2);
+    border-color: rgba(0, 123, 255, 0.6);
+    color: #007bff;
+}
+
+.police-action-btn.radio-button.active i {
+    color: #007bff;
+}
+
+/* Contenedor .other-buttons */
+.other-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+    margin-top: auto;
+}
+
+/* ===== SECCIÃ“N DE ROBOS PENDIENTES ===== */
+/* ═══ ROBOS PENDIENTES ═══════════════════════════════════════════ */
+.police-robberies-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    background: rgba(0, 0, 0, 0.7);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 1vh;
+    padding: 1.2vh;
+    height: 21vh;
+    min-height: 21vh;
+    max-height: 21vh;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.robberies-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 0.8vh;
+    margin-bottom: 0.8vh;
+    border-bottom: 0.1vh solid rgba(255, 255, 255, 0.1);
+    flex-shrink: 0;
+}
+
+.robberies-title {
+    display: flex;
+    align-items: center;
+    gap: 0.7vh;
+    font-size: 1.15vh;
+    color: rgba(255, 255, 255, 0.95);
+    font-family: 'Evogria', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.08vh;
+}
+
+.robberies-title i {
+    font-size: 1.25vh;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.robberies-count {
+    display: flex;
+    align-items: center;
+}
+
+.count-badge {
+    background: rgba(255, 255, 255, 0.07);
+    border: 0.1vh solid rgba(255, 255, 255, 0.12);
+    color: rgba(255, 255, 255, 0.85);
+    padding: 0.3vh 0.9vh;
+    border-radius: 0.5vh;
+    font-size: 1.05vh;
+    font-family: 'Evogria', sans-serif;
+    min-width: 2.5vh;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.count-badge.pulse {
+    border-color: rgba(245, 158, 11, 0.55);
+    color: rgba(245, 158, 11, 0.9);
+}
+
+.robberies-list {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55vh;
+    padding-right: 0.4vh;
+    min-height: 0;
+}
+
+/* ── Sin robos ── */
+.no-robberies {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8vh;
+    padding: 2vh;
+    color: rgba(255, 255, 255, 0.35);
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.1vh;
+    text-align: center;
+    height: 100%;
+}
+
+.no-robberies i {
+    font-size: 2.2vh;
+    color: rgba(255, 255, 255, 0.18);
+}
+
+/* ── Item de robo compacto (una fila, mismo estilo que el panel) ── */
+.robbery-item {
+    display: flex;
+    align-items: center;
+    gap: 1vh;
+    padding: 0.7vh 0.9vh;
+    background: rgba(255, 255, 255, 0.03);
+    border: 0.1vh solid rgba(255, 255, 255, 0.07);
+    border-left: 0.28vh solid rgba(255, 255, 255, 0.15);
+    border-radius: 0.65vh;
+    transition: background 0.2s ease;
+    animation: rbiSlide 0.25s ease;
+    flex-shrink: 0;
+}
+
+@keyframes rbiSlide {
+    from { opacity: 0; transform: translateX(1vh); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+.robbery-item:hover {
+    background: rgba(255, 255, 255, 0.055);
+}
+
+.robbery-item.is-pending {
+    border-left-color: rgba(245, 158, 11, 0.7);
+}
+
+.robbery-item.is-approved {
+    border-left-color: rgba(74, 222, 128, 0.7);
+    background: rgba(74, 222, 128, 0.03);
+}
+
+/* Tipo/nombre (Evogria, igual que service-name del panel) */
+.rbi-type {
+    display: flex;
+    align-items: center;
+    gap: 0.55vh;
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.rbi-type i {
+    font-size: 1.1vh;
+    color: rgba(255, 255, 255, 0.4);
+    flex-shrink: 0;
+}
+
+.robbery-item.is-pending .rbi-type i  { color: rgba(245, 158, 11, 0.75); }
+.robbery-item.is-approved .rbi-type i { color: rgba(74, 222, 128, 0.75); }
+
+.rbi-type-label {
+    font-family: 'Evogria', sans-serif;
+    font-size: 1.02vh;
+    color: rgba(255, 255, 255, 0.92);
+    text-transform: uppercase;
+    letter-spacing: 0.04vh;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Detalles (ubicación + ID, Quicksand) */
+.rbi-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.22vh;
+    flex-shrink: 0;
+}
+
+.rbi-detail-row {
+    display: flex;
+    align-items: center;
+    gap: 0.38vh;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.92vh;
+    color: rgba(255, 255, 255, 0.52);
+    white-space: nowrap;
+}
+
+.rbi-detail-row i {
+    font-size: 0.9vh;
+    color: rgba(255, 255, 255, 0.3);
+    flex-shrink: 0;
+}
+
+/* Tiempo */
+.rbi-time {
+    display: flex;
+    align-items: center;
+    gap: 0.42vh;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.92vh;
+    color: rgba(255, 255, 255, 0.52);
+    flex-shrink: 0;
+    min-width: 5.5vh;
+    white-space: nowrap;
+}
+
+.rbi-time i {
+    font-size: 0.95vh;
+    color: rgba(245, 158, 11, 0.6);
+    flex-shrink: 0;
+}
+
+/* Estado aprobado */
+.rbi-status-approved {
+    display: flex;
+    align-items: center;
+    gap: 0.5vh;
+    font-family: 'Evogria', sans-serif;
+    font-size: 0.9vh;
+    color: rgba(74, 222, 128, 0.9);
+    letter-spacing: 0.04vh;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.rbi-status-approved i {
+    font-size: 1.05vh;
+}
+
+/* Botones — mismo lenguaje visual que police-service-card */
+.rbi-actions {
+    display: flex;
+    gap: 0.45vh;
+    flex-shrink: 0;
+}
+
+.rbi-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.38vh;
+    padding: 0.42vh 0.75vh;
+    border-radius: 0.5vh;
+    border: 0.1vh solid;
+    font-family: 'Evogria', sans-serif;
+    font-size: 0.82vh;
+    text-transform: uppercase;
+    letter-spacing: 0.04vh;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    outline: none;
+    flex-shrink: 0;
+}
+
+.rbi-btn i { font-size: 0.9vh; }
+
+.rbi-confirm {
+    background: rgba(34, 197, 94, 0.08);
+    border-color: rgba(34, 197, 94, 0.32);
+    color: #22c55e;
+}
+
+.rbi-confirm:hover {
+    background: rgba(34, 197, 94, 0.18);
+    border-color: rgba(34, 197, 94, 0.65);
+    box-shadow: 0 0 0.7vh rgba(34, 197, 94, 0.22);
+}
+
+.rbi-deny {
+    background: rgba(239, 68, 68, 0.08);
+    border-color: rgba(239, 68, 68, 0.32);
+    color: #ef4444;
+}
+
+.rbi-deny:hover {
+    background: rgba(239, 68, 68, 0.18);
+    border-color: rgba(239, 68, 68, 0.65);
+    box-shadow: 0 0 0.7vh rgba(239, 68, 68, 0.22);
+}
+
+/* ===== PANEL DE AVISOS DENTRO DEL MAPA (DERECHA) ===== */
+.police-alerts-panel {
+    position: absolute;
+    top: 1vh;
+    right: 1vh;
+    bottom: 1vh;
+    width: 30vh;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+    background: rgba(0, 0, 0, 0.85);
+    border: 0.1vh solid rgba(255, 255, 255, 0.2);
+    border-radius: 1vh;
+    padding: 1.5vh;
+    z-index: 1000;
+    overflow: hidden;
+    box-shadow: 0 0.5vh 2vh rgba(0, 0, 0, 0.5);
+}
+
+.alerts-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1vh;
+    border-bottom: 0.1vh solid rgba(255, 255, 255, 0.2);
+    flex-shrink: 0;
+}
+
+.alerts-panel-title {
+    display: flex;
+    align-items: center;
+    gap: 0.8vh;
+    font-size: 1.2vh;
+    color: rgba(255, 255, 255, 0.95);
+    font-family: 'Evogria', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.05vh;
+}
+
+.alerts-panel-title i {
+    font-size: 1.4vh;
+    color: #3b82f6;
+}
+
+.alerts-count {
+    display: flex;
+    align-items: center;
+}
+
+.alerts-badge {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 0.4vh 1vh;
+    border-radius: 0.6vh;
+    font-size: 1.1vh;
+    font-weight: 700;
+    font-family: 'Evogria', sans-serif;
+    min-width: 2.5vh;
+    text-align: center;
+}
+
+.alerts-panel-list {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8vh;
+    padding-right: 0.5vh;
+}
+
+.alerts-panel-list::-webkit-scrollbar {
+    width: 0.4vh;
+}
+
+.alerts-panel-list::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 0.2vh;
+}
+
+.alerts-panel-list::-webkit-scrollbar-thumb {
+    background: #3b82f6;
+    border-radius: 0.2vh;
+}
+
+.alerts-panel-list::-webkit-scrollbar-thumb:hover {
+    background: #2563eb;
+}
+
+/* Item de aviso */
+.alert-item {
+    background: rgba(255, 255, 255, 0.05);
+    border: 0.1vh solid rgba(255, 255, 255, 0.14);
+    border-radius: 0.6vh;
+    padding: 0.6vh 0.7vh;
+    display: flex;
+    align-items: center;
+    gap: 0.6vh;
+    transition: all 0.3s var(--cubic);
+    cursor: pointer;
+    animation: slideInRight 0.4s var(--cubic);
+    position: relative;
+}
+
+.alert-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: none;
+    box-shadow: none;
+}
+
+.alert-item.active {
+    background: rgba(var(--primary-rgb), 0.16);
+    box-shadow: none;
+}
+
+.alert-icon {
+    width: 2.7vh;
+    height: 2.7vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(var(--primary-rgb), 0.16);
+    border-radius: 0.6vh;
+    border: 0.1vh solid rgba(var(--primary-rgb), 0.36);
+    flex-shrink: 0;
+    transition: all 0.3s;
+}
+
+.alert-item:hover .alert-icon {
+    transform: none;
+    box-shadow: none;
+}
+
+.alert-icon i {
+    font-size: 1.2vh;
+    color: var(--primary-color);
+}
+
+.alert-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2vh;
+    min-width: 0;
+}
+
+.alert-type {
+    font-size: 0.9vh;
+    color: white;
+    font-family: 'Evogria', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.03vh;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.alert-location,
+.alert-player {
+    display: flex;
+    align-items: center;
+    gap: 0.3vh;
+    font-size: 0.78vh;
+    color: rgba(255, 255, 255, 0.8);
+    font-family: 'Quicksand', sans-serif;
+}
+
+.alert-location i {
+    color: white;
+    font-size: 0.86vh;
+}
+
+.alert-player i {
+    color: white;
+    font-size: 0.86vh;
+}
+
+.alert-location span,
+.alert-player span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.alert-time {
+    font-size: 0.74vh;
+    color: rgba(255, 255, 255, 0.5);
+    font-family: 'Quicksand', sans-serif;
+}
+
+.alert-view-btn {
+    width: 2.45vh;
+    height: 2.45vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(59, 130, 246, 0.2);
+    border: 0.1vh solid rgba(59, 130, 246, 0.4);
+    border-radius: 0.6vh;
+    color: #3b82f6;
+    cursor: pointer;
+    transition: all 0.3s var(--cubic);
+    flex-shrink: 0;
+    outline: none;
+}
+
+.alert-view-btn:hover {
+    background: rgba(59, 130, 246, 0.3);
+    border-color: #3b82f6;
+    transform: none;
+    box-shadow: none;
+}
+
+.alert-view-btn i {
+    font-size: 0.95vh;
+}
+
+/* Dispatch: igualar exactamente la caja de Informes */
+.police.police-redesign .tab-content-menu .tab.show .central {
+    position: relative !important;
+    height: calc(100% - 2.6vh) !important;
+    min-height: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    margin: 0.8vh 0 1.8vh 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-layout-base {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    height: 100% !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-layout-base > .row {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 1.5vh !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-layout-base > .row > .col-3 {
+    flex: 0 0 24% !important;
+    max-width: 24% !important;
+    width: auto !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-layout-base > .row > .col-9 {
+    flex: 1 1 auto !important;
+    max-width: none !important;
+    width: auto !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-layout-base .h-max,
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-layout-base .bg-box {
+    height: 100% !important;
+    max-height: 100% !important;
+    min-height: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+/* Dispatch paso 2: columna izquierda (contador + agentes + radio) */
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-layout-base .bg-box {
+    overflow: hidden !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-left-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55vh;
+    padding: 0.42vh !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-section {
+    margin: 0 !important;
+    padding: 0.52vh 0.5vh !important;
+    border-radius: 0.75vh !important;
+    background: rgba(0, 0, 0, 0.22);
+    border: 0.1vh solid rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+    min-height: 0;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-section h4 {
+    margin-bottom: 0.38vh !important;
+    padding-bottom: 0.34vh !important;
+    border-bottom: 0.1vh solid rgba(255, 255, 255, 0.08);
+    font-size: 1.1vh !important;
+    letter-spacing: 0.04vh !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-summary-box {
+    flex: 0 0 auto;
+    padding-bottom: 0.34vh !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-agents-box {
+    flex: 0 0 30%;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-radio-box {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dept-availability-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0.32vh;
+    margin-bottom: 0 !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dept-availability-card {
+    background: rgba(255, 255, 255, 0.06);
+    border: 0.1vh solid rgba(255, 255, 255, 0.15);
+    border-radius: 0.45vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.3vh;
+    padding: 0.24vh 0.36vh;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dept-name {
+    font-size: 0.85vh;
+    letter-spacing: 0.03vh;
+    color: rgba(255, 255, 255, 0.78);
+    font-family: 'Evogria', sans-serif;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dept-count {
+    font-size: 0.95vh;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .table-agentes-container {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .agentes-servicio {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: separate !important;
+    border-spacing: 0.22vh 0 !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .agentes-servicio th,
+.police.police-redesign .tab-content-menu .tab.show .central .agentes-servicio td {
+    font-size: 0.88vh !important;
+    line-height: 1.12 !important;
+    padding: 0.34vh 0.42vh !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .agentes-servicio thead th {
+    border-radius: 0.38vh !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .radio-dept-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25vh;
+    margin-bottom: 0.3vh;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .radio-filter-btn {
+    border: 0.1vh solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.9);
+    border-radius: 0.42vh;
+    padding: 0.12vh 0.42vh;
+    font-size: 0.8vh;
+    font-family: 'Evogria', sans-serif;
+    letter-spacing: 0.03vh;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .radio-filter-btn.active {
+    background: rgba(var(--primary-rgb), 0.28);
+    border-color: rgba(var(--primary-rgb), 0.6);
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-radio-box .central-freq {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    margin-top: 0.1vh !important;
+    padding-right: 0.12vh;
+}
+
+/* Compactar caja grande de Central/Broadcast dentro de radio */
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-radio-box .central-freq .title-1-menu {
+    margin-bottom: 0.28vh !important;
+    padding: 0.2vh 0.42vh !important;
+    font-size: 1.05vh !important;
+    letter-spacing: 0.03vh !important;
+    line-height: 1.2vh !important;
+    border-radius: 0.44vh !important;
+}
+
+/* Quitar cajon azul legacy y alinear titulo + botones */
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-radio-box .central-freq .category-header-central.title-1-menu {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    backdrop-filter: none !important;
+    padding: 0.2vh 0.1vh !important;
+    margin-bottom: 0.2vh !important;
+    border-bottom: 0.1vh solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 0 !important;
+    display: grid !important;
+    grid-template-columns: 1fr auto auto !important;
+    align-items: center !important;
+    gap: 0.35vh !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-radio-box .central-freq .category-header-central.title-1-menu > span {
+    justify-self: start;
+    text-align: left !important;
+    font-size: 1.05vh !important;
+    letter-spacing: 0.035vh !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-radio-box .central-freq .category-action-buttons-central {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.25vh !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-radio-box .central-freq .toggle-icon {
+    font-size: 0.85vh !important;
+    opacity: 0.75;
+    justify-self: end;
+    margin: 0 !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-radio-box .central-btn-central,
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-radio-box .broadcast-category-btn-central {
+    padding: 0.12vh 0.34vh !important;
+    font-size: 0.78vh !important;
+    border-radius: 0.32vh !important;
+    min-height: 1.45vh !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-radio-box .actions-title-buttons {
+    gap: 0.25vh !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-radio-box .broadcast {
+    padding: 0.12vh 0.38vh !important;
+    font-size: 0.78vh !important;
+    min-height: 1.55vh !important;
+    border-radius: 0.34vh !important;
+}
+
+/* Frecuencias radio con estilo coherente del redesign */
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-radio-box .radio-category-menu {
+    background: rgba(255, 255, 255, 0.035) !important;
+    border: 0.1vh solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 0.5vh !important;
+    box-shadow: none !important;
+    padding: 0.18vh 0.32vh 0.22vh 0.32vh !important;
+    margin-bottom: 0.28vh !important;
+    display: grid !important;
+    grid-template-columns: 1fr auto auto !important;
+    align-items: center !important;
+    column-gap: 0.35vh !important;
+    row-gap: 0.18vh !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-radio-box .radio-category-menu .category-title {
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    width: auto !important;
+    grid-column: 1 !important;
+    font-family: 'Evogria', sans-serif !important;
+    font-size: 1.2vh !important;
+    font-weight: normal;
+    letter-spacing: 0.03vh !important;
+    color: rgba(255, 255, 255, 0.92) !important;
+    padding: 0.16vh 0.22vh !important;
+    line-height: 1.2 !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-radio-box .radio-category-menu .connected-users {
+    position: static !important;
+    top: auto !important;
+    right: auto !important;
+    grid-column: 2 !important;
+    font-family: 'Quicksand', sans-serif !important;
+    font-size: 1.1vh !important;
+    color: rgba(255, 84, 84, 0.9) !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-radio-box .radio-category-menu .toggle-category {
+    position: static !important;
+    top: auto !important;
+    right: auto !important;
+    padding: 0 !important;
+    grid-column: 3 !important;
+    font-size: 0.95vh !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-radio-box .radio-category-menu .user-list {
+    grid-column: 1 / -1 !important;
+    margin: 0.3vh 0.25vh 0.25vh 0.25vh !important;
+    padding: 0 0.2vh !important;
+    border-radius: 0.4vh !important;
+    min-height: 2.1vh !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-radio-box .radio-category-menu .user-list .radio-user {
+    height: 2.25vh !important;
+    border-radius: 0.36vh !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 0.1vh solid rgba(255, 255, 255, 0.08) !important;
+    padding: 0.14vh 0.52vh !important;
+    font-family: 'Quicksand', sans-serif !important;
+    font-size: 0.88vh !important;
+    line-height: 1.1 !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-radio-box .radio-category-menu .user-list .radio-user .user-division {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 1.42vh !important;
+    height: 1.42vh !important;
+    min-width: 1.42vh !important;
+    padding: 0 !important;
+    margin-left: 0.16vh !important;
+    border-radius: 0.2vh !important;
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 0.1vh solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-radio-box .radio-category-menu .user-list .radio-user .division-icon {
+    width: 1.08vh !important;
+    height: 1.08vh !important;
+    object-fit: contain !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-radio-box .radio-category-menu .user-list .radio-user .user-name {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-weight: 600;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-radio-box .radio-category-menu .user-list .radio-user .user-rango {
+    font-family: 'Quicksand', sans-serif !important;
+    font-size: 0.78vh !important;
+    font-weight: 700;
+    letter-spacing: 0.02vh;
+    color: rgba(255, 255, 255, 0.92) !important;
+    background: rgba(var(--primary-rgb), 0.25) !important;
+    border: 0.1vh solid rgba(var(--primary-rgb), 0.42) !important;
+    border-radius: 0.32vh !important;
+    padding: 0.08vh 0.38vh !important;
+    box-shadow: none !important;
+    text-transform: uppercase;
+}
+
+/* Corregir solape de "No hay usuarios..." en canales vacios */
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-radio-box .radio-category-menu {
+    overflow: hidden !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-radio-box .radio-category-menu .no-users {
+    grid-column: 1 / -1 !important;
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100%;
+    display: none;
+    margin: 0.2vh 0 0.35vh 0;
+    font-size: 0.8vh !important;
+    line-height: 1.2;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.42) !important;
+    text-transform: uppercase;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-radio-box .radio-category-menu.vacio .no-users {
+    display: block;
+    visibility: visible !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-radio-box .radio-category-menu.toggle .no-users {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-main-map {
+    height: 100%;
+    min-height: 0;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-main-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8vh;
+    height: 100%;
+    min-height: 0;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-alerts-unified {
+    min-height: 0;
+    border-radius: 0.75vh;
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.28);
+    padding: 0.65vh;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45vh;
+    overflow: hidden;
+    grid-row: span 2;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-alerts-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5vh;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-alerts-head h4 {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    font-size: 1.1vh !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-alerts-head .actions-title {
+    display: flex;
+    align-items: center;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-alerts-head .delete-alert {
+    background: rgba(220, 53, 69, 0.14) !important;
+    border: 0.1vh solid rgba(220, 53, 69, 0.4) !important;
+    color: rgba(255, 170, 170, 0.95) !important;
+    border-radius: 0.42vh !important;
+    padding: 0.16vh 0.5vh !important;
+    font-size: 0.78vh !important;
+    letter-spacing: 0.02vh;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-alerts-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25vh;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-alert-filter {
+    border: 0.1vh solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.9);
+    border-radius: 0.38vh;
+    padding: 0.12vh 0.45vh;
+    font-size: 0.78vh;
+    font-family: 'Evogria', sans-serif;
+    letter-spacing: 0.03vh;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-alert-filter.active {
+    background: rgba(var(--primary-rgb), 0.28);
+    border-color: rgba(var(--primary-rgb), 0.62);
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-alerts-unified .table-alerts-container {
+    flex: 0 0 auto;
+    min-height: 0;
+    overflow-y: auto;
+    max-height: 26vh;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-alerts-list {
+    flex: 0 0 auto;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-alerts-unified .tabla-dispatch {
+    table-layout: fixed;
+    width: 100%;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-alerts-unified .tabla-dispatch th,
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-alerts-unified .tabla-dispatch td {
+    font-size: 0.85vh !important;
+    line-height: 1.12 !important;
+    padding: 0.28vh 0.28vh !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-alerts-unified .tabla-dispatch tbody tr {
+    transition: background 0.2s ease;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-alerts-unified .tabla-dispatch tbody tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-alerts-unified .tabla-dispatch tbody tr.selected {
+    background: rgba(var(--primary-rgb), 0.18) !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-alerts-unified .alerts-container {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    padding-right: 0.2vh;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-alerts-editor {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4vh;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-alerts-editor.is-hidden {
+    display: none !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-alerts-unified.is-editing .dispatch-alerts-list,
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-alerts-unified.is-editing .dispatch-alerts-filters {
+    display: none !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-alerts-unified.is-editing .dispatch-alerts-head {
+    margin-bottom: 0.2vh;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-alerts-editor-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5vh;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-alert-editor-title {
+    font-family: 'Evogria', sans-serif;
+    font-size: 0.92vh;
+    letter-spacing: 0.03vh;
+    color: rgba(255, 255, 255, 0.78);
+    text-transform: uppercase;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-alert-editor-back {
+    border: 0.1vh solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.9);
+    border-radius: 0.38vh;
+    padding: 0.12vh 0.45vh;
+    font-size: 0.78vh;
+    font-family: 'Evogria', sans-serif;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-alerts-unified .units-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2vh;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-alerts-unified .units {
+    display: none;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-alerts-unified .assign-alert-btn {
+    border: 0.1vh solid rgba(var(--primary-rgb), 0.6);
+    background: rgba(var(--primary-rgb), 0.18);
+    color: rgba(255, 255, 255, 0.95);
+    border-radius: 0.34vh;
+    padding: 0.08vh 0.26vh;
+    font-size: 0.74vh;
+    font-family: 'Evogria', sans-serif;
+    letter-spacing: 0.02vh;
+    text-transform: uppercase;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-alerts-unified .assign-alert-btn:hover {
+    background: rgba(var(--primary-rgb), 0.32);
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-alerts-unified .alerts-container .row {
+    margin: 0 !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-alerts-unified .alerts-container .row > div {
+    padding: 0 0 0.4vh 0 !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-alerts-unified .alerts-container .row > div > div:first-child {
+    font-size: 0.72vh !important;
+    margin-bottom: 0.2vh !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-alerts-unified .box-info {
+    min-height: 2.35vh !important;
+    padding: 0.4vh 0.45vh !important;
+    font-size: 0.72vh !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-alerts-unified .selector-container {
+    margin-top: 0.35vh !important;
+    padding: 0.45vh !important;
+}
+
+/* Evitar banner legacy sobre el mapa: usamos panel derecho nuevo */
+.police.police-redesign .tab-content-menu .tab.show .central .dispatch-main-map .info-mapa {
+    display: none !important;
+}
+
+/* ========================================
+   RADIO - hereda medidas exactas de report-layout (Informes)
+   ======================================== */
+.police.police-redesign .tab-content-menu .tab.show .radio.report-layout {
+    overflow: visible !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio.report-layout > .row,
+.police.police-redesign .tab-content-menu .tab.show .radio.report-layout > .row > .col-12,
+.police.police-redesign .tab-content-menu .tab.show .radio.report-layout > .row > .col-12 > .bg-box {
+    height: 100% !important;
+    min-height: 0 !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio.report-layout > .row {
+    padding: 0 0.35vh !important;
+    overflow: visible !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio.report-layout > .row > .col-12 {
+    padding: 0 !important;
+    overflow: visible !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio.report-layout > .row > .col-12 > .bg-box {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.55vh !important;
+    padding: 0.75vh !important;
+    overflow: hidden !important;
+}
+
+/* Hard lock: misma caja exterior que INFORMES */
+.police.police-redesign .tab-content-menu .tab.show .scale-in.informes.radio.report-layout {
+    position: relative !important;
+    height: calc(100% - 2.6vh) !important;
+    min-height: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    margin: 0.8vh 0 1.8vh 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .scale-in.informes.radio.report-layout > .row {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    height: 100% !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .radio-toolbar {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 0.8vh;
+    margin-bottom: 0.18vh;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .radio-title-inline {
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 1.5vh !important;
+    line-height: 1 !important;
+    justify-self: start;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .radio-category-toggles {
+    display: flex;
+    align-items: center;
+    gap: 0.35vh;
+    flex-wrap: nowrap;
+    margin: 0 !important;
+    justify-self: stretch;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* RADIO BUTTONS - clean single source of truth */
+.police.police-redesign .tab-content-menu .tab.show .radio {
+    --radio-pill-w: 10.6vh;
+    --radio-pill-h: 2.5vh;
+    --radio-pill-r: 0.42vh;
+    --radio-mini-w: 6.4vh;
+    --radio-mini-h: 2vh;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .zona-conectar {
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    justify-self: end !important;
+    margin-left: 0 !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .zona-conectar > p {
+    display: none !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .category-toggle-btn,
+.police.police-redesign .tab-content-menu .tab.show .radio .zona-conectar .badge.connected {
+    width: var(--radio-pill-w) !important;
+    min-width: var(--radio-pill-w) !important;
+    max-width: var(--radio-pill-w) !important;
+    height: var(--radio-pill-h) !important;
+    min-height: var(--radio-pill-h) !important;
+    max-height: var(--radio-pill-h) !important;
+    border-radius: var(--radio-pill-r) !important;
+    padding: 0 0.42vh !important;
+    margin: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    font-family: "Evogria", "Quicksand", sans-serif !important;
+    font-size: 1.1vh !important;
+    line-height: 1 !important;
+    letter-spacing: 0.03vh !important;
+    box-sizing: border-box !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .category-toggle-btn {
+    border: 0.1vh solid rgba(255, 255, 255, 0.18) !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    width: 100% !important;
+    min-width: unset !important;
+    max-width: unset !important;
+    flex: 1 !important;
+    white-space: nowrap !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .category-toggle-btn.active {
+    background: rgba(var(--primary-rgb), 0.26) !important;
+    border-color: rgba(var(--primary-rgb), 0.55) !important;
+    color: rgba(255, 255, 255, 0.98) !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .zona-conectar .badge.connected {
+    border: 0.1vh solid rgba(110, 255, 186, 0.28) !important;
+    background: rgba(20, 176, 104, 0.88) !important;
+    color: #f4fffa !important;
+    font-weight: 600 !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .zona-conectar .badge.connected .frecuencia-actual {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.2vh !important;
+    font-size: inherit !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .zona-conectar .badge.connected .frecuencia-actual img {
+    width: 0.76vh !important;
+    margin-right: 0.18vh !important;
+    flex: 0 0 auto !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .zona-conectar .badge.connected .desconectar {
+    top: 50% !important;
+    transform: translateY(calc(50% + 0.95vh)) !important;
+    width: 100% !important;
+    padding: 0 0.2vh !important;
+    font-size: 0.72vh !important;
+    letter-spacing: 0.02vh !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    box-sizing: border-box !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .zona-conectar .badge.connected:hover .desconectar {
+    transform: translateY(-50%) !important;
+}
+
+/* .police.police-redesign .tab-content-menu .tab.show .radio .radio-columns,
+.police.police-redesign .tab-content-menu .tab.show .radio #radioContainerFreqs {
+    display: grid !important;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-auto-rows: min-content;
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    padding: 0.2vh 0.35vh 0.2vh 0.35vh !important;
+    column-gap: 0.8vh !important;
+    row-gap: 0.8vh !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+} */
+
+.police.police-redesign .tab-content-menu .tab.show .radio .radio-columns::-webkit-scrollbar,
+.police.police-redesign .tab-content-menu .tab.show .radio #radioContainerFreqs::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+    display: none !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .radio-main-panel {
+    overflow: hidden !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .radio-column {
+    overflow: visible !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .radio-column {
+    min-width: 0 !important;
+    width: auto !important;
+    margin: 0 !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .radio-column > .bg-box {
+    display: flex;
+    flex-direction: column;
+    padding: 0.45vh !important;
+    margin: 0 !important;
+    border-radius: 0.7vh !important;
+    outline: none !important;
+    border: 0.1vh dashed rgba(255, 255, 255, 0.16) !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .category-header-with-buttons {
+    padding: 0 !important;
+    margin: 0 0 0.35vh 0 !important;
+    gap: 0.35vh !important;
+    align-items: center !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .category-header-with-buttons .title-1-menu {
+    margin: 0 !important;
+    padding: 0.1vh 0.32vh !important;
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    font-size: 1.2vh !important;
+    letter-spacing: 0.04vh !important;
+    line-height: 1.2 !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .category-action-buttons {
+    gap: 0.3vh !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .central-btn,
+.police.police-redesign .tab-content-menu .tab.show .radio .broadcast-category-btn {
+    width: fit-content;
+    height: var(--radio-mini-h) !important;
+    min-height: 2vh;
+    max-height: var(--radio-mini-h) !important;
+    border: 0.1vh solid rgba(255, 255, 255, 0.18) !important;
+    border-radius: 0.34vh !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    padding: 0 0.5vh;
+    box-sizing: border-box !important;
+    box-shadow: none !important;
+    transform: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 1.2vh !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    font-weight: 600 !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .central-btn i,
+.police.police-redesign .tab-content-menu .tab.show .radio .broadcast-category-btn i {
+    font-size: 0.76vh !important;
+    margin-right: 0.18vh !important;
+}
+
+/* Atajos en posicion del boton de servicio */
+.police.police-redesign .police-header-right .radio-shortcuts-header {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25vw;
+}
+
+/* Estado vacio: mostrar mensaje/zona solo cuando el canal esta desplegado */
+.police.police-redesign .tab-content-menu .tab.show .radio .radio-category-menu .no-users {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+/* Radio - mantener estructura original, actualizar solo estilo visual */
+.police.police-redesign .tab-content-menu .tab.show .radio .frecuencias {
+    display: block !important;
+    height: 100% !important;
+    margin-top: 0.7vh !important;
+    padding: 0 0.35vh !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .frecuencias::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+    display: none !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .radio-category-menu {
+    background: rgb(255 255 255 / 10%) !important;
+    border: 0.1vh solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: inset 0 0 0 0.1vh rgba(255, 255, 255, 0.03) !important;
+    border-radius: 0.5vh !important;
+    padding-top: 2.1vh !important;
+    padding-bottom: 0.01vh !important;
+    margin-bottom: 0.36vh !important;
+    position: relative !important;
+    z-index: 1 !important;
+    overflow: visible !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .radio-category-menu.toggle {
+    max-height: 2.5vh !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .radio-category-menu:not(.toggle) {
+    z-index: 8 !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .radio-category-menu.vacio {
+    max-height: 2.5vh !important;
+    height: auto !important;
+    min-height: 2.5vh !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .radio-category-menu .category-title {
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-size: 1.2vh !important;
+    border-radius: 0.4vh 0 0.4vh 0 !important;
+    border: 0.1vh solid rgba(255, 255, 255, 0.12) !important;
+    width: calc(100% - 6.2vh) !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .radio-category-menu .category-title:hover,
+.police.police-redesign .tab-content-menu .tab.show .radio .radio-category-menu.toggle .category-title,
+.police.police-redesign .tab-content-menu .tab.show .radio .radio-category-menu.toggle .category-title:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: rgba(255, 255, 255, 0.95) !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .radio-category-menu .connected-users {
+    font-size: 1.1vh !important;
+    right: 2.9vh !important;
+    top: 0.24vh !important;
+    min-width: 1.6vh !important;
+    text-align: right !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .radio-category-menu .toggle-category {
+    font-size: 0.9vh !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .radio-category-menu .user-list {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* gap: 0.5vh; */
+    margin: 1.1vh 0.45vh 0vh 0.45vh !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    max-height: 12vh !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    position: relative !important;
+    z-index: 10 !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .radio-category-menu .user-list::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+    display: none !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .radio-category-menu.vacio .user-list,
+.police.police-redesign .tab-content-menu .tab.show .radio .radio-category-menu.toggle .user-list,
+.police.police-redesign .tab-content-menu .tab.show .radio .radio-category-menu.toggle.vacio .user-list {
+    display: none !important;
+    max-height: 0 !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+}
+
+/* Recuperar comportamiento original de la flecha:
+   - toggle = contraido
+   - sin toggle = desplegado
+   - vacio desplegado mantiene zona para drag/drop */
+.police.police-redesign .tab-content-menu .tab.show .radio .radio-category-menu.vacio:not(.toggle) .user-list {
+    display: block !important;
+    min-height: 3.2vh !important;
+    max-height: 8vh !important;
+    margin: 0.45vh 0.45vh 0.35vh 0.45vh !important;
+    padding: 0.15vh !important;
+    border: 0.1vh dashed rgba(255, 255, 255, 0.18) !important;
+    border-radius: 0.35vh !important;
+    background: rgba(255, 255, 255, 0.02) !important;
+    position: relative !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .radio-category-menu.vacio:not(.toggle) {
+    max-height: 12vh !important;
+    min-height: 6.2vh !important;
+    height: auto !important;
+    padding-bottom: 0.2vh !important;
+    z-index: 12 !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .radio-category-menu.vacio:not(.toggle) .no-users {
+    display: block !important;
+    visibility: visible !important;
+    position: absolute !important;
+    left: 0.45vh !important;
+    right: 0.45vh !important;
+    top: calc(2.1vh + 0.45vh + 1.6vh) !important;
+    transform: translateY(-50%) !important;
+    height: auto !important;
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 0.7vh !important;
+    text-align: center !important;
+    color: rgba(255, 255, 255, 0.45) !important;
+    pointer-events: none !important;
+    z-index: 11 !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .radio-category-menu.toggle .no-users {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .ui-sortable-helper,
+.radio-drag-helper.ui-sortable-helper {
+    z-index: 2147483647 !important;
+    pointer-events: none !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .radio-drag-helper,
+.radio-drag-helper {
+    opacity: 0.98 !important;
+    background: rgba(30, 39, 54, 0.96) !important;
+    border: 0.1vh solid rgba(255, 255, 255, 0.14) !important;
+    border-radius: 0.35vh !important;
+    box-shadow: 0 0.8vh 2.2vh rgba(0, 0, 0, 0.45) !important;
+    box-sizing: border-box !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .radio-drag-helper .circle,
+.radio-drag-helper .circle {
+    width: 1.08vh !important;
+    height: 1.08vh !important;
+    min-width: 1.08vh !important;
+}
+
+/* El helper se renderiza en body: necesita estilos no-scoped para no desmontarse */
+.radio-drag-helper.radio-user {
+    min-height: 2.22vh !important;
+    height: 2.26vh !important;
+    padding: 0.17vh 0.54vh !important;
+    margin-bottom: 0 !important;
+    border: 0.1vh solid rgba(255, 255, 255, 0.08) !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-radius: 0.35vh !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 0.3vh !important;
+    overflow: hidden !important;
+    transform: none !important;
+}
+
+.radio-drag-helper.radio-user > .d-flex {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    gap: 0.22vh !important;
+}
+
+.radio-drag-helper .user-name {
+    font-size: 1.2vh !important;
+    line-height: 1 !important;
+    font-weight: 600 !important;
+    max-width: 100% !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+.radio-drag-helper .user-rango.badge {
+    font-size: 0.69vh !important;
+    line-height: 1 !important;
+    padding: 0.08vh 0.3vh !important;
+    border-radius: 0.28vh !important;
+    margin-left: 0.2vh !important;
+    flex: 0 0 auto !important;
+}
+
+.radio-drag-helper .user-division {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 1.42vh !important;
+    height: 1.42vh !important;
+    min-width: 1.42vh !important;
+    padding: 0 !important;
+    margin-left: 0.16vh !important;
+    border-radius: 0.2vh !important;
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 0.1vh solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.radio-drag-helper .user-division .division-icon {
+    width: 1.08vh !important;
+    height: 1.08vh !important;
+    object-fit: contain !important;
+}
+
+.radio-drag-helper .volume-muted,
+.radio-drag-helper .speaking {
+    flex: 0 0 auto !important;
+}
+
+.radio-drag-helper .volume-muted img,
+.radio-drag-helper .speaking {
+    width: 1.02vh !important;
+    height: 1.02vh !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .radio-category-menu .user-list .radio-user {
+    min-height: 2.22vh !important;
+    height: 2.26vh !important;
+    padding: 0.17vh 0.54vh !important;
+    margin-bottom: 0.16vh !important;
+    border: 0.1vh solid rgba(255, 255, 255, 0.08) !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-radius: 0.35vh !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 0.3vh !important;
+    overflow: hidden !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .radio-category-menu .user-list .radio-user > .d-flex {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    gap: 0.22vh !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .radio-category-menu .user-list .radio-user .circle {
+    width: 1.08vh !important;
+    height: 1.08vh !important;
+    min-width: 1.08vh !important;
+    margin: 0 0.25vh 0 0 !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .radio-category-menu .user-list .radio-user .user-name {
+    font-size: 1.2vh !important;
+    line-height: 1 !important;
+    font-weight: 600 !important;
+    max-width: 100% !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .radio-category-menu .user-list .radio-user .user-rango.badge {
+    font-size: 0.69vh !important;
+    line-height: 1 !important;
+    padding: 0.08vh 0.3vh !important;
+    border-radius: 0.28vh !important;
+    margin-left: 0.2vh !important;
+    flex: 0 0 auto !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .radio-category-menu .user-list .radio-user .user-division {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 1.42vh !important;
+    height: 1.42vh !important;
+    min-width: 1.42vh !important;
+    padding: 0 !important;
+    margin-left: 0.16vh !important;
+    border-radius: 0.2vh !important;
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 0.1vh solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .radio-category-menu .user-list .radio-user .user-division .division-icon {
+    width: 1.08vh !important;
+    height: 1.08vh !important;
+    object-fit: contain !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .radio-category-menu .user-list .radio-user .volume-muted,
+.police.police-redesign .tab-content-menu .tab.show .radio .radio-category-menu .user-list .radio-user .speaking {
+    flex: 0 0 auto !important;
+}
+
+.police.police-redesign .tab-content-menu .tab.show .radio .radio-category-menu .user-list .radio-user .volume-muted img,
+.police.police-redesign .tab-content-menu .tab.show .radio .radio-category-menu .user-list .radio-user .speaking {
+    width: 1.02vh !important;
+    height: 1.02vh !important;
+}
+
+/* ========================================
+   LOS ESTILOS DEL DISPATCH ESTÃN EN style_menu.css
+   NO DUPLICAR AQUÃ
+   ======================================== */
+
+/* ========================================
+   OCULTAR TÃTULOS DUPLICADOS EN VEHÃCULOS
+   ======================================== */
+/* Ocultar el H1 "VEHÃCULOS" que estÃ¡ duplicado en el header principal */
+.app-container.police-vehicles h1.display-5.app-title,
+.app-container.police-vehicles .app-title,
+.app-container.police-vehicles h1.app-title,
+.app-container.police-vehicles h1.display-5,
+.police-vehicles .app-title,
+.police-vehicles h1.app-title,
+.police-vehicles h1.display-5,
+.police-vehicles .display-5.app-title {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 0 !important;
+    max-height: 0 !important;
+    overflow: hidden !important;
+    opacity: 0 !important;
+}
+
+/* Ocultar tambiÃ©n los title-2 ("LISTA DE VEHÃCULOS" y "DATOS DEL VEHÃCULO") */
+.app-container.police-vehicles .title-2,
+.app-container.police-vehicles .m-titles .title-2,
+.app-container.police-vehicles div[translate="VehicleList"],
+.app-container.police-vehicles div[translate="VehicleData"],
+.police-vehicles .title-2,
+.police-vehicles .m-titles .title-2,
+.police-vehicles div[translate="VehicleList"],
+.police-vehicles div[translate="VehicleData"] {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 0 !important;
+    max-height: 0 !important;
+    overflow: hidden !important;
+    opacity: 0 !important;
+}
+
+/* ========================================
+   FINAL DE ESTILOS DE REDESIGN.CSS
+   
+   Los estilos del DISPATCH estÃ¡n y se actualizarÃ¡n en:
+   - style_menu.css
+   - police.css
+   ======================================== */
+
+/* ========================================
+   HOME (INICIO) CON PLANTILLA VISUAL DE INFORMES
+   ======================================== */
+.police.police-redesign .police-main .police-sidebar,
+.police.police-redesign .police-main .police-map-section,
+.police.police-redesign .police-main .police-robberies-section {
+    background: rgba(0, 0, 0, 0.7) !important;
+    border: 0.1vh solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 1vh !important;
+    outline: 0.1vh dashed rgba(255, 255, 255, 0.15) !important;
+    outline-offset: 0.26vh !important;
+    box-shadow: none !important;
+}
+
+.police.police-redesign .police-content,
+.police.police-redesign .police-main,
+.police.police-redesign .police-map-wrapper {
+    overflow: visible !important;
+}
+
+.police.police-redesign .police-main .police-map-section {
+    padding: 0.9vh !important;
+    gap: 0.9vh !important;
+    overflow: visible !important;
+}
+
+.police.police-redesign .police-main .police-map-header,
+.police.police-redesign .police-main .robberies-header,
+.police.police-redesign .police-main .police-sidebar-header {
+    background: transparent !important;
+    border: none !important;
+    border-bottom: 0.1vh solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 0 !important;
+    padding: 0 0 0.9vh 0 !important;
+}
+
+.police.police-redesign .police-main .police-map-container {
+    border: 0.1vh solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 0.75vh !important;
+}
+
+.police.police-redesign .police-main .police-sidebar-header,
+.police.police-redesign .police-main .police-map-title,
+.police.police-redesign .police-main .robberies-title {
+    font-size: 1.15vh !important;
+    letter-spacing: 0.05vh !important;
+}
+
+.police.police-redesign .police-main .police-service-card,
+.police.police-redesign .police-main .police-action-card,
+.police.police-redesign .police-main .police-bottom-btn {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 0.1vh solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 0.7vh !important;
+    box-shadow: none !important;
+}
+
+.police.police-redesign .police-main .police-service-card::before,
+.police.police-redesign .police-main .police-action-card::after {
+    display: none !important;
+}
+
+.police.police-redesign .police-main .police-service-card:hover,
+.police.police-redesign .police-main .police-action-card:hover,
+.police.police-redesign .police-main .police-bottom-btn:hover {
+    transform: none !important;
+    background: rgba(255, 255, 255, 0.09) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    box-shadow: none !important;
+}
+
+.police.police-redesign .police-main .police-action-buttons {
+    margin-top: 0.7vh !important;
+    margin-bottom: 0.7vh !important;
+}
+
+.police.police-redesign .police-main .police-bottom-bar {
+    padding-top: 0.7vh !important;
+}

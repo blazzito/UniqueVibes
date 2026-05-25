@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jobs UI</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/taxi-dispatch.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v7.1.0/css/all.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <!-- HUD Durante el Trabajo -->
+    <div id="hud-container" class="hud-hidden" data-job="">
+        <div class="hud-card">
+            <div class="hud-header">
+                <div class="hud-icon" id="hud-icon"><i data-lucide="trash-2"></i></div>
+                <div class="hud-title-container">
+                    <span class="hud-title" id="hud-title">Trabajo Activo</span>
+                    <span class="hud-level" id="hud-level">Nivel 1</span>
+                </div>
+            </div>
+            <div class="hud-stats">
+                <div class="stat-item" id="stat-item-1">
+                    <span class="stat-label" id="hud-label-1">Items</span>
+                    <span class="stat-value" id="items-count">0</span>
+                </div>
+                <div class="stat-divider" id="stat-divider-1"></div>
+                <div class="stat-item" id="stat-item-2" style="display: none;">
+                    <span class="stat-label" id="hud-label-2">Items 2</span>
+                    <span class="stat-value" id="items-count-2">0</span>
+                </div>
+                <div class="stat-divider" id="stat-divider-2" style="display: none;"></div>
+                <div class="stat-item">
+                    <span class="stat-label">Ganancia</span>
+                    <span class="stat-value stat-money" id="earnings">$0</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-label">Tiempo</span>
+                    <span class="stat-value" id="work-time">00:00</span>
+                </div>
+            </div>
+            <div class="hud-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <span class="progress-text">Presiona <kbd>E</kbd> para recoger</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Panel del NPC -->
+    <div id="menu-container" class="menu-hidden" data-job="">
+        <div class="menu-backdrop"></div>
+        <div class="menu-panel">
+            <!-- Header -->
+            <div class="menu-header" id="menu-header">
+                <div class="menu-icon-large" id="menu-icon"><i data-lucide="trash-2"></i></div>
+                <h1 class="menu-title" id="menu-title">Centro de Trabajo</h1>
+                <p class="menu-subtitle" id="menu-subtitle">Sistema de Empleo</p>
+                <button class="close-btn" id="close-menu">✕</button>
+            </div>
+
+            <!-- Vista Principal -->
+            <div id="main-view" class="menu-content">
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-card-icon"><i data-lucide="dollar-sign"></i></div>
+                        <div class="stat-card-info">
+                            <span class="stat-card-label">Última Sesión</span>
+                            <span class="stat-card-value" id="last-session-earnings">$0</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-icon" id="stat-icon-items"><i data-lucide="package"></i></div>
+                        <div class="stat-card-info">
+                            <span class="stat-card-label" id="stat-label-items">Total Items</span>
+                            <span class="stat-card-value" id="total-items">0</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-icon"><i data-lucide="clock"></i></div>
+                        <div class="stat-card-info">
+                            <span class="stat-card-label">Tiempo Total</span>
+                            <span class="stat-card-value" id="total-time">0h 0m</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-icon"><i data-lucide="trophy"></i></div>
+                        <div class="stat-card-info">
+                            <span class="stat-card-label">Nivel</span>
+                            <span class="stat-card-value" id="worker-level">1</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Level Progress Section -->
+                <div class="level-progress-section">
+                    <div class="level-progress-header">
+                        <div class="level-info">
+                            <span class="level-badge">Nivel <span id="level-number">1</span></span>
+                            <span class="level-bonus" id="level-bonus">+0% de bonificación</span>
+                        </div>
+                        <span class="xp-text"><span id="current-xp">0</span> / <span id="next-level-xp">150</span>
+                            XP</span>
+                    </div>
+                    <div class="xp-progress-bar">
+                        <div class="xp-progress-fill" id="xp-progress-fill" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <!-- Trucker Config Section (Premium Selection) -->
+                <div id="trucker-config-section" class="trucker-config" style="display: none;">
+                    <div class="config-header-main">
+                        <i data-lucide="settings-2"></i>
+                        <span>Configuración de Turno</span>
+                    </div>
+
+                    <div class="config-block">
+                        <label><i data-lucide="map"></i> Selecciona tu Destino</label>
+                        <div id="trucker-route-list" class="selection-grid">
+                            <!-- Cards inserted via JS -->
+                        </div>
+                    </div>
+
+                    <div class="config-block">
+                        <label><i data-lucide="truck"></i> Selecciona tu Vehículo</label>
+                        <div id="trucker-truck-list" class="selection-grid">
+                            <!-- Cards inserted via JS -->
+                        </div>
+                    </div>
+
+                    <div class="config-block">
+                        <label><i data-lucide="container"></i> Selecciona tu Remolque</label>
+                        <div id="trucker-trailer-list" class="selection-grid">
+                            <!-- Cards inserted via JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Warning Section -->
+                <div class="warning-section">
+                    <div class="warning-icon">
+                        <i data-lucide="alert-triangle"></i>
+                    </div>
+                    <div class="warning-content">
+                        <h4>Importante</h4>
+                        <ul>
+                            <li>No se abonará tu sueldo hasta que entregues el vehículo</li>
+                            <li>Si no alcanzas el mínimo de <strong>$100 en ganancias</strong>, se te descontarán
+                                <strong>$100</strong> del depósito del vehículo
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-section">
+                    <button class="action-btn action-btn-primary" id="start-job">
+                        <span class="btn-icon"><i data-lucide="play"></i></span>
+                        <div class="btn-content">
+                            <span class="btn-title">Iniciar Turno</span>
+                            <span class="btn-subtitle">Comienza a recolectar basura</span>
+                        </div>
+                    </button>
+
+                    <button class="action-btn action-btn-secondary" id="view-stats">
+                        <span class="btn-icon"><i data-lucide="bar-chart-3"></i></span>
+                        <div class="btn-content">
+                            <span class="btn-title">Ver Estadísticas</span>
+                            <span class="btn-subtitle">Historial detallado</span>
+                        </div>
+                    </button>
+
+                    <button class="action-btn action-btn-info" id="view-info">
+                        <span class="btn-icon"><i data-lucide="info"></i></span>
+                        <div class="btn-content">
+                            <span class="btn-title">Información</span>
+                            <span class="btn-subtitle">Cómo funciona el trabajo</span>
+                        </div>
+                    </button>
+
+                    <button class="action-btn action-btn-danger" id="end-shift" style="display: none;">
+                        <span class="btn-icon"><i data-lucide="square"></i></span>
+                        <div class="btn-content">
+                            <span class="btn-title">Finalizar Turno</span>
+                            <span class="btn-subtitle">Abandonar el turno actual sin cobrar</span>
+                        </div>
+                    </button>
+                </div>
+
+                <!-- Info Section -->
+                <div class="info-section">
+                    <div class="info-card">
+                        <h3 id="info-payment-label">Pago</h3>
+                        <p class="info-highlight" id="info-payment-value">$50</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Vehículo</h3>
+                        <p class="info-highlight" id="info-vehicle">Camión de Basura</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vista de Estadísticas -->
+            <div id="stats-view" class="menu-content" style="display: none;">
+                <button class="back-btn" id="back-from-stats">← Volver</button>
+
+                <h2 class="section-title"><i data-lucide="bar-chart-3"></i> Estadísticas Detalladas</h2>
+
+                <div class="stats-detailed">
+                    <div class="detailed-stat">
+                        <span class="detailed-label">Turnos Completados</span>
+                        <span class="detailed-value" id="shifts-completed">0</span>
+                    </div>
+                    <div class="detailed-stat">
+                        <span class="detailed-label">Total Ganado</span>
+                        <span class="detailed-value stat-money" id="total-earned">$0</span>
+                    </div>
+                    <div class="detailed-stat">
+                        <span class="detailed-label" id="stats-items-label">Items Recolectados</span>
+                        <span class="detailed-value" id="stats-total-items">0</span>
+                    </div>
+                    <div class="detailed-stat">
+                        <span class="detailed-label">Promedio por Turno</span>
+                        <span class="detailed-value" id="avg-per-shift">0 items</span>
+                    </div>
+                    <div class="detailed-stat">
+                        <span class="detailed-label">Mejor Turno</span>
+                        <span class="detailed-value stat-money" id="best-shift">$0</span>
+                    </div>
+                    <div class="detailed-stat">
+                        <span class="detailed-label">Tiempo Trabajado</span>
+                        <span class="detailed-value" id="stats-total-time">0h 0m</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vista de Información -->
+            <div id="info-view" class="menu-content" style="display: none;">
+                <button class="back-btn" id="back-from-info">← Volver</button>
+
+                <h2 class="section-title"><i data-lucide="info"></i> Cómo Trabajar</h2>
+
+                <div class="info-steps" id="info-steps">
+                    <!-- Se llenará dinámicamente según el trabajo -->
+                </div>
+
+                <div class="info-tips">
+                    <h3><i data-lucide="lightbulb"></i> Consejos</h3>
+                    <ul id="info-tips-list">
+                        <!-- Se llenará dinámicamente según el trabajo -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Job Center -->
+    <div id="jobcenter-container" class="jobcenter-hidden">
+        <div class="jobcenter-backdrop"></div>
+        <div class="jobcenter-panel-full">
+            <!-- Header -->
+            <div class="jobcenter-header-full">
+                <div class="header-left">
+                    <div class="header-icon-full">
+                        <i data-lucide="info"></i>
+                    </div>
+                    <div class="header-text-full">
+                        <h1 class="header-title-full">Bienvenido a la Ciudad</h1>
+                        <p class="header-subtitle-full">Centro de Información y Empleo</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="jobcenter-content-full">
+                <!-- Sidebar Izquierda: Información -->
+                <div class="jobcenter-sidebar">
+                    <div class="welcome-section">
+                        <div class="welcome-icon">
+                            <i data-lucide="map-pin"></i>
+                        </div>
+                        <h2 class="welcome-title">Información Municipal</h2>
+                        <p class="welcome-text">
+                            Bienvenido a nuestra ciudad. Este es tu punto de información para comenzar tu nueva vida
+                            aquí.
+                        </p>
+                    </div>
+
+                    <div class="info-box">
+                        <div class="info-box-header">
+                            <i data-lucide="briefcase"></i>
+                            <h3>Trabajos Disponibles</h3>
+                        </div>
+                        <p>Puedes comenzar a trabajar inmediatamente en estos empleos sin requisitos previos.</p>
+                    </div>
+
+                    <div class="info-box">
+                        <div class="info-box-header">
+                            <i data-lucide="alert-circle"></i>
+                            <h3>¿Necesitas Asistencia?</h3>
+                        </div>
+                        <div class="assistance-list">
+                            <div class="assistance-item">
+                                <i data-lucide="shield"></i>
+                                <div>
+                                    <strong>Policía (LSPD)</strong>
+                                    <span>Teléfono: 911 | Comisaría Central</span>
+                                </div>
+                            </div>
+                            <div class="assistance-item">
+                                <i data-lucide="heart-pulse"></i>
+                                <div>
+                                    <strong>Hospital (EMS)</strong>
+                                    <span>Teléfono: 911 | Pillbox Medical</span>
+                                </div>
+                            </div>
+                            <div class="assistance-item">
+                                <i data-lucide="building-2"></i>
+                                <div>
+                                    <strong>Ayuntamiento</strong>
+                                    <span>Trámites y licencias | City Hall</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-footer">
+                        <i data-lucide="lightbulb"></i>
+                        <p>Selecciona un trabajo para marcar su ubicación en el mapa</p>
+                    </div>
+                </div>
+
+                <!-- Área Central: Trabajos -->
+                <div class="jobcenter-main">
+                    <div class="jobs-grid-full" id="jobs-grid">
+                        <!-- Los trabajos se cargarán dinámicamente aquí -->
+                    </div>
+
+                    <!-- Tablón de Anuncios / Ofertas de Empleo -->
+                    <div class="job-offers-section">
+                        <div class="job-offers-header">
+                            <i data-lucide="megaphone"></i>
+                            <h3>Ofertas de Empleo</h3>
+                        </div>
+                        <div class="job-offers-slider" id="job-offers-slider">
+                            <!-- Slider de ofertas se carga dinámicamente -->
+                            <div class="offer-empty">
+                                <i data-lucide="inbox"></i>
+                                <p>No hay ofertas disponibles actualmente</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar Derecha: Rankings -->
+                <div class="jobcenter-rankings">
+                    <div class="rankings-header">
+                        <i data-lucide="trophy"></i>
+                        <h2>Rankings</h2>
+                    </div>
+
+                    <div class="rankings-tabs">
+                        <button class="ranking-tab active" data-ranking="hours">
+                            <i data-lucide="clock"></i>
+                            Horas
+                        </button>
+                        <button class="ranking-tab" data-ranking="earnings">
+                            <i data-lucide="dollar-sign"></i>
+                            Dinero
+                        </button>
+                    </div>
+
+                    <div class="rankings-filters">
+                        <button class="ranking-filter active" data-filter="all">
+                            Todos
+                        </button>
+                        <button class="ranking-filter" data-filter="garbage">
+                            🗑️
+                        </button>
+                        <button class="ranking-filter" data-filter="miner">
+                            ⛏️
+                        </button>
+                        <button class="ranking-filter" data-filter="lumberjack">
+                            🪓
+                        </button>
+                        <button class="ranking-filter" data-filter="bus">
+                            🚌
+                        </button>
+                    </div>
+
+                    <div class="rankings-content" id="rankings-content">
+                        <!-- Los rankings se cargarán dinámicamente -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal: Formulario de Solicitud -->
+        <div id="application-modal" class="application-modal hidden">
+            <div class="application-overlay"></div>
+            <div class="application-form-container">
+                <div class="application-header">
+                    <div class="application-header-icon">
+                        <i data-lucide="file-text"></i>
+                    </div>
+                    <div class="application-header-text">
+                        <h2>Solicitud de Empleo</h2>
+                        <p id="application-business-name">Negocio - Puesto</p>
+                    </div>
+                    <button class="application-close" id="close-application">
+                        <i data-lucide="x"></i>
+                    </button>
+                </div>
+
+                <div class="application-body">
+                    <div class="form-group">
+                        <label>
+                            <i data-lucide="user"></i>
+                            Nombre Completo
+                        </label>
+                        <input type="text" id="applicant-name" placeholder="Ingresa tu nombre completo">
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <i data-lucide="cake"></i>
+                            Edad
+                        </label>
+                        <input type="number" id="applicant-age" placeholder="Ingresa tu edad">
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <i data-lucide="phone"></i>
+                            Número de Contacto
+                        </label>
+                        <input type="text" id="applicant-phone" placeholder="XXX-XXXX">
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <i data-lucide="briefcase"></i>
+                            Experiencia Laboral
+                        </label>
+                        <textarea id="applicant-experience" placeholder="Describe tu experiencia laboral relevante..."
+                            rows="4"></textarea>
+                    </div>
+                </div>
+
+                <div class="application-footer">
+                    <button class="btn-cancel" id="cancel-application">
+                        <i data-lucide="x"></i>
+                        Cancelar
+                    </button>
+                    <button class="btn-submit" id="submit-application">
+                        <i data-lucide="send"></i>
+                        Enviar Solicitud
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================
+         TAXI QUICKACCESS MENU (F7 / Spawn)
+         ============================ -->
+    <section class="taxi-quickaccess">
+        <div class="taxi-qa-block">
+            <div class="taxi-tab-list">
+                <div class="taxi-tab active" data-tab="acciones">
+                    <i class="fa-solid fa-list-check"></i>
+                    <span>ACCIONES</span>
+                </div>
+                <div class="taxi-tab" data-tab="config">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>CONFIG</span>
+                </div>
+                <div class="taxi-tab is-boss-only" data-tab="boss" style="display:none;">
+                    <i class="fa-solid fa-user-tie"></i>
+                    <span>JEFE</span>
+                </div>
+            </div>
+
+            <div class="taxi-tab-content-list">
+                <!-- TAB: ACCIONES -->
+                <div class="taxi-tab-content active" data-tab="acciones">
+                    <div class="taxi-qa-title">
+                        <div class="icon">
+                            <i class="fa-solid fa-car"></i>
+                        </div>
+                        <span>Gestión de Taxi</span>
+                    </div>
+
+                    <div class="taxi-qa-duty-zone">
+                        <span class="taxi-qa-duty-label" id="taxi-duty-text">Fuera de Servicio</span>
+                        <label class="taxi-switch">
+                            <input type="checkbox" id="taxi-duty-check">
+                            <span class="taxi-slider round"></span>
+                        </label>
+                    </div>
+                    <div class="taxi-actions-list">
+                        <div class="taxi-action-item" id="taxi-btn-vehicle" data-context="garage">
+                            <i class="fa-solid fa-car"></i>
+                            <div class="taxi-action-text">
+                                <span class="taxi-action-title">Vehículo</span>
+                                <span class="taxi-action-sub">Sacar de garaje</span>
+                            </div>
+                        </div>
+                        <div class="taxi-action-item" id="taxi-btn-save-vehicle" data-context="save">
+                            <i class="fa-solid fa-warehouse"></i>
+                            <div class="taxi-action-text">
+                                <span class="taxi-action-title">Guardar</span>
+                                <span class="taxi-action-sub">Devolver vehículo</span>
+                            </div>
+                        </div>
+                        <div class="taxi-action-item" id="taxi-btn-mission" data-context="f6">
+                            <i class="fa-solid fa-person-walking-luggage"></i>
+                            <div class="taxi-action-text">
+                                <span class="taxi-action-title">Servicio NPC</span>
+                                <span class="taxi-action-sub">Buscar pasajeros</span>
+                            </div>
+                        </div>
+                        <div class="taxi-action-item" id="taxi-btn-wardrobe" data-context="duty">
+                            <i class="fa-solid fa-shirt"></i>
+                            <div class="taxi-action-text">
+                                <span class="taxi-action-title">Vestuario</span>
+                                <span class="taxi-action-sub">Cambiar ropa</span>
+                            </div>
+                        </div>
+                        <div class="taxi-action-item" id="taxi-btn-stash" data-context="duty">
+                            <i class="fa-solid fa-box-open"></i>
+                            <div class="taxi-action-text">
+                                <span class="taxi-action-title">Taquilla</span>
+                                <span class="taxi-action-sub">Cosas personales</span>
+                            </div>
+                        </div>
+                        <div class="taxi-action-item" id="taxi-btn-toggle-dispatch" data-context="f6">
+                            <i class="fa-solid fa-eye-slash"></i>
+                            <div class="taxi-action-text">
+                                <span class="taxi-action-title">Alertas</span>
+                                <span class="taxi-action-sub">Mostrar/Ocultar</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB: CONFIG -->
+                <div class="taxi-tab-content" data-tab="config">
+                    <div class="taxi-qa-title">
+                        <div class="icon">
+                            <i class="fa-solid fa-gear"></i>
+                        </div>
+                        <span>Configuración</span>
+                    </div>
+                    <div class="taxi-actions-list">
+                        <div class="taxi-action-item taxi-toggle-config" data-config="autoAccept">
+                            <i class="fa-solid fa-robot"></i>
+                            <div class="taxi-action-text">
+                                <span class="taxi-action-title">Auto-Pasajeros</span>
+                                <span class="taxi-action-sub">Buscar NPC automáticamente</span>
+                            </div>
+                        </div>
+                        <div class="taxi-action-item taxi-toggle-config" data-config="autoAcceptAlerts">
+                            <i class="fa-solid fa-check-double"></i>
+                            <div class="taxi-action-text">
+                                <span class="taxi-action-title">Auto-Aceptar Alertas</span>
+                                <span class="taxi-action-sub">Aceptar llamadas sin pulsar teclas</span>
+                            </div>
+                        </div>
+                        <div class="taxi-action-item taxi-toggle-config" data-config="showDispatch">
+                            <i class="fa-solid fa-desktop"></i>
+                            <div class="taxi-action-text">
+                                <span class="taxi-action-title">Panel de Alertas</span>
+                                <span class="taxi-action-sub">Mostrar/Ocultar dispatch (F6)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="taxi-info-bar">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <span>Preferencias del terminal de taxi</span>
+                    </div>
+                </div>
+
+                <!-- TAB: VEHICLE SELECT -->
+                <div class="taxi-tab-content" data-tab="vehicle-select">
+                    <div class="taxi-qa-title">
+                        <div class="icon">
+                            <i class="fa-solid fa-car-side"></i>
+                        </div>
+                        <span>Garaje de Taxi</span>
+                    </div>
+                    <div class="taxi-subpanel-header">
+                        <button id="taxi-vehicle-back"><i class="fa-solid fa-chevron-left"></i></button>
+                        <span>SELECCIONAR VEHÍCULO</span>
+                    </div>
+                    <div class="taxi-action-list" id="taxi-vehicle-list">
+                        <!-- Vehículos cargados dinámicamente -->
+                    </div>
+                </div>
+
+                <!-- TAB: BOSS SETTINGS -->
+                <div class="taxi-tab-content" data-tab="boss-settings">
+                    <div class="taxi-subpanel-header">
+                        <button id="taxi-boss-back"><i class="fa-solid fa-chevron-left"></i></button>
+                        <span>AJUSTES DE EMPRESA</span>
+                    </div>
+                    <div class="taxi-action-list">
+                        <div class="taxi-action-item taxi-boss-setting" data-key="Duty">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <div class="taxi-action-text">
+                                <span class="taxi-action-title">Punto de Servicio</span>
+                                <span class="taxi-action-sub">Establecer aquí</span>
+                            </div>
+                        </div>
+                        <div class="taxi-action-item taxi-boss-setting" data-key="VehicleSpawn">
+                            <i class="fa-solid fa-car-side"></i>
+                            <div class="taxi-action-text">
+                                <span class="taxi-action-title">Punto de Spawn</span>
+                                <span class="taxi-action-sub">Establecer aquí</span>
+                            </div>
+                        </div>
+                        <div class="taxi-action-item taxi-boss-setting" data-key="VehicleSave">
+                            <i class="fa-solid fa-warehouse"></i>
+                            <div class="taxi-action-text">
+                                <span class="taxi-action-title">Punto de Guardado</span>
+                                <span class="taxi-action-sub">Establecer aquí</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================
+         TAXI DISPATCH PANEL (Separado del F7)
+         ============================ -->
+    <section class="taxi-dispatch">
+        <div class="taxi-dispatch-header">
+            <div class="taxi-dispatch-title">
+                <i class="fa-solid fa-bell"></i>
+                <span>SOLICITUDES DE TAXI</span>
+            </div>
+            <span class="taxi-dispatch-badge" id="taxi-dispatch-count">0</span>
+        </div>
+        <div class="taxi-dispatch-content" id="taxi-dispatch-list">
+            <div class="taxi-no-alerts">
+                <i class="fa-solid fa-inbox"></i>
+                <span>No hay solicitudes</span>
+            </div>
+        </div>
+        <div class="taxi-dispatch-footer">
+            <div class="taxi-dispatch-nav" id="taxi-dispatch-nav">
+                <button class="taxi-dispatch-nav-btn" id="taxi-dispatch-prev">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <span id="taxi-dispatch-position">0/0</span>
+                <button class="taxi-dispatch-nav-btn" id="taxi-dispatch-next">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+        <div class="taxi-dispatch-controls" id="taxi-dispatch-controls" style="display:none;">
+            <div class="taxi-dispatch-control-item">
+                <span class="taxi-control-key">←</span>
+                <span class="taxi-control-key">→</span>
+                <span class="taxi-control-label">Navegar</span>
+            </div>
+            <div class="taxi-dispatch-control-item">
+                <span class="taxi-control-key">↑</span>
+                <span class="taxi-control-label">Aceptar</span>
+            </div>
+            <div class="taxi-dispatch-control-item">
+                <span class="taxi-control-key">↓</span>
+                <span class="taxi-control-label">Denegar</span>
+            </div>
+        </div>
+    </section>
+
+    <script src="nui://game/ui/jquery.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/taxi.js"></script>
+    <script>
+        // Inicializar iconos de Lucide
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    </script>
+</body>
+
+</html>

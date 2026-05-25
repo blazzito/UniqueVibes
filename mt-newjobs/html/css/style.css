@@ -1,0 +1,3383 @@
+/* ===========================
+   RESET & FUENTE CUSTOM
+   =========================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Bebas+Neue&display=swap");
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    overflow: hidden;
+    user-select: none;
+    background: transparent !important;
+}
+
+/* ===========================
+   VARIABLES DE COLOR (BUSINESS STYLE)
+   =========================== */
+
+:root {
+    --primary-color: #ff6b00;
+    --primary-color-rgb: 255, 107, 0;
+    --color-acent: #ff6b00;
+    --color-petrol: #00a8cc;
+    --bg-dark: #0f0f0f;
+    --bg-medium: #151515;
+    --bg-light: rgba(255, 255, 255, 0.05);
+    --border-color: rgba(255, 255, 255, 0.08);
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.75);
+    --text-muted: rgba(255, 255, 255, 0.5);
+    --panel-bg-soft: rgba(255, 255, 255, 0.05);
+    --panel-border: 0.1vh dashed rgba(255, 255, 255, 0.14);
+    --panel-radius: 12px;
+    --panel-padding: 1.2vh 1.4vh;
+    --title-font-size: 1.2vh;
+    --subtitle-font-size: 1vh;
+    --value-font-size: 1.5vh;
+}
+
+/* Tema Basurero */
+[data-job="garbage"] {
+    --primary-color: #ff6b00;
+    --primary-color-rgb: 255, 107, 0;
+    --color-acent: #ff6b00;
+}
+
+/* Tema Minero */
+[data-job="miner"] {
+    --primary-color: #00a8cc;
+    --primary-color-rgb: 0, 168, 204;
+    --color-acent: #00a8cc;
+}
+
+/* Tema Leñador */
+[data-job="lumberjack"] {
+    --primary-color: #ff6b00;
+    --primary-color-rgb: 255, 107, 0;
+    --color-acent: #ff6b00;
+}
+
+/* Tema Bus */
+[data-job="bus"] {
+    --primary-color: #00a8cc;
+    --primary-color-rgb: 0, 168, 204;
+    --color-acent: #00a8cc;
+}
+
+/* Tema Pollero */
+[data-job="chicken"] {
+    --primary-color: #ff6b00;
+    --primary-color-rgb: 255, 107, 0;
+    --color-acent: #ff6b00;
+}
+
+/* Tema Camionero */
+[data-job="trucker"] {
+    --primary-color: #00a8cc;
+    --primary-color-rgb: 0, 168, 204;
+    --color-acent: #00a8cc;
+}
+
+/* ===========================
+   HUD STYLES (Business Style)
+   =========================== */
+
+#hud-container {
+    position: fixed;
+    top: 7vh;
+    right: 2vh;
+    z-index: 1000;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#hud-container.hud-hidden {
+    opacity: 0;
+    transform: translateX(20vh);
+    pointer-events: none;
+}
+
+.hud-card {
+    background: var(--bg-dark);
+    border: 0.1vh solid var(--border-color);
+    border-radius: 0.9vh;
+    padding: 1.2vh;
+    min-width: 33vh;
+    outline: 0.1vh dashed rgba(255, 255, 255, 0.14);
+    outline-offset: 0.3vh;
+    animation: slideInRight 0.5s ease;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(5vh);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.taxi-action-card {
+    padding: 1.5vh;
+    background: rgba(255, 255, 255, 0.03);
+    border: 0.1vh solid rgba(255, 255, 255, 0.05);
+    border-radius: 1vh;
+    margin-bottom: 1.5vh;
+}
+
+.taxi-action-header {
+    display: flex;
+    align-items: center;
+    gap: 1vh;
+    margin-bottom: 1vh;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1vh;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.taxi-action-header i {
+    color: var(--taxi-primary);
+}
+
+.taxi-duty-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1.5vh;
+}
+
+#taxi-duty-text {
+    font-size: 1.4vh;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+.hud-header {
+    display: flex;
+    align-items: center;
+    gap: 1vh;
+    margin-bottom: 1.5vh;
+    padding-bottom: 1vh;
+    border-bottom: 0.1vh dashed rgba(255, 255, 255, 0.12);
+}
+
+.hud-icon svg, .hud-icon i {
+    width: 2vh;
+    height: 2vh;
+    font-size: 2vh;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hud-title-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3vh;
+}
+
+.hud-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8vh;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.15vh;
+}
+
+.hud-level {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.9vh;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 400;
+}
+
+.hud-stats {
+    display: flex;
+    justify-content: space-between;
+    gap: 1vh;
+    margin-bottom: 1.5vh;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3vh;
+    flex: 1;
+}
+
+.stat-label {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1vh;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.05vh;
+    font-weight: 500;
+}
+
+.stat-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2vh;
+    color: #ffffff;
+    letter-spacing: 0.05vh;
+}
+
+.stat-money {
+    color: #ffffff;
+}
+
+.stat-divider {
+    width: 0.1vh;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.hud-progress {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8vh;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 0.8vh;
+    background: rgba(255, 255, 255, 0.1);
+    border: 0.1vh dashed rgba(255, 255, 255, 0.15);
+    border-radius: 0.4vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.55) 100%);
+    border-radius: 0.4vh;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 1vh rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.3) 50%,
+            transparent 100%);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        left: -100%;
+    }
+
+    100% {
+        left: 100%;
+    }
+}
+
+.progress-text {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1vh;
+    color: rgba(255, 255, 255, 0.6);
+    text-align: center;
+}
+
+kbd {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 0.4vh 0.8vh;
+    border-radius: 0.5vh;
+    font-family: 'Bebas Neue', sans-serif;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    font-size: 1.3vh;
+    letter-spacing: 0.1vh;
+}
+
+/* =========================
+   MENU PANEL STYLES
+   ========================= */
+
+#menu-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 3vh;
+    transition: all 0.3s ease;
+}
+
+#menu-container.menu-hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.menu-backdrop {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    z-index: -1;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.menu-panel {
+    position: relative;
+    background: var(--bg-dark);
+    border: 0.1vh solid var(--border-color);
+    border-radius: 0.9vh;
+    width: 42vh;
+    max-height: 92vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    outline: 0.1vh dashed rgba(255, 255, 255, 0.14);
+    outline-offset: 0.35vh;
+    box-shadow: 0 1.8vh 3.2vh rgba(0, 0, 0, 0.45);
+    animation: slideDown 0.5s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-2vh);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Custom Scrollbar (Business Style) */
+.menu-panel::-webkit-scrollbar {
+    width: 0.5vh;
+}
+
+.menu-panel::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.menu-panel::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--primary-color) 0%, rgba(var(--primary-color-rgb), 0.5) 100%);
+    border-radius: 1vh;
+}
+
+.menu-panel::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
+}
+
+/* Menu Header (Business Style) */
+.menu-header {
+    position: relative;
+    text-align: center;
+    padding: 1.6vh 1.6vh 1.2vh;
+    border-bottom: 0.1vh dashed rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.03);
+    flex-shrink: 0;
+    z-index: 2;
+}
+
+.menu-icon-large {
+    background: rgba(255, 255, 255, 0.08);
+    border: 0.1vh dashed rgba(255, 255, 255, 0.18);
+    border-radius: 0.7vh;
+    width: 4.3vh;
+    height: 4.3vh;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5vh;
+    margin-bottom: 1vh;
+    color: white;
+}
+
+.menu-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.8vh;
+    color: #ffffff;
+    letter-spacing: 0.15vh;
+    margin: 0 0 0.2vh 0;
+    text-transform: uppercase;
+}
+
+.menu-subtitle {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4vh;
+    color: var(--primary-color);
+    letter-spacing: 0.1vh;
+    text-transform: uppercase;
+}
+
+.close-btn {
+    display: none;
+}
+
+/* Menu Content */
+.menu-content {
+    padding: 1.2vh 1.5vh;
+    flex: 1;
+    overflow: hidden;
+    overflow-y: auto;
+    position: relative;
+    z-index: 2;
+}
+
+.menu-content::-webkit-scrollbar {
+    width: 0.4vh;
+}
+
+.menu-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.menu-content::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 1vh;
+}
+
+.menu-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Stats Grid (Business Style) */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8vh;
+    margin-bottom: 1vh;
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 0.1vh dashed rgba(255, 255, 255, 0.12);
+    border-radius: 0.7vh;
+    padding: 0.95vh;
+    display: flex;
+    align-items: center;
+    gap: 0.7vh;
+}
+
+.stat-card-icon svg, .stat-card-icon i {
+    width: 1.8vh;
+    height: 1.8vh;
+    font-size: 1.8vh;
+    color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stat-card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2vh;
+}
+
+.stat-card-label {
+    font-family: 'Quicksand', sans-serif;
+    font-size: var(--subtitle-font-size);
+    color: #ffffff;
+    letter-spacing: 0.05vh;
+    text-transform: uppercase;
+    font-weight: 100;
+}
+
+.stat-card-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2vh;
+    color: #ffffff;
+    letter-spacing: 0.05vh;
+}
+
+/* Level Progress Section */
+.level-progress-section {
+    background: rgba(255, 255, 255, 0.04);
+    border: 0.1vh dashed rgba(255, 255, 255, 0.16);
+    border-radius: 0.8vh;
+    padding: 1vh 1.2vh;
+    margin-bottom: 1vh;
+}
+
+.level-progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.8vh;
+}
+
+.level-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vh;
+}
+
+.level-badge {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2vh;
+    color: #ffffff;
+    letter-spacing: 0.1vh;
+}
+
+.level-badge #level-number {
+    font-size: 2.5vh;
+    color: var(--primary-color);
+}
+
+.level-bonus {
+    font-family: 'Quicksand', sans-serif;
+    font-size: var(--subtitle-font-size);
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 300;
+}
+
+.xp-text {
+    font-family: 'Quicksand', sans-serif;
+    font-size: var(--subtitle-font-size);
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 400;
+}
+
+.xp-progress-bar {
+    width: 100%;
+    height: 1.2vh;
+    background: rgba(0, 0, 0, 0.4);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.6vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.xp-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.55) 100%);
+    border-radius: 0.8vh;
+    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 0.8vh rgba(255, 255, 255, 0.18);
+    position: relative;
+    overflow: hidden;
+}
+
+.xp-progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.3) 50%,
+            transparent 100%);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        left: -100%;
+    }
+
+    100% {
+        left: 100%;
+    }
+}
+
+/* Warning Section */
+.warning-section {
+    background: var(--panel-bg-soft);
+    border: var(--panel-border);
+    border-radius: var(--panel-radius);
+    padding: var(--panel-padding);
+    margin-bottom: 1vh;
+    display: flex;
+    gap: 1vh;
+    align-items: flex-start;
+}
+
+.warning-icon {
+    width: 3.2vh;
+    height: 3.2vh;
+    background: rgba(255, 200, 0, 0.15);
+    border: 0.1vh solid rgba(255, 200, 0, 0.3);
+    border-radius: 1vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.warning-icon svg {
+    width: 2.2vh;
+    height: 2.2vh;
+    stroke-width: 2;
+    color: rgb(255, 200, 0);
+}
+
+.warning-content {
+    flex: 1;
+}
+
+.warning-content h4 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: var(--title-font-size);
+    color: #ffffff;
+    font-weight: 100;
+    letter-spacing: 0.1vh;
+    text-transform: uppercase;
+    margin-bottom: 0.6vh;
+}
+
+.warning-content ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vh;
+    margin: 0;
+    padding: 0;
+}
+
+.warning-content li {
+    font-family: 'Quicksand', sans-serif;
+    font-size: var(--subtitle-font-size);
+    color: #ffffff;
+    padding-left: 1.5vh;
+    position: relative;
+    line-height: 1.4;
+    font-weight: 300;
+}
+
+.warning-content li::before {
+    content: '•';
+    position: absolute;
+    left: 0.5vh;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.5vh;
+    font-weight: bold;
+}
+
+.warning-content strong {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+/* Action Section (Business Style) */
+.action-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65vh;
+    margin-bottom: 0;
+}
+
+.action-btn {
+    background: rgba(255, 255, 255, 0.06);
+    border: 0.1vh dashed rgba(255, 255, 255, 0.12);
+    border-radius: 0.65vh;
+    padding: 0.95vh;
+    display: flex;
+    align-items: center;
+    gap: 0.8vh;
+    cursor: pointer;
+    transition: opacity 0.3s ease, background-color 0.2s ease;
+}
+
+.action-btn:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.action-btn-primary {
+    background: rgba(var(--primary-color-rgb), 0.85);
+    border-color: rgba(255, 255, 255, 0.16);
+    color: white;
+}
+
+.action-btn-secondary {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+.action-btn-info {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+.action-btn-danger {
+    background: rgba(220, 38, 38, 0.25);
+    border-color: rgba(220, 38, 38, 0.5);
+    color: white;
+}
+
+.action-btn-danger:hover {
+    background: rgba(220, 38, 38, 0.45);
+    opacity: 1;
+}
+
+.action-btn-danger .btn-title {
+    color: #ff6b6b;
+}
+
+.action-btn-danger .btn-subtitle {
+    color: rgba(255, 107, 107, 0.6);
+}
+
+.action-btn-danger .btn-icon svg {
+    color: #ff6b6b;
+}
+
+.btn-icon {
+    font-size: 2vh;
+    flex-shrink: 0;
+}
+
+.btn-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2vh;
+    text-align: left;
+    flex: 1;
+}
+
+.btn-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: var(--title-font-size);
+    font-weight: 100;
+    color: #ffffff;
+    letter-spacing: 0.05vh;
+}
+
+.btn-subtitle {
+    font-family: 'Quicksand', sans-serif;
+    font-size: var(--subtitle-font-size);
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 500;
+}
+
+/* Info Section (Business Style) */
+.info-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.65vh;
+    margin-top: 0.65vh;
+}
+
+.info-card {
+    background: var(--panel-bg-soft);
+    border: var(--panel-border);
+    border-radius: var(--panel-radius);
+    padding: var(--panel-padding);
+    text-align: center;
+}
+
+.info-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: var(--title-font-size);
+    color: #ffffff;
+    margin-bottom: 0.5vh;
+    font-weight: 100;
+    letter-spacing: 0.05vh;
+    text-transform: uppercase;
+}
+
+.info-highlight {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: var(--value-font-size);
+    font-weight: 100;
+    color: rgb(255 255 255);
+}
+
+/* Back Button (Business Style) */
+.back-btn {
+    background: rgba(255, 255, 255, 0.06);
+    border: 0.1vh dashed rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    padding: 1.2vh 2.5vh;
+    border-radius: 0.8vh;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3vh;
+    font-weight: 100;
+    letter-spacing: 0.1vh;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 2.5vh;
+    text-transform: uppercase;
+}
+
+.back-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.26);
+}
+
+.section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.4vh;
+    font-weight: 100;
+    color: #ffffff;
+    margin-bottom: 3vh;
+    letter-spacing: 0.15vh;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 1.2vh;
+}
+
+/* Detailed Stats (Business Style) */
+.stats-detailed {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+.detailed-stat {
+    background: var(--panel-bg-soft);
+    border: var(--panel-border);
+    border-radius: var(--panel-radius);
+    padding: var(--panel-padding);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.detailed-label {
+    font-family: 'Quicksand', sans-serif;
+    font-size: var(--subtitle-font-size);
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 600;
+}
+
+.detailed-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: var(--value-font-size);
+    font-weight: 100;
+    color: #ffffff;
+}
+
+.detailed-value.stat-money {
+    color: #ffffff;
+}
+
+/* Info Steps (Business Style) */
+.info-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    margin-bottom: 3vh;
+}
+
+.step-item {
+    display: flex;
+    gap: 2vh;
+    align-items: flex-start;
+}
+
+.step-number {
+    min-width: 5vh;
+    height: 5vh;
+    background: var(--primary-color);
+    border: 0.2vh solid rgba(255, 255, 255, 0.2);
+    border-radius: 1vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2vh;
+    font-weight: 100;
+    color: #ffffff;
+    flex-shrink: 0;
+}
+
+.step-content {
+    flex: 1;
+}
+
+.step-content h4 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6vh;
+    color: #ffffff;
+    margin-bottom: 0.8vh;
+    font-weight: 100;
+    letter-spacing: 0.1vh;
+    text-transform: uppercase;
+}
+
+.step-content p {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.3vh;
+    color: #ffffff;
+    line-height: 1.8;
+    font-weight: 300;
+}
+
+/* Info Tips (Business Style) */
+.info-tips {
+    background: rgba(0, 0, 0, 0.3);
+    border: 0.1vh solid rgba(0, 168, 204, 0.4);
+    outline: 0.1vh dashed rgba(0, 168, 204, 0.3);
+    outline-offset: 0.3vh;
+    border-radius: 1vh;
+    padding: 2.5vh;
+    margin-top: 2vh;
+}
+
+.info-tips h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6vh;
+    color: #ffffff;
+    margin-bottom: 1.5vh;
+    font-weight: 100;
+    letter-spacing: 0.1vh;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 1vh;
+}
+
+.info-tips ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2vh;
+}
+
+.info-tips li {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.3vh;
+    color: #ffffff;
+    padding-left: 2.5vh;
+    position: relative;
+    line-height: 1.8;
+    font-weight: 300;
+}
+
+.info-tips li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 100;
+    font-size: 1.5vh;
+}
+
+.info-tips strong {
+    color: #ffffff;
+    font-weight: 600;
+    font-weight: 600;
+}
+
+/* Responsive (Business Style) */
+@media (max-width: 768px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .info-section {
+        grid-template-columns: 1fr;
+    }
+
+    #menu-container {
+        padding-right: 1vh;
+    }
+
+    .menu-panel {
+        width: 45vh;
+    }
+
+    #hud-container {
+        right: 1vh;
+        top: 1vh;
+    }
+
+    .hud-card {
+        min-width: 30vh;
+    }
+}
+
+/* ===========================
+   ESTILOS PARA ICONOS SVG (LUCIDE)
+   =========================== */
+
+.menu-icon-large svg {
+    width: 4vh;
+    height: 4vh;
+    stroke-width: 1.5;
+}
+
+.stat-card-icon svg {
+    width: 2.2vh;
+    height: 2.2vh;
+    stroke-width: 1.5;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.btn-icon svg {
+    width: 2.5vh;
+    height: 2.5vh;
+    stroke-width: 2;
+}
+
+.info-card h3 svg {
+    width: 1.8vh;
+    height: 1.8vh;
+    stroke-width: 1.5;
+}
+
+.section-title svg {
+    width: 2.8vh;
+    height: 2.8vh;
+    stroke-width: 1.5;
+    color: var(--primary-color);
+}
+
+.info-tips h3 svg {
+    width: 2.2vh;
+    height: 2.2vh;
+    stroke-width: 1.5;
+    color: var(--primary-color);
+}
+
+.hud-icon svg {
+    width: 2.2vh;
+    height: 2.2vh;
+    stroke-width: 1.5;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* ===========================
+   JOB CENTER STYLES - FULLSCREEN
+   =========================== */
+
+#jobcenter-container {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    transition: opacity 0.3s ease;
+}
+
+#jobcenter-container.jobcenter-hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.jobcenter-backdrop {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    z-index: -1;
+    background: rgba(0, 0, 0, 0.4);
+    animation: fadeIn 0.3s ease;
+}
+
+.jobcenter-panel-full {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    animation: fadeIn 0.3s ease;
+}
+
+/* Header Fullscreen */
+.jobcenter-header-full {
+    background: rgba(0, 0, 0, 0.3);
+    border-bottom: 0.1vh solid rgba(255, 255, 255, 0.1);
+    padding: 2vh 4vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 2vh;
+}
+
+.header-icon-full {
+    width: 7vh;
+    height: 7vh;
+    border-radius: 1.5vh;
+    background: linear-gradient(135deg, #ff6b00 0%, #00a8cc 100%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 2vh rgba(255, 107, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.header-icon-full::after {
+    content: "";
+    position: absolute;
+    inset: -0.5vh;
+    border: 1px dashed rgba(255, 107, 0, 0.3);
+    border-radius: 2vh;
+}
+
+.header-icon-full svg, .header-icon-full i {
+    width: 3.5vh;
+    height: 3.5vh;
+    font-size: 3.5vh;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-text-full {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3vh;
+}
+
+.header-title-full {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5vh;
+    color: #ffffff;
+    letter-spacing: 0.2vh;
+    text-transform: uppercase;
+}
+
+.header-subtitle-full {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.3vh;
+    color: var(--primary-color);
+    font-weight: 300;
+    letter-spacing: 0.08vh;
+}
+
+/* Content Area */
+.jobcenter-content-full {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 25vw 1fr 25vw;
+    gap: 2vh;
+    padding: 2vh 4vh 3vh 4vh;
+    overflow: hidden;
+}
+
+/* Sidebar Izquierda - Información */
+.jobcenter-sidebar {
+    background: rgba(0, 0, 0, 0.2);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 1.5vh;
+    padding: 2vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vh;
+    justify-content: space-between;
+}
+
+.welcome-section {
+    text-align: center;
+    padding: 2.5vh;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1.2vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.welcome-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #ff6b00, #00a8cc);
+}
+
+.welcome-icon {
+    width: 6vh;
+    height: 6vh;
+    margin: 0 auto 1vh;
+    background: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.welcome-icon svg, .welcome-icon i {
+    width: 3vh;
+    height: 3vh;
+    font-size: 3vh;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.welcome-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.4vh;
+    color: #ffffff;
+    letter-spacing: 0.1vh;
+    margin-bottom: 0.8vh;
+    text-transform: uppercase;
+}
+
+.welcome-text {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.1vh;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    font-weight: 300;
+}
+
+.info-box {
+    background: rgba(0, 0, 0, 0.3);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 1vh;
+    padding: 1.5vh;
+}
+
+.info-box-header {
+    display: flex;
+    align-items: center;
+    gap: 0.8vh;
+    margin-bottom: 1vh;
+}
+
+.info-box-header svg {
+    width: 2vh;
+    height: 2vh;
+    color: var(--primary-color);
+    stroke-width: 2;
+}
+
+.info-box-header h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2vh;
+    color: #ffffff;
+    letter-spacing: 0.1vh;
+    text-transform: uppercase;
+}
+
+.info-box p {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.1vh;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.5;
+    font-weight: 300;
+}
+
+.assistance-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+.assistance-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1vh;
+    padding: 1vh;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 0.8vh;
+    border: 0.1vh solid rgba(255, 255, 255, 0.05);
+}
+
+.assistance-item svg {
+    width: 2vh;
+    height: 2vh;
+    color: var(--primary-color);
+    flex-shrink: 0;
+    stroke-width: 2;
+}
+
+.assistance-item div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3vh;
+}
+
+.assistance-item strong {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2vh;
+    color: #ffffff;
+    font-weight: 100;
+    letter-spacing: 0.05vh;
+}
+
+.assistance-item span {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1vh;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 300;
+}
+
+.info-footer {
+    display: flex;
+    align-items: center;
+    gap: 1vh;
+    padding: 1.2vh;
+    background: rgba(255, 200, 0, 0.08);
+    border: 0.1vh solid rgba(255, 200, 0, 0.2);
+    border-radius: 0.8vh;
+}
+
+.info-footer svg, .info-footer i {
+    width: 1.8vh;
+    height: 1.8vh;
+    color: rgb(255, 200, 0);
+    flex-shrink: 0;
+    stroke-width: 2;
+}
+
+.info-footer p {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1vh;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 300;
+    line-height: 1.5;
+}
+
+/* Área Central - Trabajos */
+.jobcenter-main {
+    overflow: hidden;
+    padding: 1vh 2vh;
+}
+
+.jobcenter-main::-webkit-scrollbar {
+    width: 0.6vh;
+}
+
+.jobcenter-main::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 0.3vh;
+}
+
+.jobcenter-main::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 0.3vh;
+}
+
+.jobs-grid-full {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2vh;
+    align-content: start;
+}
+
+.job-card {
+    background: rgba(0, 0, 0, 0.3);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 1vh;
+    padding: 2vh;
+    display: flex;
+    gap: 1.5vh;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: 0.1vh dashed rgba(255, 255, 255, 0.05);
+    outline-offset: 0.3vh;
+}
+
+.job-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: #ff6b00;
+    transform: translateY(-0.5vh);
+    box-shadow: 0 1vh 2.5vh rgba(0, 0, 0, 0.4);
+}
+
+.job-icon {
+    width: 5.5vh;
+    height: 5.5vh;
+    border-radius: 1.2vh;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.job-card:hover .job-icon {
+    background: #ff6b00;
+    border-color: #ff6b00;
+    box-shadow: 0 0 1.5vh rgba(255, 107, 0, 0.4);
+}
+
+.job-card:hover .job-icon i,
+.job-card:hover .job-icon svg {
+    color: #ffffff !important;
+    stroke: #ffffff !important;
+}
+
+.job-icon svg, .job-icon i {
+    width: 2.5vh;
+    height: 2.5vh;
+    font-size: 2.5vh;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.job-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6vh;
+}
+
+.job-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2vh;
+    color: #ffffff;
+    letter-spacing: 0.15vh;
+    text-transform: uppercase;
+}
+
+.job-description {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.1vh;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 300;
+    line-height: 1.5;
+}
+
+.job-payment {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3vh;
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 100;
+    letter-spacing: 0.05vh;
+}
+
+.job-arrow {
+    width: 3.5vh;
+    height: 3.5vh;
+    border-radius: 0.8vh;
+    background: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.job-arrow svg, .job-arrow i {
+    width: 2vh;
+    height: 2vh;
+    font-size: 2vh;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.job-card:hover .job-arrow {
+    background: var(--primary-color);
+}
+
+.job-card:hover .job-arrow {
+    background: var(--primary-color);
+}
+
+.job-card:hover .job-arrow svg, .job-card:hover .job-arrow i {
+    color: #ffffff;
+}
+
+/* Sidebar Derecha - Rankings */
+.jobcenter-rankings {
+    background: rgba(0, 0, 0, 0.2);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 1.5vh;
+    padding: 2vh;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vh;
+    overflow: hidden;
+}
+
+.rankings-header {
+    display: flex;
+    align-items: center;
+    gap: 1.2vh;
+    padding-bottom: 1.5vh;
+    border-bottom: 0.1vh solid rgba(255, 255, 255, 0.1);
+}
+
+.rankings-header svg, .rankings-header i {
+    width: 2.5vh;
+    height: 2.5vh;
+    font-size: 2.5vh;
+    color: var(--primary-color);
+}
+
+.rankings-header h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5vh;
+    color: #ffffff;
+    letter-spacing: 0.15vh;
+    text-transform: uppercase;
+}
+
+.rankings-tabs {
+    display: flex;
+    gap: 1vh;
+    margin-bottom: 1vh;
+}
+
+.ranking-tab {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6vh;
+    padding: 1.2vh;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4vh;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.1vh;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.ranking-tab svg, .ranking-tab i {
+    width: 1.5vh;
+    height: 1.5vh;
+    font-size: 1.5vh;
+}
+
+.ranking-tab:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.ranking-tab.active {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #ffffff;
+}
+
+/* Filtros de Rankings */
+.rankings-filters {
+    display: flex;
+    gap: 0.8vh;
+    margin-bottom: 1.5vh;
+}
+
+.ranking-filter {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8vh;
+    background: rgba(0, 0, 0, 0.3);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.8vh;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1vh;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 0.05vh;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.ranking-filter:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.ranking-filter.active {
+    background: rgba(0, 168, 204, 0.3);
+    border-color: var(--primary-color);
+    color: #ffffff;
+}
+
+.rankings-content {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+.rankings-content::-webkit-scrollbar {
+    width: 0.5vh;
+}
+
+.rankings-content::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 0.3vh;
+}
+
+.rankings-content::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 0.3vh;
+}
+
+.ranking-item {
+    display: flex;
+    align-items: center;
+    gap: 1.2vh;
+    padding: 1.2vh;
+    background: rgba(0, 0, 0, 0.3);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 1vh;
+    transition: all 0.3s ease;
+}
+
+.ranking-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--primary-color);
+}
+
+.ranking-position {
+    width: 3.5vh;
+    height: 3.5vh;
+    border-radius: 0.8vh;
+    background: rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5vh;
+    color: #ffffff;
+    font-weight: 100;
+    flex-shrink: 0;
+}
+
+.ranking-item.top-1 .ranking-position {
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+    color: #000;
+}
+
+.ranking-item.top-2 .ranking-position {
+    background: linear-gradient(135deg, #C0C0C0 0%, #A8A8A8 100%);
+    color: #000;
+}
+
+.ranking-item.top-3 .ranking-position {
+    background: linear-gradient(135deg, #CD7F32 0%, #B8860B 100%);
+    color: #000;
+}
+
+.ranking-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4vh;
+}
+
+.ranking-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2vh;
+    color: #ffffff;
+    font-weight: 100;
+    letter-spacing: 0.05vh;
+    display: flex;
+    align-items: center;
+    gap: 0.6vh;
+}
+
+.ranking-job-badge {
+    font-size: 1.4vh;
+    line-height: 1;
+}
+
+.ranking-value {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.1vh;
+    color: var(--primary-color);
+    font-weight: 400;
+}
+
+.ranking-icon {
+    width: 2.5vh;
+    height: 2.5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.ranking-icon svg {
+    width: 1.6vh;
+    height: 1.6vh;
+    color: rgba(255, 255, 255, 0.3);
+    stroke-width: 2;
+}
+
+.ranking-empty {
+    text-align: center;
+    padding: 4vh 2vh;
+    color: rgba(255, 255, 255, 0.5);
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.3vh;
+    font-weight: 300;
+}
+
+/* ==================== TABLÓN DE ANUNCIOS ==================== */
+
+.job-offers-section {
+    margin-top: 2vh;
+    background: rgba(0, 0, 0, 0.3);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 1.5vh;
+    padding: 2vh;
+    outline: 0.1vh dashed rgba(255, 255, 255, 0.1);
+    outline-offset: 0.3vh;
+}
+
+.job-offers-header {
+    display: flex;
+    align-items: center;
+    gap: 1.2vh;
+    margin-bottom: 2vh;
+    padding-bottom: 1.5vh;
+    border-bottom: 0.1vh solid rgba(255, 255, 255, 0.1);
+}
+
+.job-offers-header svg {
+    width: 2.5vh;
+    height: 2.5vh;
+    color: var(--primary-color);
+    stroke-width: 2;
+}
+
+.job-offers-header h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2vh;
+    font-weight: 100;
+    color: #ffffff;
+    letter-spacing: 0.1vh;
+    text-transform: uppercase;
+}
+
+.job-offers-slider {
+    position: relative;
+    min-height: 30vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Oferta Card */
+.offer-card {
+    background: rgba(0, 0, 0, 0.4);
+    border: 0.1vh solid rgba(255, 255, 255, 0.15);
+    border-radius: 1.2vh;
+    padding: 2.5vh;
+    outline: 0.1vh dashed rgba(255, 255, 255, 0.1);
+    outline-offset: 0.3vh;
+    animation: fadeInScale 0.5s ease;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.offer-header {
+    display: flex;
+    align-items: center;
+    gap: 2vh;
+    margin-bottom: 2vh;
+    padding-bottom: 2vh;
+    border-bottom: 0.1vh solid rgba(255, 255, 255, 0.1);
+}
+
+.offer-logo {
+    width: 8vh;
+    height: 8vh;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color) 0%, rgba(0, 168, 204, 0.5) 100%);
+    border: 0.15vh solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.offer-logo svg {
+    width: 4vh;
+    height: 4vh;
+    color: #ffffff;
+    stroke-width: 1.5;
+}
+
+.offer-title-section {
+    flex: 1;
+}
+
+.offer-business-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2vh;
+    font-weight: 100;
+    color: #ffffff;
+    letter-spacing: 0.1vh;
+    text-transform: uppercase;
+    margin-bottom: 0.5vh;
+}
+
+.offer-position {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.4vh;
+    color: var(--primary-color);
+    font-weight: 400;
+}
+
+.offer-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2vh;
+    margin-bottom: 2vh;
+}
+
+.offer-info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1vh;
+    padding: 1.5vh;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 0.8vh;
+    border: 0.1vh solid rgba(255, 255, 255, 0.05);
+}
+
+.offer-info-item svg {
+    width: 2vh;
+    height: 2vh;
+    color: var(--primary-color);
+    flex-shrink: 0;
+    stroke-width: 2;
+    margin-top: 0.2vh;
+}
+
+.offer-info-content {
+    flex: 1;
+}
+
+.offer-info-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2vh;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 100;
+    letter-spacing: 0.05vh;
+    text-transform: uppercase;
+    margin-bottom: 0.5vh;
+}
+
+.offer-info-value {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.3vh;
+    color: #ffffff;
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+.offer-description-box {
+    grid-column: 1 / -1;
+}
+
+.offer-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2vh;
+}
+
+.offer-navigation {
+    display: flex;
+    gap: 1vh;
+    align-items: center;
+}
+
+.nav-btn {
+    width: 4vh;
+    height: 4vh;
+    border-radius: 0.8vh;
+    background: rgba(255, 255, 255, 0.05);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-btn svg {
+    width: 2vh;
+    height: 2vh;
+    color: rgba(255, 255, 255, 0.7);
+    stroke-width: 2;
+}
+
+.nav-btn:hover {
+    background: rgba(0, 168, 204, 0.2);
+    border-color: var(--primary-color);
+}
+
+.nav-btn:hover svg {
+    color: var(--primary-color);
+}
+
+.nav-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.offer-indicator {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.2vh;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 300;
+}
+
+.offer-apply-btn {
+    padding: 1.5vh 3vh;
+    background: var(--primary-color);
+    border: 0.1vh solid var(--primary-color);
+    border-radius: 0.8vh;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4vh;
+    font-weight: 100;
+    color: #ffffff;
+    letter-spacing: 0.1vh;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 1vh;
+    transition: all 0.3s ease;
+    outline: 0.1vh dashed rgba(255, 255, 255, 0);
+    outline-offset: 0.3vh;
+}
+
+.offer-apply-btn svg {
+    width: 1.8vh;
+    height: 1.8vh;
+    stroke-width: 2;
+}
+
+.offer-apply-btn:hover {
+    background: rgba(0, 168, 204, 0.8);
+    outline-color: var(--primary-color);
+    transform: translateY(-0.2vh);
+}
+
+.offer-empty {
+    text-align: center;
+    padding: 8vh 2vh;
+}
+
+.offer-empty svg {
+    width: 6vh;
+    height: 6vh;
+    color: rgba(255, 255, 255, 0.3);
+    stroke-width: 1.5;
+    margin-bottom: 2vh;
+}
+
+.offer-empty p {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.4vh;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 300;
+}
+
+/* ==================== MODAL DE SOLICITUD ==================== */
+
+.application-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.application-modal.hidden {
+    display: none;
+}
+
+.application-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.application-form-container {
+    position: relative;
+    z-index: 10001;
+    background: rgb(0 0 0 / 90%);
+    border: 0.1vh solid rgba(255, 255, 255, 0.15);
+    border-radius: 1.5vh;
+    width: 60vh;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    outline: 0.1vh dashed rgba(255, 255, 255, 0.15);
+    outline-offset: 0.3vh;
+    animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(3vh);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.application-header {
+    display: flex;
+    align-items: center;
+    gap: 2vh;
+    padding: 2.5vh;
+    border-bottom: 0.1vh solid rgba(255, 255, 255, 0.1);
+}
+
+.application-header-icon {
+    width: 6vh;
+    height: 6vh;
+    border-radius: 50%;
+    background: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.application-header-icon svg {
+    width: 3vh;
+    height: 3vh;
+    color: #ffffff;
+    stroke-width: 2;
+}
+
+.application-header-text {
+    flex: 1;
+}
+
+.application-header-text h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2vh;
+    font-weight: 100;
+    color: #ffffff;
+    letter-spacing: 0.1vh;
+    text-transform: uppercase;
+    margin-bottom: 0.5vh;
+}
+
+.application-header-text p {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.3vh;
+    color: var(--primary-color);
+    font-weight: 300;
+}
+
+.application-close {
+    width: 4vh;
+    height: 4vh;
+    border-radius: 0.8vh;
+    background: rgba(255, 255, 255, 0.05);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.application-close svg {
+    width: 2vh;
+    height: 2vh;
+    color: rgba(255, 255, 255, 0.7);
+    stroke-width: 2;
+}
+
+.application-close:hover {
+    background: rgba(255, 0, 0, 0.2);
+    border-color: rgba(255, 0, 0, 0.5);
+}
+
+.application-close:hover svg {
+    color: rgb(255, 100, 100);
+}
+
+.application-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 2.5vh;
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+
+.application-body::-webkit-scrollbar {
+    width: 0.5vh;
+}
+
+.application-body::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 0.3vh;
+}
+
+.application-body::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 0.3vh;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+.form-group label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3vh;
+    font-weight: 100;
+    color: #ffffff;
+    letter-spacing: 0.05vh;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 0.8vh;
+}
+
+.form-group label svg {
+    width: 1.8vh;
+    height: 1.8vh;
+    color: var(--primary-color);
+    stroke-width: 2;
+}
+
+.form-group input,
+.form-group textarea {
+    background: rgba(0, 0, 0, 0.4);
+    border: 0.1vh solid rgba(255, 255, 255, 0.15);
+    border-radius: 0.8vh;
+    padding: 1.5vh;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.3vh;
+    color: #ffffff;
+    font-weight: 300;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--primary-color);
+    background: rgba(0, 168, 204, 0.1);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 8vh;
+    line-height: 1.6;
+}
+
+.application-footer {
+    display: flex;
+    gap: 2vh;
+    padding: 2.5vh;
+    border-top: 0.1vh solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-cancel,
+.btn-submit {
+    flex: 1;
+    padding: 1.5vh 2vh;
+    border-radius: 0.8vh;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3vh;
+    font-weight: 100;
+    letter-spacing: 0.1vh;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1vh;
+    transition: all 0.3s ease;
+}
+
+.btn-cancel svg,
+.btn-submit svg {
+    width: 1.8vh;
+    height: 1.8vh;
+    stroke-width: 2;
+}
+
+.btn-cancel {
+    background: rgba(255, 255, 255, 0.05);
+    border: 0.1vh solid rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.btn-cancel:hover {
+    background: rgba(255, 0, 0, 0.15);
+    border-color: rgba(255, 0, 0, 0.3);
+    color: rgb(255, 100, 100);
+}
+
+.btn-submit {
+    background: var(--primary-color);
+    border: 0.1vh solid var(--primary-color);
+    color: #ffffff;
+}
+
+.btn-submit:hover {
+    background: rgba(0, 168, 204, 0.8);
+    transform: translateY(-0.2vh);
+}
+
+/* ===========================
+   TRUCKER CONFIG STYLES (PREMIUM REVAMP)
+   =========================== */
+.trucker-config {
+    background: var(--panel-bg-soft);
+    border: var(--panel-border);
+    border-radius: var(--panel-radius);
+    padding: var(--panel-padding);
+    margin-bottom: 1vh;
+    max-height: 35vh;
+    overflow-y: auto;
+}
+
+.config-header-main {
+    display: flex;
+    align-items: center;
+    gap: 1vh;
+    color: #ffffff;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: var(--title-font-size);
+    margin-bottom: 1.2vh;
+    text-transform: uppercase;
+    letter-spacing: 0.1vh;
+}
+
+.config-block {
+    margin-bottom: 2vh;
+}
+
+.config-block label {
+    display: flex;
+    align-items: center;
+    gap: 0.8vh;
+    font-size: var(--subtitle-font-size);
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 1vh;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.selection-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1vh;
+}
+
+.selection-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: var(--panel-border);
+    border-radius: var(--panel-radius);
+    padding: 1.2vh;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vh;
+}
+
+.selection-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.22);
+    transform: translateY(-0.2vh);
+}
+
+.selection-card.active {
+    background: rgba(var(--primary-color-rgb), 0.15);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 1.5vh rgba(var(--primary-color-rgb), 0.2);
+}
+
+.selection-card.active::before {
+    content: '✓';
+    position: absolute;
+    top: 0.5vh;
+    right: 0.8vh;
+    background: var(--primary-color);
+    color: white;
+    width: 1.6vh;
+    height: 1.6vh;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1vh;
+    font-weight: bold;
+}
+
+.card-title {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    font-size: var(--title-font-size);
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-info {
+    font-size: var(--subtitle-font-size);
+    color: rgba(255, 255, 255, 0.5);
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-info .highlight {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* Custom Scrollbar for Config */
+.trucker-config::-webkit-scrollbar {
+    width: 0.4vh;
+}
+
+.trucker-config::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.trucker-config::-webkit-scrollbar-thumb {
+    background: rgba(var(--primary-color-rgb), 0.2);
+    border-radius: 1vh;
+}
+
+.trucker-config::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
+}
+
+
+:root {
+    --taxi-primary: #f5c542;
+    --taxi-primary-rgb: 245, 197, 66;
+    --taxi-cubic: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+
+/* ===========================
+   TAXI QUICKACCESS (F7 MENU) - ELITE ESSENCE
+   =========================== */
+
+.taxi-quickaccess {
+    position: fixed;
+    top: 50%;
+    right: 3vh;
+    transform: translateY(-50%);
+    width: 38vh;
+    z-index: 5000;
+    font-family: 'Quicksand', sans-serif;
+    display: none;
+}
+
+.taxi-quickaccess.show {
+    display: block;
+    animation: taxiSlideInRight 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+@keyframes taxiSlideInRight {
+    from { transform: translate(10vh, -50%); opacity: 0; }
+    to { transform: translate(0, -50%); opacity: 1; }
+}
+
+/* Tab List */
+.taxi-tab-list {
+    display: flex;
+    padding: 0.6vh;
+    border-radius: 12px 12px 0 0;
+    background: #0f0f0f;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: none;
+    gap: 0.6vh;
+}
+
+.taxi-tab {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8vh;
+    padding: 1.2vh;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: rgba(255, 255, 255, 0.5);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6vh;
+    letter-spacing: 1px;
+}
+
+.taxi-tab i {
+    font-size: 1.8vh;
+}
+
+.taxi-tab:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+}
+
+.taxi-tab.active {
+    background: #ff6b00;
+    color: #fff;
+    box-shadow: 0 0.5vh 1.5vh rgba(255, 107, 0, 0.3);
+}
+
+/* Content List */
+.taxi-tab-content-list {
+    background: rgba(15, 15, 15, 0.98);
+    border-radius: 0 0 12px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 2vh 5vh rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.taxi-tab-content {
+    display: none;
+    padding: 0;
+}
+
+.taxi-tab-content.active {
+    display: block;
+    animation: taxiFadeIn 0.3s ease;
+}
+
+@keyframes taxiFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Header de Título */
+.taxi-qa-title {
+    display: flex;
+    gap: 1.2vh;
+    font-size: 2.2vh;
+    text-transform: uppercase;
+    width: 100%;
+    padding: 1.8vh 2vh;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 2px solid #ff6b00;
+    font-family: 'Bebas Neue', sans-serif;
+    color: white;
+    align-items: center;
+    position: relative;
+}
+
+/* Elite Essence Signature Corner */
+.taxi-qa-title::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2.5vh;
+    height: 2.5vh;
+    background: linear-gradient(225deg, #ff6b00 50%, transparent 50%);
+}
+
+.taxi-qa-title .icon {
+    color: #ff6b00;
+    font-size: 2vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Duty toggle zone */
+.taxi-qa-duty-zone {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5vh 2vh;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 107, 0, 0.05);
+}
+
+.taxi-qa-duty-label {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.5vh;
+    color: #fff;
+    font-weight: 600;
+}
+
+/* Switch styling */
+.taxi-switch {
+    position: relative;
+    display: inline-block;
+    width: 4.8vh;
+    height: 2.4vh;
+}
+
+.taxi-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.taxi-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: .4s;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.taxi-slider:before {
+    position: absolute;
+    content: "";
+    height: 1.8vh;
+    width: 1.8vh;
+    left: 0.3vh;
+    bottom: 0.2vh;
+    background-color: white;
+    transition: .4s;
+    box-shadow: 0 0 1vh rgba(0,0,0,0.5);
+}
+
+.taxi-switch input:checked + .taxi-slider {
+    background-color: #ff6b00;
+}
+
+.taxi-switch input:checked + .taxi-slider:before {
+    transform: translateX(2.3vh);
+}
+
+.taxi-slider.round {
+    border-radius: 2vh;
+}
+
+.taxi-slider.round:before {
+    border-radius: 50%;
+}
+
+/* Action Grid */
+.taxi-actions-list {
+    padding: 1vh;
+}
+
+.taxi-action-item {
+    display: flex;
+    align-items: center;
+    gap: 1.2vh;
+    padding: 1.4vh 1.6vh;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    color: white;
+    position: relative;
+    margin-bottom: 0.5vh;
+}
+
+/* Left Accent Line */
+.taxi-action-item::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 0;
+    background: linear-gradient(to bottom, #ff6b00, #00a8cc);
+    transition: height 0.3s ease;
+    border-radius: 0 2px 2px 0;
+}
+
+.taxi-action-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    transform: translateX(5px);
+}
+
+.taxi-action-item:hover::after {
+    height: 50%;
+}
+
+.taxi-action-item i {
+    font-size: 1.8vh;
+    width: 2.5vh;
+    text-align: center;
+    color: #ff6b00;
+    flex-shrink: 0;
+}
+
+.taxi-action-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2vh;
+}
+
+.taxi-action-title {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.5vh;
+    font-weight: 600;
+    color: #fff;
+}
+
+.taxi-action-sub {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.1vh;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Info bar */
+.taxi-info-bar {
+    display: flex;
+    align-items: center;
+    gap: 1vh;
+    padding: 1.2vh 2vh;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.02);
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.2vh;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.taxi-info-bar i {
+    color: #00a8cc;
+    font-size: 1.4vh;
+}
+
+/* ---- Alerts styles (Legacy if used inside F7) ---- */
+.taxi-alerts-container {
+    padding: 1vh;
+    max-height: 45vh;
+    overflow-y: auto;
+}
+
+.taxi-alert-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 1.4vh 1.6vh;
+    margin-bottom: 0.8vh;
+    cursor: pointer;
+    transition: 0.2s ease;
+    position: relative;
+}
+
+.taxi-alert-card::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 40%;
+    background: linear-gradient(to bottom, #ff6b00, #00a8cc);
+    border-radius: 0 2px 2px 0;
+}
+
+.taxi-alert-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateX(5px);
+}
+
+.taxi-alert-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.6vh;
+}
+
+.taxi-alert-code {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4vh;
+    color: #ff6b00;
+    letter-spacing: 1px;
+}
+
+.taxi-alert-time {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.9vh;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.taxi-alert-street {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.2vh;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 600;
+    margin-bottom: 0.3vh;
+}
+
+.taxi-alert-message {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1vh;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 0.5vh;
+}
+
+.taxi-alert-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.taxi-alert-distance {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.9vh;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.taxi-alert-distance i {
+    color: var(--taxi-primary);
+    font-size: 0.85vh;
+    margin-right: 0.3vh;
+}
+
+.taxi-alert-accept {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.85vh;
+    color: var(--taxi-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.1vh;
+}
+
+/* Alerts controls */
+.taxi-alerts-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.7vh 1.2vh;
+    border-top: 0.1vh solid rgba(255, 255, 255, 0.06);
+}
+
+.taxi-alert-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.8vh;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1vh;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.taxi-nav-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.4vh;
+    color: white;
+    cursor: pointer;
+    padding: 0.4vh 0.7vh;
+    font-size: 1vh;
+    transition: 0.2s ease;
+}
+
+.taxi-nav-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.taxi-clear-btn {
+    background: rgba(255, 60, 60, 0.15);
+    border: 0.1vh solid rgba(255, 60, 60, 0.3);
+    border-radius: 0.4vh;
+    color: #ff6b6b;
+    cursor: pointer;
+    padding: 0.4vh 0.8vh;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.95vh;
+    font-weight: 500;
+    transition: 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.3vh;
+}
+
+.taxi-clear-btn:hover {
+    background: rgba(255, 60, 60, 0.3);
+}
+
+/* Back button */
+.taxi-back-btn {
+    background: rgba(255, 255, 255, 0.06);
+    border: 0.1vh dashed rgba(255, 255, 255, 0.15);
+    border-radius: 0.5vh;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    padding: 0.6vh 1.2vh;
+    margin: 0.5vh 1vh;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.1vh;
+    font-weight: 500;
+    transition: 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5vh;
+}
+
+.taxi-back-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: white;
+}
+
+/* ===========================
+   TAXI DISPATCH PANEL (Separado)
+   =========================== */
+
+.taxi-dispatch {
+    position: fixed;
+    bottom: 2vh;
+    left: 2vh;
+    width: 35vh;
+    max-height: 50vh;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 1vh;
+    outline: dashed 0.15vh rgba(255, 255, 255, 0.14);
+    outline-offset: -0.5vh;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 4999;
+    animation: slideInFromLeft 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.taxi-dispatch.show {
+    display: flex;
+}
+
+@keyframes slideInFromLeft {
+    from {
+        transform: translateX(-20vh);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.taxi-dispatch-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5vh 1.8vh;
+    border-bottom: 0.15vh dashed rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.taxi-dispatch-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1vh;
+}
+
+.taxi-dispatch-toggle {
+    background: rgba(255, 255, 255, 0.08);
+    border: none;
+    border-radius: 0.5vh;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    padding: 0.5vh 0.8vh;
+    font-size: 1.2vh;
+    transition: 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.taxi-dispatch-toggle:hover {
+    background: var(--taxi-primary);
+    color: #000;
+}
+
+.taxi-dispatch-toggle i {
+    transition: transform 0.3s ease;
+}
+
+.taxi-dispatch.collapsed .taxi-dispatch-toggle i {
+    transform: rotate(-180deg);
+}
+
+.taxi-dispatch.collapsed .taxi-dispatch-content,
+.taxi-dispatch.collapsed .taxi-dispatch-footer,
+.taxi-dispatch.collapsed .taxi-dispatch-controls {
+    display: none;
+}
+
+.taxi-dispatch-title {
+    display: flex;
+    align-items: center;
+    gap: 1vh;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4vh;
+    color: var(--taxi-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.1vh;
+}
+
+.taxi-dispatch-title i {
+    font-size: 1.6vh;
+}
+
+.taxi-dispatch-badge {
+    background: var(--taxi-primary);
+    color: #000;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1vh;
+    padding: 0.4vh 0.8vh;
+    border-radius: 0.5vh;
+    font-weight: bold;
+}
+
+.taxi-dispatch-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1vh;
+    max-height: 35vh;
+}
+
+.taxi-dispatch-content::-webkit-scrollbar {
+    width: 0.4vh;
+}
+
+.taxi-dispatch-content::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 0.2vh;
+}
+
+.taxi-dispatch-content::-webkit-scrollbar-thumb {
+    background: var(--taxi-primary);
+    border-radius: 0.2vh;
+}
+
+.taxi-dispatch-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1vh 1.5vh;
+    border-top: 0.15vh dashed rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.taxi-dispatch-nav {
+    display: flex;
+    align-items: center;
+    gap: 1vh;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.1vh;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.taxi-dispatch-nav-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border: none;
+    border-radius: 0.5vh;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    padding: 0.5vh 0.8vh;
+    font-size: 1vh;
+    transition: 0.2s ease;
+}
+
+.taxi-dispatch-nav-btn:hover {
+    background: var(--taxi-primary);
+    color: #000;
+}
+
+.taxi-dispatch-clear {
+    background: rgba(220, 53, 69, 0.2);
+    border: 0.15vh solid rgba(220, 53, 69, 0.4);
+    border-radius: 0.6vh;
+    color: #dc3545;
+    cursor: pointer;
+    padding: 0.6vh 1.2vh;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1vh;
+    font-weight: 600;
+    transition: 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5vh;
+}
+
+.taxi-dispatch-clear:hover {
+    background: rgba(220, 53, 69, 0.3);
+    border-color: rgba(220, 53, 69, 0.6);
+}
+
+/* Alert cards dentro del dispatch */
+.taxi-dispatch .taxi-alert-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 0.15vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.8vh;
+    padding: 1.2vh;
+    margin-bottom: 1vh;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.taxi-dispatch .taxi-alert-card:hover {
+    background: rgba(var(--taxi-primary-rgb), 0.15);
+    border-color: var(--taxi-primary);
+    transform: translateX(0.5vh);
+}
+
+.taxi-dispatch .taxi-alert-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.8vh;
+}
+
+.taxi-dispatch .taxi-alert-code {
+    background: var(--taxi-primary);
+    color: #000;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1vh;
+    padding: 0.3vh 0.7vh;
+    border-radius: 0.4vh;
+    font-weight: bold;
+}
+
+.taxi-dispatch .taxi-alert-time {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.9vh;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.taxi-dispatch .taxi-alert-street {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2vh;
+    color: white;
+    margin-bottom: 0.5vh;
+}
+
+.taxi-dispatch .taxi-alert-message {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1vh;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0.8vh;
+}
+
+.taxi-dispatch .taxi-alert-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 0.8vh;
+    border-top: 0.1vh solid rgba(255, 255, 255, 0.1);
+}
+
+.taxi-dispatch .taxi-alert-distance {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.9vh;
+    color: rgba(255, 255, 255, 0.6);
+    display: flex;
+    align-items: center;
+    gap: 0.4vh;
+}
+
+.taxi-dispatch .taxi-alert-accept {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.9vh;
+    color: var(--taxi-primary);
+    font-weight: bold;
+}
+
+/* Keyboard controls indicator */
+.taxi-dispatch-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5vh;
+    padding: 1vh;
+    border-top: 0.15vh dashed rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.taxi-dispatch-control-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5vh;
+}
+
+.taxi-control-key {
+    background: rgba(255, 255, 255, 0.1);
+    border: 0.15vh solid rgba(255, 255, 255, 0.2);
+    border-radius: 0.4vh;
+    padding: 0.3vh 0.6vh;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.9vh;
+    color: var(--taxi-primary);
+    min-width: 2.5vh;
+    text-align: center;
+}
+
+.taxi-control-label {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.9vh;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Draggable cursor */
+.taxi-dispatch-header {
+    cursor: move;
+    font-weight: bold;
+}
+
+.taxi-dispatch-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1vh;
+    max-height: 35vh;
+}
+
+.taxi-dispatch-content::-webkit-scrollbar {
+    width: 0.4vh;
+}
+
+.taxi-dispatch-content::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 0.2vh;
+}
+
+.taxi-dispatch-content::-webkit-scrollbar-thumb {
+    background: var(--taxi-primary);
+    border-radius: 0.2vh;
+}
+
+.taxi-dispatch-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1vh 1.5vh;
+    border-top: 0.15vh dashed rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.taxi-dispatch-nav {
+    display: flex;
+    align-items: center;
+    gap: 1vh;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.1vh;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.taxi-dispatch-nav-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border: none;
+    border-radius: 0.5vh;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    padding: 0.5vh 0.8vh;
+    font-size: 1vh;
+    transition: 0.2s ease;
+}
+
+.taxi-dispatch-nav-btn:hover {
+    background: var(--taxi-primary);
+    color: #000;
+}
+
+.taxi-dispatch-clear {
+    background: rgba(220, 53, 69, 0.2);
+    border: 0.15vh solid rgba(220, 53, 69, 0.4);
+    border-radius: 0.6vh;
+    color: #dc3545;
+    cursor: pointer;
+    padding: 0.6vh 1.2vh;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1vh;
+    font-weight: 600;
+    transition: 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5vh;
+}
+
+.taxi-dispatch-clear:hover {
+    background: rgba(220, 53, 69, 0.3);
+    border-color: rgba(220, 53, 69, 0.6);
+}
+
+/* Alert cards dentro del dispatch */
+.taxi-dispatch .taxi-alert-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 0.15vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.8vh;
+    padding: 1.2vh;
+    margin-bottom: 1vh;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.taxi-dispatch .taxi-alert-card:hover {
+    background: rgba(var(--taxi-primary-rgb), 0.15);
+    border-color: var(--taxi-primary);
+    transform: translateX(0.5vh);
+}
+
+.taxi-dispatch .taxi-alert-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.8vh;
+}
+
+.taxi-dispatch .taxi-alert-code {
+    background: var(--taxi-primary);
+    color: #000;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1vh;
+    padding: 0.3vh 0.7vh;
+    border-radius: 0.4vh;
+    font-weight: bold;
+}
+
+.taxi-dispatch .taxi-alert-time {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.9vh;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.taxi-dispatch .taxi-alert-street {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2vh;
+    color: white;
+    margin-bottom: 0.5vh;
+}
+
+.taxi-dispatch .taxi-alert-message {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1vh;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0.8vh;
+}
+
+.taxi-dispatch .taxi-alert-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 0.8vh;
+    border-top: 0.1vh solid rgba(255, 255, 255, 0.1);
+}
+
+.taxi-dispatch .taxi-alert-distance {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.9vh;
+    color: rgba(255, 255, 255, 0.6);
+    display: flex;
+    align-items: center;
+    gap: 0.4vh;
+}
+
+.taxi-dispatch .taxi-alert-accept {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.9vh;
+    color: var(--taxi-primary);
+    font-weight: bold;
+}
+
+/* Keyboard controls indicator */
+.taxi-dispatch-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5vh;
+    padding: 1vh;
+    border-top: 0.15vh dashed rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.taxi-dispatch-control-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5vh;
+}
+
+.taxi-control-key {
+    background: rgba(255, 255, 255, 0.1);
+    border: 0.15vh solid rgba(255, 255, 255, 0.2);
+    border-radius: 0.4vh;
+    padding: 0.3vh 0.6vh;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.9vh;
+    color: var(--taxi-primary);
+    min-width: 2.5vh;
+    text-align: center;
+}
+
+.taxi-control-label {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.9vh;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Draggable cursor */
+.taxi-dispatch-header {
+    cursor: move;
+}
+
+
+/* ===========================
+   NOTIFICATIONS
+   =========================== */
+#notification-container {
+    position: fixed;
+    top: 20px;
+}

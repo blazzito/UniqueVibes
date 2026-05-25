@@ -1,0 +1,5815 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Quicksand:wght@300..700&display=swap");
+@font-face {
+  font-family: "Evogria";
+  src: url("../assets/evogria.otf") format("opentype"), url("../assets/Evogria.otf") format("opentype");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Evogria Italic";
+  src: url("../assets/evogria_italic.otf") format("opentype"), url("../assets/Evogria_italic.otf") format("opentype");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+@keyframes cool {
+  0% {
+    transform: scale(3.3);
+  }
+  50% {
+    transform: scale(2.8);
+    opacity: 0.5;
+    rotate: -25deg;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(3.3);
+  }
+}
+@keyframes text-cool {
+  0% {
+    letter-spacing: 0px;
+  }
+  50% {
+    letter-spacing: 1px;
+    opacity: 0.2;
+    font-weight: bolder;
+  }
+  100% {
+    letter-spacing: 0px;
+  }
+}
+* {
+  font-family: "Quicksand", sans-serif;
+  padding: 0;
+  transition: 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+*::-webkit-scrollbar-track {
+  border: none;
+}
+*::-webkit-scrollbar {
+  width: 0.42vh;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(235, 235, 235, 0.753);
+  border-radius: 1vh;
+}
+
+body {
+  background: transparent !important;
+}
+
+.test-drive {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 24vh;
+  max-width: 30vh;
+  background: rgba(0, 0, 0, 0.62);
+  border: 0.1vh solid rgba(255, 255, 255, 0.1);
+  border-radius: 1vh;
+  outline: 0.1vh dashed rgba(255, 255, 255, 0.14);
+  outline-offset: 0.22vh;
+  box-shadow: 0 1.4vh 3.8vh rgba(0, 0, 0, 0.48);
+  padding: 0.75vh 1.2vh 0.95vh;
+  position: absolute;
+  left: 50%;
+  top: 0.8vh;
+  transform: translate(-50%, 0);
+  color: white;
+  z-index: 1000;
+}
+.test-drive .test-drive-header {
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+  font-family: "Evogria";
+  font-size: 1.08vh;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 0.34vh;
+  letter-spacing: 0.04vh;
+  text-transform: uppercase;
+}
+.test-drive .test-drive-header .tag {
+  font-family: "Evogria";
+  margin-left: 0.35em;
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 1.5vh;
+}
+.test-drive .test-drive-timer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.test-drive .test-drive-timer .timer-label {
+  font-size: 1.02vh;
+  color: rgba(255, 255, 255, 0.82);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03vh;
+}
+.test-drive .test-drive-timer .timer-display {
+  margin-top: 0.08vh;
+  font-size: 1.18vh;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.selected-vehicle-info {
+  position: absolute;
+  right: 1.2%;
+  padding: 1.25vh;
+  border-radius: 1vh;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.62);
+  width: 29vh;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75vh;
+  border: 0.1vh solid rgba(255, 255, 255, 0.1);
+  outline: 0.1vh dashed rgba(255, 255, 255, 0.14);
+  outline-offset: 0.24vh;
+  box-shadow: 0 1.4vh 3.8vh rgba(0, 0, 0, 0.48);
+  font-family: "Evogria", sans-serif;
+}
+.selected-vehicle-info * {
+  font-family: "Evogria", sans-serif !important;
+}
+.selected-vehicle-info .header {
+  width: 100%;
+  min-height: 2.6vh;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.35);
+  border: 0.1vh solid rgba(255, 255, 255, 0.14);
+  border-radius: 0.8vh;
+  outline: 0.1vh dashed rgba(255, 255, 255, 0.1);
+  outline-offset: 0.14vh;
+  color: white;
+  font-size: 1.25vh;
+  font-weight: 700;
+  font-family: "Evogria", sans-serif;
+  text-transform: uppercase;
+  margin-bottom: 0.3vh;
+  padding: 0.45vh 0.8vh;
+  text-shadow: none;
+  box-shadow: none;
+}
+.selected-vehicle-info .header .header-title {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
+  letter-spacing: 0.05vh;
+}
+.selected-vehicle-info .header .panel-expand-btn {
+  width: 2.1vh;
+  height: 2.1vh;
+  border: 0.1vh solid rgba(255, 255, 255, 0.25);
+  background: rgba(0, 0, 0, 0.35);
+  color: #fff;
+  border-radius: 0.45vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.selected-vehicle-info .header .panel-expand-btn [data-lucide] {
+  width: 1.2vh;
+  height: 1.2vh;
+}
+.selected-vehicle-info .stats {
+  background-color: transparent;
+  border-radius: 0.8vh;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  text-transform: uppercase;
+  gap: 0.68vh;
+  border: none;
+}
+.selected-vehicle-info .stats .quick-price {
+  color: rgba(64, 220, 145, 0.96);
+  font-weight: 700;
+  font-size: 1.85vh;
+  text-align: center;
+  line-height: 1.1;
+  font-family: "Evogria", sans-serif;
+}
+.selected-vehicle-info .stats .panel-advanced {
+  display: flex;
+  flex-direction: column;
+  gap: 0.72vh;
+  background: rgba(0, 0, 0, 0.44);
+  border: 0.1vh solid rgba(255, 255, 255, 0.12);
+  border-radius: 0.8vh;
+  padding: 0.9vh;
+  outline: 0.1vh dashed rgba(255, 255, 255, 0.09);
+  outline-offset: 0.14vh;
+}
+.selected-vehicle-info .stats .label {
+  font-size: 1.05vh;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+  margin-bottom: 0.08vh;
+  font-family: "Evogria", sans-serif;
+  letter-spacing: 0.04vh;
+}
+.selected-vehicle-info .stats .progress-bar {
+  width: 100%;
+  border-radius: 0.52vh;
+  border: 0.1vh solid rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.08);
+  height: 1.05vh;
+  margin-bottom: 0.35vh;
+}
+.selected-vehicle-info .stats .progress-bar .bar {
+  height: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 0.38vh;
+}
+.selected-vehicle-info .stats .color-pickers {
+  display: flex;
+  flex-direction: row;
+  gap: 1vh;
+  width: 100%;
+  margin: 0.52vh 0;
+}
+.selected-vehicle-info .stats .color-pickers .color-picker-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1vh;
+  flex: 1;
+}
+.selected-vehicle-info .stats .color-pickers .color-picker-group .color-label {
+  font-size: 0.92vh;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02vh;
+  white-space: nowrap;
+  min-width: fit-content;
+  font-family: "Evogria", sans-serif;
+}
+.selected-vehicle-info .stats .color-pickers .color-picker-group .color-picker {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.selected-vehicle-info .stats .color-pickers .color-picker-group .color-picker .color-input {
+  width: 3.4vh;
+  height: 2.25vh;
+  border-radius: 0.65vh;
+  border: 0.1vh solid rgba(255, 255, 255, 0.22);
+  cursor: pointer;
+  transition: border-color 0.2s ease, opacity 0.2s ease;
+  position: relative;
+  z-index: 10;
+  opacity: 1;
+  pointer-events: auto;
+  background: rgba(0, 0, 0, 0.35);
+  box-shadow: 0 0 0.5vh rgba(0, 0, 0, 0.22);
+}
+.selected-vehicle-info .stats .color-pickers .color-picker-group .color-picker .color-input:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  opacity: 0.86;
+}
+.selected-vehicle-info .stats .btns-container {
+  width: 100%;
+  display: flex;
+  gap: 0.72vh;
+  margin-top: 0.38vh;
+}
+.selected-vehicle-info .stats .btns-container .action-btn {
+  width: 50%;
+  padding: 0.88vh 0;
+  text-align: center;
+  border-radius: 0.8vh;
+  background: rgba(255, 255, 255, 0.14);
+  cursor: pointer;
+  border: 0.1vh solid rgba(255, 255, 255, 0.16);
+  outline: 0.1vh dashed rgba(255, 255, 255, 0.12);
+  outline-offset: 0.12vh;
+  color: rgba(255, 255, 255, 0.92);
+  font-weight: 600;
+  font-size: 1vh;
+  font-family: "Evogria", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.04vh;
+  transition: opacity 0.2s ease, border-color 0.2s ease;
+}
+.selected-vehicle-info .stats .btns-container .action-btn:hover {
+  opacity: 0.78;
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+/* Texto limpio: sin brillos ni contornos */
+.dealership,
+.dealership *,
+.admin-menu,
+.admin-menu *,
+.c-modal,
+.c-modal * {
+  text-shadow: none !important;
+  -webkit-text-stroke: 0 !important;
+}
+
+/* Coloris - estilo MT */
+.clr-picker {
+  background: linear-gradient(180deg, rgba(14, 14, 18, 0.98), rgba(8, 8, 12, 0.98)) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  outline: 1px dashed rgba(255, 255, 255, 0.16);
+  outline-offset: 3px;
+  border-radius: 10px !important;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 107, 0, 0.2) inset !important;
+  color: #f1f1f1 !important;
+}
+.clr-picker .clr-gradient {
+  border-radius: 7px !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+}
+.clr-picker .clr-hue,
+.clr-picker .clr-alpha {
+  border-radius: 7px !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
+.clr-picker .clr-marker {
+  border: 2px solid rgba(255, 255, 255, 0.95) !important;
+  box-shadow: 0 0 0 2px rgba(255, 107, 0, 0.75) !important;
+}
+.clr-picker .clr-preview {
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.35);
+}
+.clr-picker input.clr-color,
+.clr-picker input.clr-alpha,
+.clr-picker input.clr-hue,
+.clr-picker .clr-field input {
+  background: rgba(24, 24, 30, 0.95) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 6px !important;
+}
+.clr-picker .clr-field input:focus {
+  border-color: rgba(255, 107, 0, 0.8) !important;
+  box-shadow: 0 0 0 1px rgba(255, 107, 0, 0.4) !important;
+}
+.clr-picker .clr-swatches button {
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+}
+.clr-picker .clr-format {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.vehicle-scroller {
+  position: absolute;
+  /* background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 0%, rgba(1, 1, 1, 0.63)) !important; */
+  cursor: all-scroll;
+  width: 100%;
+  height: 100%;
+}
+
+.dealership {
+  padding: 2vh;
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+.dealership .vehicle-categories {
+  position: absolute;
+  top: 2vh;
+  left: 2vh;
+  display: flex;
+  gap: 0.8vh;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.8);
+  border: 0.1vh solid rgba(255, 255, 255, 0.1);
+  border-radius: 1vh;
+  padding: 0.8vh;
+  outline: 0.1vh dashed rgba(255, 255, 255, 0.15);
+  outline-offset: 0.3vh;
+}
+.dealership .vehicle-categories .category {
+  font-size: 0.85vw;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.05);
+  border: 0.1vh solid rgba(255, 255, 255, 0.08);
+  padding: 0.8vh 1.5vh;
+  border-radius: 0.6vh;
+  text-align: center;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.03vh;
+  font-family: "Evogria", sans-serif;
+}
+.dealership .vehicle-categories .category:first-child {
+  font-weight: 600;
+}
+.dealership .vehicle-categories .category:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: white;
+}
+.dealership .vehicle-categories .category.active {
+  background: #ff6b00;
+  border-color: rgba(255, 107, 0, 0.8);
+  color: white;
+  font-weight: 600;
+}
+.dealership .vehicle-carrousel-wrapper {
+  position: absolute;
+  bottom: 0.8vh;
+  left: 1.1vh;
+  right: 1.1vh;
+  padding: 0.35vh;
+  background: linear-gradient(180deg, rgba(8, 8, 8, 0.94), rgba(8, 8, 8, 0.8));
+  max-height: 24vh;
+  border: 0.1vh solid rgba(255, 255, 255, 0.12);
+  border-radius: 0.8vh;
+  outline: 0.1vh dashed rgba(255, 255, 255, 0.12);
+  outline-offset: 0.2vh;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.dealership .vehicle-carrousel-wrapper .vehicle-carrousel {
+  display: flex;
+  gap: 0.4vh;
+  padding: 0.35vh 0.2vh 0.08vh 0.2vh;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: auto;
+  user-select: none;
+  cursor: grab;
+  -webkit-overflow-scrolling: touch;
+  transform: translateZ(0);
+  will-change: scroll-position;
+  outline: none;
+}
+.dealership .vehicle-carrousel-wrapper .vehicle-carrousel::-webkit-scrollbar {
+  height: 0.4vh;
+}
+.dealership .vehicle-carrousel-wrapper .vehicle-carrousel::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 0.2vh;
+}
+.dealership .vehicle-carrousel-wrapper .vehicle-carrousel::-webkit-scrollbar-thumb {
+  background: #ff6b00;
+  border-radius: 0.2vh;
+}
+.dealership .vehicle-carrousel-wrapper .vehicle-carrousel::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 107, 0, 0.8);
+}
+.dealership .vehicle-carrousel-wrapper .vehicle-carrousel:active {
+  cursor: grabbing;
+}
+.dealership .vehicle-carrousel-wrapper .vehicle-card {
+  flex: 0 0 150px;
+  background: rgba(22, 22, 22, 0.7);
+  border: 0.1vh solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.6vh;
+  overflow: hidden;
+  color: white;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  position: relative;
+}
+.dealership .vehicle-carrousel-wrapper .vehicle-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+.dealership .vehicle-carrousel-wrapper .vehicle-card.selected {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+.dealership .vehicle-carrousel-wrapper .vehicle-card.selected::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0.4vh;
+  height: 100%;
+  background: #ff6b00;
+  border-radius: 0.2vh;
+  z-index: 1;
+}
+.dealership .vehicle-carrousel-wrapper .vehicle-card.out-of-stock {
+  opacity: 0.6;
+  filter: grayscale(0.5);
+  border-color: rgba(231, 76, 60, 0.3);
+}
+.dealership .vehicle-carrousel-wrapper .vehicle-card.out-of-stock:hover {
+  background: rgba(231, 76, 60, 0.08);
+  border-color: rgba(231, 76, 60, 0.5);
+}
+.dealership .vehicle-carrousel-wrapper .vehicle-card.out-of-stock .vehicle-image {
+  filter: grayscale(0.3);
+}
+.dealership .vehicle-carrousel-wrapper .vehicle-card .vehicle-image-container {
+  position: relative;
+  height: 68px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dealership .vehicle-carrousel-wrapper .vehicle-card .vehicle-image-container .vehicle-image {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center;
+  transition: transform 0.2s ease;
+  padding: 4px;
+  box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0 auto;
+  display: block;
+}
+.dealership .vehicle-carrousel-wrapper .vehicle-card .vehicle-image-container .vehicle-class-badge {
+  position: absolute;
+  top: 0.8vh;
+  right: 0.8vh;
+  padding: 0.4vh 0.8vh;
+  border-radius: 0.4vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1.1vh;
+  font-family: "Evogria", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.03vh;
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+  border: 0.1vh solid rgba(255, 255, 255, 0.15);
+}
+.dealership .vehicle-carrousel-wrapper .vehicle-card .vehicle-image-container .vehicle-class-badge.class-s-plus, .dealership .vehicle-carrousel-wrapper .vehicle-card .vehicle-image-container .vehicle-class-badge.class-s\+ {
+  background: rgba(255, 215, 0, 0.2);
+  border-color: rgba(255, 215, 0, 0.3);
+  color: #ffd700;
+}
+.dealership .vehicle-carrousel-wrapper .vehicle-card .vehicle-image-container .vehicle-class-badge.class-s {
+  background: rgba(255, 215, 0, 0.2);
+  border-color: rgba(255, 215, 0, 0.3);
+  color: #ffd700;
+}
+.dealership .vehicle-carrousel-wrapper .vehicle-card .vehicle-image-container .vehicle-class-badge.class-a {
+  background: rgba(255, 165, 0, 0.2);
+  border-color: rgba(255, 165, 0, 0.3);
+  color: #ffa500;
+}
+.dealership .vehicle-carrousel-wrapper .vehicle-card .vehicle-image-container .vehicle-class-badge.class-b {
+  background: rgba(192, 192, 192, 0.2);
+  border-color: rgba(192, 192, 192, 0.3);
+  color: #c0c0c0;
+}
+.dealership .vehicle-carrousel-wrapper .vehicle-card .vehicle-image-container .vehicle-class-badge.class-c {
+  background: rgba(205, 127, 50, 0.2);
+  border-color: rgba(205, 127, 50, 0.3);
+  color: #cd7f32;
+}
+.dealership .vehicle-carrousel-wrapper .vehicle-card .vehicle-image-container .vehicle-class-badge.class-d {
+  background: rgba(139, 69, 19, 0.2);
+  border-color: rgba(139, 69, 19, 0.3);
+  color: #8b4513;
+}
+.dealership .vehicle-carrousel-wrapper .vehicle-card:hover .vehicle-image {
+  transform: scale(1.02);
+}
+.dealership .vehicle-carrousel-wrapper .vehicle-card .vehicle-info {
+  padding: 0.36vh 0.45vh 0.36vh 0.45vh;
+}
+.dealership .vehicle-carrousel-wrapper .vehicle-card .vehicle-info .vehicle-label {
+  font-size: 0.8vh;
+  font-weight: 600;
+  font-family: "Evogria", sans-serif;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.03vh;
+  margin-bottom: 0.3vh;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+.dealership .vehicle-carrousel-wrapper .vehicle-card .vehicle-info .vehicle-price {
+  font-size: 0.9vh;
+  font-weight: 700;
+  color: rgba(46, 204, 113, 0.8);
+  margin-bottom: 0.5vh;
+  line-height: 1.2;
+  font-family: "Quicksand", sans-serif;
+}
+.dealership .vehicle-carrousel-wrapper .vehicle-card .vehicle-info .vehicle-details {
+  display: flex;
+  gap: 0.25vh;
+  flex-wrap: wrap;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.2s ease;
+}
+.dealership .vehicle-carrousel-wrapper .vehicle-card.selected .vehicle-info .vehicle-details,
+.dealership .vehicle-carrousel-wrapper .vehicle-card:hover .vehicle-info .vehicle-details {
+  max-height: 3vh;
+  opacity: 1;
+}
+.dealership .vehicle-carrousel-wrapper .no-vehicles {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 4vh;
+  font-size: 1.2em;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dealership-creator-ui {
+  position: absolute;
+  top: 5vh;
+  right: 2vw;
+  width: 25vw;
+  max-height: 80vh;
+  background: rgba(0, 0, 0, 0.8);
+  border: 0.1vh solid rgba(255, 255, 255, 0.1);
+  border-radius: 1vh;
+  outline: 0.1vh dashed rgba(255, 255, 255, 0.15);
+  outline-offset: 0.3vh;
+  padding: 1.5vh;
+  color: white;
+  font-family: "Quicksand", sans-serif;
+  z-index: 1000;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.creator-header {
+  flex-shrink: 0;
+}
+.creator-header h3 {
+  margin: 0;
+  padding-bottom: 1vh;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: center;
+  font-size: 1.2vw;
+}
+
+.creator-tabs {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin-top: 1vh;
+}
+
+.tab-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3vh;
+  margin-bottom: 1vh;
+  flex-shrink: 0;
+}
+
+.tab-item {
+  flex: 1;
+  min-width: 30%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 0.1vh solid rgba(255, 255, 255, 0.08);
+  padding: 0.6vh;
+  border-radius: 0.6vh;
+  text-align: center;
+  font-size: 0.75vw;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2vh;
+  position: relative;
+}
+.tab-item i {
+  font-size: 0.9vw;
+  opacity: 0.7;
+}
+.tab-item span {
+  font-weight: 500;
+  opacity: 0.8;
+  font-family: "Evogria", sans-serif;
+}
+.tab-item .tab-counter {
+  font-size: 0.7vw;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0.1vh 0.4vh;
+  border-radius: 0.4vh;
+  opacity: 0.6;
+}
+.tab-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+.tab-item.active {
+  background: #ff6b00;
+  border-color: rgba(255, 107, 0, 0.8);
+  font-weight: bold;
+}
+.tab-item.active i,
+.tab-item.active span {
+  opacity: 1;
+}
+.tab-item.active .tab-counter {
+  background: rgba(255, 255, 255, 0.2);
+  opacity: 1;
+}
+
+.tab-content {
+  flex: 1;
+  overflow-y: auto;
+  background: rgba(0, 0, 0, 0.3);
+  border: 0.1vh solid rgba(255, 255, 255, 0.05);
+  border-radius: 0.6vh;
+  padding: 1vh;
+}
+
+.tab-panel {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1vh;
+  padding-bottom: 0.5vh;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.panel-header h4 {
+  margin: 0;
+  font-size: 1vw;
+  display: flex;
+  align-items: center;
+  gap: 0.5vh;
+}
+.panel-header h4 i {
+  font-size: 0.9vw;
+  opacity: 0.7;
+}
+.panel-header .counter-badge {
+  background: rgba(255, 107, 0, 0.2);
+  border: 0.1vh solid rgba(255, 107, 0, 0.4);
+  color: #ff6b00;
+  padding: 0.3vh 0.6vh;
+  border-radius: 0.4vh;
+  font-size: 0.8vw;
+  font-weight: bold;
+  font-family: "Evogria", sans-serif;
+}
+
+.panel-description {
+  font-size: 0.8vw;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 1vh;
+  font-style: italic;
+}
+
+.points-list {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5vh;
+}
+
+.point-item {
+  background: rgba(22, 22, 22, 0.7);
+  border: 0.1vh solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.6vh;
+  padding: 0.8vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.2s ease;
+}
+.point-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.point-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2vh;
+}
+.point-info .point-label {
+  font-size: 0.8vw;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+}
+.point-info .point-coords {
+  font-size: 0.7vw;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: monospace;
+}
+
+.point-actions {
+  display: flex;
+  gap: 0.3vh;
+}
+
+.btn-point-action {
+  background: rgba(60, 60, 60, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: white;
+  padding: 0.4vh;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-point-action i {
+  font-size: 0.7vw;
+}
+.btn-point-action:hover {
+  background: rgba(80, 80, 80, 0.8);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+.btn-point-action.btn-delete:hover {
+  background: rgba(200, 50, 50, 0.8);
+  border-color: rgba(255, 100, 100, 0.8);
+}
+
+.creator-actions {
+  flex-shrink: 0;
+  display: flex;
+  gap: 1vh;
+  margin-top: 1vh;
+  padding-top: 1vh;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-creator-action {
+  flex: 1;
+  background: rgba(50, 50, 50, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 1vh;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5vh;
+  font-size: 0.9vw;
+  font-weight: 500;
+}
+.btn-creator-action i {
+  font-size: 0.8vw;
+}
+.btn-creator-action:hover {
+  background: rgba(70, 70, 70, 0.8);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+.btn-creator-action.btn-save {
+  background: rgba(0, 120, 0, 0.6);
+  border-color: rgba(0, 200, 0, 0.4);
+}
+.btn-creator-action.btn-save:hover {
+  background: rgba(0, 150, 0, 0.8);
+  border-color: rgba(0, 255, 0, 0.6);
+}
+.btn-creator-action.btn-cancel {
+  background: rgba(120, 0, 0, 0.6);
+  border-color: rgba(200, 0, 0, 0.4);
+}
+.btn-creator-action.btn-cancel:hover {
+  background: rgba(150, 0, 0, 0.8);
+  border-color: rgba(255, 0, 0, 0.6);
+}
+
+.creator-controls {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  bottom: 1.2vh;
+  left: 50%;
+  transform: translate(-50%, 0);
+  border: 0.1vh solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 0.8vh;
+  outline: 0.1vh dashed rgba(255, 255, 255, 0.15);
+  outline-offset: 0.3vh;
+  height: auto;
+  padding: 0.4vh 1vh;
+  gap: 1vh;
+  z-index: 1200;
+  min-width: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.control-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5vh;
+  font-size: 0.78vw;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.92);
+  padding: 0.2vh 0.4vh;
+  border-radius: 3px;
+  transition: background 0.2s;
+  white-space: nowrap;
+  line-height: 1.1;
+  background: none;
+}
+.control-item:hover {
+  background: rgba(255, 107, 0, 0.08);
+}
+
+.control-item .key {
+  font-weight: bold;
+  color: #fff;
+  background: #ff6b00;
+  border: 0.1vh solid rgba(255, 255, 255, 0.1);
+  padding: 0.2vh 0.7vh;
+  border-radius: 0.4vh;
+  min-width: 1.7vw;
+  text-align: center;
+  font-size: 0.78vw;
+  font-family: "Evogria", sans-serif;
+  margin-right: 0.3vh;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.control-item .action {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.78vw;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.2vh;
+  white-space: nowrap;
+}
+
+.indication {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  justify-content: center;
+  font-size: 0.5vw;
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.indication span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.664);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.5vw 1vw 0.5vw 1vw;
+  box-shadow: 0 0 0.8vh rgba(0, 0, 0, 0.527);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin-top: 2vh;
+  border-radius: 5px;
+  text-transform: uppercase;
+  color: white;
+  font-weight: bold;
+  gap: 1vh;
+}
+.indication span .tag {
+  background-color: rgba(0, 168, 204, 0.822);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.5vh 1vh 0.5vh 1vh;
+  border-radius: 5px;
+}
+
+.setting-coords {
+  position: absolute;
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0) 0%, rgba(0, 20, 20, 0.349) 100%) !important;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.c-modal {
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.9) 100%) !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+.c-modal .title {
+  text-shadow: none;
+  color: #ffffff;
+  padding: 0.5vh 0.5vh;
+  border-radius: 1vh;
+  font-size: 2vh;
+  border: 0.1vh solid rgba(255, 255, 255, 0.1215686275);
+  background-color: #ff6b00;
+  font-family: "Quicksand";
+  text-transform: uppercase;
+  font-weight: 300 !important;
+  letter-spacing: 0.3vh;
+  width: -moz-max-content;
+  width: max-content;
+  box-shadow: 0 0 2vh #ff6b00;
+}
+.c-modal .btn-cancel {
+  font-family: "Quicksand";
+  text-transform: uppercase;
+  padding: 0.8vh 1vh;
+  border-radius: 5px;
+  font-weight: 500;
+  background-color: rgba(0, 0, 0, 0.38);
+  color: white;
+  border: unset;
+  font-size: 1.8vh;
+  transition: 0.5s var(--cubic) all;
+  cursor: pointer;
+}
+.c-modal .btn-cancel:hover {
+  background-color: #000000 !important;
+}
+.c-modal .btn-modal {
+  font-family: "Quicksand";
+  text-transform: uppercase;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 14px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+.c-modal .btn-modal:focus-visible {
+  box-shadow: 0 0 0 2px rgba(255, 107, 0, 0.5);
+  border: 1px solid rgba(255, 107, 0, 0.8);
+  outline: none;
+}
+.c-modal .btn-modal:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+.c-modal .btn-modal:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+.c-modal .btn-modal.btn-financing {
+  background: linear-gradient(135deg, rgba(255, 107, 0, 0.9), rgba(0, 168, 204, 0.9));
+  border-color: rgba(255, 107, 0, 0.6);
+  box-shadow: 0 2px 12px rgba(255, 107, 0, 0.3);
+}
+.c-modal .btn-modal.btn-financing:hover {
+  background: linear-gradient(135deg, rgb(255, 107, 0), rgb(0, 168, 204));
+  border-color: rgba(255, 107, 0, 0.8);
+  box-shadow: 0 4px 20px rgba(255, 107, 0, 0.5);
+}
+.c-modal .visit-btn {
+  background-color: #454545;
+  color: white;
+}
+.c-modal .visit-btn:hover {
+  background-color: #000000;
+}
+.c-modal .purchase-modal-container {
+  padding: 15px;
+  max-width: 450px;
+  margin: 0 auto;
+}
+.c-modal .purchase-modal-container .vehicle-info-section {
+  margin-bottom: 20px;
+  padding: 16px;
+  background: rgba(255, 107, 0, 0.1);
+  border: 1px solid rgba(255, 107, 0, 0.3);
+  border-radius: 8px;
+}
+.c-modal .purchase-modal-container .vehicle-info-section .vehicle-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.c-modal .purchase-modal-container .vehicle-info-section .vehicle-header .vehicle-icon {
+  width: 45px;
+  height: 45px;
+  background: rgba(255, 107, 0, 0.8);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+.c-modal .purchase-modal-container .vehicle-info-section .vehicle-header .vehicle-icon i {
+  width: 22px;
+  height: 22px;
+}
+.c-modal .purchase-modal-container .vehicle-info-section .vehicle-header .vehicle-details {
+  flex: 1;
+}
+.c-modal .purchase-modal-container .vehicle-info-section .vehicle-header .vehicle-details .vehicle-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+  margin: 0 0 5px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.c-modal .purchase-modal-container .vehicle-info-section .vehicle-header .vehicle-details .vehicle-model {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0 0 8px 0;
+  text-transform: uppercase;
+}
+.c-modal .purchase-modal-container .vehicle-info-section .vehicle-header .vehicle-details .vehicle-price {
+  font-size: 20px;
+  font-weight: 700;
+  color: rgba(46, 204, 113, 0.7);
+}
+.c-modal .purchase-modal-container .vehicle-info-section .vehicle-header .vehicle-details .vehicle-stock {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-top: 8px;
+}
+.c-modal .purchase-modal-container .vehicle-info-section .vehicle-header .vehicle-details .vehicle-stock i {
+  width: 14px;
+  height: 14px;
+}
+.c-modal .purchase-modal-container .vehicle-info-section .vehicle-header .vehicle-details .vehicle-stock.in-stock {
+  color: rgb(46, 204, 113);
+}
+.c-modal .purchase-modal-container .vehicle-info-section .vehicle-header .vehicle-details .vehicle-stock.in-stock i {
+  color: rgb(46, 204, 113);
+}
+.c-modal .purchase-modal-container .vehicle-info-section .vehicle-header .vehicle-details .vehicle-stock.out-of-stock {
+  color: rgb(231, 76, 60);
+}
+.c-modal .purchase-modal-container .vehicle-info-section .vehicle-header .vehicle-details .vehicle-stock.out-of-stock i {
+  color: rgb(231, 76, 60);
+}
+.c-modal .purchase-modal-container .payment-section {
+  margin-bottom: 18px;
+}
+.c-modal .purchase-modal-container .payment-section .section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+.c-modal .purchase-modal-container .payment-section .section-title i {
+  width: 18px;
+  height: 18px;
+  color: rgba(255, 107, 0, 0.9);
+}
+.c-modal .purchase-modal-container .payment-section .payment-methods-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+}
+.c-modal .purchase-modal-container .payment-section .payment-methods-grid .payment-method-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 16px 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+.c-modal .purchase-modal-container .payment-section .payment-methods-grid .payment-method-btn .payment-icon {
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2px;
+}
+.c-modal .purchase-modal-container .payment-section .payment-methods-grid .payment-method-btn .payment-icon i {
+  width: 18px;
+  height: 18px;
+  color: rgba(255, 255, 255, 0.8);
+}
+.c-modal .purchase-modal-container .payment-section .payment-methods-grid .payment-method-btn .payment-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.c-modal .purchase-modal-container .payment-section .payment-methods-grid .payment-method-btn .payment-info .payment-name {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+.c-modal .purchase-modal-container .payment-section .payment-methods-grid .payment-method-btn .payment-info .payment-desc {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: none;
+}
+.c-modal .purchase-modal-container .payment-section .payment-methods-grid .payment-method-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+.c-modal .purchase-modal-container .payment-section .payment-methods-grid .payment-method-btn:hover .payment-icon {
+  background: rgba(255, 255, 255, 0.15);
+}
+.c-modal .purchase-modal-container .payment-section .payment-methods-grid .payment-method-btn:hover .payment-icon i {
+  color: white;
+}
+.c-modal .purchase-modal-container .payment-section .payment-methods-grid .payment-method-btn.cash:hover {
+  border-color: rgba(46, 204, 113, 0.5);
+}
+.c-modal .purchase-modal-container .payment-section .payment-methods-grid .payment-method-btn.cash:hover .payment-icon {
+  background: rgba(46, 204, 113, 0.2);
+}
+.c-modal .purchase-modal-container .payment-section .payment-methods-grid .payment-method-btn.cash:hover .payment-icon i {
+  color: rgb(46, 204, 113);
+}
+.c-modal .purchase-modal-container .payment-section .payment-methods-grid .payment-method-btn.bank:hover {
+  border-color: rgba(0, 168, 204, 0.5);
+}
+.c-modal .purchase-modal-container .payment-section .payment-methods-grid .payment-method-btn.bank:hover .payment-icon {
+  background: rgba(0, 168, 204, 0.2);
+}
+.c-modal .purchase-modal-container .payment-section .payment-methods-grid .payment-method-btn.bank:hover .payment-icon i {
+  color: rgb(0, 168, 204);
+}
+.c-modal .purchase-modal-container .payment-section .payment-methods-grid .payment-method-btn.xp:hover {
+  border-color: rgba(241, 196, 15, 0.5);
+}
+.c-modal .purchase-modal-container .payment-section .payment-methods-grid .payment-method-btn.xp:hover .payment-icon {
+  background: rgba(241, 196, 15, 0.2);
+}
+.c-modal .purchase-modal-container .payment-section .payment-methods-grid .payment-method-btn.xp:hover .payment-icon i {
+  color: rgb(241, 196, 15);
+}
+.c-modal .purchase-modal-container .payment-section .payment-methods-grid .payment-method-btn.financing:hover {
+  border-color: rgba(255, 107, 0, 0.8);
+  background: rgba(255, 107, 0, 0.1);
+}
+.c-modal .purchase-modal-container .payment-section .payment-methods-grid .payment-method-btn.financing:hover .payment-icon {
+  background: rgba(255, 107, 0, 0.3);
+}
+.c-modal .purchase-modal-container .payment-section .payment-methods-grid .payment-method-btn.financing:hover .payment-icon i {
+  color: rgb(255, 107, 0);
+}
+.c-modal .purchase-modal-container .payment-section .payment-methods-grid .no-payment-methods {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 20px;
+  background: rgba(231, 76, 60, 0.1);
+  border: 1px solid rgba(231, 76, 60, 0.3);
+  border-radius: 8px;
+  color: rgb(231, 76, 60);
+  text-align: center;
+}
+.c-modal .purchase-modal-container .payment-section .payment-methods-grid .no-payment-methods i {
+  width: 24px;
+  height: 24px;
+  color: rgb(231, 76, 60);
+}
+.c-modal .purchase-modal-container .payment-section .payment-methods-grid .no-payment-methods span {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+.c-modal .info-box {
+  background-color: rgba(157, 157, 157, 0.1294117647);
+  padding: 2vh 1vh !important;
+}
+
+.modal-block {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-body {
+  padding: 2vh 3vh;
+  color: white;
+  overflow: auto;
+}
+.modal-body .data {
+  padding: 1vh;
+  display: flex;
+  flex-direction: column;
+}
+.modal-body .data .data-row {
+  display: flex;
+  align-items: center;
+  gap: 2vh;
+  padding: 1vh;
+  width: 100%;
+  flex-wrap: wrap;
+  height: fit-content;
+  margin-bottom: 1vw;
+}
+.modal-body .data .data-row .input-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5vh;
+  text-transform: uppercase;
+  width: 48%;
+}
+.modal-body .data .default-vehicles .vehicle-cards {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1vh;
+  justify-content: center;
+}
+.modal-body .data .default-vehicles .vehicle-cards .vehicle-card {
+  background: linear-gradient(to top, black, transparent);
+  width: 30vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 30vh;
+}
+.modal-body .data .default-vehicles .vehicle-cards .vehicle-card .vehicle-picture {
+  position: relative;
+  top: 20%;
+  width: 100%;
+  height: 100%;
+}
+.modal-body .data .default-vehicles .vehicle-cards .vehicle-card .vehicle-picture img {
+  width: 100%;
+  padding: 1vh;
+}
+.modal-body .data .default-vehicles .vehicle-cards .vehicle-card .vehicle-model {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20%;
+  width: 100%;
+  background: rgba(0, 168, 204, 0.822);
+  font-size: 2vh;
+  text-transform: uppercase;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.modal-body .data .default-vehicles .vehicle-cards .vehicle-card:hover {
+  cursor: pointer;
+}
+.modal-body .data .default-vehicles .vehicle-cards .vehicle-card:hover .vehicle-model {
+  background: rgba(255, 107, 0, 0.616);
+}
+.modal-body .data .select_label {
+  height: 100%;
+  padding: 0.5vh;
+  background-color: rgb(31, 30, 30);
+  border: none;
+  color: rgba(221, 218, 218, 0.651);
+  border-radius: 5px;
+}
+.modal-body .data input {
+  height: 100%;
+  border-radius: 5px;
+}
+
+.modal-content {
+  width: -moz-max-content;
+  width: max-content;
+  background: rgba(0, 0, 0, 0.9) !important;
+  border-radius: 1vh !important;
+  overflow: hidden;
+  border: 0.1vh solid rgba(255, 255, 255, 0.1) !important;
+  outline: 0.1vh dashed rgba(255, 255, 255, 0.15);
+  outline-offset: 0.3vh;
+  font-family: "Quicksand", sans-serif !important;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.4117647059) !important;
+  max-height: 85%;
+}
+
+.modal-header {
+  border: unset;
+  padding: 1vh;
+  border: none !important;
+}
+
+.modal-footer {
+  margin-top: 1vh;
+  border-top: unset;
+  background: rgba(255, 255, 255, 0.12);
+  justify-content: space-between;
+  border-top: 0.1vh rgba(255, 255, 255, 0.27) !important;
+}
+
+.fadeIn {
+  animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+.info-box {
+  margin-top: 2vh !important;
+  background-color: rgba(255, 255, 255, 0.22);
+  border-radius: 0.5vh;
+  color: white;
+  position: relative;
+  padding: 2vh;
+  -webkit-user-select: text !important;
+  -moz-user-select: text !important;
+  user-select: text !important;
+  padding-top: 2.5vh;
+  font-weight: 600;
+}
+.info-box h4:first-child {
+  position: absolute;
+  top: -1.5vh;
+  color: white;
+  background: #ff6b00;
+  padding: 0.5vh 1vh;
+  border-radius: 2vh;
+  font-size: 2vh;
+  left: 1vh;
+}
+
+.box-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(157, 157, 157, 0.1294117647);
+  border: 0.1vh solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  color: white !important;
+  padding: 1vh 1vh;
+  height: unset;
+  outline: unset;
+  font-family: "Quicksand";
+  transition: 0.3s ease-in-out all;
+  border-radius: 0.5vh;
+  font-size: 1.5vh;
+}
+.box-option i {
+  color: rgb(109, 109, 109);
+}
+.box-option input {
+  background: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  color: white !important;
+}
+.box-option input:hover {
+  opacity: 1.1;
+}
+.box-option input:focus {
+  opacity: 1.1;
+}
+
+.house-doors .info-box {
+  padding: 1vh 2vh !important;
+}
+.house-doors .box-option {
+  justify-content: space-between;
+  margin: 1vh 0;
+}
+.house-doors .box-option span {
+  color: rgb(210, 210, 210);
+  margin-left: 0.5vh;
+}
+.house-doors .box-option .delete-door {
+  padding: 0vh 0.5vh;
+  cursor: pointer;
+}
+.house-doors .box-option .delete-door i {
+  color: #adadad;
+  transition: var(--cubic) 0.5s all;
+}
+.house-doors .box-option .delete-door:hover i {
+  transform: scale(1.1);
+  cursor: pointer;
+  color: white;
+}
+.house-doors .no-items {
+  height: -moz-fit-content;
+  height: fit-content;
+  display: block;
+  text-align: center;
+}
+
+.buy-house .box-option {
+  position: relative;
+  justify-content: flex-start;
+  margin-top: 2vh;
+}
+.buy-house .box-option .info h5 {
+  margin: 0;
+  font-size: 1.2vh;
+  color: rgb(120, 120, 120);
+  text-transform: uppercase;
+  letter-spacing: 0.1vh;
+}
+.buy-house .box-option i {
+  margin-right: 1vh;
+}
+.buy-house .house-images {
+  width: -moz-fit-content;
+  width: fit-content;
+  overflow: hidden;
+  padding-bottom: 1vh;
+}
+.buy-house .house-images::-webkit-scrollbar {
+  height: 0.3vh;
+}
+.buy-house .house-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10vh;
+  height: 10vh;
+  background-color: rgba(157, 157, 157, 0.1294117647);
+  border: 0.1vh solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5vh;
+  cursor: pointer;
+  margin-right: 2.9vh;
+  overflow: hidden;
+}
+.buy-house .house-image img {
+  height: 12vh;
+  transition: 0.5s var(--cubic) all;
+}
+.buy-house .house-image:hover img {
+  transform: scale(1.1);
+}
+
+.garage-images {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  padding-bottom: 0.5vh;
+}
+.garage-images::-webkit-scrollbar {
+  height: 0.4vh;
+  width: 100%;
+}
+
+input {
+  transition: background-color ease 0.1s, color ease 0.1s;
+  outline: unset !important;
+  height: 2vh;
+  padding: 1vh;
+  color: white;
+  background-color: rgba(42, 42, 42, 0.97);
+  border: none;
+  font-weight: 600;
+}
+input:focus {
+  background-color: rgb(255, 255, 255);
+  color: rgba(0, 0, 0, 0.897);
+}
+input:focus + .slider {
+  box-shadow: 0 0 1px #00a8cc;
+}
+input:checked + .slider {
+  background-color: #01b073;
+}
+input:checked + .slider:before {
+  transform: translateX(2.2vh);
+}
+
+h4 {
+  font-family: "Bebas Neue";
+}
+
+h2 {
+  font-family: "Bebas Neue";
+}
+
+.house-id {
+  max-width: 14vh;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.search-items {
+  background-color: rgba(255, 255, 255, 0.8117647059);
+  border-radius: 0.5vh;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border: 0.1vh solid white;
+  transition: 0.5s var(--cubic) all;
+  margin-bottom: 0.5vh;
+  line-height: 2.3vh;
+  padding-left: 1vh;
+  font-size: 2vh;
+}
+.search-items input {
+  color: black !important;
+  font-family: "QuickSand";
+  background: transparent !important;
+  padding: 1vh 1vh;
+  font-size: 1.5vh;
+  box-shadow: none !important;
+}
+.search-items input:focus {
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+.search-items input:focus-visible {
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+
+.search-items-2 {
+  background-color: rgba(255, 255, 255, 0.8117647059);
+  border-radius: 0.5vh;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border: 0.1vh solid white;
+  transition: 0.5s var(--cubic) all;
+  margin-bottom: 0.5vh;
+  line-height: 2.3vh;
+  padding-left: 1vh;
+  font-size: 2vh;
+  background-color: rgba(255, 255, 255, 0.1843137255);
+  border: none;
+  color: rgb(199, 199, 199);
+  width: 114vh;
+  margin-left: 0.4vh;
+  margin-top: 0.5vh;
+  margin-bottom: 0.8vh;
+}
+.search-items-2 input::-moz-placeholder {
+  color: rgb(199, 199, 199);
+}
+.search-items-2 input::placeholder {
+  color: rgb(199, 199, 199);
+}
+.search-items-2 input {
+  font-family: "QuickSand";
+  background: transparent !important;
+  padding: 1vh 1vh;
+  font-size: 1.5vh;
+  box-shadow: none !important;
+}
+.search-items-2 input:focus {
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+.search-items-2 input:focus-visible {
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+
+.no-items {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 43vh;
+}
+.no-items img {
+  height: 15vh;
+}
+.no-items span {
+  margin-top: 2vh;
+  font-family: "QuickSand";
+}
+
+.form-control {
+  background-color: rgba(255, 255, 255, 0.829);
+  position: relative;
+  width: 100%;
+  color: black !important;
+  padding: 0.5vh 1vh;
+  height: unset;
+  outline: unset;
+  font-family: "Quicksand";
+  transition: 0.3s ease-in-out all;
+  cursor: pointer;
+}
+.form-control:hover {
+  color: white;
+  opacity: 0.2;
+}
+.form-control:focus {
+  opacity: 0.5;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 4.1vh;
+  height: 1.9vh;
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(45, 45, 45);
+  transition: 0.4s;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  width: 1.3vh;
+  height: 1.3vh;
+  left: 0.3vh;
+  bottom: 0.3vh;
+  background-color: white;
+  transition: 0.4s;
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.admin-menu {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: rgba(8, 8, 12, 0.98);
+  padding: 1vh;
+  gap: 1vh;
+  overflow: hidden;
+}
+.admin-menu .main-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  border-radius: 5px;
+  padding: 1vh;
+  color: white;
+  overflow: hidden;
+}
+.admin-menu .main-content .admin-layout {
+  display: flex;
+  height: 100%;
+  gap: 1vh;
+  overflow: hidden;
+}
+.admin-menu .main-content .admin-layout .admin-sidebar {
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+}
+.admin-menu .main-content .admin-layout .admin-sidebar .options-section,
+.admin-menu .main-content .admin-layout .admin-sidebar .dealerships-section {
+  background: rgba(0, 0, 0, 0.5);
+  border: 0.1vh solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.8vh;
+  padding: 1vh;
+  outline: 0.1vh dashed rgba(255, 255, 255, 0.1);
+  outline-offset: 0.2vh;
+}
+.admin-menu .main-content .admin-layout .admin-sidebar .options-section .section-header {
+  font-size: 1.2vh;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: "Evogria", sans-serif;
+  letter-spacing: 0.1vh;
+  margin-bottom: 1vh;
+  padding-bottom: 0.5vh;
+  border-bottom: 0.1vh solid rgba(255, 255, 255, 0.08);
+}
+.admin-menu .main-content .admin-layout .admin-sidebar .options-section .option {
+  display: flex;
+  border-radius: 0.6vh;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 1vh;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.2vh;
+  font-family: "Evogria", sans-serif;
+  gap: 1vh;
+  text-transform: uppercase;
+  height: 4vh;
+  background: rgba(255, 255, 255, 0.03);
+  border: 0.1vh solid rgba(255, 255, 255, 0.06);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 0.5vh;
+}
+.admin-menu .main-content .admin-layout .admin-sidebar .options-section .option [data-lucide] {
+  transition: all 0.2s ease;
+  width: 1.6vh;
+  height: 1.6vh;
+}
+.admin-menu .main-content .admin-layout .admin-sidebar .options-section .option:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+.admin-menu .main-content .admin-layout .admin-sidebar .options-section .option.active {
+  background: #ff6b00;
+  border-color: rgba(255, 107, 0, 0.8);
+  color: white;
+}
+.admin-menu .main-content .admin-layout .admin-sidebar .options-section .option.active [data-lucide] {
+  color: white;
+}
+.admin-menu .main-content .admin-layout .admin-sidebar .dealerships-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.admin-menu .main-content .admin-layout .admin-sidebar .dealerships-section .section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2vh;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: "Evogria", sans-serif;
+  letter-spacing: 0.1vh;
+  margin-bottom: 1vh;
+  padding-bottom: 0.5vh;
+  border-bottom: 0.1vh solid rgba(255, 255, 255, 0.08);
+}
+.admin-menu .main-content .admin-layout .admin-sidebar .dealerships-section .section-header .btn-action {
+  cursor: pointer;
+  background: #ff6b00;
+  border: 0.1vh solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5vh;
+  color: white;
+  padding: 0.5vh;
+  width: 3vh;
+  height: 3vh;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.admin-menu .main-content .admin-layout .admin-sidebar .dealerships-section .section-header .btn-action:hover {
+  opacity: 0.7;
+}
+.admin-menu .main-content .admin-layout .admin-sidebar .dealerships-section .dealerships-list {
+  flex: 1;
+  overflow-y: auto;
+}
+.admin-menu .main-content .admin-layout .admin-sidebar .dealerships-section .dealerships-list .dealership-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(22, 22, 22, 0.7);
+  border: 0.1vh solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.6vh;
+  margin-bottom: 0.5vh;
+  transition: all 0.2s ease;
+  position: relative;
+}
+.admin-menu .main-content .admin-layout .admin-sidebar .dealerships-section .dealerships-list .dealership-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+.admin-menu .main-content .admin-layout .admin-sidebar .dealerships-section .dealerships-list .dealership-item.active {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+.admin-menu .main-content .admin-layout .admin-sidebar .dealerships-section .dealerships-list .dealership-item.active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0.3vh;
+  height: 100%;
+  background: #ff6b00;
+  border-radius: 0.2vh;
+}
+.admin-menu .main-content .admin-layout .admin-sidebar .dealerships-section .dealerships-list .dealership-item .dealership-info {
+  flex: 1;
+  padding: 1vh;
+  cursor: pointer;
+}
+.admin-menu .main-content .admin-layout .admin-sidebar .dealerships-section .dealerships-list .dealership-item .dealership-info .dealership-name {
+  color: rgba(255, 255, 255, 0.746);
+  font-size: 1.1vh;
+  text-transform: uppercase;
+}
+.admin-menu .main-content .admin-layout .admin-sidebar .dealerships-section .dealerships-list .dealership-item .dealership-actions {
+  display: flex;
+  gap: 0.5vh;
+  padding: 0.5vh;
+}
+.admin-menu .main-content .admin-layout .admin-sidebar .dealerships-section .dealerships-list .dealership-item .dealership-actions .btn-action {
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.06);
+  border: 0.1vh solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.4vh;
+  color: rgba(255, 255, 255, 0.7);
+  width: 2.5vh;
+  height: 2.5vh;
+  padding: 0.3vh;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.admin-menu .main-content .admin-layout .admin-sidebar .dealerships-section .dealerships-list .dealership-item .dealership-actions .btn-action:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+.admin-menu .main-content .admin-layout .admin-sidebar .dealerships-section .dealerships-list .dealership-item .dealership-actions .btn-action.btn-danger:hover {
+  background: rgba(244, 67, 54, 0.2);
+  border-color: rgba(244, 67, 54, 0.4);
+  color: #f44336;
+}
+.admin-menu .main-content .admin-layout .admin-main-content {
+  flex: 1;
+  background: rgba(0, 0, 0, 0.4);
+  border: 0.1vh solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.8vh;
+  outline: 0.1vh dashed rgba(255, 255, 255, 0.1);
+  outline-offset: 0.2vh;
+  padding: 1vh;
+  overflow: hidden;
+  height: 100%;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-not-selected {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-not-selected .empty-state {
+  text-align: center;
+  color: white;
+  opacity: 0.6;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-not-selected .empty-state [data-lucide] {
+  transform: scale(3);
+  margin-bottom: 2vh;
+  opacity: 0.3;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-not-selected .empty-state h3 {
+  font-size: 1.5vh;
+  margin: 1vh 0 0.5vh 0;
+  text-transform: uppercase;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-not-selected .empty-state p {
+  font-size: 1.1vh;
+  opacity: 0.8;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management > div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .management-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1vh;
+  padding-bottom: 1vh;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .management-header .dealership-info-compact .info-row {
+  display: flex;
+  gap: 2vh;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .management-header .dealership-info-compact .info-row .info-group {
+  display: flex;
+  align-items: center;
+  gap: 0.8vh;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .management-header .dealership-info-compact .info-row .info-group label {
+  font-size: 1.2vh;
+  color: rgba(255, 255, 255, 0.623);
+  text-transform: uppercase;
+  font-weight: 600;
+  min-width: 60px;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .management-header .dealership-info-compact .info-row .info-group .info-value {
+  font-size: 1.2vh;
+  color: white;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.8vh 1.2vh;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 180px;
+  height: 4vh;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .management-header .dealership-info-compact .info-row .info-group .form-control-inline {
+  background: rgba(0, 0, 0, 0.4);
+  border: 0.1vh solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.6vh;
+  color: white;
+  padding: 0.8vh 1.2vh;
+  font-size: 1.2vh;
+  font-family: "Quicksand", sans-serif;
+  width: 180px;
+  height: 4vh;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .management-header .dealership-info-compact .info-row .info-group .form-control-inline:focus {
+  border-color: rgba(255, 107, 0, 0.8);
+  background: rgba(255, 255, 255, 0.08);
+  outline: none;
+  box-shadow: 0 0 10px rgba(255, 107, 0, 0.3);
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .management-header .dealership-info-compact .info-row .info-group .form-control-inline:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.07);
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .management-header .management-actions {
+  display: flex;
+  gap: 1vh;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .management-header .management-actions .btn-action {
+  display: flex;
+  align-items: center;
+  gap: 0.5vh;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.06);
+  border: 0.1vh solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5vh;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 0.8vh 1.2vh;
+  transition: all 0.2s ease;
+  font-size: 1vh;
+  font-family: "Evogria", sans-serif;
+  text-transform: uppercase;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .management-header .management-actions .btn-action:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: white;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .management-header .management-actions .btn-action.btn-save {
+  background: #ff6b00;
+  border-color: rgba(255, 107, 0, 0.5);
+  color: white;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .management-header .management-actions .btn-action.btn-save:hover {
+  opacity: 0.8;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .management-header .management-actions .btn-action span {
+  font-size: 1vh;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body {
+  flex: 1;
+  display: flex;
+  gap: 1vh;
+  overflow: hidden;
+  min-height: 0;
+  height: 100%;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .categories-panel {
+  width: 300px;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.2);
+  border: 0.1vh solid rgba(255, 255, 255, 0.06);
+  border-radius: 0.6vh;
+  padding: 1vh;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .categories-panel .panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1vh;
+  padding-bottom: 0.5vh;
+  border-bottom: 0.1vh solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .categories-panel .panel-header h4 {
+  font-size: 1.3vh;
+  font-family: "Evogria", sans-serif;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.1vh;
+  margin: 0;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .categories-panel .panel-header .btn-action {
+  cursor: pointer;
+  background: #ff6b00;
+  border: 0.1vh solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5vh;
+  color: white;
+  padding: 0.5vh;
+  width: 3vh;
+  height: 3vh;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .categories-panel .panel-header .btn-action:hover {
+  opacity: 0.7;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .categories-panel .categories-list {
+  flex: 1 1 auto;
+  overflow-y: scroll !important;
+  overflow-x: hidden;
+  min-height: 0;
+  padding-right: 4px;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .categories-panel .categories-list::-webkit-scrollbar {
+  width: 4px;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .categories-panel .categories-list::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 2px;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .categories-panel .categories-list::-webkit-scrollbar-thumb {
+  background: rgba(255, 107, 0, 0.4);
+  border-radius: 2px;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .categories-panel .categories-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 107, 0, 0.6);
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .categories-panel .categories-list .category-item {
+  display: flex;
+  gap: 0.8vh;
+  margin-bottom: 0.8vh;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .categories-panel .categories-list .category-item .form-control-small {
+  flex: 1;
+  min-width: 0;
+  background: rgba(0, 0, 0, 0.4);
+  border: 0.1vh solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5vh;
+  color: white;
+  padding: 0.5vh 0.8vh;
+  font-size: 1.1vh;
+  font-family: "Quicksand", sans-serif;
+  height: 3.5vh;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .categories-panel .categories-list .category-item .form-control-small:focus {
+  border-color: rgba(255, 107, 0, 0.8);
+  background: rgba(255, 255, 255, 0.08);
+  outline: none;
+  box-shadow: 0 0 10px rgba(255, 107, 0, 0.3);
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .categories-panel .categories-list .category-item .form-control-small:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.07);
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .categories-panel .categories-list .category-item .btn-action {
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.06);
+  border: 0.1vh solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.4vh;
+  color: rgba(255, 255, 255, 0.6);
+  width: 3vh;
+  height: 3vh;
+  padding: 0;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .categories-panel .categories-list .category-item .btn-action.btn-danger:hover {
+  background: rgba(244, 67, 54, 0.2);
+  border-color: rgba(244, 67, 54, 0.4);
+  color: #f44336;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .categories-panel .categories-list .category-item .btn-action i {
+  font-size: 1.2vh;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .categories-panel .categories-list .category-item.btn-small {
+  width: 3.5vh;
+  height: 3.5vh;
+  border-radius: 6px;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .categories-panel .categories-list .category-item.btn-small i {
+  font-size: 1.4vh;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0 !important;
+  overflow: hidden !important;
+  height: 100% !important;
+  max-height: 75vh !important;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1vh;
+  padding-bottom: 0.5vh;
+  border-bottom: 0.1vh solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-header .vehicles-title h4 {
+  font-size: 1.3vh;
+  font-family: "Evogria", sans-serif;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.1vh;
+  margin: 0;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-header .vehicles-actions {
+  display: flex;
+  gap: 1vh;
+  align-items: center;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-header .vehicles-actions .category-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5vh;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-header .vehicles-actions .search-vehicles-compact {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-header .vehicles-actions .search-vehicles-compact .search-icon {
+  position: absolute;
+  left: 0.5vh;
+  color: rgba(255, 255, 255, 0.623);
+  z-index: 1;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-header .vehicles-actions .search-vehicles-compact .search-input-compact {
+  background: rgba(0, 0, 0, 0.4);
+  border: 0.1vh solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.6vh;
+  color: white;
+  padding: 0.8vh 1.2vh 0.8vh 3vh;
+  font-size: 1.2vh;
+  font-family: "Quicksand", sans-serif;
+  width: 220px;
+  height: 4vh;
+  transition: all 0.2s ease;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-header .vehicles-actions .search-vehicles-compact .search-input-compact:focus {
+  border-color: rgba(255, 107, 0, 0.8);
+  background: rgba(255, 255, 255, 0.08);
+  outline: none;
+  box-shadow: 0 0 10px rgba(255, 107, 0, 0.3);
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-header .vehicles-actions .search-vehicles-compact .search-input-compact:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.07);
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-header .vehicles-actions .search-vehicles-compact .search-input-compact::placeholder {
+  color: rgba(255, 255, 255, 0.623);
+  opacity: 0.7;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-header .vehicles-actions .search-vehicles-compact .btn-clear {
+  position: absolute;
+  right: 0.5vh;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.623);
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-header .vehicles-actions .search-vehicles-compact .btn-clear:hover {
+  color: white;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-header .vehicles-actions .btn-action {
+  display: flex;
+  align-items: center;
+  gap: 0.5vh;
+  cursor: pointer;
+  background: #ff6b00;
+  border: 0.1vh solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5vh;
+  color: white;
+  padding: 0.8vh 1.2vh;
+  transition: all 0.2s ease;
+  font-size: 1vh;
+  font-family: "Evogria", sans-serif;
+  text-transform: uppercase;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-header .vehicles-actions .btn-action:hover {
+  opacity: 0.7;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-header .vehicles-actions .btn-action span {
+  font-size: 1vh;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-grid-container {
+  flex: 1;
+  overflow-y: auto !important;
+  overflow-x: hidden;
+  padding-right: 0.5vh;
+  height: 0 !important;
+  max-height: 70vh !important;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-grid-container::-webkit-scrollbar {
+  width: 8px;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-grid-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-grid-container::-webkit-scrollbar-thumb {
+  background: rgba(255, 107, 0, 0.7);
+  border-radius: 4px;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-grid-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 107, 0, 0.9);
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-grid-container .category-section {
+  margin-bottom: 1.5vh;
+  border-radius: 0.6vh;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.2);
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-grid-container .category-section .category-header {
+  font-size: 1.2vh;
+  color: white;
+  font-weight: 600;
+  font-family: "Evogria", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.1vh;
+  margin-bottom: 1vh;
+  padding: 1vh 1.5vh;
+  border-left: 0.3vh solid #ff6b00;
+  background: rgba(182, 182, 182, 0.05);
+  border-radius: 0 6px 6px 0;
+  transition: all 0.3s ease;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-grid-container .category-section .category-header.collapsible {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-grid-container .category-section .category-header.collapsible:hover {
+  background: rgba(182, 182, 182, 0.1);
+  border-left-color: rgb(255, 107, 0);
+  transform: translateX(2px);
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-grid-container .category-section .category-header.collapsible.expanded {
+  background: rgba(255, 107, 0, 0.15);
+  border-left-color: rgb(255, 107, 0);
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-grid-container .category-section .category-header.collapsible .category-info {
+  display: flex;
+  align-items: center;
+  gap: 1vh;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-grid-container .category-section .category-header.collapsible .category-info .category-title {
+  font-weight: 700;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-grid-container .category-section .category-header.collapsible .category-info .category-count {
+  font-size: 1vh;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 0.3vh 0.8vh;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-grid-container .category-section .category-header.collapsible .expand-icon {
+  width: 18px;
+  height: 18px;
+  color: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-grid-container .category-section .category-header.collapsible:hover .expand-icon {
+  color: white;
+  transform: scale(1.1);
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-grid-container .category-section .category-header.collapsible.expanded .expand-icon {
+  transform: rotate(0deg);
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-grid-container .category-section .vehicles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1vh;
+  overflow: hidden;
+  opacity: 0;
+  max-height: 0;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(-10px);
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-grid-container .category-section .vehicles-grid.expanded {
+  opacity: 1;
+  max-height: 1000vh;
+  transform: translateY(0);
+  margin-bottom: 1vh;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-grid-container .category-section .vehicles-grid .vehicle-card-compact {
+  display: flex;
+  align-items: center;
+  background: rgba(22, 22, 22, 0.7);
+  border: 0.1vh solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.6vh;
+  padding: 1vh;
+  gap: 1vh;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.22s cubic-bezier(0.4, 0, 0.2, 1), transform 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity, transform;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-grid-container .category-section .vehicles-grid .vehicle-card-compact:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-grid-container .category-section .vehicles-grid .vehicle-card-compact.vehicle-card-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-grid-container .category-section .vehicles-grid .vehicle-card-compact .vehicle-image-small {
+  width: 126px;
+  height: 120px;
+  border-radius: 0.5vh;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.3);
+  border: 0.1vh solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-grid-container .category-section .vehicles-grid .vehicle-card-compact .vehicle-image-small .vehicle-img-small {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  transition: none;
+  padding: 3px;
+  box-sizing: border-box;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-grid-container .category-section .vehicles-grid .vehicle-card-compact .vehicle-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4vh;
+  min-width: 0;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-grid-container .category-section .vehicles-grid .vehicle-card-compact .vehicle-details .vehicle-name {
+  font-size: 1.2vh;
+  font-weight: 600;
+  font-family: "Evogria", sans-serif;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.05vh;
+  margin-bottom: 0.2vh;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-grid-container .category-section .vehicles-grid .vehicle-card-compact .vehicle-details .vehicle-model {
+  font-size: 1vh;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: lowercase;
+  font-style: italic;
+  margin-bottom: 0.3vh;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-grid-container .category-section .vehicles-grid .vehicle-card-compact .vehicle-details .vehicle-stats {
+  display: flex;
+  gap: 0.4vh;
+  flex-wrap: wrap;
+  margin-bottom: 0.3vh;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-grid-container .category-section .vehicles-grid .vehicle-card-compact .vehicle-details .vehicle-stats .stat {
+  background: rgba(255, 255, 255, 0.06);
+  border: 0.1vh solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.3vh;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.8vh;
+  padding: 0.2vh 0.5vh;
+  font-weight: 500;
+  font-family: "Quicksand", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.03vh;
+  transition: background 0.2s ease;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-grid-container .category-section .vehicles-grid .vehicle-card-compact .vehicle-details .vehicle-stats .stat:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-grid-container .category-section .vehicles-grid .vehicle-card-compact .vehicle-details .vehicle-stats .stat.stock {
+  color: #4CAF50;
+  background: rgba(76, 175, 80, 0.1);
+  border-color: rgba(76, 175, 80, 0.3);
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-grid-container .category-section .vehicles-grid .vehicle-card-compact .vehicle-details .financing-status {
+  font-size: 0.8vh;
+  display: flex;
+  align-items: center;
+  gap: 0.3vh;
+  padding: 0.2vh 0.4vh;
+  border-radius: 4px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.2px;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-grid-container .category-section .vehicles-grid .vehicle-card-compact .vehicle-details .financing-status [data-lucide] {
+  width: 1vh;
+  height: 1vh;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-grid-container .category-section .vehicles-grid .vehicle-card-compact .vehicle-details .financing-status.enabled {
+  color: #4CAF50;
+  background: rgba(76, 175, 80, 0.1);
+  border: 1px solid rgba(76, 175, 80, 0.3);
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-grid-container .category-section .vehicles-grid .vehicle-card-compact .vehicle-details .financing-status.disabled {
+  color: #f44336;
+  background: rgba(244, 67, 54, 0.1);
+  border: 1px solid rgba(244, 67, 54, 0.3);
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-grid-container .category-section .vehicles-grid .vehicle-card-compact .vehicle-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3vh;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-grid-container .category-section .vehicles-grid .vehicle-card-compact .vehicle-actions .btn-action {
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 0.3vh;
+  width: 2.2vh;
+  height: 2.2vh;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-grid-container .category-section .vehicles-grid .vehicle-card-compact .vehicle-actions .btn-action [data-lucide] {
+  width: 1vh;
+  height: 1vh;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-grid-container .category-section .vehicles-grid .vehicle-card-compact .vehicle-actions .btn-action:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: white;
+  transform: scale(1.05);
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-grid-container .category-section .vehicles-grid .vehicle-card-compact .vehicle-actions .btn-action.btn-danger:hover {
+  background: rgba(244, 67, 54, 0.2);
+  border-color: rgba(244, 67, 54, 0.4);
+  color: #f44336;
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .dealership-management .content-body .vehicles-panel .vehicles-grid-container .category-section .vehicles-grid .vehicle-card-compact.vehicle-card-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.admin-menu .main-content .admin-layout .admin-main-content .content-tab .map-container {
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  overflow: hidden;
+}
+.admin-menu .header {
+  width: 100%;
+  height: 5vh;
+  text-align: center;
+  letter-spacing: 0.3vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ff6b00;
+  border: 0.1vh solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.8vh;
+  outline: 0.1vh dashed rgba(255, 255, 255, 0.15);
+  outline-offset: 0.3vh;
+  color: white;
+  font-size: 1.3vw;
+  font-weight: 700;
+  font-family: "Evogria", sans-serif;
+  text-transform: uppercase;
+  text-shadow: none;
+}
+.admin-menu .header [data-lucide] {
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.1);
+  border: 0.1vh solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5vh;
+  color: white;
+  margin: 0.5vh;
+  margin-left: 1vw;
+  width: 3vh;
+  height: 3vh;
+  padding: 0.5vh;
+  transition: all 0.2s ease;
+}
+.admin-menu .header [data-lucide]:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.dealership-tabs {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.dealership-tab-header {
+  display: flex;
+  gap: 0.5vh;
+  margin-bottom: 1vh;
+  flex-shrink: 0;
+  background: rgba(0, 0, 0, 0.3);
+  border: 0.1vh solid rgba(255, 255, 255, 0.06);
+  border-radius: 0.8vh;
+  padding: 0.5vh;
+}
+
+.dealership-tab-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5vh;
+  padding: 1vh 1.5vh;
+  border-radius: 0.6vh;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: transparent;
+  border: 0.1vh solid transparent;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: "Evogria", sans-serif;
+  font-size: 1.1vh;
+  text-transform: uppercase;
+  letter-spacing: 0.1vh;
+}
+.dealership-tab-item [data-lucide] {
+  width: 1.6vh;
+  height: 1.6vh;
+}
+.dealership-tab-item span {
+  font-weight: 500;
+}
+.dealership-tab-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.8);
+}
+.dealership-tab-item.active {
+  background: #ff6b00;
+  border-color: rgba(255, 107, 0, 0.8);
+  color: white;
+  font-weight: 600;
+}
+
+.dealership-tab-content {
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.dealership-tab-panel {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.general-settings {
+  padding: 1vh;
+}
+.general-settings h4 {
+  display: flex;
+  align-items: center;
+  gap: 0.8vh;
+  font-size: 1.3vh;
+  font-family: "Evogria", sans-serif;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 0.1vh;
+  margin-bottom: 1.5vh;
+  padding-bottom: 0.8vh;
+  border-bottom: 0.1vh solid rgba(255, 255, 255, 0.08);
+}
+.general-settings h4 [data-lucide] {
+  width: 1.8vh;
+  height: 1.8vh;
+  color: #ff6b00;
+}
+
+.form-section {
+  margin-bottom: 1.5vh;
+}
+.form-section h4 {
+  display: flex;
+  align-items: center;
+  gap: 0.8vh;
+  font-size: 1.2vh;
+  font-family: "Evogria", sans-serif;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.1vh;
+  margin-bottom: 1vh;
+  padding-bottom: 0.5vh;
+  border-bottom: 0.1vh solid rgba(255, 255, 255, 0.06);
+}
+.form-section h4 [data-lucide] {
+  width: 1.6vh;
+  height: 1.6vh;
+  color: #ff6b00;
+}
+
+.form-group {
+  margin-bottom: 1.2vh;
+}
+.form-group label {
+  display: block;
+  font-size: 1.1vh;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.05vh;
+  margin-bottom: 0.5vh;
+  font-family: "Quicksand", sans-serif;
+}
+.form-group small {
+  display: block;
+  font-size: 0.9vh;
+  color: rgba(255, 255, 255, 0.4);
+  margin-top: 0.3vh;
+}
+
+.form-input {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  border: 0.1vh solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.6vh;
+  color: white;
+  padding: 0.8vh 1vh;
+  font-size: 1.1vh;
+  font-family: "Quicksand", sans-serif;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+  resize: vertical;
+}
+.form-input:focus {
+  border-color: rgba(255, 107, 0, 0.6);
+  background: rgba(0, 0, 0, 0.5);
+  outline: none;
+  box-shadow: 0 0 0.8vh rgba(255, 107, 0, 0.2);
+}
+.form-input:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+.form-input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.financing-checkbox {
+  display: none;
+}
+
+.custom-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.8vh;
+  cursor: pointer;
+  font-size: 1.1vh;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  font-family: "Quicksand", sans-serif;
+  user-select: none;
+  transition: color 0.2s ease;
+}
+.custom-checkbox:hover {
+  color: white;
+}
+.custom-checkbox .checkbox-box {
+  width: 2vh;
+  height: 2vh;
+  border: 0.1vh solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.4vh;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.financing-checkbox:checked + .custom-checkbox {
+  color: white;
+}
+.financing-checkbox:checked + .custom-checkbox .checkbox-box {
+  background: #ff6b00;
+  border-color: rgba(255, 107, 0, 0.8);
+}
+.financing-checkbox:checked + .custom-checkbox .checkbox-box::after {
+  content: "✓";
+  color: white;
+  font-size: 1.2vh;
+  font-weight: 700;
+}
+
+.floating-marker {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid #00a8cc;
+  border-radius: 12px;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #2c3e50;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  min-width: 80px;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+
+.floating-marker:hover {
+  background: rgba(0, 168, 204, 0.95);
+  color: white;
+  transform: translate(-50%, -50%) scale(1.1);
+  box-shadow: 0 8px 30px rgba(0, 168, 204, 0.4);
+}
+
+.floating-marker.active {
+  background: rgba(46, 204, 113, 0.95);
+  border-color: #27ae60;
+  color: white;
+}
+
+.floating-marker::before {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid currentColor;
+  opacity: 0.8;
+}
+
+.marker-input {
+  position: absolute;
+  background: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 14px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  z-index: 1001;
+  min-width: 200px;
+  transform: translate(-50%, -50%);
+  outline: none;
+  border: 2px solid #00a8cc;
+}
+
+.marker-input:focus {
+  border-color: #0088aa;
+  box-shadow: 0 8px 30px rgba(0, 120, 180, 0.3);
+}
+
+.marker-controls {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  padding: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  z-index: 1002;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: 8px;
+}
+
+.control-btn {
+  background: #00a8cc;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.control-btn:hover {
+  background: #0088aa;
+  transform: scale(1.05);
+}
+
+.control-btn.save {
+  background: #27ae60;
+}
+
+.control-btn.save:hover {
+  background: #229954;
+}
+
+.control-btn.cancel {
+  background: #e74c3c;
+}
+
+.control-btn.cancel:hover {
+  background: #c0392b;
+}
+
+.pulse-animation {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+.demo-info {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 14px;
+  max-width: 300px;
+}
+
+.marker-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  background-color: rgba(255, 107, 0, 0.938);
+  border: 1px solid rgba(255, 255, 255, 0.651);
+  color: #fff;
+  font-size: 16px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.marker-icon:hover {
+  transform: scale(1.1);
+  background-color: rgba(255, 107, 0, 0.938);
+}
+
+.leaflet-container {
+  background-color: #00a8ce !important;
+}
+.leaflet-container a.leaflet-popup-close-button {
+  color: white !important;
+}
+
+.leaflet-bottom {
+  display: none;
+}
+
+.leaflet-popup-content-wrapper {
+  background: rgba(0, 0, 0, 0.8) !important;
+  color: #fff !important;
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
+  font-family: "Chakra Petch";
+  font-weight: 100;
+  font-size: 1.5vh;
+  text-align: center;
+  border-radius: 5px !important;
+}
+
+.leaflet-popup-tip {
+  background: rgba(0, 0, 0, 0.8) !important;
+  color: #fff !important;
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
+  font-family: "Chakra Petch";
+  font-weight: 100;
+  font-size: 1.5vh;
+  text-align: center;
+  border-radius: 5px !important;
+}
+
+img.leaflet-marker-icon {
+  filter: drop-shadow(0px 0px 10px rgb(0, 0, 0)) !important;
+}
+
+.dealership-editor [data-lucide] {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.176);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  color: rgb(255, 255, 255);
+  margin: 0.5vh;
+  width: 3vh;
+  height: 3vh;
+  padding: 0.5vh;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.dealership-editor [data-lucide]:hover {
+  rotate: 20deg;
+  background-color: rgba(255, 255, 255, 0.438);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.dealership-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+  overflow: scroll;
+  max-height: 42vw;
+  -webkit-mask-image: linear-gradient(180deg, black 92%, transparent);
+  mask-image: linear-gradient(180deg, black 92%, transparent);
+  width: 100%;
+}
+
+.dealership-info-section {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 2vh;
+  margin-bottom: 2vh;
+}
+
+.dealership-info-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5vh;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 1vh;
+}
+.dealership-info-header h3 {
+  color: white;
+  font-size: 1.2vw;
+  margin: 0;
+  width: 100%;
+  text-transform: uppercase;
+}
+.dealership-info-header .botones {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.dealership-info-content {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1.5vh;
+}
+.dealership-info-content .btn-text-action {
+  background-color: rgba(255, 255, 255, 0.1843137255);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  transition: 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 1vh;
+  border-radius: 5px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+.dealership-info-content .btn-text-action:hover {
+  letter-spacing: 1px;
+  font-weight: bolder;
+  background-color: transparent;
+}
+
+.info-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5vh;
+}
+.info-group label {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.8vw;
+  text-transform: uppercase;
+}
+
+.category-creator {
+  margin-top: 2vh;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 2vh;
+}
+
+.category-creator-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5vh;
+}
+.category-creator-header h3 {
+  color: white;
+  font-size: 1.2vw;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.category-actions {
+  display: flex;
+  gap: 0.5vh;
+}
+
+.category-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+  max-height: 20vh;
+  overflow-y: auto;
+}
+
+.category-item {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  padding: 1vh;
+}
+
+.category-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.category-label {
+  width: 70%;
+  background: rgba(0, 0, 0, 0.3);
+  color: white !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.add-vehicle-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+  align-items: center;
+  padding: 1vh;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.add-vehicle-section .search-vehicles {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.add-vehicle-section .search-vehicles h2 {
+  color: white;
+  font-size: 1rem;
+  margin-bottom: 0.5vh;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.add-vehicle-section .search-vehicles .search-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.add-vehicle-section .search-vehicles .search-input-container input {
+  width: 100%;
+  height: 100%;
+  padding: 1vh 2.5vh;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  color: white;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+.add-vehicle-section .search-vehicles .search-input-container input:focus {
+  border-color: rgba(255, 107, 0, 0.7);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 107, 0, 0.3);
+}
+.add-vehicle-section .search-vehicles .search-input-container input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.btn-add-vehicle {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.158);
+  width: 100%;
+  color: white;
+  padding: 0.5vh 0vh;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  gap: 0.5vh;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.btn-add-vehicle:hover {
+  letter-spacing: 1px;
+}
+.btn-add-vehicle:hover [data-lucide] {
+  rotate: 20deg;
+  background: rgba(255, 255, 255, 0.438);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.financing-label {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9vw;
+  font-weight: 500;
+  user-select: none;
+  cursor: pointer;
+}
+.financing-label:hover {
+  color: white;
+}
+
+/* Enhanced Vehicle Info Tags */
+.vehicle-info .extra-info {
+  display: flex;
+  gap: 0.8vh;
+  flex-wrap: wrap;
+  margin-top: 1vh;
+}
+.vehicle-info .extra-info .tag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1vh;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: 6px;
+  padding: 0.4vh 0.8vh;
+  border: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  min-width: fit-content;
+  white-space: nowrap;
+}
+.vehicle-info .extra-info .tag.vehicle-stock:first-child {
+  background: linear-gradient(135deg, rgba(0, 168, 204, 0.8), rgba(0, 120, 180, 0.8));
+  border-color: rgba(0, 168, 204, 0.4);
+  color: white;
+}
+.vehicle-info .extra-info .tag.vehicle-stock:nth-child(2) {
+  background: linear-gradient(135deg, rgba(46, 204, 113, 0.8), rgba(39, 174, 96, 0.8));
+  border-color: rgba(46, 204, 113, 0.4);
+  color: white;
+}
+.vehicle-info .extra-info .tag.vehicle-stock:nth-child(3) {
+  background: linear-gradient(135deg, rgba(230, 126, 34, 0.8), rgba(211, 84, 0, 0.8));
+  border-color: rgba(230, 126, 34, 0.4);
+  color: white;
+}
+.vehicle-info .extra-info .tag.vehicle-stock:nth-child(4) {
+  background: linear-gradient(135deg, rgba(0, 168, 204, 0.8), rgba(0, 120, 180, 0.8));
+  border-color: rgba(0, 168, 204, 0.4);
+  color: white;
+}
+.vehicle-info .extra-info .tag.financing-badge {
+  gap: 0.4vh;
+}
+.vehicle-info .extra-info .tag.financing-badge i {
+  width: 1.3vh;
+  height: 1.3vh;
+}
+.vehicle-info .extra-info .tag.financing-badge.financing-enabled {
+  background: linear-gradient(135deg, rgba(39, 174, 96, 0.9), rgba(46, 204, 113, 0.9));
+  border-color: rgba(39, 174, 96, 0.5);
+  color: white;
+  box-shadow: 0 2px 12px rgba(39, 174, 96, 0.3);
+}
+.vehicle-info .extra-info .tag.financing-badge.financing-disabled {
+  background: linear-gradient(135deg, rgba(231, 76, 60, 0.9), rgba(192, 57, 43, 0.9));
+  border-color: rgba(231, 76, 60, 0.5);
+  color: white;
+  box-shadow: 0 2px 12px rgba(231, 76, 60, 0.3);
+}
+
+/* Modal Independiente de Financiamiento */
+.financing-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.financing-modal-container {
+  background: rgba(20, 20, 25, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  animation: slideIn 0.3s ease-out;
+}
+
+.financing-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 25px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.financing-modal-header h2 {
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.financing-modal-header .close-btn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+.financing-modal-header .close-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.financing-modal-content {
+  padding: 25px;
+}
+
+.vehicle-summary {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 25px;
+}
+.vehicle-summary .vehicle-name-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.vehicle-summary .vehicle-name-price span:first-child {
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+}
+.vehicle-summary .vehicle-name-price span:last-child {
+  color: #2ecc71;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.financing-plans {
+  margin-bottom: 25px;
+}
+.financing-plans h3 {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0 0 15px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.payment-info-text {
+  color: white;
+}
+
+#financing-options-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 300px;
+  overflow-y: auto;
+  padding-right: 5px;
+  /* Scrollbar personalizado */
+}
+#financing-options-container::-webkit-scrollbar {
+  width: 6px;
+}
+#financing-options-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+#financing-options-container::-webkit-scrollbar-thumb {
+  background: rgba(255, 107, 0, 0.8);
+  border-radius: 3px;
+}
+#financing-options-container::-webkit-scrollbar-thumb:hover {
+  background: rgb(255, 107, 0);
+}
+
+.financing-option {
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+.financing-option::before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+.financing-option:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 107, 0, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+.financing-option:hover::before {
+  border-color: rgba(255, 107, 0, 0.8);
+}
+.financing-option.selected {
+  background: rgba(255, 107, 0, 0.2);
+  border-color: rgb(255, 107, 0);
+  box-shadow: 0 0 20px rgba(255, 107, 0, 0.4);
+}
+.financing-option.selected::before {
+  background: rgb(255, 107, 0);
+  border-color: rgb(255, 107, 0);
+  box-shadow: inset 0 0 0 3px white;
+}
+.financing-option .option-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  padding-right: 35px;
+}
+.financing-option .option-header .period-text {
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+}
+.financing-option .option-header .payment-amount {
+  color: #2ecc71;
+  font-weight: 600;
+  font-size: 14px;
+}
+.financing-option .option-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.financing-option .option-details .total-cost {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 12px;
+}
+.financing-option .option-details .interest-info {
+  color: #e67e22;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.payment-method {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 15px;
+}
+.payment-method .payment-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.payment-method .payment-info i {
+  color: #2ecc71;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+}
+.payment-method .payment-info div strong {
+  color: white;
+  font-size: 14px;
+  display: block;
+  margin-bottom: 5px;
+}
+.payment-method .payment-info div p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 12px;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.financing-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 20px 25px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+.financing-modal-footer button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.financing-modal-footer button.btn-cancel {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.financing-modal-footer button.btn-cancel:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+.financing-modal-footer button.btn-confirm {
+  background: linear-gradient(135deg, rgba(255, 107, 0, 0.9), rgba(0, 168, 204, 0.9));
+  color: white;
+  border: 1px solid rgba(255, 107, 0, 0.6);
+  box-shadow: 0 2px 10px rgba(255, 107, 0, 0.3);
+}
+.financing-modal-footer button.btn-confirm:hover:not(:disabled) {
+  background: linear-gradient(135deg, rgb(255, 107, 0), rgb(0, 168, 204));
+  box-shadow: 0 4px 15px rgba(255, 107, 0, 0.5);
+  transform: translateY(-1px);
+}
+.financing-modal-footer button.btn-confirm:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+.financing-modal-footer button.btn-confirm:disabled:hover {
+  transform: none;
+  box-shadow: 0 2px 10px rgba(255, 107, 0, 0.3);
+}
+
+/* Modal de Agregar Vehículo */
+.add-vehicle-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Modal de Configuración de Exhibidores */
+.exhibitor-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.add-vehicle-modal-container {
+  background: rgba(20, 20, 25, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  width: 95%;
+  max-width: 1200px;
+  height: 80vh;
+  max-height: 80vh;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  animation: slideIn 0.3s ease-out;
+  display: flex;
+  flex-direction: column;
+}
+
+.exhibitor-modal-container {
+  background: rgba(20, 20, 25, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  width: 90%;
+  max-width: 1000px;
+  max-height: 85vh;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  animation: slideIn 0.3s ease-out;
+  display: flex;
+  flex-direction: column;
+}
+
+.add-vehicle-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 25px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.add-vehicle-modal-header h2 {
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.add-vehicle-modal-header .close-btn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+.add-vehicle-modal-header .close-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.exhibitor-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 25px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+}
+.exhibitor-modal-header h2 {
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.exhibitor-modal-header .close-btn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+.exhibitor-modal-header .close-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.add-vehicle-modal-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.add-vehicle-left-panel {
+  flex: 0 0 400px;
+  padding: 20px;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  overflow-y: auto;
+  max-height: calc(80vh - 140px);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 107, 0, 0.5) transparent;
+}
+.add-vehicle-left-panel::-webkit-scrollbar {
+  width: 6px;
+}
+.add-vehicle-left-panel::-webkit-scrollbar-track {
+  background: transparent;
+}
+.add-vehicle-left-panel::-webkit-scrollbar-thumb {
+  background: rgba(255, 107, 0, 0.5);
+  border-radius: 3px;
+}
+.add-vehicle-left-panel::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 107, 0, 0.7);
+}
+.add-vehicle-left-panel .form-section h3 {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0 0 20px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.add-vehicle-left-panel .form-group {
+  margin-bottom: 12px;
+}
+.add-vehicle-left-panel .form-group label {
+  display: block;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.add-vehicle-left-panel .form-group .financing-toggle-label {
+  display: flex !important;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+.add-vehicle-left-panel .form-group .financing-toggle-label .financing-checkbox {
+  display: none;
+}
+.add-vehicle-left-panel .form-group .financing-toggle-label .financing-slider {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+.add-vehicle-left-panel .form-group .financing-toggle-label .financing-slider .financing-slider-circle {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.add-vehicle-left-panel .form-group .financing-toggle-label .financing-checkbox:checked + .financing-slider {
+  background: rgba(255, 107, 0, 0.8);
+}
+.add-vehicle-left-panel .form-group .financing-toggle-label .financing-checkbox:checked + .financing-slider .financing-slider-circle {
+  transform: translateX(20px);
+}
+.add-vehicle-left-panel .form-group .financing-toggle-label .financing-text {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+  line-height: 1.4;
+  user-select: none;
+  text-transform: none;
+  letter-spacing: normal;
+  font-weight: normal;
+}
+.add-vehicle-left-panel .form-group .form-input,
+.add-vehicle-left-panel .form-group .form-select {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 12px 15px;
+  color: white;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  height: 48px;
+  box-sizing: border-box;
+}
+.add-vehicle-left-panel .form-group .form-input::placeholder,
+.add-vehicle-left-panel .form-group .form-select::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+.add-vehicle-left-panel .form-group .form-input:focus,
+.add-vehicle-left-panel .form-group .form-select:focus {
+  outline: none;
+  border-color: rgba(255, 107, 0, 0.7);
+  box-shadow: 0 0 0 2px rgba(255, 107, 0, 0.3);
+  background: rgba(255, 255, 255, 0.12);
+}
+.add-vehicle-left-panel .form-group .form-input[type=number],
+.add-vehicle-left-panel .form-group .form-select[type=number] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+.add-vehicle-left-panel .form-group .form-input[type=number]::-webkit-outer-spin-button, .add-vehicle-left-panel .form-group .form-input[type=number]::-webkit-inner-spin-button,
+.add-vehicle-left-panel .form-group .form-select[type=number]::-webkit-outer-spin-button,
+.add-vehicle-left-panel .form-group .form-select[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.add-vehicle-left-panel .form-group .form-select {
+  cursor: pointer;
+}
+.add-vehicle-left-panel .form-group .form-select option {
+  background: #2a2a2a;
+  color: white;
+}
+.add-vehicle-left-panel .form-row {
+  display: flex;
+  gap: 15px;
+}
+.add-vehicle-left-panel .form-row .form-group {
+  flex: 1;
+}
+
+.add-vehicle-right-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.add-vehicle-right-panel .vehicles-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  min-height: 0;
+  overflow: visible;
+}
+.add-vehicle-right-panel .vehicles-section .vehicles-header {
+  margin-bottom: 15px;
+  flex-shrink: 0;
+}
+.add-vehicle-right-panel .vehicles-section .vehicles-header h3 {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 13px;
+  font-weight: 500;
+  margin: 0 0 12px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.add-vehicle-right-panel .vehicles-section .vehicles-header .search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.add-vehicle-right-panel .vehicles-section .vehicles-header .search-container .search-icon {
+  position: absolute;
+  left: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  width: 16px;
+  height: 16px;
+  z-index: 1;
+}
+.add-vehicle-right-panel .vehicles-section .vehicles-header .search-container .search-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 12px 45px 12px 40px;
+  color: white;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  height: 48px;
+  box-sizing: border-box;
+}
+.add-vehicle-right-panel .vehicles-section .vehicles-header .search-container .search-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+.add-vehicle-right-panel .vehicles-section .vehicles-header .search-container .search-input:focus {
+  outline: none;
+  border-color: rgba(255, 107, 0, 0.7);
+  box-shadow: 0 0 0 2px rgba(255, 107, 0, 0.3);
+  background: rgba(255, 255, 255, 0.12);
+}
+.add-vehicle-right-panel .vehicles-section .vehicles-header .search-container .clear-search-btn {
+  position: absolute;
+  right: 8px;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+.add-vehicle-right-panel .vehicles-section .vehicles-header .search-container .clear-search-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+.add-vehicle-right-panel .vehicles-section .vehicles-header .search-container .clear-search-btn i {
+  width: 16px;
+  height: 16px;
+}
+.add-vehicle-right-panel .vehicles-section .vehicles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 10px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 8px;
+  margin: 0 -8px;
+  min-height: 0;
+  align-content: start;
+  flex: 1;
+  max-height: calc(80vh - 280px);
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+.add-vehicle-right-panel .vehicles-section .vehicles-grid::-webkit-scrollbar {
+  width: 10px;
+}
+.add-vehicle-right-panel .vehicles-section .vehicles-grid::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 5px;
+  margin: 4px 0;
+}
+.add-vehicle-right-panel .vehicles-section .vehicles-grid::-webkit-scrollbar-thumb {
+  background: rgba(255, 107, 0, 0.7);
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.add-vehicle-right-panel .vehicles-section .vehicles-grid::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 107, 0, 0.9);
+}
+.add-vehicle-right-panel .vehicles-section .vehicles-grid .vehicle-card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 140px;
+}
+.add-vehicle-right-panel .vehicles-section .vehicles-grid .vehicle-card:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 107, 0, 0.5);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+.add-vehicle-right-panel .vehicles-section .vehicles-grid .vehicle-card.selected {
+  background: rgba(255, 107, 0, 0.2);
+  border-color: rgb(255, 107, 0);
+  box-shadow: 0 0 15px rgba(255, 107, 0, 0.5);
+}
+.add-vehicle-right-panel .vehicles-section .vehicles-grid .vehicle-card.selected::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, rgb(255, 107, 0), rgba(255, 255, 255, 0.3));
+}
+.add-vehicle-right-panel .vehicles-section .vehicles-grid .vehicle-card .vehicle-image {
+  width: 100%;
+  flex: 1;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 6px;
+  position: relative;
+}
+.add-vehicle-right-panel .vehicles-section .vehicles-grid .vehicle-card .vehicle-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  transition: transform 0.3s ease;
+  padding: 6px;
+  box-sizing: border-box;
+}
+.add-vehicle-right-panel .vehicles-section .vehicles-grid .vehicle-card .vehicle-name {
+  color: white;
+  font-weight: 600;
+  font-size: 10px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  text-align: center;
+  flex-shrink: 0;
+  line-height: 1.2;
+}
+.add-vehicle-right-panel .vehicles-section .vehicles-grid .vehicle-card .vehicle-model {
+  display: none;
+}
+
+/* Footer del modal con botones */
+.add-vehicle-modal-footer {
+  padding: 15px 25px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  flex-shrink: 0;
+  min-height: 60px;
+  position: relative;
+  z-index: 10;
+}
+.add-vehicle-modal-footer .btn-cancel,
+.add-vehicle-modal-footer .btn-confirm {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.add-vehicle-modal-footer .btn-cancel::before,
+.add-vehicle-modal-footer .btn-confirm::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+.add-vehicle-modal-footer .btn-cancel:hover::before,
+.add-vehicle-modal-footer .btn-confirm:hover::before {
+  left: 100%;
+}
+.add-vehicle-modal-footer .btn-cancel {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.add-vehicle-modal-footer .btn-cancel:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: rgb(255, 255, 255);
+}
+.add-vehicle-modal-footer .btn-confirm {
+  background: linear-gradient(135deg, rgba(255, 107, 0, 0.9), rgba(0, 168, 204, 0.9));
+  color: white;
+  border: 1px solid rgba(255, 107, 0, 0.7);
+}
+.add-vehicle-modal-footer .btn-confirm:hover {
+  background: linear-gradient(135deg, rgb(255, 107, 0), rgb(0, 168, 204));
+  border-color: rgb(255, 107, 0);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 107, 0, 0.4);
+}
+.add-vehicle-modal-footer .btn-confirm:active {
+  transform: translateY(0);
+}
+.add-vehicle-modal-footer .btn-confirm:disabled {
+  background: rgba(100, 100, 100, 0.3);
+  color: rgba(255, 255, 255, 0.4);
+  border-color: rgba(100, 100, 100, 0.3);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+.add-vehicle-modal-footer .btn-confirm:disabled:hover {
+  transform: none;
+  box-shadow: none;
+  background: rgba(100, 100, 100, 0.3);
+}
+.add-vehicle-modal-footer .btn-confirm:disabled::before {
+  display: none;
+}
+
+/* Estilos para el Modal de Configuración de Exhibidores */
+.exhibitor-modal-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
+  padding: 20px 25px;
+}
+
+.exhibitor-content-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow: hidden;
+}
+
+.exhibitor-stats {
+  display: flex;
+  gap: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 15px;
+}
+.exhibitor-stats .stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+.exhibitor-stats .stat-item .stat-label {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 12px;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+.exhibitor-stats .stat-item .stat-value {
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.exhibitor-search-section .search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.exhibitor-search-section .search-container .search-icon {
+  position: absolute;
+  left: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  width: 16px;
+  height: 16px;
+  z-index: 2;
+}
+.exhibitor-search-section .search-container .search-input {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 12px 45px 12px 40px;
+  color: white;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+.exhibitor-search-section .search-container .search-input:focus {
+  outline: none;
+  border-color: rgba(255, 107, 0, 0.5);
+  background: rgba(0, 0, 0, 0.6);
+}
+.exhibitor-search-section .search-container .search-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+.exhibitor-search-section .search-container .clear-search-btn {
+  position: absolute;
+  right: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 4px;
+  color: rgba(255, 255, 255, 0.7);
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+.exhibitor-search-section .search-container .clear-search-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.exhibitor-actions {
+  display: flex;
+  gap: 10px;
+}
+.exhibitor-config-advanced {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.exhibitor-config-advanced .form-group {
+  margin-bottom: 0;
+}
+.exhibitor-actions .btn-action {
+  flex: 1;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.exhibitor-actions .btn-action:hover {
+  background: rgba(0, 0, 0, 0.6);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.exhibitor-actions .btn-action.btn-select-all:hover {
+  background: rgba(34, 197, 94, 0.2);
+  border-color: rgba(34, 197, 94, 0.4);
+}
+.exhibitor-actions .btn-action.btn-clear-all:hover {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.4);
+}
+
+.exhibitor-vehicles-grid {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-right: 8px;
+  max-height: 400px;
+}
+.exhibitor-vehicles-grid::-webkit-scrollbar {
+  width: 6px;
+}
+.exhibitor-vehicles-grid::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+.exhibitor-vehicles-grid::-webkit-scrollbar-thumb {
+  background: rgba(255, 107, 0, 0.5);
+  border-radius: 3px;
+}
+.exhibitor-vehicles-grid::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 107, 0, 0.7);
+}
+.exhibitor-vehicles-grid .vehicle-item {
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.exhibitor-vehicles-grid .vehicle-item:hover {
+  background: rgba(0, 0, 0, 0.5);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.exhibitor-vehicles-grid .vehicle-item.selected {
+  background: rgba(255, 107, 0, 0.2);
+  border-color: rgba(255, 107, 0, 0.5);
+}
+.exhibitor-vehicles-grid .vehicle-item.selected .vehicle-checkbox input {
+  accent-color: rgb(255, 107, 0);
+}
+.exhibitor-vehicles-grid .vehicle-item .vehicle-checkbox {
+  flex-shrink: 0;
+}
+.exhibitor-vehicles-grid .vehicle-item .vehicle-checkbox input[type=checkbox] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: rgba(255, 107, 0, 0.8);
+}
+.exhibitor-vehicles-grid .vehicle-item .vehicle-image {
+  flex-shrink: 0;
+  width: 60px;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.exhibitor-vehicles-grid .vehicle-item .vehicle-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  transition: transform 0.3s ease;
+  padding: 2px;
+  box-sizing: border-box;
+}
+.exhibitor-vehicles-grid .vehicle-item .vehicle-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.exhibitor-vehicles-grid .vehicle-item .vehicle-info .vehicle-name {
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+}
+.exhibitor-vehicles-grid .vehicle-item .vehicle-info .vehicle-details {
+  display: flex;
+  gap: 12px;
+}
+.exhibitor-vehicles-grid .vehicle-item .vehicle-info .vehicle-details .vehicle-model {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 12px;
+  text-transform: uppercase;
+}
+.exhibitor-vehicles-grid .vehicle-item .vehicle-info .vehicle-details .vehicle-class {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 12px;
+}
+
+.no-results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+}
+.no-results i {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 16px;
+  opacity: 0.3;
+}
+.no-results p {
+  font-size: 14px;
+  margin: 0;
+}
+
+.exhibitor-modal-footer {
+  padding: 20px 25px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  flex-shrink: 0;
+}
+.exhibitor-modal-footer .btn-cancel,
+.exhibitor-modal-footer .btn-confirm {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.exhibitor-modal-footer .btn-cancel {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.exhibitor-modal-footer .btn-cancel:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: rgb(255, 255, 255);
+}
+.exhibitor-modal-footer .btn-confirm {
+  background: linear-gradient(135deg, rgba(255, 107, 0, 0.9), rgba(0, 168, 204, 0.9));
+  color: white;
+  border: 1px solid rgba(255, 107, 0, 0.7);
+}
+.exhibitor-modal-footer .btn-confirm:hover {
+  background: linear-gradient(135deg, rgb(255, 107, 0), rgb(0, 168, 204));
+  border-color: rgb(255, 107, 0);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 107, 0, 0.4);
+}
+.exhibitor-modal-footer .btn-confirm:active {
+  transform: translateY(0);
+}
+
+/* Controles Combinados de Filtrado y Ordenamiento - Estilo Admin */
+.vehicle-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3vh;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0.1vh 0.1vh 0.2vh 0.1vh;
+  margin-bottom: 0.05vh;
+}
+.vehicle-categories-inline {
+  display: flex;
+  gap: 0.3vh;
+  flex-wrap: wrap;
+  max-height: 2.5vh;
+  overflow-y: auto;
+  padding-right: 0.2vh;
+}
+.vehicle-categories-inline .category {
+  font-size: 0.56vw;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.06);
+  border: 0.1vh solid rgba(255, 255, 255, 0.1);
+  width: 8.8vh;
+  height: 2.2vh;
+  padding: 0;
+  border-radius: 0.5vh;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  white-space: nowrap;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02vh;
+  font-family: "Evogria", sans-serif;
+}
+.vehicle-categories-inline .category:hover {
+  color: rgba(255, 255, 255, 0.95);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.vehicle-categories-inline .category.active {
+  background: linear-gradient(135deg, rgba(255, 107, 0, 0.92), rgba(0, 168, 204, 0.9));
+  border-color: rgba(255, 107, 0, 0.9);
+  color: #fff;
+}
+.vehicle-controls .controls-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.05vh;
+  border-bottom: none;
+  gap: 0.35vh;
+}
+.vehicle-controls .controls-topbar .controls-right {
+  display: flex;
+  align-items: center;
+  gap: 0.3vh;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+.vehicle-controls .controls-topbar .results-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.25vh;
+}
+.vehicle-controls .controls-topbar .results-info .results-count {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.76vh;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.vehicle-controls .controls-topbar .results-info .filter-status {
+  color: rgba(255, 137, 206, 0.92);
+  font-size: 0.72vh;
+  font-weight: 500;
+  opacity: 0.9;
+}
+.vehicle-controls .controls-topbar .more-filters-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.55vh;
+  height: 2.9vh;
+  border-radius: 0.55vh;
+  border: 0.1vh solid rgba(255, 255, 255, 0.28);
+  background: linear-gradient(135deg, rgba(255, 107, 0, 0.92), rgba(0, 168, 204, 0.9));
+  color: #fff;
+  padding: 0 0.8vh;
+  font-size: 0.92vh;
+  font-family: "Evogria", sans-serif;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 0.3vh 1.4vh rgba(255, 107, 0, 0.35);
+}
+.vehicle-controls .controls-topbar .more-filters-btn [data-lucide] {
+  width: 1.2vh;
+  height: 1.2vh;
+}
+.vehicle-controls .controls-row {
+  display: flex;
+  gap: 0.3vh;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.vehicle-controls .controls-row .controls-section.advanced-filters {
+  border-left: 0.1vh solid rgba(255, 255, 255, 0.12);
+  padding-left: 0.45vh;
+}
+.vehicle-controls .controls-row .controls-section {
+  display: flex;
+  flex-direction: row;
+  gap: 0.35vh;
+  align-items: center;
+  min-width: 0;
+}
+.vehicle-controls .controls-row .controls-section .section-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5vh;
+  color: rgba(255, 255, 255, 0.623);
+  font-size: 0.72vh;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+.vehicle-controls .controls-row .controls-section .section-label [data-lucide] {
+  width: 1.4vh;
+  height: 1.4vh;
+  color: rgba(255, 107, 0, 0.8);
+}
+.vehicle-controls .controls-row .controls-section .control-options {
+  display: flex;
+  gap: 0.3vh;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.vehicle-controls .controls-row .controls-section .control-options .sort-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5vh;
+  padding: 0.3vh 0.48vh;
+  background: rgba(123, 121, 121, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.72vh;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  user-select: none;
+  height: 2.2vh;
+  box-sizing: border-box;
+}
+.vehicle-controls .controls-row .controls-section .control-options .sort-option [data-lucide] {
+  width: 1.2vh;
+  height: 1.2vh;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.vehicle-controls .controls-row .controls-section .control-options .sort-option:hover {
+  letter-spacing: 0.5px;
+  background: rgba(123, 121, 121, 0.6);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: rgb(255, 255, 255);
+}
+.vehicle-controls .controls-row .controls-section .control-options .sort-option:hover [data-lucide] {
+  rotate: 10deg;
+  transform: scale(1.2);
+}
+.vehicle-controls .controls-row .controls-section .control-options .sort-option.active {
+  background: rgba(255, 107, 0, 0.8);
+  border-color: rgb(255, 107, 0);
+  color: white;
+  letter-spacing: 0.8px;
+}
+.vehicle-controls .controls-row .controls-section .control-options .sort-option.active [data-lucide] {
+  rotate: 15deg;
+  transform: scale(1.3);
+}
+.vehicle-controls .controls-row .controls-section .control-options .sort-option.active:hover {
+  background: rgba(255, 107, 0, 0.9);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 107, 0, 0.3);
+}
+.vehicle-controls .controls-row .controls-section .control-options .sort-direction {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8vh;
+  background: rgba(255, 107, 0, 0.8);
+  border: 1px solid rgb(255, 107, 0);
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  user-select: none;
+  width: 2.2vh;
+  height: 2.2vh;
+  box-sizing: border-box;
+}
+.vehicle-controls .controls-row .controls-section .control-options .more-filters-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.35vh;
+  height: 2.2vh;
+  border-radius: 0.5vh;
+  border: 0.1vh solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 107, 0, 0.78);
+  color: #fff;
+  padding: 0 0.35vh;
+  font-size: 0.68vh;
+  font-family: "Evogria", sans-serif;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.vehicle-controls .controls-row .controls-section .control-options .more-filters-btn [data-lucide] {
+  width: 0.9vh;
+  height: 0.9vh;
+}
+.vehicle-controls .controls-row .controls-section .control-options .sort-direction [data-lucide] {
+  width: 1.4vh;
+  height: 1.4vh;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.vehicle-controls .controls-row .controls-section .control-options .sort-direction:hover {
+  background: rgb(255, 107, 0);
+  border-color: rgb(255, 107, 0);
+  transform: translateY(-1px);
+}
+.vehicle-controls .controls-row .controls-section .control-options .sort-direction:hover [data-lucide] {
+  transform: scale(1.3);
+}
+.vehicle-controls .controls-row .controls-section .price-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.3vh;
+}
+.vehicle-controls .controls-row .controls-section .price-controls .price-input {
+  width: 5.2vh;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  color: white;
+  padding: 0.3vh 0.48vh;
+  font-size: 0.72vh;
+  height: 2.2vh;
+  box-sizing: border-box;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  text-align: center;
+  font-weight: 500;
+}
+.vehicle-controls .controls-row .controls-section .price-controls .price-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1.1vh;
+}
+.vehicle-controls .controls-row .controls-section .price-controls .price-input:focus {
+  border-color: rgba(255, 107, 0, 0.8);
+  background: rgba(255, 255, 255, 0.25);
+  outline: none;
+  box-shadow: 0 0 10px rgba(255, 107, 0, 0.3);
+}
+.vehicle-controls .controls-row .controls-section .price-controls .price-input:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.2);
+}
+.vehicle-controls .controls-row .controls-section .price-controls .price-input[type=number] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+.vehicle-controls .controls-row .controls-section .price-controls .price-input[type=number]::-webkit-outer-spin-button, .vehicle-controls .controls-row .controls-section .price-controls .price-input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.vehicle-controls .controls-row .controls-section .price-controls .price-separator {
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 600;
+  font-size: 0.72vh;
+  margin: 0 0.25vh;
+}
+.vehicle-controls .controls-row .controls-section .price-controls .btn-apply-price,
+.vehicle-controls .controls-row .controls-section .price-controls .btn-clear-price {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  padding: 0.8vh;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  user-select: none;
+  width: 2.2vh;
+  height: 2.2vh;
+  box-sizing: border-box;
+}
+.vehicle-controls .controls-row .controls-section .price-controls .btn-apply-price [data-lucide],
+.vehicle-controls .controls-row .controls-section .price-controls .btn-clear-price [data-lucide] {
+  width: 1.4vh;
+  height: 1.4vh;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.vehicle-controls .controls-row .controls-section .price-controls .btn-apply-price:hover,
+.vehicle-controls .controls-row .controls-section .price-controls .btn-clear-price:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+.vehicle-controls .controls-row .controls-section .price-controls .btn-apply-price:hover [data-lucide],
+.vehicle-controls .controls-row .controls-section .price-controls .btn-clear-price:hover [data-lucide] {
+  transform: scale(1.2);
+}
+.vehicle-controls .controls-row .controls-section .price-controls .btn-apply-price {
+  background: rgba(46, 204, 113, 0.8);
+  border-color: rgba(46, 204, 113, 0.9);
+  color: white;
+}
+.vehicle-controls .controls-row .controls-section .price-controls .btn-apply-price:hover:not(:disabled) {
+  background: rgb(46, 204, 113);
+  border-color: rgb(46, 204, 113);
+  box-shadow: 0 4px 12px rgba(46, 204, 113, 0.4);
+}
+.vehicle-controls .controls-row .controls-section .price-controls .btn-apply-price:disabled {
+  background: rgba(100, 100, 100, 0.5);
+  border-color: rgba(100, 100, 100, 0.5);
+  color: rgba(255, 255, 255, 0.6);
+  cursor: not-allowed;
+  transform: none;
+}
+.vehicle-controls .controls-row .controls-section .price-controls .btn-apply-price:disabled:hover {
+  transform: none;
+  border-color: rgba(100, 100, 100, 0.5);
+  box-shadow: none;
+}
+.vehicle-controls .controls-row .controls-section .price-controls .btn-apply-price:disabled:hover [data-lucide] {
+  transform: none;
+}
+.vehicle-controls .controls-row .controls-section .price-controls .btn-clear-price {
+  background: rgba(231, 76, 60, 0.8);
+  border-color: rgba(231, 76, 60, 0.9);
+  color: white;
+}
+.vehicle-controls .controls-row .controls-section .price-controls .btn-clear-price:hover {
+  background: rgb(231, 76, 60);
+  border-color: rgb(231, 76, 60);
+  box-shadow: 0 4px 12px rgba(231, 76, 60, 0.4);
+}
+@media (max-width: 768px) {
+  .vehicle-controls .controls-row {
+    flex-direction: column;
+    gap: 1.5vh;
+  }
+  .vehicle-controls .controls-section {
+    width: 100%;
+  }
+  .vehicle-controls .controls-section .control-options {
+    justify-content: flex-start;
+  }
+  .vehicle-controls .controls-separator {
+    width: 100%;
+    height: 1px;
+    grid-column: 1;
+  }
+  .vehicle-controls .results-info {
+    grid-column: 1;
+    align-items: flex-start;
+    flex-direction: column;
+    padding-left: 0;
+  }
+}
+
+/* Estilos para Controles de Ordenamiento en Modal */
+.modal-sorting-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 12px 15px;
+  margin-bottom: 12px;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+.modal-sorting-controls .sort-options-modal {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.modal-sorting-controls .sort-options-modal .sort-option-modal {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 5px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+.modal-sorting-controls .sort-options-modal .sort-option-modal i {
+  width: 12px;
+  height: 12px;
+}
+.modal-sorting-controls .sort-options-modal .sort-option-modal:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.9);
+}
+.modal-sorting-controls .sort-options-modal .sort-option-modal.active {
+  background: rgba(255, 107, 0, 0.7);
+  border-color: rgba(255, 107, 0, 0.8);
+  color: white;
+  box-shadow: 0 0 8px rgba(255, 107, 0, 0.3);
+}
+.modal-sorting-controls .sort-options-modal .sort-option-modal.active:hover {
+  background: rgba(255, 107, 0, 0.8);
+}
+.modal-sorting-controls .sort-direction-modal {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 10px;
+  background: rgba(0, 168, 204, 0.6);
+  border: 1px solid rgba(0, 168, 204, 0.7);
+  border-radius: 5px;
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: none;
+  flex-shrink: 0;
+}
+.modal-sorting-controls .sort-direction-modal i {
+  width: 12px;
+  height: 12px;
+}
+.modal-sorting-controls .sort-direction-modal:hover {
+  background: rgba(0, 168, 204, 0.8);
+  border-color: rgba(0, 168, 204, 0.9);
+  box-shadow: 0 3px 10px rgba(0, 168, 204, 0.3);
+}
+
+/* Los estilos anteriores del filtro de precios han sido reemplazados por .vehicle-controls */
+/* Configuración de métodos de pago en el modal de agregar vehículo */
+.payment-methods-config {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+.payment-methods-config .payment-method-option .payment-method-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding: 8px 10px;
+  border: 1px solid #444;
+  border-radius: 6px 6px 0 0;
+  background: #2a2a2a;
+  transition: all 0.2s ease;
+}
+.payment-methods-config .payment-method-option .payment-method-toggle:hover {
+  border-color: #ff6b00;
+  background: #333;
+}
+.payment-methods-config .payment-method-option .payment-method-toggle input[type=checkbox] {
+  display: none;
+}
+.payment-methods-config .payment-method-option .payment-method-toggle .payment-checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: 2px solid #666;
+  border-radius: 4px;
+  background: transparent;
+  transition: all 0.2s ease;
+}
+.payment-methods-config .payment-method-option .payment-method-toggle .payment-checkbox i {
+  font-size: 14px;
+  color: #666;
+  transition: all 0.2s ease;
+}
+.payment-methods-config .payment-method-option .payment-method-toggle .payment-checkbox.disabled {
+  opacity: 0.5;
+  border-color: #555;
+}
+.payment-methods-config .payment-method-option .payment-method-toggle .payment-checkbox.disabled i {
+  color: #555;
+}
+.payment-methods-config .payment-method-option .payment-method-toggle .payment-method-name {
+  color: #ddd;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+.payment-methods-config .payment-method-option .payment-method-toggle .payment-method-name.disabled {
+  opacity: 0.5;
+  color: #888;
+}
+.payment-methods-config .payment-method-option .payment-method-toggle input[type=checkbox]:checked + .payment-checkbox {
+  border-color: #ff6b00;
+  background: #ff6b00;
+}
+.payment-methods-config .payment-method-option .payment-method-toggle input[type=checkbox]:checked + .payment-checkbox i {
+  color: white;
+}
+.payment-methods-config .payment-method-option .payment-method-toggle input[type=checkbox]:disabled + .payment-checkbox {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.payment-methods-config .payment-method-option .payment-price-input {
+  border: 1px solid #444;
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+  background: #333;
+  padding: 8px 10px;
+}
+.payment-methods-config .payment-method-option .payment-price-input .form-input {
+  margin: 0;
+  background: #2a2a2a;
+  border: 1px solid #555;
+}
+.payment-methods-config .payment-method-option .payment-price-input .form-input:focus {
+  border-color: #ff6b00;
+  box-shadow: 0 0 0 2px rgba(255, 107, 0, 0.3);
+}
+
+/* Estilos para las pestañas principales del dealership */
+.dealership-tabs {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.dealership-tab-header {
+  display: flex;
+  gap: 0.5vh;
+  margin-bottom: 1.5vh;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 1vh;
+  flex-shrink: 0;
+}
+
+.dealership-tab-item {
+  flex: 1;
+  background: rgba(40, 40, 40, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 1vh 1.5vh;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5vh;
+  font-size: 0.9vw;
+  font-weight: 500;
+}
+.dealership-tab-item i {
+  font-size: 0.8vw;
+  opacity: 0.7;
+}
+.dealership-tab-item:hover {
+  background: rgba(60, 60, 60, 0.8);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+.dealership-tab-item.active {
+  background: rgba(255, 107, 0, 0.8);
+  border-color: rgb(255, 107, 0);
+  color: white;
+}
+.dealership-tab-item.active i {
+  opacity: 1;
+}
+
+.dealership-tab-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.dealership-tab-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.general-settings {
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+  max-height: 70vh;
+  overflow-y: auto;
+  padding-right: 1vh;
+}
+.general-settings::-webkit-scrollbar {
+  width: 0.5vh;
+}
+.general-settings::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+.general-settings::-webkit-scrollbar-thumb {
+  background: rgba(255, 107, 0, 0.6);
+  border-radius: 10px;
+}
+.general-settings::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 107, 0, 0.8);
+}
+.general-settings h4 {
+  display: flex;
+  align-items: center;
+  gap: 0.8vh;
+  margin-bottom: 1.5vh;
+  font-size: 1.1vw;
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 600;
+  padding-bottom: 0.8vh;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.general-settings h4 i {
+  font-size: 1vw;
+  opacity: 0.8;
+  color: rgba(255, 107, 0, 0.9);
+}
+
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2vh;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1.5vh;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.form-section h4 {
+  margin-bottom: 1vh;
+  padding-bottom: 0.8vh;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6vh;
+}
+.form-group label {
+  font-size: 0.85vw;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5vh;
+}
+.form-group small {
+  font-size: 0.7vw;
+  color: rgba(255, 255, 255, 0.5);
+  font-style: italic;
+  margin-top: 0.3vh;
+  padding-left: 0.5vh;
+  display: block;
+}
+.form-group .form-input {
+  background: rgba(40, 40, 40, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 0.9vh 1.2vh;
+  border-radius: 5px;
+  color: white;
+  font-size: 0.85vw;
+  transition: all 0.25s ease;
+}
+.form-group .form-input:focus {
+  outline: none;
+  border-color: rgba(255, 107, 0, 0.7);
+  background: rgba(50, 50, 50, 0.7);
+  box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.15);
+}
+.form-group .form-input:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.form-group .form-input::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+}
+.form-group textarea.form-input {
+  resize: vertical;
+  min-height: 8vh;
+  font-family: inherit;
+  line-height: 1.4;
+}
+.form-group input[type=number].form-input::-webkit-inner-spin-button, .form-group input[type=number].form-input::-webkit-outer-spin-button {
+  opacity: 0.5;
+}
+.form-group input[type=checkbox] {
+  width: auto;
+  margin-right: 0.5vh;
+}
+
+.locations-management {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5vh;
+}
+
+.locations-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1vh;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.locations-header h4 {
+  display: flex;
+  align-items: center;
+  gap: 0.5vh;
+  margin: 0;
+  font-size: 1.1vw;
+  color: rgba(255, 255, 255, 0.9);
+}
+.locations-header h4 i {
+  font-size: 1vw;
+  opacity: 0.7;
+}
+
+.location-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.location-tab-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3vh;
+}
+
+.location-tab-item {
+  flex: 1;
+  min-width: 15%;
+  background: rgba(30, 30, 30, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.6vh;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 0.7vw;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2vh;
+}
+.location-tab-item i {
+  font-size: 0.8vw;
+  opacity: 0.6;
+}
+.location-tab-item span {
+  font-weight: 500;
+  opacity: 0.7;
+}
+.location-tab-item .location-counter {
+  font-size: 0.6vw;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.1vh 0.3vh;
+  border-radius: 8px;
+  opacity: 0.5;
+}
+.location-tab-item:hover {
+  background: rgba(50, 50, 50, 0.8);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.location-tab-item.active {
+  background: rgba(255, 107, 0, 0.7);
+  border-color: rgba(255, 107, 0, 0.9);
+  color: white;
+}
+.location-tab-item.active i,
+.location-tab-item.active span {
+  opacity: 1;
+}
+.location-tab-item.active .location-counter {
+  background: rgba(255, 255, 255, 0.2);
+  opacity: 1;
+}
+
+.location-tab-content {
+  background: rgba(20, 20, 20, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  padding: 1.5vh;
+  min-height: 0;
+  height: auto;
+  flex: 1 1 auto;
+  overflow: hidden;
+}
+
+.location-tab-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.location-section .section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1vh;
+  padding-bottom: 0.5vh;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.location-section .section-header h5 {
+  margin: 0;
+  font-size: 1vw;
+  display: flex;
+  align-items: center;
+  gap: 0.5vh;
+  color: rgba(255, 255, 255, 0.9);
+}
+.location-section .section-header h5 i {
+  font-size: 0.9vw;
+  opacity: 0.7;
+}
+.location-section .section-header .section-actions {
+  display: flex;
+  align-items: center;
+  gap: 1vh;
+}
+.location-section .section-header .section-actions .location-count {
+  background: rgba(255, 107, 0, 0.8);
+  color: white;
+  padding: 0.3vh 0.6vh;
+  border-radius: 10px;
+  font-size: 0.75vw;
+  font-weight: bold;
+}
+.location-section .section-header .section-actions .btn-action {
+  font-size: 0.8vw;
+  padding: 0.6vh 1vh;
+}
+.location-section .section-header .section-actions .btn-action:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.location-section .location-description {
+  font-size: 0.8vw;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 1.5vh;
+  font-style: italic;
+}
+
+.locations-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8vh;
+  max-height: 30vh;
+  overflow-y: auto;
+  flex: 1 1 auto;
+  min-height: 0;
+  margin-bottom: 0.5em;
+}
+
+.location-item {
+  background: rgba(40, 40, 40, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  padding: 1vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.2s ease;
+}
+.location-item:hover {
+  background: rgba(50, 50, 50, 0.6);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.location-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3vh;
+}
+.location-info .location-label {
+  font-size: 0.85vw;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+}
+.location-info .location-coords {
+  font-size: 0.7vw;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: "Courier New", monospace;
+}
+
+.location-actions {
+  display: flex;
+  gap: 0.5vh;
+}
+
+.btn-location-action {
+  background: rgba(60, 60, 60, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: white;
+  padding: 0.5vh;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-location-action i {
+  font-size: 0.7vw;
+}
+.btn-location-action:hover {
+  background: rgba(80, 80, 80, 0.8);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+.btn-location-action.btn-teleport:hover {
+  background: rgba(0, 120, 255, 0.8);
+  border-color: rgba(100, 150, 255, 0.8);
+}
+.btn-location-action.btn-delete:hover {
+  background: rgba(200, 50, 50, 0.8);
+  border-color: rgba(255, 100, 100, 0.8);
+}
+
+.btn-action {
+  background: linear-gradient(135deg, rgba(255, 107, 0, 0.85), rgba(0, 168, 204, 0.85));
+  color: #fff;
+  border: 1.5px solid rgba(255, 107, 0, 0.8);
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.95em;
+  padding: 0.55em 1.3em;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  box-shadow: 0 2px 8px rgba(255, 107, 0, 0.08);
+  transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-action i {
+  font-size: 1.1em;
+  opacity: 0.9;
+}
+
+.btn-action:hover:not(:disabled) {
+  background: linear-gradient(135deg, rgb(255, 107, 0), rgb(0, 168, 204));
+  border-color: #ff6b00;
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 6px 18px rgba(255, 107, 0, 0.18);
+}
+
+.btn-action:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.location-tab-content {
+  display: flex;
+  flex-direction: column;
+  min-height: 0 !important;
+  height: auto !important;
+  flex: 1 1 auto;
+}
+
+.location-section {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.locations-list {
+  flex: 1 1 auto;
+  min-height: 0;
+  height: 38vh;
+  max-height: 38vh !important;
+  overflow-y: auto !important;
+  overflow-x: hidden;
+  padding-right: 0.35vh;
+  margin-bottom: 0.5em;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+.locations-list::-webkit-scrollbar {
+  width: 0.45vh;
+}
+.locations-list::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 1vh;
+}
+.locations-list::-webkit-scrollbar-thumb {
+  background: rgba(255, 107, 0, 0.75);
+  border-radius: 1vh;
+}
+
+.form-input,
+.form-select {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+  padding: 18px 20px;
+  color: white;
+  font-size: 1.05vw;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  height: 56px;
+  box-sizing: border-box;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.form-input::placeholder,
+.form-select::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+  font-weight: 400;
+}
+.form-input:focus,
+.form-select:focus {
+  outline: none;
+  border-color: #ff6b00;
+  box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.18);
+  background: rgba(255, 255, 255, 0.16);
+}
+.form-input[type=number],
+.form-select[type=number] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+.form-input[type=number]::-webkit-outer-spin-button, .form-input[type=number]::-webkit-inner-spin-button,
+.form-select[type=number]::-webkit-outer-spin-button,
+.form-select[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=checkbox].financing-checkbox {
+  display: none;
+}
+
+input[type=checkbox].financing-checkbox + label.custom-checkbox {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  font-size: 1vw;
+  gap: 10px;
+}
+
+input[type=checkbox].financing-checkbox + label.custom-checkbox .checkbox-box {
+  width: 28px;
+  height: 28px;
+  border: 2.5px solid #ff6b00;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(255, 107, 0, 0.1);
+  position: relative;
+}
+
+input[type=checkbox].financing-checkbox:checked + label.custom-checkbox .checkbox-box {
+  background: #ff6b00;
+  border-color: #fff;
+  box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.18);
+}
+
+input[type=checkbox].financing-checkbox + label.custom-checkbox .checkbox-box::after {
+  content: "";
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  background: white;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+input[type=checkbox].financing-checkbox:checked + label.custom-checkbox .checkbox-box::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.toggle-filters-btn {
+  margin-left: 2vh;
+  background: linear-gradient(135deg, rgba(255, 107, 0, 0.85), rgba(0, 168, 204, 0.85));
+  color: #fff;
+  border: 1.5px solid rgba(255, 107, 0, 0.8);
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 1.1em;
+  padding: 0.4em 0.7em;
+  box-shadow: 0 2px 8px rgba(255, 107, 0, 0.08);
+  transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 3.2em;
+  width: 3.2em;
+  gap: 0.3em;
+}
+
+.toggle-filters-btn i[data-lucide=filter] {
+  font-size: 2.1em;
+  width: 1.7em;
+  height: 1.7em;
+  display: block;
+  margin: 0;
+}
+
+.toggle-filters-btn i[data-lucide^=chevron] {
+  font-size: 1.3em;
+  width: 1.1em;
+  height: 1.1em;
+  display: block;
+  margin-left: 0.1em;
+}
+
+.toggle-filters-btn:hover,
+.toggle-filters-btn:focus {
+  background: linear-gradient(135deg, rgb(255, 107, 0), rgb(0, 168, 204));
+  border-color: #ff6b00;
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 6px 18px rgba(255, 107, 0, 0.18);
+}
+
+.notifications-container {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5vh;
+  pointer-events: none;
+  width: 100vw;
+  max-width: 100vw;
+}
+
+.notification {
+  min-width: 220px;
+  max-width: 420px;
+  width: fit-content;
+  margin: 0 auto;
+  padding: 0.5em 1.2em 0.5em 2.2em;
+  border-radius: 6px;
+  font-size: 1em;
+  font-family: "Quicksand", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  color: #fff;
+  border: 1.5px solid #ff6b00;
+  background: linear-gradient(135deg, #050505 80%, #ff6b00 100%);
+  opacity: 0;
+  animation: fadeInOutMini 2.2s forwards;
+  text-align: left;
+  pointer-events: auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+  box-shadow: none;
+}
+
+.notification i {
+  position: absolute;
+  left: 0.7em;
+  font-size: 1.2em;
+  opacity: 0.85;
+}
+
+.notification.error {
+  background: #aa2200;
+  border-color: #ff6b00;
+}
+
+.notification.success {
+  background: #1e7a34;
+  border-color: #4be37a;
+}
+
+.notification.info {
+  background: #00a8cc;
+  border-color: #00d4ff;
+}
+
+@keyframes fadeInOutMini {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.98);
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  90% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.98);
+  }
+}
+.notification span {
+  color: #fff !important;
+  font-size: 1em;
+  font-weight: 600;
+  margin-left: 1.7em;
+  letter-spacing: 0.2px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.stat.price {
+  color: rgba(46, 204, 113, 0.7);
+  font-weight: 700;
+}
+
+.fade-tab {
+  opacity: 0;
+  transition: opacity 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity;
+}
+
+.fade-tab.tab-active {
+  opacity: 1;
+}
+
+.vehicle-card.disabled {
+  opacity: 0.45;
+  pointer-events: none;
+  filter: grayscale(0.7);
+  cursor: not-allowed;
+}
+
+/* Global Loader Overlay */
+.global-loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    pointer-events: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.loader-content {
+    background: transparent;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2vh;
+    outline: none;
+}
+
+.spinner {
+    width: 6vh;
+    height: 6vh;
+    border: 0.5vh solid rgba(255, 255, 255, 0.1);
+    border-top: 0.5vh solid #ff6b00;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    filter: drop-shadow(0 0 1vh rgba(0, 0, 0, 0.5));
+}
+
+.loader-text {
+    color: white;
+    font-family: "Evogria", sans-serif;
+    font-size: 1.6vh;
+    text-transform: uppercase;
+    letter-spacing: 0.15vh;
+    text-shadow: 0 0.2vh 0.5vh rgba(0, 0, 0, 0.8);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+
+
+
+
+
+
+

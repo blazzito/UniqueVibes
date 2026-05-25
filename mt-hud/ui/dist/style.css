@@ -1,0 +1,427 @@
+:root {
+    --color-orange: #ff6b00;
+    --color-petrol: #00a8cc;
+    --color-bg-dark: #0f0f0f;
+    --glass-bg: rgba(12, 12, 14, 0.95);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --font-main: 'Quicksand', sans-serif;
+    --font-accent: 'Bebas Neue', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Outfit", sans-serif;
+    user-select: none;
+}
+
+body {
+    background: transparent;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+}
+
+.hidden {
+    display: none !important;
+}
+
+#app {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.location-container {
+    position: fixed;
+    top: 2vh;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+}
+
+.street-container {
+    width: max-content;
+    min-width: 15vw;
+    background: var(--glass-bg);
+    border: 0.1vh solid var(--glass-border);
+    border-radius: .8vh;
+    box-shadow: 0 0.5vh 2vh rgba(0, 0, 0, 0.5);
+    padding: 0.5vh 1.2vh;
+    display: flex;
+    align-items: center;
+    gap: 1vh;
+    height: 4vh;
+}
+
+.street-container .icon svg {
+    width: 2.2vh;
+    height: 2.2vh;
+    color: var(--color-orange);
+    filter: drop-shadow(0 0 0.4vh rgba(255, 107, 0, 0.4));
+    flex-shrink: 0;
+}
+
+.street-container .text-content {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.2vh;
+}
+
+.street-container .cardinal {
+    font-size: 1vh;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.street-container .street-name {
+    font-size: 1.2vh;
+    color: white;
+    max-width: 30vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 700;
+}
+
+.vitals-container {
+    position: absolute;
+    top: 50%;
+    right: 40px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.status-item {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+}
+
+.status-item.visible {
+    display: flex;
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+}
+
+.status-circle {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.status-circle .inner-bg {
+    fill: rgba(0, 0, 0, 0.5);
+}
+
+.status-circle .ring-bg {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.1);
+    stroke-width: 8;
+}
+
+.status-circle .segment {
+    fill: none;
+    stroke: white;
+    stroke-width: 8;
+    stroke-dasharray: 27.33 255.37;
+    opacity: 0.1;
+    transition: all 0.15s ease-in-out;
+}
+
+.status-circle .segment[data-id="0"] { stroke-dashoffset: 0; }
+.status-circle .segment[data-id="1"] { stroke-dashoffset: -35.33; }
+.status-circle .segment[data-id="2"] { stroke-dashoffset: -70.66; }
+.status-circle .segment[data-id="3"] { stroke-dashoffset: -105.99; }
+.status-circle .segment[data-id="4"] { stroke-dashoffset: -141.32; }
+.status-circle .segment[data-id="5"] { stroke-dashoffset: -176.65; }
+.status-circle .segment[data-id="6"] { stroke-dashoffset: -211.98; }
+.status-circle .segment[data-id="7"] { stroke-dashoffset: -247.31; }
+
+.status-circle .segment.active {
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+
+#health .segment.active { stroke: #ff6b00; filter: drop-shadow(0 0 .5vh #ff6b00); }
+#health .status-icon { color: #ff6b00; }
+#health .inner-bg { fill: rgba(255, 107, 0, 0.1); }
+
+#armor .segment.active { stroke: #00a8cc; filter: drop-shadow(0 0 .5vh #00a8cc); }
+#armor .status-icon { color: #00a8cc; }
+#armor .inner-bg { fill: rgba(0, 168, 204, 0.1); }
+
+#hunger .segment.active { stroke: #ffa500; filter: drop-shadow(0 0 .5vh #ffa500); }
+#hunger .status-icon { color: #ffa500; }
+#hunger .inner-bg { fill: rgba(255, 165, 0, 0.1); }
+
+#thirst .segment.active { stroke: #00d4ff; filter: drop-shadow(0 0 .5vh #00d4ff); }
+#thirst .status-icon { color: #00d4ff; }
+#thirst .inner-bg { fill: rgba(0, 212, 255, 0.1); }
+
+#stamina .segment.active { stroke: #e0e0e0; filter: drop-shadow(0 0 .5vh #e0e0e0); }
+#stamina .status-icon { color: #e0e0e0; }
+#stamina .inner-bg { fill: rgba(224, 224, 224, 0.1); }
+
+#oxygen .segment.active { stroke: #48cae4; filter: drop-shadow(0 0 .5vh #48cae4); }
+#oxygen .status-icon { color: #48cae4; }
+#oxygen .inner-bg { fill: rgba(72, 202, 228, 0.1); }
+
+#stress .segment.active { stroke: #ff6b00; filter: drop-shadow(0 0 .5vh #ff6b00); }
+#stress .status-icon { color: #ff6b00; }
+#stress .inner-bg { fill: rgba(255, 107, 0, 0.1); }
+
+.status-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.status-icon svg {
+    width: 24px;
+    height: 24px;
+    stroke: white;
+}
+
+#car-hud {
+    position: absolute;
+    bottom: 2vh;
+    left: 50%;
+    transform: translate(-50%);
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .5vh;
+    pointer-events: none;
+    z-index: 100;
+}
+
+.speed-label {
+    font-size: 1vh;
+    color: #fff9;
+    font-weight: 800;
+    font-family: 'Quicksand', sans-serif;
+    letter-spacing: .2vh;
+    text-transform: uppercase;
+    text-align: center;
+    font-style: italic;
+}
+
+.car-panel {
+    display: flex;
+    align-items: center;
+    gap: .8vh;
+}
+
+.car-item {
+    display: flex;
+    align-items: center;
+    gap: .5vh;
+    background: var(--glass-bg);
+    border: .1vh solid var(--glass-border);
+    border-radius: .6vh;
+    box-shadow: 0 .5vh 2vh #00000080;
+    padding: 0 1vh;
+    outline: .1vh dashed rgba(255, 255, 255, 0.05);
+    outline-offset: .2vh;
+    height: 2.8vh;
+    min-width: 9vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.car-item::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: .3vh;
+    height: 60%;
+    background: linear-gradient(to bottom, var(--color-orange), var(--color-petrol));
+}
+
+.car-item .item-icon, .gear-icon {
+    width: 2vh;
+    height: 2vh;
+    color: var(--color-orange);
+    filter: drop-shadow(0 0 .5vh rgba(255, 107, 0, 0.4));
+    flex-shrink: 0;
+    display: flex;
+}
+
+.car-item .item-icon svg, .gear-icon {
+    width: 1.6vh;
+    height: 1.6vh;
+}
+
+.item-content-row, .gear-section {
+    display: flex;
+    align-items: center;
+    gap: .3vh;
+}
+
+.car-item .item-value {
+    font-size: 1.8vh;
+    color: #ffffff;
+    font-family: var(--font-accent);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1;
+}
+
+.car-item .item-unit {
+    font-size: .7vh;
+    color: #fff9;
+    font-weight: 900;
+    font-style: italic;
+    margin-top: .2vh;
+}
+
+.vertical-separator {
+    width: .1vh;
+    height: 1.5vh;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 0 .6vh;
+}
+
+.seatbelt-icon {
+    color: #ffffffd0;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.seatbelt-icon svg {
+    width: 2.2vh;
+    height: 2.2vh;
+}
+
+.seatbelt-icon.belted {
+    color: #00fbff !important;
+    filter: drop-shadow(0 0 .8vh #00fbff80);
+}
+
+.seatbelt-icon.blink {
+    animation: seatbelt-blink 1s infinite;
+}
+
+.speed-item {
+    min-width: 12vh !important;
+    height: 3.8vh !important;
+    justify-content: center;
+    background: #000000e6;
+    border-radius: .8vh !important;
+    border: .1vh solid rgba(255, 255, 255, .15) !important;
+}
+
+.speed-item .speed-value {
+    font-size: 3.8vh !important;
+    color: #ffffff;
+    font-family: var(--font-accent) !important;
+    font-weight: 400;
+    font-style: italic;
+    text-shadow: 0 0 .5vh rgba(255, 107, 0, 0.3);
+}
+
+.engine-item .item-value { color: #22c55e !important; }
+
+.rpm-bar-segmented {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: .4vh;
+    margin-top: .6vh;
+    padding: 0 4vh;
+}
+
+.rpm-segment {
+    flex: 1;
+    height: .3vh;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: .1vh;
+    transition: all 0.1s ease;
+}
+
+.rpm-segment.active-green {
+    background: #00fbff;
+    box-shadow: 0 0 .8vh #00fbff80;
+}
+
+.rpm-segment.active-yellow {
+    background: #ffcc00;
+    box-shadow: 0 0 .8vh #ffcc0080;
+}
+
+.rpm-segment.active-red {
+    background: #ff2d55;
+    box-shadow: 0 0 .8vh #ff2d5580;
+}
+
+@keyframes seatbelt-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: .3; }
+}
+
+#settings-menu {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    pointer-events: auto;
+}
+
+.settings-content {
+    background: #111;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 50px;
+    border-radius: 40px;
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.2; }
+    100% { opacity: 1; }
+}
+
+.blink {
+    animation: blink 0.6s infinite steps(1);
+}
+
+#screen-fade {
+    position: fixed;
+    inset: 0;
+    background: black;
+    z-index: 99999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1s ease;
+}

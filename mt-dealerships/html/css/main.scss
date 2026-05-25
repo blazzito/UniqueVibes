@@ -1,0 +1,6441 @@
+$color_1: black;
+$color_2: white;
+$color_3: #ffffff;
+$color_4: rgb(109, 109, 109);
+$color_5: rgb(175, 175, 175);
+$color_6: rgb(210, 210, 210);
+$color_7: #adadad;
+$color_8: rgb(120, 120, 120);
+$color_9: rgba(0, 0, 0, 0.897);
+$color_10: rgb(199, 199, 199);
+$color_11: rgba(255, 255, 255, 0.623);
+$color_12: rgba(255, 255, 255, 0.473);
+$color_13: rgba(255, 255, 255, 0.726);
+$color_14: rgb(255, 255, 255);
+$color_15: rgba(255, 255, 255, 0.746);
+$color_16: #fff;
+$color_17: rgba(255, 255, 255, 0.7);
+
+// Color principal del proyecto
+$primary-color: #ff6b00;
+
+$font-family_1: "Quicksand", sans-serif;
+$font-family_2: "Bebas Neue";
+$font-family_3: "Quicksand";
+$font-family_4: "QuickSand";
+$font-family_5: "Chakra Petch";
+$background-color_1: #ff6b00;
+$background-color_2: rgba(0, 0, 0, 0.38);
+$background-color_3: #000000;
+$background-color_4: rgba(255, 255, 255, 0.8274509804);
+$background-color_5: #fff;
+$background-color_6: #454545;
+$background-color_7: rgba(255, 255, 255, 0.22);
+$background-color_8: rgba(157, 157, 157, 0.1294117647);
+$background-color_9: rgba(42, 42, 42, 0.97);
+$background-color_10: rgb(255, 255, 255);
+$background-color_11: rgba(235, 235, 235, 0.753);
+$background-color_12: rgba(255, 255, 255, 0.8117647059);
+$background-color_13: rgba(255, 255, 255, 0.1843137255);
+$background-color_14: transparent;
+$background-color_15: rgba(255, 255, 255, 0.829);
+$background-color_16: rgb(45, 45, 45);
+$background-color_17: white;
+$background-color_18: #01b073;
+$background-color_19: rgba(255, 255, 255, 0.3);
+$background-color_20: rgba(255, 255, 255, 0.176);
+$background-color_21: rgba(255, 255, 255, 0.438);
+$background-color_22: rgba(0, 255, 0, 0.3);
+$background-color_23: rgba(255, 165, 0, 0.3);
+$background-color_24: rgba(255, 0, 0, 0.3);
+$background-color_25: rgba(255, 107, 0, 0.938);
+$background-color_26: #00a8ce;
+$border-color_1: transparent;
+$border-color_2: rgba(0, 255, 0, 0.5);
+$border-color_3: rgba(255, 165, 0, 0.5);
+$border-color_4: rgba(255, 0, 0, 0.5);
+
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Quicksand:wght@300..700&display=swap");
+
+@font-face {
+    font-family: 'Evogria';
+    src: url('../assets/Evogria.otf');
+}
+
+@font-face {
+    font-family: 'Evogria Italic';
+    src: url('../assets/Evogria_italic.otf');
+}
+
+
+@keyframes cool {
+    0% {
+        transform: scale(3.3);
+    }
+
+    50% {
+        transform: scale(2.8);
+        opacity: 0.5;
+        rotate: -25deg;
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(3.3);
+    }
+}
+
+@keyframes text-cool {
+    0% {
+        letter-spacing: 0px;
+    }
+
+    50% {
+        letter-spacing: 1px;
+        opacity: 0.2;
+        font-weight: bolder;
+    }
+
+    100% {
+        letter-spacing: 0px;
+    }
+}
+
+* {
+    font-family: $font-family_1;
+    padding: 0;
+    transition: 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    &::-webkit-scrollbar-track {
+        border: none;
+    }
+
+    &::-webkit-scrollbar {
+        width: 0.42vh;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: $background-color_11;
+        border-radius: 1vh;
+    }
+}
+
+body {
+    background: transparent !important;
+}
+
+
+.test-drive {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-width: 320px;
+    background: rgba(0, 0, 0, 0.85);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 1vh;
+    outline: 0.1vh dashed rgba(255, 255, 255, 0.15);
+    outline-offset: 0.3vh;
+    box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.4);
+    padding: 1.2vh 2.5vh 1.5vh 2.5vh;
+    position: absolute;
+    left: 50%;
+    top: 1vh;
+    transform: translate(-50%, 0);
+    color: white;
+    z-index: 1000;
+
+    .test-drive-header {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+        font-family: 'Evogria Italic';
+        font-size: 1.3em;
+        color: #fff;
+        margin-bottom: 0.7vh;
+        letter-spacing: 1px;
+
+        .tag {
+            font-family: 'Evogria';
+            margin-left: 0.5em;
+            color: #fff;
+            font-size: 1.1em;
+        }
+    }
+
+    .test-drive-timer {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .timer-label {
+            font-size: 1.1em;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .timer-display {
+            margin-top: 0.2vh;
+        }
+    }
+}
+
+.selected-vehicle-info {
+    position: absolute;
+    right: 1%;
+    padding: 1.5vh 1.8vh 1.5vh 1.8vh;
+    border-radius: 1vh;
+    top: 1%;
+    background: rgba(0, 0, 0, 0.85);
+    width: 30vh;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8vh;
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    outline: 0.1vh dashed rgba(255, 255, 255, 0.15);
+    outline-offset: 0.3vh;
+    box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.25);
+
+    .header {
+        width: 100%;
+        height: 4.5vh;
+        text-align: center;
+        letter-spacing: 0.4vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: $primary-color;
+        border: 0.1vh solid rgba(255, 255, 255, 0.1);
+        border-radius: 0.8vh;
+        color: white;
+        font-size: 1.9vh;
+        font-weight: 700;
+        font-family: 'Evogria', sans-serif;
+        text-transform: uppercase;
+        margin-bottom: 0.6vh;
+        text-shadow: 0 0 5vh rgba(255, 255, 255, 0.76);
+        box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.18);
+    }
+
+    .stats {
+        background-color: transparent;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        text-transform: uppercase;
+        gap: 0.8vh;
+        border: none;
+
+        .label {
+            font-size: 1.1vh;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 600;
+            margin-bottom: 0.1vh;
+        }
+
+        .progress-bar {
+            width: 100%;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.13);
+            background-color: rgba(255, 255, 255, 0.08);
+            height: 1vh;
+            margin-bottom: 0.4vh;
+
+            .bar {
+                height: 100%;
+                background: linear-gradient(90deg, rgba(255, 107, 0, 0.9), rgba(0, 168, 204, 0.9));
+                border-radius: 3px;
+            }
+        }
+
+        .color-pickers {
+            display: flex;
+            flex-direction: row;
+            gap: 2vh;
+            width: 100%;
+            margin: 1vh 0;
+
+            .color-picker-group {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 1vh;
+                flex: 1;
+
+                .color-label {
+                    font-size: 1.1vh;
+                    color: rgba(255, 255, 255, 0.8);
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                    white-space: nowrap;
+                    min-width: fit-content;
+                }
+
+                .color-picker {
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+
+                    .color-input {
+                        width: 5vh;
+                        height: 3.5vh;
+                        border-radius: 6px;
+                        border: 2px solid rgba(255, 255, 255, 0.2);
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+                        position: relative;
+                        z-index: 10;
+                        opacity: 1;
+                        pointer-events: auto;
+                        background: transparent;
+
+                        &:hover {
+                            border-color: rgba(255, 107, 0, 0.8);
+                            transform: scale(1.05);
+                            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+                        }
+                    }
+                }
+            }
+        }
+
+        .btns-container {
+            width: 100%;
+            display: flex;
+            gap: 1vh;
+            margin-top: 0.8vh;
+
+            .action-btn {
+                width: 50%;
+                padding: 1vh 0;
+                text-align: center;
+                border-radius: 0.8vh;
+                background: $primary-color;
+                cursor: pointer;
+                border: 0.1vh solid rgba(255, 255, 255, 0.1);
+                color: white;
+                font-weight: 600;
+                font-size: 1.2vh;
+                font-family: 'Evogria', sans-serif;
+                text-transform: uppercase;
+                letter-spacing: 0.05vh;
+                transition: all 0.3s ease;
+
+                &:hover {
+                    opacity: 0.7;
+                }
+            }
+        }
+    }
+}
+
+.vehicle-scroller {
+    position: absolute;
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 0%, rgba(1, 1, 1, 0.63)) !important;
+    cursor: all-scroll;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+
+.dealership {
+    padding: 2vh;
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+
+    .vehicle-categories {
+        position: absolute;
+        top: 2vh;
+        left: 2vh;
+        display: flex;
+        gap: 0.8vh;
+        z-index: 100;
+        background: rgba(0, 0, 0, 0.8);
+        border: 0.1vh solid rgba(255, 255, 255, 0.1);
+        border-radius: 1vh;
+        padding: 0.8vh;
+        outline: 0.1vh dashed rgba(255, 255, 255, 0.15);
+        outline-offset: 0.3vh;
+
+        .category {
+            font-size: 0.85vw;
+            cursor: pointer;
+            color: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.05);
+            border: 0.1vh solid rgba(255, 255, 255, 0.08);
+            padding: 0.8vh 1.5vh;
+            border-radius: 0.6vh;
+            text-align: center;
+            transition: all 0.2s ease;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.03vh;
+            font-family: 'Evogria', sans-serif;
+
+            &:first-child {
+                font-weight: 600;
+            }
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.08);
+                border-color: rgba(255, 255, 255, 0.15);
+                color: white;
+            }
+
+            &.active {
+                background: $primary-color;
+                border-color: rgba($primary-color, 0.8);
+                color: white;
+                font-weight: 600;
+            }
+        }
+    }
+
+    .vehicle-carrousel-wrapper {
+        position: absolute;
+        bottom: 2vh;
+        left: 1vh;
+        right: 1vh;
+        padding: 0;
+
+        .vehicle-carrousel {
+            display: flex;
+            gap: 1vh;
+            padding: 1vh;
+            background: rgba(0, 0, 0, 0.8);
+            border: 0.1vh solid rgba(255, 255, 255, 0.1);
+            border-radius: 1vh;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-behavior: auto;
+            user-select: none;
+            cursor: grab;
+            -webkit-overflow-scrolling: touch;
+            transform: translateZ(0);
+            will-change: scroll-position;
+            outline: 0.1vh dashed rgba(255, 255, 255, 0.15);
+            outline-offset: 0.3vh;
+
+            &::-webkit-scrollbar {
+                height: 0.4vh;
+            }
+
+            &::-webkit-scrollbar-track {
+                background: rgba(0, 0, 0, 0.2);
+                border-radius: 0.2vh;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: $primary-color;
+                border-radius: 0.2vh;
+
+                &:hover {
+                    background: rgba($primary-color, 0.8);
+                }
+            }
+
+            &:active {
+                cursor: grabbing;
+            }
+        }
+
+        .vehicle-card {
+            flex: 0 0 260px;
+            background: rgba(22, 22, 22, 0.7);
+            border: 0.1vh solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.6vh;
+            overflow: hidden;
+            color: white;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            position: relative;
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.08);
+                border-color: rgba(255, 255, 255, 0.15);
+            }
+
+            &.selected {
+                background: rgba(255, 255, 255, 0.08);
+                border-color: rgba(255, 255, 255, 0.15);
+
+                // Gangwars-style color bar on top
+                &::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 0.4vh;
+                    height: 100%;
+                    background: $primary-color;
+                    border-radius: 0.2vh;
+                    z-index: 1;
+                }
+            }
+
+            &.out-of-stock {
+                opacity: 0.6;
+                filter: grayscale(0.5);
+                border-color: rgba(231, 76, 60, 0.3);
+
+                &:hover {
+                    background: rgba(231, 76, 60, 0.08);
+                    border-color: rgba(231, 76, 60, 0.5);
+                }
+
+                .vehicle-image {
+                    filter: grayscale(0.3);
+                }
+            }
+
+            .vehicle-image-container {
+                position: relative;
+                height: 170px; // Más alto
+                overflow: hidden;
+                background: rgba(0, 0, 0, 0.25);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                .vehicle-image {
+                    width: 100%;
+                    height: 100%;
+                    max-width: 100%;
+                    max-height: 100%;
+                    object-fit: contain;
+                    object-position: center;
+                    transition: transform 0.2s ease;
+                    padding: 8px;
+                    box-sizing: border-box;
+                    box-sizing: border-box;
+                    margin: 0 auto;
+                    display: block;
+                }
+
+                .vehicle-class-badge {
+                    position: absolute;
+                    top: 0.8vh;
+                    right: 0.8vh;
+                    padding: 0.4vh 0.8vh;
+                    border-radius: 0.4vh;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-weight: 600;
+                    font-size: 1.1vh;
+                    font-family: 'Evogria', sans-serif;
+                    text-transform: uppercase;
+                    letter-spacing: 0.03vh;
+                    color: white;
+                    background: rgba(255, 255, 255, 0.1);
+                    border: 0.1vh solid rgba(255, 255, 255, 0.15);
+
+                    &.class-s-plus,
+                    &.class-s\+ {
+                        background: rgba(255, 215, 0, 0.2);
+                        border-color: rgba(255, 215, 0, 0.3);
+                        color: #ffd700;
+                    }
+
+                    &.class-s {
+                        background: rgba(255, 215, 0, 0.2);
+                        border-color: rgba(255, 215, 0, 0.3);
+                        color: #ffd700;
+                    }
+
+                    &.class-a {
+                        background: rgba(255, 165, 0, 0.2);
+                        border-color: rgba(255, 165, 0, 0.3);
+                        color: #ffa500;
+                    }
+
+                    &.class-b {
+                        background: rgba(192, 192, 192, 0.2);
+                        border-color: rgba(192, 192, 192, 0.3);
+                        color: #c0c0c0;
+                    }
+
+                    &.class-c {
+                        background: rgba(205, 127, 50, 0.2);
+                        border-color: rgba(205, 127, 50, 0.3);
+                        color: #cd7f32;
+                    }
+
+                    &.class-d {
+                        background: rgba(139, 69, 19, 0.2);
+                        border-color: rgba(139, 69, 19, 0.3);
+                        color: #8b4513;
+                    }
+                }
+            }
+
+            &:hover .vehicle-image {
+                transform: scale(1.02);
+            }
+
+            .vehicle-info {
+                padding: 1vh 1vh 0.8vh 1vh;
+
+                .vehicle-label {
+                    font-size: 1.2vh;
+                    font-weight: 600;
+                    font-family: 'Evogria', sans-serif;
+                    color: white;
+                    text-transform: uppercase;
+                    letter-spacing: 0.03vh;
+                    margin-bottom: 0.3vh;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    line-height: 1.2;
+                }
+
+                .vehicle-price {
+                    font-size: 1.6vh;
+                    font-weight: 700;
+                    color: rgba(46, 204, 113, 0.8);
+                    margin-bottom: 0.5vh;
+                    line-height: 1.2;
+                    font-family: 'Quicksand', sans-serif;
+                }
+
+                .vehicle-details {
+                    display: flex;
+                    gap: 0.4vh;
+                    flex-wrap: wrap;
+                }
+            }
+        }
+
+        .no-vehicles {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            padding: 4vh;
+            font-size: 1.2em;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    }
+}
+
+
+.dealership-creator-ui {
+    position: absolute;
+    top: 5vh;
+    right: 2vw;
+    width: 25vw;
+    max-height: 80vh;
+    background: rgba(0, 0, 0, 0.8);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 1vh;
+    outline: 0.1vh dashed rgba(255, 255, 255, 0.15);
+    outline-offset: 0.3vh;
+    padding: 1.5vh;
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+    z-index: 1000;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.creator-header {
+    flex-shrink: 0;
+
+    h3 {
+        margin: 0;
+        padding-bottom: 1vh;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        text-align: center;
+        font-size: 1.2vw;
+    }
+}
+
+// Sistema de pestañas
+.creator-tabs {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    margin-top: 1vh;
+}
+
+.tab-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3vh;
+    margin-bottom: 1vh;
+    flex-shrink: 0;
+}
+
+.tab-item {
+    flex: 1;
+    min-width: 30%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 0.1vh solid rgba(255, 255, 255, 0.08);
+    padding: 0.6vh;
+    border-radius: 0.6vh;
+    text-align: center;
+    font-size: 0.75vw;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2vh;
+    position: relative;
+
+    i {
+        font-size: 0.9vw;
+        opacity: 0.7;
+    }
+
+    span {
+        font-weight: 500;
+        opacity: 0.8;
+        font-family: 'Evogria', sans-serif;
+    }
+
+    .tab-counter {
+        font-size: 0.7vw;
+        background: rgba(255, 255, 255, 0.08);
+        padding: 0.1vh 0.4vh;
+        border-radius: 0.4vh;
+        opacity: 0.6;
+    }
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    &.active {
+        background: $primary-color;
+        border-color: rgba($primary-color, 0.8);
+        font-weight: bold;
+
+        i,
+        span {
+            opacity: 1;
+        }
+
+        .tab-counter {
+            background: rgba(255, 255, 255, 0.2);
+            opacity: 1;
+        }
+    }
+}
+
+.tab-content {
+    flex: 1;
+    overflow-y: auto;
+    background: rgba(0, 0, 0, 0.3);
+    border: 0.1vh solid rgba(255, 255, 255, 0.05);
+    border-radius: 0.6vh;
+    padding: 1vh;
+}
+
+.tab-panel {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1vh;
+    padding-bottom: 0.5vh;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+    h4 {
+        margin: 0;
+        font-size: 1vw;
+        display: flex;
+        align-items: center;
+        gap: 0.5vh;
+
+        i {
+            font-size: 0.9vw;
+            opacity: 0.7;
+        }
+    }
+
+    .counter-badge {
+        background: rgba($primary-color, 0.2);
+        border: 0.1vh solid rgba($primary-color, 0.4);
+        color: $primary-color;
+        padding: 0.3vh 0.6vh;
+        border-radius: 0.4vh;
+        font-size: 0.8vw;
+        font-weight: bold;
+        font-family: 'Evogria', sans-serif;
+    }
+}
+
+.panel-description {
+    font-size: 0.8vw;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 1vh;
+    font-style: italic;
+}
+
+.points-list {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vh;
+}
+
+.point-item {
+    background: rgba(22, 22, 22, 0.7);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.6vh;
+    padding: 0.8vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.2s ease;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.15);
+    }
+}
+
+.point-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2vh;
+
+    .point-label {
+        font-size: 0.8vw;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    .point-coords {
+        font-size: 0.7vw;
+        color: rgba(255, 255, 255, 0.5);
+        font-family: monospace;
+    }
+}
+
+.point-actions {
+    display: flex;
+    gap: 0.3vh;
+}
+
+.btn-point-action {
+    background: rgba(60, 60, 60, 0.8);
+    border: 1px solid rgba(255, 255, 255, .15);
+    color: white;
+    padding: 0.4vh;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    i {
+        font-size: 0.7vw;
+    }
+
+    &:hover {
+        background: rgba(80, 80, 80, 0.8);
+        border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    &.btn-delete {
+        &:hover {
+            background: rgba(200, 50, 50, 0.8);
+            border-color: rgba(255, 100, 100, 0.8);
+        }
+    }
+}
+
+// Botones de acción del creator
+.creator-actions {
+    flex-shrink: 0;
+    display: flex;
+    gap: 1vh;
+    margin-top: 1vh;
+    padding-top: 1vh;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-creator-action {
+    flex: 1;
+    background: rgba(50, 50, 50, 0.8);
+    border: 1px solid rgba(255, 255, 255, .2);
+    color: white;
+    padding: 1vh;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5vh;
+    font-size: 0.9vw;
+    font-weight: 500;
+
+    i {
+        font-size: 0.8vw;
+    }
+
+    &:hover {
+        background: rgba(70, 70, 70, 0.8);
+        border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    &.btn-save {
+        background: rgba(0, 120, 0, 0.6);
+        border-color: rgba(0, 200, 0, 0.4);
+
+        &:hover {
+            background: rgba(0, 150, 0, 0.8);
+            border-color: rgba(0, 255, 0, 0.6);
+        }
+    }
+
+    &.btn-cancel {
+        background: rgba(120, 0, 0, 0.6);
+        border-color: rgba(200, 0, 0, 0.4);
+
+        &:hover {
+            background: rgba(150, 0, 0, 0.8);
+            border-color: rgba(255, 0, 0, 0.6);
+        }
+    }
+}
+
+.creator-controls {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    bottom: 1.2vh;
+    left: 50%;
+    transform: translate(-50%, 0);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 0.8vh;
+    outline: 0.1vh dashed rgba(255, 255, 255, 0.15);
+    outline-offset: 0.3vh;
+    height: auto;
+    padding: 0.4vh 1vh;
+    gap: 1vh;
+    z-index: 1200;
+    min-width: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.control-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5vh;
+    font-size: 0.78vw;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.92);
+    padding: 0.2vh 0.4vh;
+    border-radius: 3px;
+    transition: background 0.2s;
+    white-space: nowrap;
+    line-height: 1.1;
+    background: none;
+
+    &:hover {
+        background: rgba(255, 107, 0, 0.08);
+    }
+}
+
+.control-item .key {
+    font-weight: bold;
+    color: #fff;
+    background: $primary-color;
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    padding: 0.2vh 0.7vh;
+    border-radius: 0.4vh;
+    min-width: 1.7vw;
+    text-align: center;
+    font-size: 0.78vw;
+    font-family: 'Evogria', sans-serif;
+    margin-right: 0.3vh;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+}
+
+.control-item .action {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.78vw;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.2vh;
+    white-space: nowrap;
+}
+
+.indication {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    justify-content: center;
+    font-size: .5vw;
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(0, 0, 0, 0.664);
+        border: 1px solid rgba(255, 255, 255, .2);
+        padding: .5vw 1vw .5vw 1vw;
+        box-shadow: 0 0 .8vh rgba(0, 0, 0, 0.527);
+        border: 1px solid rgba(255, 255, 255, .2);
+        margin-top: 2vh;
+        border-radius: 5px;
+        text-transform: uppercase;
+        color: white;
+        font-weight: bold;
+        gap: 1vh;
+
+        .tag {
+            background-color: rgba(0, 168, 204, 0.822);
+            border: 1px solid rgba(255, 255, 255, .2);
+            padding: .5vh 1vh .5vh 1vh;
+            border-radius: 5px;
+        }
+    }
+}
+
+.setting-coords {
+    position: absolute;
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0) 0%, rgba(0, 20, 20, 0.349) 100%) !important;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+
+
+}
+
+.c-modal {
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.9) 100%) !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+
+    .title {
+        text-shadow: 0 0 5vh rgba(255, 255, 255, 0.7607843137);
+        color: $color_3;
+        padding: 0.5vh 0.5vh;
+        border-radius: 1vh;
+        font-size: 2vh;
+        border: 0.1vh solid rgba(255, 255, 255, 0.1215686275);
+        background-color: $background-color_1;
+        font-family: $font-family_3;
+        text-transform: uppercase;
+        font-weight: 300 !important;
+        letter-spacing: 0.3vh;
+        width: -moz-max-content;
+        width: max-content;
+        box-shadow: 0 0 2vh #ff6b00;
+    }
+
+    .btn-cancel {
+        font-family: $font-family_3;
+        text-transform: uppercase;
+        padding: 0.8vh 1vh;
+        border-radius: 5px;
+        font-weight: 500;
+        background-color: $background-color_2;
+        color: $color_2;
+        border: unset;
+        font-size: 1.8vh;
+        transition: 0.5s var(--cubic) all;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $background-color_3 !important;
+        }
+    }
+
+    .btn-modal {
+        font-family: $font-family_3;
+        text-transform: uppercase;
+        padding: 12px 20px;
+        border-radius: 8px;
+        font-weight: 600;
+        background: rgba(255, 255, 255, 0.15);
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        font-size: 14px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        letter-spacing: 0.5px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+
+        &:focus-visible {
+            box-shadow: 0 0 0 2px rgba(255, 107, 0, 0.5);
+            border: 1px solid rgba(255, 107, 0, 0.8);
+            outline: none;
+        }
+
+        &:hover {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        &:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        // Estilo específico para botón de financiamiento
+        &.btn-financing {
+            background: linear-gradient(135deg, rgba(255, 107, 0, 0.9), rgba(0, 168, 204, 0.9));
+            border-color: rgba(255, 107, 0, 0.6);
+            box-shadow: 0 2px 12px rgba(255, 107, 0, 0.3);
+
+            &:hover {
+                background: linear-gradient(135deg, rgba(255, 107, 0, 1), rgba(0, 168, 204, 1));
+                border-color: rgba(255, 107, 0, 0.8);
+                box-shadow: 0 4px 20px rgba(255, 107, 0, 0.5);
+            }
+        }
+    }
+
+    .visit-btn {
+        background-color: $background-color_6;
+        color: $color_2;
+
+        &:hover {
+            background-color: $background-color_3;
+        }
+    }
+
+    // Estilos para el nuevo modal de compra mejorado
+    .purchase-modal-container {
+        padding: 15px;
+        max-width: 450px;
+        margin: 0 auto;
+
+        .vehicle-info-section {
+            margin-bottom: 20px;
+            padding: 16px;
+            background: rgba(255, 107, 0, 0.1);
+            border: 1px solid rgba(255, 107, 0, 0.3);
+            border-radius: 8px;
+
+            .vehicle-header {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+
+                .vehicle-icon {
+                    width: 45px;
+                    height: 45px;
+                    background: rgba(255, 107, 0, 0.8);
+                    border-radius: 6px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: white;
+
+                    i {
+                        width: 22px;
+                        height: 22px;
+                    }
+                }
+
+                .vehicle-details {
+                    flex: 1;
+
+                    .vehicle-name {
+                        font-size: 18px;
+                        font-weight: 600;
+                        color: white;
+                        margin: 0 0 5px 0;
+                        text-transform: uppercase;
+                        letter-spacing: 0.5px;
+                    }
+
+                    .vehicle-model {
+                        font-size: 14px;
+                        color: rgba(255, 255, 255, 0.7);
+                        margin: 0 0 8px 0;
+                        text-transform: uppercase;
+                    }
+
+                    .vehicle-price {
+                        font-size: 20px;
+                        font-weight: 700;
+                        color: rgba(46, 204, 113, 0.7); // Verde opaco
+                    }
+
+                    .vehicle-stock {
+                        display: flex;
+                        align-items: center;
+                        gap: 6px;
+                        font-size: 12px;
+                        font-weight: 600;
+                        text-transform: uppercase;
+                        letter-spacing: 0.3px;
+                        margin-top: 8px;
+
+                        i {
+                            width: 14px;
+                            height: 14px;
+                        }
+
+                        &.in-stock {
+                            color: rgba(46, 204, 113, 1);
+
+                            i {
+                                color: rgba(46, 204, 113, 1);
+                            }
+                        }
+
+                        &.out-of-stock {
+                            color: rgba(231, 76, 60, 1);
+
+                            i {
+                                color: rgba(231, 76, 60, 1);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .payment-section {
+            margin-bottom: 18px;
+
+            .section-title {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                font-size: 16px;
+                font-weight: 600;
+                color: white;
+                margin-bottom: 15px;
+                text-transform: uppercase;
+                letter-spacing: 0.3px;
+
+                i {
+                    width: 18px;
+                    height: 18px;
+                    color: rgba(255, 107, 0, 0.9);
+                }
+            }
+
+            .payment-methods-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+                gap: 12px;
+
+                .payment-method-btn {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 6px;
+                    padding: 16px 12px;
+                    background: rgba(255, 255, 255, 0.05);
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    border-radius: 8px;
+                    color: white;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    text-align: center;
+
+                    .payment-icon {
+                        width: 36px;
+                        height: 36px;
+                        background: rgba(255, 255, 255, 0.1);
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        margin-bottom: 2px;
+
+                        i {
+                            width: 18px;
+                            height: 18px;
+                            color: rgba(255, 255, 255, 0.8);
+                        }
+                    }
+
+                    .payment-info {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 2px;
+
+                        .payment-name {
+                            font-size: 12px;
+                            font-weight: 600;
+                            text-transform: uppercase;
+                            letter-spacing: 0.3px;
+                        }
+
+                        .payment-desc {
+                            font-size: 10px;
+                            color: rgba(255, 255, 255, 0.6);
+                            text-transform: none;
+                        }
+                    }
+
+                    &:hover {
+                        background: rgba(255, 255, 255, 0.08);
+                        border-color: rgba(255, 255, 255, 0.2);
+                        transform: translateY(-2px);
+
+                        .payment-icon {
+                            background: rgba(255, 255, 255, 0.15);
+
+                            i {
+                                color: white;
+                            }
+                        }
+                    }
+
+                    // Colores específicos para cada método de pago
+                    &.cash {
+                        &:hover {
+                            border-color: rgba(46, 204, 113, 0.5);
+
+                            .payment-icon {
+                                background: rgba(46, 204, 113, 0.2);
+
+                                i {
+                                    color: rgba(46, 204, 113, 1);
+                                }
+                            }
+                        }
+                    }
+
+                    &.bank {
+                        &:hover {
+                            border-color: rgba(0, 168, 204, 0.5);
+
+                            .payment-icon {
+                                background: rgba(0, 168, 204, 0.2);
+
+                                i {
+                                    color: rgba(0, 168, 204, 1);
+                                }
+                            }
+                        }
+                    }
+
+                    &.xp {
+                        &:hover {
+                            border-color: rgba(241, 196, 15, 0.5);
+
+                            .payment-icon {
+                                background: rgba(241, 196, 15, 0.2);
+
+                                i {
+                                    color: rgba(241, 196, 15, 1);
+                                }
+                            }
+                        }
+                    }
+
+                    &.financing {
+                        &:hover {
+                            border-color: rgba(255, 107, 0, 0.8);
+                            background: rgba(255, 107, 0, 0.1);
+
+                            .payment-icon {
+                                background: rgba(255, 107, 0, 0.3);
+
+                                i {
+                                    color: rgba(255, 107, 0, 1);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .no-payment-methods {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 8px;
+                    padding: 20px;
+                    background: rgba(231, 76, 60, 0.1);
+                    border: 1px solid rgba(231, 76, 60, 0.3);
+                    border-radius: 8px;
+                    color: rgba(231, 76, 60, 1);
+                    text-align: center;
+
+                    i {
+                        width: 24px;
+                        height: 24px;
+                        color: rgba(231, 76, 60, 1);
+                    }
+
+                    span {
+                        font-size: 14px;
+                        font-weight: 600;
+                        text-transform: uppercase;
+                        letter-spacing: 0.3px;
+                    }
+                }
+            }
+        }
+    }
+
+    .info-box {
+        background-color: $background-color_8;
+        padding: 2vh 1vh !important;
+    }
+}
+
+.modal-block {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-body {
+
+    padding: 2vh 3vh;
+    color: $color_2;
+    overflow: auto;
+
+    .data {
+        padding: 1vh;
+        display: flex;
+        flex-direction: column;
+
+        .data-row {
+            display: flex;
+            align-items: center;
+            gap: 2vh;
+            // background-color: red;
+            padding: 1vh;
+            width: 100%;
+            flex-wrap: wrap;
+            height: fit-content;
+            margin-bottom: 1vw;
+
+            .input-row {
+                display: flex;
+                flex-direction: column;
+                gap: .5vh;
+                text-transform: uppercase;
+                width: 48%;
+            }
+
+
+        }
+
+        .default-vehicles {
+
+            .vehicle-cards {
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 1vh;
+                justify-content: center;
+
+                .vehicle-card {
+                    background: linear-gradient(to top, black, transparent);
+                    width: 30vh;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-direction: column;
+                    height: 30vh;
+
+                    .vehicle-picture {
+                        // background-color: yellow;
+                        position: relative;
+                        top: 20%;
+                        width: 100%;
+                        height: 100%;
+
+                        img {
+                            width: 100%;
+                            padding: 1vh;
+                        }
+                    }
+
+                    .vehicle-model {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        height: 20%;
+                        width: 100%;
+                        background: rgba(0, 168, 204, 0.822);
+                        font-size: 2vh;
+                        text-transform: uppercase;
+                        border-radius: 5px;
+                        border: 1px solid rgba(255, 255, 255, 0.2);
+                    }
+
+                    &:hover {
+                        cursor: pointer;
+
+                        .vehicle-model {
+                            background: rgba(255, 107, 0, 0.616);
+                        }
+                    }
+                }
+
+            }
+
+        }
+
+        .select_label {
+            height: 100%;
+            padding: .5vh;
+            background-color: rgb(31, 30, 30);
+            border: none;
+            color: rgba(221, 218, 218, 0.651);
+            border-radius: 5px;
+        }
+
+        input {
+            height: 100%;
+            border-radius: 5px;
+        }
+
+    }
+
+
+}
+
+.modal-content {
+    width: -moz-max-content;
+    width: max-content;
+    background: rgba(0, 0, 0, 0.9) !important;
+    border-radius: 1vh !important;
+    overflow: hidden;
+    border: 0.1vh solid rgba(255, 255, 255, 0.1) !important;
+    outline: 0.1vh dashed rgba(255, 255, 255, 0.15);
+    outline-offset: 0.3vh;
+    font-family: 'Quicksand', sans-serif !important;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.4117647059) !important;
+    max-height: 85%;
+}
+
+.modal-header {
+    border: unset;
+    padding: 1vh;
+    border: none !important;
+}
+
+.modal-footer {
+    margin-top: 1vh;
+    border-top: unset;
+    background: rgba(255, 255, 255, 0.12);
+    justify-content: space-between;
+    border-top: 0.1vh rgba(255, 255, 255, 0.27) !important;
+}
+
+.fadeIn {
+    animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+
+
+.info-box {
+    margin-top: 2vh !important;
+    background-color: $background-color_7;
+    border-radius: 0.5vh;
+    color: $color_2;
+    position: relative;
+    padding: 2vh;
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+    user-select: text !important;
+    padding-top: 2.5vh;
+    font-weight: 600;
+
+    h4 {
+        &:first-child {
+            position: absolute;
+            top: -1.5vh;
+            color: $color_2;
+            background: #ff6b00;
+            padding: 0.5vh 1vh;
+            border-radius: 2vh;
+            font-size: 2vh;
+            left: 1vh;
+        }
+    }
+}
+
+.box-option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $background-color_8;
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    color: $color_2 !important;
+    padding: 1vh 1vh;
+    height: unset;
+    outline: unset;
+    font-family: $font-family_3;
+    transition: 0.3s ease-in-out all;
+    border-radius: 0.5vh;
+    font-size: 1.5vh;
+
+    i {
+        color: $color_4;
+    }
+
+    input {
+        background: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        color: $color_2 !important;
+
+        &:hover {
+            opacity: 1.1;
+        }
+
+        &:focus {
+            opacity: 1.1;
+        }
+    }
+}
+
+
+.house-doors {
+
+    .info-box {
+        padding: 1vh 2vh !important;
+    }
+
+    .box-option {
+        justify-content: space-between;
+        margin: 1vh 0;
+
+        span {
+            color: $color_6;
+            margin-left: 0.5vh;
+        }
+
+        .delete-door {
+            padding: 0vh 0.5vh;
+            cursor: pointer;
+
+            i {
+                color: $color_7;
+                transition: var(--cubic) 0.5s all;
+            }
+
+            &:hover {
+                i {
+                    transform: scale(1.1);
+                    cursor: pointer;
+                    color: $color_2;
+                }
+            }
+        }
+    }
+
+    .no-items {
+        height: -moz-fit-content;
+        height: fit-content;
+        display: block;
+        text-align: center;
+    }
+}
+
+.buy-house {
+    .box-option {
+        position: relative;
+        justify-content: flex-start;
+        margin-top: 2vh;
+
+        .info {
+            h5 {
+                margin: 0;
+                font-size: 1.2vh;
+                color: $color_8;
+                text-transform: uppercase;
+                letter-spacing: 0.1vh;
+            }
+        }
+
+        i {
+            margin-right: 1vh;
+        }
+    }
+
+    .house-images {
+        width: -moz-fit-content;
+        width: fit-content;
+        overflow: hidden;
+        padding-bottom: 1vh;
+
+        &::-webkit-scrollbar {
+            height: 0.3vh;
+        }
+    }
+
+    .house-image {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 10vh;
+        height: 10vh;
+        background-color: $background-color_8;
+        border: 0.1vh solid rgba(255, 255, 255, 0.1);
+        border-radius: 0.5vh;
+        cursor: pointer;
+        margin-right: 2.9vh;
+        overflow: hidden;
+
+        img {
+            height: 12vh;
+            transition: 0.5s var(--cubic) all;
+        }
+
+        &:hover {
+            img {
+                transform: scale(1.1);
+            }
+        }
+    }
+}
+
+.garage-images {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    padding-bottom: 0.5vh;
+
+    &::-webkit-scrollbar {
+        height: 0.4vh;
+        width: 100%;
+    }
+}
+
+input {
+    transition: background-color ease 0.1s, color ease 0.1s;
+    outline: unset !important;
+    height: 2vh;
+    padding: 1vh;
+    color: $color_2;
+    background-color: $background-color_9;
+    border: none;
+    font-weight: 600;
+
+    &:focus {
+        background-color: $background-color_10;
+        color: $color_9;
+
+        + {
+            .slider {
+                box-shadow: 0 0 1px #00a8cc;
+            }
+        }
+    }
+
+    &:checked {
+        + {
+            .slider {
+                background-color: $background-color_18;
+
+                &:before {
+                    transform: translateX(2.2vh);
+                }
+            }
+        }
+    }
+}
+
+h4 {
+    font-family: $font-family_2;
+}
+
+h2 {
+    font-family: $font-family_2;
+}
+
+.house-id {
+    max-width: 14vh;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.search-items {
+    background-color: $background-color_12;
+    border-radius: 0.5vh;
+    color: $color_1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border: 0.1vh solid white;
+    transition: 0.5s var(--cubic) all;
+    margin-bottom: 0.5vh;
+    line-height: 2.3vh;
+    padding-left: 1vh;
+    font-size: 2vh;
+
+    input {
+        color: $color_1 !important;
+        font-family: $font-family_4;
+        background: transparent !important;
+        padding: 1vh 1vh;
+        font-size: 1.5vh;
+        box-shadow: none !important;
+
+        &:focus {
+            background-color: $background-color_14 !important;
+            border-color: $border-color_1 !important;
+        }
+
+        &:focus-visible {
+            background-color: $background-color_14 !important;
+            border-color: $border-color_1 !important;
+        }
+    }
+}
+
+.search-items-2 {
+    background-color: $background-color_12;
+    border-radius: 0.5vh;
+    color: $color_1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border: 0.1vh solid white;
+    transition: 0.5s var(--cubic) all;
+    margin-bottom: 0.5vh;
+    line-height: 2.3vh;
+    padding-left: 1vh;
+    font-size: 2vh;
+    background-color: $background-color_13;
+    border: none;
+    color: $color_10;
+    width: 114vh;
+    margin-left: 0.4vh;
+    margin-top: 0.5vh;
+    margin-bottom: 0.8vh;
+
+    input {
+        &::-moz-placeholder {
+            color: $color_10;
+        }
+
+        &::placeholder {
+            color: $color_10;
+        }
+
+        font-family: $font-family_4;
+        background: transparent !important;
+        padding: 1vh 1vh;
+        font-size: 1.5vh;
+        box-shadow: none !important;
+
+        &:focus {
+            background-color: $background-color_14 !important;
+            border-color: $border-color_1 !important;
+        }
+
+        &:focus-visible {
+            background-color: $background-color_14 !important;
+            border-color: $border-color_1 !important;
+        }
+    }
+}
+
+.no-items {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 43vh;
+
+    img {
+        height: 15vh;
+    }
+
+    span {
+        margin-top: 2vh;
+        font-family: $font-family_4;
+    }
+}
+
+.form-control {
+    background-color: $background-color_15;
+    position: relative;
+    width: 100%;
+    color: black !important;
+    padding: 0.5vh 1vh;
+    height: unset;
+    outline: unset;
+    font-family: $font-family_3;
+    transition: 0.3s ease-in-out all;
+    cursor: pointer;
+
+    &:hover {
+        color: white;
+        opacity: .2;
+    }
+
+    &:focus {
+        opacity: .5;
+    }
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 4.1vh;
+    height: 1.9vh;
+
+    input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $background-color_16;
+    transition: 0.4s;
+
+    &:before {
+        position: absolute;
+        content: "";
+        width: 1.3vh;
+        height: 1.3vh;
+        left: 0.3vh;
+        bottom: 0.3vh;
+        background-color: $background-color_17;
+        transition: 0.4s;
+    }
+}
+
+.slider.round {
+    border-radius: 34px;
+
+    &:before {
+        border-radius: 50%;
+    }
+}
+
+.admin-menu {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: rgba(8, 8, 12, 0.98);
+    padding: 1vh;
+    gap: 1vh;
+    overflow: hidden;
+
+    .main-content {
+        display: flex;
+        flex-direction: column;
+        flex: 1; // Usar todo el espacio disponible menos el header
+        border-radius: 5px;
+        padding: 1vh;
+        color: $color_2;
+        overflow: hidden; // Prevenir scroll del main-content
+
+        // Nueva estructura del admin layout
+        .admin-layout {
+            display: flex;
+            height: 100%; // Usar toda la altura del main-content
+            gap: 1vh;
+            overflow: hidden; // Prevenir scroll del layout principal
+
+            // Sidebar izquierdo con opciones y dealerships
+            .admin-sidebar {
+                width: 280px;
+                display: flex;
+                flex-direction: column;
+                gap: 1vh;
+
+                .options-section,
+                .dealerships-section {
+                    background: rgba(0, 0, 0, 0.5);
+                    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+                    border-radius: 0.8vh;
+                    padding: 1vh;
+                    outline: 0.1vh dashed rgba(255, 255, 255, 0.1);
+                    outline-offset: 0.2vh;
+                }
+
+                .options-section {
+                    .section-header {
+                        font-size: 1.2vh;
+                        font-weight: 600;
+                        text-transform: uppercase;
+                        color: rgba(255, 255, 255, 0.6);
+                        font-family: 'Evogria', sans-serif;
+                        letter-spacing: 0.1vh;
+                        margin-bottom: 1vh;
+                        padding-bottom: 0.5vh;
+                        border-bottom: 0.1vh solid rgba(255, 255, 255, 0.08);
+                    }
+
+                    .option {
+                        display: flex;
+                        border-radius: 0.6vh;
+                        flex-direction: row;
+                        align-items: center;
+                        padding-left: 1vh;
+                        color: rgba(255, 255, 255, 0.7);
+                        font-size: 1.2vh;
+                        font-family: 'Evogria', sans-serif;
+                        gap: 1vh;
+                        text-transform: uppercase;
+                        height: 4vh;
+                        background: rgba(255, 255, 255, 0.03);
+                        border: 0.1vh solid rgba(255, 255, 255, 0.06);
+                        cursor: pointer;
+                        transition: all 0.2s ease;
+                        margin-bottom: 0.5vh;
+
+                        [data-lucide] {
+                            transition: all 0.2s ease;
+                            width: 1.6vh;
+                            height: 1.6vh;
+                        }
+
+                        &:hover {
+                            background: rgba(255, 255, 255, 0.06);
+                            border-color: rgba(255, 255, 255, 0.1);
+                            color: white;
+                        }
+
+                        &.active {
+                            background: $primary-color;
+                            border-color: rgba($primary-color, 0.8);
+                            color: white;
+
+                            [data-lucide] {
+                                color: white;
+                            }
+                        }
+                    }
+                }
+
+                .dealerships-section {
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+
+                    .section-header {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        font-size: 1.2vh;
+                        font-weight: 600;
+                        text-transform: uppercase;
+                        color: rgba(255, 255, 255, 0.6);
+                        font-family: 'Evogria', sans-serif;
+                        letter-spacing: 0.1vh;
+                        margin-bottom: 1vh;
+                        padding-bottom: 0.5vh;
+                        border-bottom: 0.1vh solid rgba(255, 255, 255, 0.08);
+
+                        .btn-action {
+                            cursor: pointer;
+                            background: $primary-color;
+                            border: 0.1vh solid rgba(255, 255, 255, 0.1);
+                            border-radius: 0.5vh;
+                            color: white;
+                            padding: 0.5vh;
+                            width: 3vh;
+                            height: 3vh;
+                            transition: all 0.2s ease;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+
+                            &:hover {
+                                opacity: 0.7;
+                            }
+                        }
+                    }
+
+                    .dealerships-list {
+                        flex: 1;
+                        overflow-y: auto;
+
+                        .dealership-item {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            background: rgba(22, 22, 22, 0.7);
+                            border: 0.1vh solid rgba(255, 255, 255, 0.08);
+                            border-radius: 0.6vh;
+                            margin-bottom: 0.5vh;
+                            transition: all 0.2s ease;
+                            position: relative;
+
+                            &:hover {
+                                background: rgba(255, 255, 255, 0.06);
+                                border-color: rgba(255, 255, 255, 0.12);
+                            }
+
+                            &.active {
+                                background: rgba(255, 255, 255, 0.06);
+                                border-color: rgba(255, 255, 255, 0.12);
+
+                                &::before {
+                                    content: '';
+                                    position: absolute;
+                                    left: 0;
+                                    top: 0;
+                                    width: 0.3vh;
+                                    height: 100%;
+                                    background: $primary-color;
+                                    border-radius: 0.2vh;
+                                }
+                            }
+
+                            .dealership-info {
+                                flex: 1;
+                                padding: 1vh;
+                                cursor: pointer;
+
+                                .dealership-name {
+                                    color: $color_15;
+                                    font-size: 1.1vh;
+                                    text-transform: uppercase;
+                                }
+                            }
+
+                            .dealership-actions {
+                                display: flex;
+                                gap: 0.5vh;
+                                padding: 0.5vh;
+
+                                .btn-action {
+                                    cursor: pointer;
+                                    background: rgba(255, 255, 255, 0.06);
+                                    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+                                    border-radius: 0.4vh;
+                                    color: rgba(255, 255, 255, 0.7);
+                                    width: 2.5vh;
+                                    height: 2.5vh;
+                                    padding: 0.3vh;
+                                    transition: all 0.2s ease;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+
+                                    &:hover {
+                                        background: rgba(255, 255, 255, 0.1);
+                                        border-color: rgba(255, 255, 255, 0.2);
+                                        color: white;
+                                    }
+
+                                    &.btn-danger:hover {
+                                        background: rgba(244, 67, 54, 0.2);
+                                        border-color: rgba(244, 67, 54, 0.4);
+                                        color: #f44336;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Área principal de contenido
+            .admin-main-content {
+                flex: 1;
+                background: rgba(0, 0, 0, 0.4);
+                border: 0.1vh solid rgba(255, 255, 255, 0.08);
+                border-radius: 0.8vh;
+                outline: 0.1vh dashed rgba(255, 255, 255, 0.1);
+                outline-offset: 0.2vh;
+                padding: 1vh;
+                overflow: hidden;
+                height: 100%;
+
+                .content-tab {
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    overflow: hidden; // Importante: prevenir scroll aquí
+
+                    // Empty state cuando no hay dealership seleccionado
+                    .dealership-not-selected {
+                        height: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        .empty-state {
+                            text-align: center;
+                            color: $color_2;
+                            opacity: 0.6;
+
+                            [data-lucide] {
+                                transform: scale(3);
+                                margin-bottom: 2vh;
+                                opacity: 0.3;
+                            }
+
+                            h3 {
+                                font-size: 1.5vh;
+                                margin: 1vh 0 0.5vh 0;
+                                text-transform: uppercase;
+                            }
+
+                            p {
+                                font-size: 1.1vh;
+                                opacity: 0.8;
+                            }
+                        }
+                    }
+
+                    // Gestión de dealership
+                    .dealership-management {
+                        height: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        overflow: hidden;
+
+                        >div {
+                            flex: 1;
+                            display: flex;
+                            flex-direction: column;
+                            overflow: hidden;
+                            min-height: 0;
+                        }
+
+                        .management-header {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            margin-bottom: 1vh;
+                            padding-bottom: 1vh;
+                            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                            flex-shrink: 0;
+
+                            .dealership-info-compact {
+                                .info-row {
+                                    display: flex;
+                                    gap: 2vh;
+
+                                    .info-group {
+                                        display: flex;
+                                        align-items: center;
+                                        gap: 0.8vh;
+
+                                        label {
+                                            font-size: 1.2vh;
+                                            color: $color_11;
+                                            text-transform: uppercase;
+                                            font-weight: 600;
+                                            min-width: 60px;
+                                        }
+
+                                        .info-value {
+                                            font-size: 1.2vh;
+                                            color: $color_2;
+                                            background: rgba(255, 255, 255, 0.05);
+                                            padding: 0.8vh 1.2vh;
+                                            border-radius: 8px;
+                                            border: 1px solid rgba(255, 255, 255, 0.1);
+                                            width: 180px;
+                                            height: 4vh;
+                                            display: flex;
+                                            align-items: center;
+                                            box-sizing: border-box;
+                                        }
+
+                                        .form-control-inline {
+                                            background: rgba(0, 0, 0, 0.4);
+                                            border: 0.1vh solid rgba(255, 255, 255, 0.1);
+                                            border-radius: 0.6vh;
+                                            color: white;
+                                            padding: 0.8vh 1.2vh;
+                                            font-size: 1.2vh;
+                                            font-family: 'Quicksand', sans-serif;
+                                            width: 180px;
+                                            height: 4vh;
+                                            box-sizing: border-box;
+                                            transition: all 0.2s ease;
+
+                                            &:focus {
+                                                border-color: rgba(255, 107, 0, 0.8);
+                                                background: rgba(255, 255, 255, 0.08);
+                                                outline: none;
+                                                box-shadow: 0 0 10px rgba(255, 107, 0, 0.3);
+                                            }
+
+                                            &:hover {
+                                                border-color: rgba(255, 255, 255, 0.25);
+                                                background: rgba(255, 255, 255, 0.07);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            .management-actions {
+                                display: flex;
+                                gap: 1vh;
+
+                                .btn-action {
+                                    display: flex;
+                                    align-items: center;
+                                    gap: 0.5vh;
+                                    cursor: pointer;
+                                    background: rgba(255, 255, 255, 0.06);
+                                    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+                                    border-radius: 0.5vh;
+                                    color: rgba(255, 255, 255, 0.8);
+                                    padding: 0.8vh 1.2vh;
+                                    transition: all 0.2s ease;
+                                    font-size: 1vh;
+                                    font-family: 'Evogria', sans-serif;
+                                    text-transform: uppercase;
+
+                                    &:hover {
+                                        background: rgba(255, 255, 255, 0.1);
+                                        border-color: rgba(255, 255, 255, 0.15);
+                                        color: white;
+                                    }
+
+                                    &.btn-save {
+                                        background: $primary-color;
+                                        border-color: rgba($primary-color, 0.5);
+                                        color: white;
+
+                                        &:hover {
+                                            opacity: 0.8;
+                                        }
+                                    }
+
+                                    span {
+                                        font-size: 1vh;
+                                    }
+                                }
+                            }
+                        }
+
+                        .content-body {
+                            flex: 1;
+                            display: flex;
+                            gap: 1vh;
+                            overflow: hidden;
+                            min-height: 0;
+                            height: 100%;
+
+                            .categories-panel {
+                                width: 300px;
+                                min-width: 300px;
+                                display: flex;
+                                flex-direction: column;
+                                height: 100%;
+                                min-height: 0;
+                                overflow: hidden;
+                                background: rgba(0, 0, 0, 0.2);
+                                border: 0.1vh solid rgba(255, 255, 255, 0.06);
+                                border-radius: 0.6vh;
+                                padding: 1vh;
+
+                                .panel-header {
+                                    display: flex;
+                                    justify-content: space-between;
+                                    align-items: center;
+                                    margin-bottom: 1vh;
+                                    padding-bottom: 0.5vh;
+                                    border-bottom: 0.1vh solid rgba(255, 255, 255, 0.08);
+                                    flex-shrink: 0;
+
+                                    h4 {
+                                        font-size: 1.3vh;
+                                        font-family: 'Evogria', sans-serif;
+                                        color: rgba(255, 255, 255, 0.7);
+                                        text-transform: uppercase;
+                                        letter-spacing: 0.1vh;
+                                        margin: 0;
+                                    }
+
+                                    .btn-action {
+                                        cursor: pointer;
+                                        background: $primary-color;
+                                        border: 0.1vh solid rgba(255, 255, 255, 0.1);
+                                        border-radius: 0.5vh;
+                                        color: white;
+                                        padding: 0.5vh;
+                                        width: 3vh;
+                                        height: 3vh;
+                                        transition: all 0.2s ease;
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: center;
+
+                                        &:hover {
+                                            opacity: 0.7;
+                                        }
+                                    }
+                                }
+
+                                .categories-list {
+                                    flex: 1 1 auto;
+                                    overflow-y: scroll !important;
+                                    overflow-x: hidden;
+                                    min-height: 0;
+                                    padding-right: 4px;
+
+                                    // Estilos para la scrollbar de categorías
+                                    &::-webkit-scrollbar {
+                                        width: 4px;
+                                    }
+
+                                    &::-webkit-scrollbar-track {
+                                        background: rgba(255, 255, 255, 0.05);
+                                        border-radius: 2px;
+                                    }
+
+                                    &::-webkit-scrollbar-thumb {
+                                        background: rgba(255, 107, 0, 0.4);
+                                        border-radius: 2px;
+
+                                        &:hover {
+                                            background: rgba(255, 107, 0, 0.6);
+                                        }
+                                    }
+
+                                    .category-item {
+                                        display: flex;
+                                        gap: 0.8vh;
+                                        margin-bottom: 0.8vh;
+                                        align-content: center;
+                                        justify-content: center;
+                                        align-items: center;
+
+                                        .form-control-small {
+                                            flex: 1;
+                                            min-width: 0;
+                                            background: rgba(0, 0, 0, 0.4);
+                                            border: 0.1vh solid rgba(255, 255, 255, 0.1);
+                                            border-radius: 0.5vh;
+                                            color: white;
+                                            padding: 0.5vh 0.8vh;
+                                            font-size: 1.1vh;
+                                            font-family: 'Quicksand', sans-serif;
+                                            height: 3.5vh;
+                                            transition: all 0.2s ease;
+                                            box-sizing: border-box;
+
+                                            &:focus {
+                                                border-color: rgba(255, 107, 0, 0.8);
+                                                background: rgba(255, 255, 255, 0.08);
+                                                outline: none;
+                                                box-shadow: 0 0 10px rgba(255, 107, 0, 0.3);
+                                            }
+
+                                            &:hover {
+                                                border-color: rgba(255, 255, 255, 0.25);
+                                                background: rgba(255, 255, 255, 0.07);
+                                            }
+                                        }
+
+                                        .btn-action {
+                                            cursor: pointer;
+                                            background: rgba(255, 255, 255, 0.06);
+                                            border: 0.1vh solid rgba(255, 255, 255, 0.1);
+                                            border-radius: 0.4vh;
+                                            color: rgba(255, 255, 255, 0.6);
+                                            width: 3vh;
+                                            height: 3vh;
+                                            padding: 0;
+                                            transition: all 0.2s ease;
+                                            display: flex;
+                                            align-items: center;
+                                            justify-content: center;
+                                            flex-shrink: 0;
+
+                                            &.btn-danger:hover {
+                                                background: rgba(244, 67, 54, 0.2);
+                                                border-color: rgba(244, 67, 54, 0.4);
+                                                color: #f44336;
+                                            }
+
+                                            i {
+                                                font-size: 1.2vh;
+                                            }
+                                        }
+
+                                        &.btn-small {
+                                            width: 3.5vh;
+                                            height: 3.5vh;
+                                            border-radius: 6px;
+
+                                            i {
+                                                font-size: 1.4vh;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            // Panel de vehículos (derecha)
+                            .vehicles-panel {
+                                flex: 1;
+                                display: flex;
+                                flex-direction: column;
+                                min-height: 0 !important; // Permite que el container de scroll funcione correctamente
+                                overflow: hidden !important;
+                                height: 100% !important; // Altura completa disponible
+                                max-height: calc(100vh - 25vh) !important;
+
+                                .vehicles-header {
+                                    display: flex;
+                                    justify-content: space-between;
+                                    align-items: center;
+                                    margin-bottom: 1vh;
+                                    padding-bottom: 0.5vh;
+                                    border-bottom: 0.1vh solid rgba(255, 255, 255, 0.08);
+                                    flex-shrink: 0;
+
+                                    .vehicles-title h4 {
+                                        font-size: 1.3vh;
+                                        font-family: 'Evogria', sans-serif;
+                                        color: rgba(255, 255, 255, 0.7);
+                                        text-transform: uppercase;
+                                        letter-spacing: 0.1vh;
+                                        margin: 0;
+                                    }
+
+                                    .vehicles-actions {
+                                        display: flex;
+                                        gap: 1vh;
+                                        align-items: center;
+
+                                        .category-controls {
+                                            display: flex;
+                                            align-items: center;
+                                            gap: 0.5vh;
+                                        }
+
+                                        .search-vehicles-compact {
+                                            position: relative;
+                                            display: flex;
+                                            align-items: center;
+
+                                            .search-icon {
+                                                position: absolute;
+                                                left: 0.5vh;
+                                                color: $color_11;
+                                                z-index: 1;
+                                            }
+
+                                            .search-input-compact {
+                                                background: rgba(0, 0, 0, 0.4);
+                                                border: 0.1vh solid rgba(255, 255, 255, 0.1);
+                                                border-radius: 0.6vh;
+                                                color: white;
+                                                padding: 0.8vh 1.2vh 0.8vh 3vh;
+                                                font-size: 1.2vh;
+                                                font-family: 'Quicksand', sans-serif;
+                                                width: 220px;
+                                                height: 4vh;
+                                                transition: all 0.2s ease;
+
+                                                &:focus {
+                                                    border-color: rgba(255, 107, 0, 0.8);
+                                                    background: rgba(255, 255, 255, 0.08);
+                                                    outline: none;
+                                                    box-shadow: 0 0 10px rgba(255, 107, 0, 0.3);
+                                                }
+
+                                                &:hover {
+                                                    border-color: rgba(255, 255, 255, 0.25);
+                                                    background: rgba(255, 255, 255, 0.07);
+                                                }
+
+                                                &::placeholder {
+                                                    color: $color_11;
+                                                    opacity: 0.7;
+                                                }
+                                            }
+
+                                            .btn-clear {
+                                                position: absolute;
+                                                right: 0.5vh;
+                                                cursor: pointer;
+                                                color: $color_11;
+
+                                                &:hover {
+                                                    color: $color_2;
+                                                }
+                                            }
+                                        }
+
+                                        .btn-action {
+                                            display: flex;
+                                            align-items: center;
+                                            gap: 0.5vh;
+                                            cursor: pointer;
+                                            background: $primary-color;
+                                            border: 0.1vh solid rgba(255, 255, 255, 0.1);
+                                            border-radius: 0.5vh;
+                                            color: white;
+                                            padding: 0.8vh 1.2vh;
+                                            transition: all 0.2s ease;
+                                            font-size: 1vh;
+                                            font-family: 'Evogria', sans-serif;
+                                            text-transform: uppercase;
+
+                                            &:hover {
+                                                opacity: 0.7;
+                                            }
+
+                                            span {
+                                                font-size: 1vh;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                .vehicles-grid-container {
+                                    flex: 1;
+                                    overflow-y: auto !important;
+                                    overflow-x: hidden;
+                                    padding-right: 0.5vh;
+                                    height: 0 !important; // Fuerza al flex child a usar solo el espacio disponible
+                                    max-height: calc(100vh - 30vh) !important; // Altura máxima para forzar scroll
+
+                                    // Estilos para la scrollbar principal
+                                    &::-webkit-scrollbar {
+                                        width: 8px;
+                                    }
+
+                                    &::-webkit-scrollbar-track {
+                                        background: rgba(255, 255, 255, 0.05);
+                                        border-radius: 4px;
+                                    }
+
+                                    &::-webkit-scrollbar-thumb {
+                                        background: rgba(255, 107, 0, 0.7);
+                                        border-radius: 4px;
+
+                                        &:hover {
+                                            background: rgba(255, 107, 0, 0.9);
+                                        }
+                                    }
+
+                                    .category-section {
+                                        margin-bottom: 1.5vh;
+                                        border-radius: 0.6vh;
+                                        overflow: hidden;
+                                        background: rgba(0, 0, 0, 0.2);
+
+                                        .category-header {
+                                            font-size: 1.2vh;
+                                            color: white;
+                                            font-weight: 600;
+                                            font-family: 'Evogria', sans-serif;
+                                            text-transform: uppercase;
+                                            letter-spacing: 0.1vh;
+                                            margin-bottom: 1vh;
+                                            padding: 1vh 1.5vh;
+                                            border-left: 0.3vh solid $primary-color;
+                                            background: rgba(182, 182, 182, 0.05);
+                                            border-radius: 0 6px 6px 0;
+                                            transition: all 0.3s ease;
+
+                                            &.collapsible {
+                                                cursor: pointer;
+                                                display: flex;
+                                                justify-content: space-between;
+                                                align-items: center;
+                                                user-select: none;
+
+                                                &:hover {
+                                                    background: rgba(182, 182, 182, 0.1);
+                                                    border-left-color: rgba(255, 107, 0, 1);
+                                                    transform: translateX(2px);
+                                                }
+
+                                                &.expanded {
+                                                    background: rgba(255, 107, 0, 0.15);
+                                                    border-left-color: rgba(255, 107, 0, 1);
+                                                }
+
+                                                .category-info {
+                                                    display: flex;
+                                                    align-items: center;
+                                                    gap: 1vh;
+
+                                                    .category-title {
+                                                        font-weight: 700;
+                                                    }
+
+                                                    .category-count {
+                                                        font-size: 1vh;
+                                                        color: rgba(255, 255, 255, 0.7);
+                                                        font-weight: 500;
+                                                        background: rgba(0, 0, 0, 0.2);
+                                                        padding: 0.3vh 0.8vh;
+                                                        border-radius: 12px;
+                                                        border: 1px solid rgba(255, 255, 255, 0.1);
+                                                    }
+                                                }
+
+                                                .expand-icon {
+                                                    width: 18px;
+                                                    height: 18px;
+                                                    color: rgba(255, 255, 255, 0.8);
+                                                    transition: all 0.3s ease;
+                                                    flex-shrink: 0;
+                                                }
+
+                                                &:hover .expand-icon {
+                                                    color: white;
+                                                    transform: scale(1.1);
+                                                }
+
+                                                &.expanded .expand-icon {
+                                                    transform: rotate(0deg);
+                                                }
+                                            }
+                                        }
+
+                                        .vehicles-grid {
+                                            display: grid;
+                                            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                                            gap: 1vh;
+                                            overflow: hidden;
+                                            opacity: 0;
+                                            max-height: 0;
+                                            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                                            transform: translateY(-10px);
+
+                                            &.expanded {
+                                                opacity: 1;
+                                                max-height: 1000vh; // Valor alto para permitir expansión completa
+                                                transform: translateY(0);
+                                                margin-bottom: 1vh;
+                                            }
+
+                                            .vehicle-card-compact {
+                                                display: flex;
+                                                align-items: center;
+                                                background: rgba(22, 22, 22, 0.7);
+                                                border: 0.1vh solid rgba(255, 255, 255, 0.08);
+                                                border-radius: 0.6vh;
+                                                padding: 1vh;
+                                                gap: 1vh;
+                                                transition: all 0.2s ease;
+                                                position: relative;
+                                                overflow: hidden;
+                                                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+                                                opacity: 0;
+                                                transform: translateY(10px);
+                                                transition: opacity 0.22s cubic-bezier(.4, 0, .2, 1), transform 0.22s cubic-bezier(.4, 0, .2, 1);
+                                                will-change: opacity, transform;
+
+                                                &:hover {
+                                                    background: rgba(255, 255, 255, 0.06);
+                                                    border-color: rgba(255, 255, 255, 0.12);
+                                                }
+
+                                                &.vehicle-card-visible {
+                                                    opacity: 1;
+                                                    transform: translateY(0);
+                                                }
+
+                                                .vehicle-image-small {
+                                                    width: 126px;
+                                                    height: 120px;
+                                                    border-radius: 0.5vh;
+                                                    overflow: hidden;
+                                                    background: rgba(0, 0, 0, 0.3);
+                                                    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+                                                    display: flex;
+                                                    align-items: center;
+                                                    justify-content: center;
+                                                    flex-shrink: 0;
+                                                    position: relative;
+
+                                                    .vehicle-img-small {
+                                                        width: 100%;
+                                                        height: 100%;
+                                                        object-fit: contain;
+                                                        object-position: center;
+                                                        transition: none;
+                                                        padding: 3px;
+                                                        box-sizing: border-box;
+                                                    }
+                                                }
+
+                                                .vehicle-details {
+                                                    flex: 1;
+                                                    display: flex;
+                                                    flex-direction: column;
+                                                    gap: 0.4vh;
+                                                    min-width: 0;
+
+                                                    .vehicle-name {
+                                                        font-size: 1.2vh;
+                                                        font-weight: 600;
+                                                        font-family: 'Evogria', sans-serif;
+                                                        color: white;
+                                                        text-transform: uppercase;
+                                                        letter-spacing: 0.05vh;
+                                                        margin-bottom: 0.2vh;
+                                                        white-space: nowrap;
+                                                        overflow: hidden;
+                                                        text-overflow: ellipsis;
+                                                    }
+
+                                                    .vehicle-model {
+                                                        font-size: 1vh;
+                                                        color: rgba(255, 255, 255, 0.7);
+                                                        text-transform: lowercase;
+                                                        font-style: italic;
+                                                        margin-bottom: 0.3vh;
+                                                        white-space: nowrap;
+                                                        overflow: hidden;
+                                                        text-overflow: ellipsis;
+                                                    }
+
+                                                    .vehicle-stats {
+                                                        display: flex;
+                                                        gap: 0.4vh;
+                                                        flex-wrap: wrap;
+                                                        margin-bottom: 0.3vh;
+
+                                                        .stat {
+                                                            background: rgba(255, 255, 255, 0.06);
+                                                            border: 0.1vh solid rgba(255, 255, 255, 0.1);
+                                                            border-radius: 0.3vh;
+                                                            color: rgba(255, 255, 255, 0.8);
+                                                            font-size: 0.8vh;
+                                                            padding: 0.2vh 0.5vh;
+                                                            font-weight: 500;
+                                                            font-family: 'Quicksand', sans-serif;
+                                                            text-transform: uppercase;
+                                                            letter-spacing: 0.03vh;
+                                                            transition: background 0.2s ease;
+
+                                                            &:hover {
+                                                                background: rgba(255, 255, 255, 0.15);
+                                                            }
+
+                                                            &.stock {
+                                                                color: #4CAF50;
+                                                                background: rgba(76, 175, 80, 0.1);
+                                                                border-color: rgba(76, 175, 80, 0.3);
+                                                            }
+                                                        }
+                                                    }
+
+                                                    .financing-status {
+                                                        font-size: 0.8vh;
+                                                        display: flex;
+                                                        align-items: center;
+                                                        gap: 0.3vh;
+                                                        padding: 0.2vh 0.4vh;
+                                                        border-radius: 4px;
+                                                        font-weight: 500;
+                                                        text-transform: uppercase;
+                                                        letter-spacing: 0.2px;
+
+                                                        [data-lucide] {
+                                                            width: 1vh;
+                                                            height: 1vh;
+                                                        }
+
+                                                        &.enabled {
+                                                            color: #4CAF50;
+                                                            background: rgba(76, 175, 80, 0.1);
+                                                            border: 1px solid rgba(76, 175, 80, 0.3);
+                                                        }
+
+                                                        &.disabled {
+                                                            color: #f44336;
+                                                            background: rgba(244, 67, 54, 0.1);
+                                                            border: 1px solid rgba(244, 67, 54, 0.3);
+                                                        }
+                                                    }
+                                                }
+
+                                                .vehicle-actions {
+                                                    display: flex;
+                                                    flex-direction: column;
+                                                    gap: 0.3vh;
+
+                                                    .btn-action {
+                                                        cursor: pointer;
+                                                        background: rgba(255, 255, 255, 0.1);
+                                                        border: 1px solid rgba(255, 255, 255, 0.2);
+                                                        border-radius: 4px;
+                                                        color: rgba(255, 255, 255, 0.8);
+                                                        padding: 0.3vh;
+                                                        width: 2.2vh;
+                                                        height: 2.2vh;
+                                                        transition: all 0.3s ease;
+                                                        display: flex;
+                                                        align-items: center;
+                                                        justify-content: center;
+
+                                                        [data-lucide] {
+                                                            width: 1vh;
+                                                            height: 1vh;
+                                                        }
+
+                                                        &:hover {
+                                                            background: rgba(255, 255, 255, 0.15);
+                                                            border-color: rgba(255, 255, 255, 0.3);
+                                                            color: white;
+                                                            transform: scale(1.05);
+                                                        }
+
+                                                        &.btn-danger {
+                                                            &:hover {
+                                                                background: rgba(244, 67, 54, 0.2);
+                                                                border-color: rgba(244, 67, 54, 0.4);
+                                                                color: #f44336;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+
+                                            .vehicle-card-compact.vehicle-card-visible {
+                                                opacity: 1;
+                                                transform: translateY(0);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // Map tab
+                    .map-container {
+                        width: 100%;
+                        height: 100%;
+                        border: 1px solid rgba(255, 255, 255, 0.2);
+                        border-radius: 5px;
+                        overflow: hidden;
+                    }
+                }
+            }
+        }
+    }
+
+    .header {
+        width: 100%;
+        height: 5vh;
+        text-align: center;
+        letter-spacing: 0.3vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: $primary-color;
+        border: 0.1vh solid rgba(255, 255, 255, 0.1);
+        border-radius: 0.8vh;
+        outline: 0.1vh dashed rgba(255, 255, 255, 0.15);
+        outline-offset: 0.3vh;
+        color: white;
+        font-size: 1.3vw;
+        font-weight: 700;
+        font-family: 'Evogria', sans-serif;
+        text-transform: uppercase;
+        text-shadow: 0 0 5vh rgba(255, 255, 255, 0.5);
+
+        [data-lucide] {
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.1);
+            border: 0.1vh solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.5vh;
+            color: white;
+            margin: 0.5vh;
+            margin-left: 1vw;
+            width: 3vh;
+            height: 3vh;
+            padding: 0.5vh;
+            transition: all 0.2s ease;
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.2);
+                border-color: rgba(255, 255, 255, 0.2);
+            }
+        }
+    }
+}
+
+// === MISSING ADMIN PANEL STYLES ===
+// Dealership tabs (General, Vehículos, Ubicaciones)
+.dealership-tabs {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-height: 0;
+}
+
+.dealership-tab-header {
+    display: flex;
+    gap: 0.5vh;
+    margin-bottom: 1vh;
+    flex-shrink: 0;
+    background: rgba(0, 0, 0, 0.3);
+    border: 0.1vh solid rgba(255, 255, 255, 0.06);
+    border-radius: 0.8vh;
+    padding: 0.5vh;
+}
+
+.dealership-tab-item {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5vh;
+    padding: 1vh 1.5vh;
+    border-radius: 0.6vh;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: transparent;
+    border: 0.1vh solid transparent;
+    color: rgba(255, 255, 255, 0.5);
+    font-family: 'Evogria', sans-serif;
+    font-size: 1.1vh;
+    text-transform: uppercase;
+    letter-spacing: 0.1vh;
+
+    [data-lucide] {
+        width: 1.6vh;
+        height: 1.6vh;
+    }
+
+    span {
+        font-weight: 500;
+    }
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(255, 255, 255, 0.08);
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    &.active {
+        background: $primary-color;
+        border-color: rgba($primary-color, 0.8);
+        color: white;
+        font-weight: 600;
+    }
+}
+
+.dealership-tab-content {
+    flex: 1;
+    overflow: hidden;
+    min-height: 0;
+}
+
+.dealership-tab-panel {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-height: 0;
+}
+
+// General settings form styles
+.general-settings {
+    padding: 1vh;
+
+    h4 {
+        display: flex;
+        align-items: center;
+        gap: 0.8vh;
+        font-size: 1.3vh;
+        font-family: 'Evogria', sans-serif;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.8);
+        text-transform: uppercase;
+        letter-spacing: 0.1vh;
+        margin-bottom: 1.5vh;
+        padding-bottom: 0.8vh;
+        border-bottom: 0.1vh solid rgba(255, 255, 255, 0.08);
+
+        [data-lucide] {
+            width: 1.8vh;
+            height: 1.8vh;
+            color: $primary-color;
+        }
+    }
+}
+
+.form-section {
+    margin-bottom: 1.5vh;
+
+    h4 {
+        display: flex;
+        align-items: center;
+        gap: 0.8vh;
+        font-size: 1.2vh;
+        font-family: 'Evogria', sans-serif;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.7);
+        text-transform: uppercase;
+        letter-spacing: 0.1vh;
+        margin-bottom: 1vh;
+        padding-bottom: 0.5vh;
+        border-bottom: 0.1vh solid rgba(255, 255, 255, 0.06);
+
+        [data-lucide] {
+            width: 1.6vh;
+            height: 1.6vh;
+            color: $primary-color;
+        }
+    }
+}
+
+.form-group {
+    margin-bottom: 1.2vh;
+
+    label {
+        display: block;
+        font-size: 1.1vh;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.6);
+        text-transform: uppercase;
+        letter-spacing: 0.05vh;
+        margin-bottom: 0.5vh;
+        font-family: 'Quicksand', sans-serif;
+    }
+
+    small {
+        display: block;
+        font-size: 0.9vh;
+        color: rgba(255, 255, 255, 0.4);
+        margin-top: 0.3vh;
+    }
+}
+
+.form-input {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.6vh;
+    color: white;
+    padding: 0.8vh 1vh;
+    font-size: 1.1vh;
+    font-family: 'Quicksand', sans-serif;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+    resize: vertical;
+
+    &:focus {
+        border-color: rgba($primary-color, 0.6);
+        background: rgba(0, 0, 0, 0.5);
+        outline: none;
+        box-shadow: 0 0 0.8vh rgba($primary-color, 0.2);
+    }
+
+    &:hover {
+        border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    &::placeholder {
+        color: rgba(255, 255, 255, 0.3);
+    }
+}
+
+// Custom checkbox with gangwars style
+.financing-checkbox {
+    display: none;
+}
+
+.custom-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.8vh;
+    cursor: pointer;
+    font-size: 1.1vh;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    font-family: 'Quicksand', sans-serif;
+    user-select: none;
+    transition: color 0.2s ease;
+
+    &:hover {
+        color: white;
+    }
+
+    .checkbox-box {
+        width: 2vh;
+        height: 2vh;
+        border: 0.1vh solid rgba(255, 255, 255, 0.2);
+        border-radius: 0.4vh;
+        background: rgba(0, 0, 0, 0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+        flex-shrink: 0;
+    }
+}
+
+.financing-checkbox:checked+.custom-checkbox {
+    color: white;
+
+    .checkbox-box {
+        background: $primary-color;
+        border-color: rgba($primary-color, 0.8);
+
+        &::after {
+            content: '✓';
+            color: white;
+            font-size: 1.2vh;
+            font-weight: 700;
+        }
+    }
+}
+
+.floating-marker {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid #00a8cc;
+    border-radius: 12px;
+    padding: 8px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #2c3e50;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    min-width: 80px;
+    text-align: center;
+    transform: translate(-50%, -50%);
+}
+
+.floating-marker:hover {
+    background: rgba(0, 168, 204, 0.95);
+    color: white;
+    transform: translate(-50%, -50%) scale(1.1);
+    box-shadow: 0 8px 30px rgba(0, 168, 204, 0.4);
+}
+
+.floating-marker.active {
+    background: rgba(46, 204, 113, 0.95);
+    border-color: #27ae60;
+    color: white;
+}
+
+.floating-marker::before {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid currentColor;
+    opacity: 0.8;
+}
+
+.marker-input {
+    position: absolute;
+    background: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 14px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+    min-width: 200px;
+    transform: translate(-50%, -50%);
+    outline: none;
+    border: 2px solid #00a8cc;
+}
+
+.marker-input:focus {
+    border-color: #0088aa;
+    box-shadow: 0 8px 30px rgba(0, 120, 180, 0.3);
+}
+
+.marker-controls {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    padding: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    z-index: 1002;
+    transform: translate(-50%, -50%);
+    display: flex;
+    gap: 8px;
+}
+
+.control-btn {
+    background: #00a8cc;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.control-btn:hover {
+    background: #0088aa;
+    transform: scale(1.05);
+}
+
+.control-btn.save {
+    background: #27ae60;
+}
+
+.control-btn.save:hover {
+    background: #229954;
+}
+
+.control-btn.cancel {
+    background: #e74c3c;
+}
+
+.control-btn.cancel:hover {
+    background: #c0392b;
+}
+
+.pulse-animation {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+}
+
+.demo-info {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 14px;
+    max-width: 300px;
+}
+
+.marker-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 15px;
+    height: 15px;
+    background-color: $background-color_25;
+    border: 1px solid rgba(255, 255, 255, 0.651);
+    color: $color_16;
+    font-size: 16px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+        transform: scale(1.1);
+        background-color: $background-color_25;
+    }
+}
+
+.leaflet-container {
+    background-color: $background-color_26 !important;
+
+    a.leaflet-popup-close-button {
+        color: $color_2 !important;
+    }
+}
+
+.leaflet-bottom {
+    display: none;
+}
+
+.leaflet-popup-content-wrapper {
+    background: rgba(0, 0, 0, 0.8) !important;
+    color: $color_16 !important;
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
+    font-family: $font-family_5;
+    font-weight: 100;
+    font-size: 1.5vh;
+    text-align: center;
+    border-radius: 5px !important;
+}
+
+.leaflet-popup-tip {
+    background: rgba(0, 0, 0, 0.8) !important;
+    color: $color_16 !important;
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
+    font-family: $font-family_5;
+    font-weight: 100;
+    font-size: 1.5vh;
+    text-align: center;
+    border-radius: 5px !important;
+}
+
+img.leaflet-marker-icon {
+    filter: drop-shadow(0px 0px 10px rgb(0, 0, 0)) !important;
+}
+
+.dealership-editor {
+    [data-lucide] {
+        cursor: pointer;
+        background-color: $background-color_20;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 5px;
+        color: $color_14;
+        margin: 0.5vh;
+        width: 3vh;
+        height: 3vh;
+        padding: 0.5vh;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+        &:hover {
+            rotate: 20deg;
+            background-color: $background-color_21;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+    }
+
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    overflow: scroll;
+    max-height: 42vw;
+    -webkit-mask-image: linear-gradient(180deg, black 92%, transparent);
+    mask-image: linear-gradient(180deg, black 92%, transparent);
+    width: 100%;
+}
+
+.dealership-info-section {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 2vh;
+    margin-bottom: 2vh;
+}
+
+.dealership-info-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5vh;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+    padding-bottom: 1vh;
+
+    h3 {
+        color: $color_2;
+        font-size: 1.2vw;
+        margin: 0;
+        width: 100%;
+        text-transform: uppercase;
+    }
+
+    .botones {
+        display: flex;
+        align-items: center;
+        width: fit-content;
+        justify-content: flex-end;
+        width: 100%;
+    }
+}
+
+.dealership-info-content {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.5vh;
+
+    .btn-text-action {
+        background-color: $background-color_13;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        transition: 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border: 1px solid rgba(255, 255, 255, .2);
+        padding: 1vh;
+        border-radius: 5px;
+        cursor: pointer;
+
+        text-transform: uppercase;
+    }
+
+    .btn-text-action:hover {
+        letter-spacing: 1px;
+        font-weight: bolder;
+        background-color: $background-color_14;
+    }
+
+}
+
+.info-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vh;
+
+    label {
+        color: $color_17;
+        font-size: 0.8vw;
+        text-transform: uppercase;
+    }
+}
+
+.category-creator {
+    margin-top: 2vh;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 2vh;
+}
+
+.category-creator-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5vh;
+
+    h3 {
+        color: $color_2;
+        font-size: 1.2vw;
+        margin: 0;
+        text-transform: uppercase;
+    }
+}
+
+.category-actions {
+    display: flex;
+    gap: 0.5vh;
+}
+
+.category-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+    max-height: 20vh;
+    overflow-y: auto;
+}
+
+.category-item {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    padding: 1vh;
+}
+
+.category-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.category-label {
+    width: 70%;
+    background: rgba(0, 0, 0, 0.3);
+    color: white !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.add-vehicle-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    align-items: center;
+    padding: 1vh;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+
+    .search-vehicles {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        h2 {
+            color: white;
+            font-size: 1rem;
+            margin-bottom: 0.5vh;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .search-input-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+
+            input {
+                width: 100%;
+                height: 100%;
+                padding: 1vh 2.5vh;
+                background: rgba(0, 0, 0, 0.3);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 5px;
+                color: white;
+                font-size: 0.9rem;
+                transition: all 0.3s ease;
+            }
+
+            input:focus {
+                border-color: rgba(255, 107, 0, 0.7);
+                outline: none;
+                box-shadow: 0 0 0 2px rgba(255, 107, 0, 0.3);
+            }
+
+            input::placeholder {
+                color: rgba(255, 255, 255, 0.5);
+            }
+        }
+    }
+}
+
+.btn-add-vehicle {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.158);
+    width: 100%;
+    color: $color_2;
+    padding: .5vh 0vh;
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    gap: 0.5vh;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    &:hover {
+        letter-spacing: 1px;
+
+        [data-lucide] {
+            rotate: 20deg;
+            background: $background-color_21;
+
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+    }
+}
+
+
+.financing-label {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9vw;
+    font-weight: 500;
+    user-select: none;
+    cursor: pointer;
+
+    &:hover {
+        color: white;
+    }
+}
+
+/* Enhanced Vehicle Info Tags */
+.vehicle-info {
+    .extra-info {
+        display: flex;
+        gap: 0.8vh;
+        flex-wrap: wrap;
+        margin-top: 1vh;
+
+        .tag {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1vh;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-radius: 6px;
+            padding: 0.4vh 0.8vh;
+            border: 1px solid transparent;
+            background: rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            min-width: fit-content;
+            white-space: nowrap;
+
+            &.vehicle-stock {
+
+                // Stock badge - azul suave
+                &:first-child {
+                    background: linear-gradient(135deg, rgba(0, 168, 204, 0.8), rgba(0, 120, 180, 0.8));
+                    border-color: rgba(0, 168, 204, 0.4);
+                    color: white;
+                }
+
+                // Price badge - verde suave
+                &:nth-child(2) {
+                    background: linear-gradient(135deg, rgba(46, 204, 113, 0.8), rgba(39, 174, 96, 0.8));
+                    border-color: rgba(46, 204, 113, 0.4);
+                    color: white;
+                }
+
+                // XP badge - naranja suave
+                &:nth-child(3) {
+                    background: linear-gradient(135deg, rgba(230, 126, 34, 0.8), rgba(211, 84, 0, 0.8));
+                    border-color: rgba(230, 126, 34, 0.4);
+                    color: white;
+                }
+
+                // Class badge - púrpura suave
+                &:nth-child(4) {
+                    background: linear-gradient(135deg, rgba(0, 168, 204, 0.8), rgba(0, 120, 180, 0.8));
+                    border-color: rgba(0, 168, 204, 0.4);
+                    color: white;
+                }
+            }
+
+            &.financing-badge {
+                gap: 0.4vh;
+
+                i {
+                    width: 1.3vh;
+                    height: 1.3vh;
+                }
+
+                &.financing-enabled {
+                    background: linear-gradient(135deg, rgba(39, 174, 96, 0.9), rgba(46, 204, 113, 0.9));
+                    border-color: rgba(39, 174, 96, 0.5);
+                    color: white;
+                    box-shadow: 0 2px 12px rgba(39, 174, 96, 0.3);
+                }
+
+                &.financing-disabled {
+                    background: linear-gradient(135deg, rgba(231, 76, 60, 0.9), rgba(192, 57, 43, 0.9));
+                    border-color: rgba(231, 76, 60, 0.5);
+                    color: white;
+                    box-shadow: 0 2px 12px rgba(231, 76, 60, 0.3);
+                }
+            }
+        }
+    }
+}
+
+/* Modal Independiente de Financiamiento */
+.financing-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.financing-modal-container {
+    background: rgba(20, 20, 25, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    animation: slideIn 0.3s ease-out;
+}
+
+.financing-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+    h2 {
+        color: white;
+        font-size: 18px;
+        font-weight: 600;
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .close-btn {
+        background: none;
+        border: none;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 24px;
+        cursor: pointer;
+        padding: 5px;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+    }
+}
+
+.financing-modal-content {
+    padding: 25px;
+}
+
+.vehicle-summary {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 25px;
+
+    .vehicle-name-price {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        span:first-child {
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        span:last-child {
+            color: #2ecc71;
+            font-weight: 600;
+            font-size: 16px;
+        }
+    }
+}
+
+.financing-plans {
+    margin-bottom: 25px;
+
+    h3 {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 14px;
+        font-weight: 500;
+        margin: 0 0 15px 0;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+}
+
+.payment-info-text {
+    color: white;
+}
+
+#financing-options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 5px;
+
+    /* Scrollbar personalizado */
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: rgba(255, 107, 0, 0.8);
+        border-radius: 3px;
+
+        &:hover {
+            background: rgba(255, 107, 0, 1);
+        }
+    }
+}
+
+.financing-option {
+    background: rgba(255, 255, 255, 0.08);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        width: 16px;
+        height: 16px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        transition: all 0.3s ease;
+    }
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.12);
+        border-color: rgba(255, 107, 0, 0.5);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+
+        &::before {
+            border-color: rgba(255, 107, 0, 0.8);
+        }
+    }
+
+    &.selected {
+        background: rgba(255, 107, 0, 0.2);
+        border-color: rgba(255, 107, 0, 1);
+        box-shadow: 0 0 20px rgba(255, 107, 0, 0.4);
+
+        &::before {
+            background: rgba(255, 107, 0, 1);
+            border-color: rgba(255, 107, 0, 1);
+            box-shadow: inset 0 0 0 3px white;
+        }
+    }
+
+    .option-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+        padding-right: 35px;
+
+        .period-text {
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .payment-amount {
+            color: #2ecc71;
+            font-weight: 600;
+            font-size: 14px;
+        }
+    }
+
+    .option-details {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .total-cost {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 12px;
+        }
+
+        .interest-info {
+            color: #e67e22;
+            font-size: 12px;
+            font-weight: 500;
+        }
+    }
+}
+
+.payment-method {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 15px;
+
+    .payment-info {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+
+        i {
+            color: #2ecc71;
+            width: 20px;
+            height: 20px;
+            margin-top: 2px;
+        }
+
+        div {
+            strong {
+                color: white;
+                font-size: 14px;
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            p {
+                color: rgba(255, 255, 255, 0.7);
+                font-size: 12px;
+                margin: 0;
+                line-height: 1.4;
+            }
+        }
+    }
+}
+
+.financing-modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 20px 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+    button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+
+        &.btn-cancel {
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.2);
+                color: white;
+            }
+        }
+
+        &.btn-confirm {
+            background: linear-gradient(135deg, rgba(255, 107, 0, 0.9), rgba(0, 168, 204, 0.9));
+            color: white;
+            border: 1px solid rgba(255, 107, 0, 0.6);
+            box-shadow: 0 2px 10px rgba(255, 107, 0, 0.3);
+
+            &:hover:not(:disabled) {
+                background: linear-gradient(135deg, rgba(255, 107, 0, 1), rgba(0, 168, 204, 1));
+                box-shadow: 0 4px 15px rgba(255, 107, 0, 0.5);
+                transform: translateY(-1px);
+            }
+
+            &:disabled {
+                opacity: 0.6;
+                cursor: not-allowed;
+                transform: none;
+
+                &:hover {
+                    transform: none;
+                    box-shadow: 0 2px 10px rgba(255, 107, 0, 0.3);
+                }
+            }
+        }
+    }
+}
+
+/* Modal de Agregar Vehículo */
+.add-vehicle-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Modal de Configuración de Exhibidores */
+.exhibitor-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.add-vehicle-modal-container {
+    background: rgba(20, 20, 25, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    width: 95%;
+    max-width: 1200px;
+    height: 80vh; // Aumentar un poco la altura
+    max-height: 80vh;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    animation: slideIn 0.3s ease-out;
+    display: flex;
+    flex-direction: column;
+}
+
+.exhibitor-modal-container {
+    background: rgba(20, 20, 25, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    width: 90%;
+    max-width: 1000px;
+    max-height: 85vh;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    animation: slideIn 0.3s ease-out;
+    display: flex;
+    flex-direction: column;
+}
+
+.add-vehicle-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px; // Reducir padding de 20px a 15px
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+    h2 {
+        color: white;
+        font-size: 18px;
+        font-weight: 600;
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .close-btn {
+        background: none;
+        border: none;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 24px;
+        cursor: pointer;
+        padding: 5px;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+    }
+}
+
+.exhibitor-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.2);
+
+    h2 {
+        color: white;
+        font-size: 18px;
+        font-weight: 600;
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .close-btn {
+        background: none;
+        border: none;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 24px;
+        cursor: pointer;
+        padding: 5px;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+    }
+}
+
+.add-vehicle-modal-content {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    min-height: 0; // Importante para que flex funcione correctamente
+}
+
+.add-vehicle-left-panel {
+    flex: 0 0 400px;
+    padding: 20px; // Reducir padding de 25px a 20px
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    overflow-y: auto;
+    max-height: calc(80vh - 140px); // Altura del modal menos header y footer
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 107, 0, 0.5) transparent;
+
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: rgba(255, 107, 0, 0.5);
+        border-radius: 3px;
+
+        &:hover {
+            background: rgba(255, 107, 0, 0.7);
+        }
+    }
+
+    .form-section {
+        h3 {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
+            font-weight: 500;
+            margin: 0 0 20px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+    }
+
+    .form-group {
+        margin-bottom: 12px; // Reducir aún más para dar más espacio
+
+        label {
+            display: block;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 12px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        // Estilo específico para el toggle de financiamiento
+        .financing-toggle-label {
+            display: flex !important;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            margin-bottom: 0;
+            margin-top: 8px;
+
+            .financing-checkbox {
+                display: none;
+            }
+
+            .financing-slider {
+                position: relative;
+                width: 44px;
+                height: 24px;
+                background: rgba(255, 255, 255, 0.2);
+                border-radius: 12px;
+                transition: all 0.3s ease;
+                flex-shrink: 0;
+
+                .financing-slider-circle {
+                    position: absolute;
+                    top: 2px;
+                    left: 2px;
+                    width: 20px;
+                    height: 20px;
+                    background: white;
+                    border-radius: 50%;
+                    transition: all 0.3s ease;
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+                }
+            }
+
+            .financing-checkbox:checked+.financing-slider {
+                background: rgba(255, 107, 0, 0.8);
+
+                .financing-slider-circle {
+                    transform: translateX(20px);
+                }
+            }
+
+            .financing-text {
+                color: rgba(255, 255, 255, 0.8);
+                font-size: 14px;
+                line-height: 1.4;
+                user-select: none;
+                text-transform: none; // Evita que se transforme a mayúsculas
+                letter-spacing: normal; // Reestablece el espaciado de letras
+                font-weight: normal; // Peso normal para el texto
+            }
+        }
+
+        .form-input,
+        .form-select {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            padding: 12px 15px;
+            color: white;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            height: 48px; // Altura fija para todos
+            box-sizing: border-box;
+
+            &::placeholder {
+                color: rgba(255, 255, 255, 0.5);
+            }
+
+            &:focus {
+                outline: none;
+                border-color: rgba(255, 107, 0, 0.7);
+                box-shadow: 0 0 0 2px rgba(255, 107, 0, 0.3);
+                background: rgba(255, 255, 255, 0.12);
+            }
+
+            // Ocultar controles de inputs numéricos
+            &[type="number"] {
+                appearance: textfield; // Estándar
+                -moz-appearance: textfield; // Firefox
+
+                &::-webkit-outer-spin-button,
+                &::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                }
+            }
+        }
+
+        .form-select {
+            cursor: pointer;
+
+            option {
+                background: #2a2a2a;
+                color: white;
+            }
+        }
+    }
+
+    .form-row {
+        display: flex;
+        gap: 15px;
+
+        .form-group {
+            flex: 1;
+        }
+    }
+}
+
+.add-vehicle-right-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    .vehicles-section {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 20px; // Reducir padding de 25px a 20px
+        min-height: 0;
+        overflow: visible; // Cambiar a visible para permitir el scroll interno
+
+        .vehicles-header {
+            margin-bottom: 15px; // Reducir margen
+            flex-shrink: 0; // Evitar que se encoja
+
+            h3 {
+                color: rgba(255, 255, 255, 0.9);
+                font-size: 13px; // Reducir tamaño
+                font-weight: 500;
+                margin: 0 0 12px 0; // Reducir margen
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+
+            .search-container {
+                position: relative;
+                display: flex;
+                align-items: center;
+
+                .search-icon {
+                    position: absolute;
+                    left: 12px;
+                    color: rgba(255, 255, 255, 0.5);
+                    width: 16px;
+                    height: 16px;
+                    z-index: 1;
+                }
+
+                .search-input {
+                    width: 100%;
+                    background: rgba(255, 255, 255, 0.08);
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    border-radius: 6px;
+                    padding: 12px 45px 12px 40px;
+                    color: white;
+                    font-size: 14px;
+                    transition: all 0.3s ease;
+                    height: 48px; // Misma altura que otros inputs
+                    box-sizing: border-box;
+
+                    &::placeholder {
+                        color: rgba(255, 255, 255, 0.5);
+                    }
+
+                    &:focus {
+                        outline: none;
+                        border-color: rgba(255, 107, 0, 0.7);
+                        box-shadow: 0 0 0 2px rgba(255, 107, 0, 0.3);
+                        background: rgba(255, 255, 255, 0.12);
+                    }
+                }
+
+                .clear-search-btn {
+                    position: absolute;
+                    right: 8px;
+                    background: none;
+                    border: none;
+                    color: rgba(255, 255, 255, 0.5);
+                    cursor: pointer;
+                    padding: 4px;
+                    border-radius: 4px;
+                    transition: all 0.3s ease;
+
+                    &:hover {
+                        background: rgba(255, 255, 255, 0.1);
+                        color: white;
+                    }
+
+                    i {
+                        width: 16px;
+                        height: 16px;
+                    }
+                }
+            }
+        }
+
+        .vehicles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 10px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 8px;
+            margin: 0 -8px; // Compensar el padding para evitar doble scroll
+            min-height: 0;
+            align-content: start;
+            flex: 1;
+            max-height: calc(80vh - 280px); // Ajustar dinámicamente basado en la nueva altura del modal
+            background: rgba(0, 0, 0, 0.1); // Fondo sutil para delimitar el área scrolleable
+            border-radius: 8px;
+
+            &::-webkit-scrollbar {
+                width: 10px; // Aumentar un poco la anchura
+            }
+
+            &::-webkit-scrollbar-track {
+                background: rgba(255, 255, 255, 0.08); // Hacer más visible
+                border-radius: 5px;
+                margin: 4px 0; // Añadir márgenes al track
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: rgba(255, 107, 0, 0.7); // Más opaco
+                border-radius: 5px;
+                border: 1px solid rgba(255, 255, 255, 0.1); // Borde sutil
+
+                &:hover {
+                    background: rgba(255, 107, 0, 0.9); // Más opaco en hover
+                }
+            }
+
+            .vehicle-card {
+                background: rgba(255, 255, 255, 0.08);
+                border: 2px solid rgba(255, 255, 255, 0.1);
+                border-radius: 10px; // Reducido de 12px
+                padding: 10px; // Reducido de 12px
+                cursor: pointer;
+                transition: all 0.3s ease;
+                position: relative;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                height: 140px; // Reducido de 160px
+
+                &:hover {
+                    background: rgba(255, 255, 255, 0.12);
+                    border-color: rgba(255, 107, 0, 0.5);
+                    transform: translateY(-1px); // Reducido de -2px
+                    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); // Reducido
+                }
+
+                &.selected {
+                    background: rgba(255, 107, 0, 0.2);
+                    border-color: rgba(255, 107, 0, 1);
+                    box-shadow: 0 0 15px rgba(255, 107, 0, 0.5); // Reducido
+
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        height: 2px; // Reducido de 3px
+                        background: linear-gradient(90deg, rgba(255, 107, 0, 1), rgba(255, 255, 255, 0.3));
+                    }
+                }
+
+                .vehicle-image {
+                    width: 100%;
+                    flex: 1;
+                    background: rgba(0, 0, 0, 0.4);
+                    border-radius: 6px; // Reducido de 8px
+                    overflow: hidden;
+                    margin-bottom: 6px; // Reducido de 8px
+                    position: relative;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: contain;
+                        object-position: center;
+                        transition: transform 0.3s ease;
+                        padding: 6px; // Reducido de 8px
+                        box-sizing: border-box;
+                    }
+                }
+
+                .vehicle-name {
+                    color: white;
+                    font-weight: 600;
+                    font-size: 10px; // Reducido de 11px
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-transform: uppercase;
+                    letter-spacing: 0.3px; // Reducido de 0.5px
+                    text-align: center;
+                    flex-shrink: 0;
+                    line-height: 1.2; // Añadido para compactar
+                }
+
+                // Ocultar el modelo
+                .vehicle-model {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+/* Footer del modal con botones */
+.add-vehicle-modal-footer {
+    padding: 15px 25px; // Reducir padding
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    flex-shrink: 0; // Evitar que se encoja
+    min-height: 60px; // Altura mínima garantizada
+    position: relative; // Asegurar posicionamiento
+    z-index: 10; // Asegurar que esté por encima
+
+    .btn-cancel,
+    .btn-confirm {
+        padding: 12px 24px;
+        border: none;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        &:hover::before {
+            left: 100%;
+        }
+    }
+
+    .btn-cancel {
+        background: rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: rgba(255, 255, 255, 1);
+        }
+    }
+
+    .btn-confirm {
+        background: linear-gradient(135deg, rgba(255, 107, 0, 0.9), rgba(0, 168, 204, 0.9));
+        color: white;
+        border: 1px solid rgba(255, 107, 0, 0.7);
+
+        &:hover {
+            background: linear-gradient(135deg, rgba(255, 107, 0, 1), rgba(0, 168, 204, 1));
+            border-color: rgba(255, 107, 0, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 0, 0.4);
+        }
+
+        &:active {
+            transform: translateY(0);
+        }
+
+        &:disabled {
+            background: rgba(100, 100, 100, 0.3);
+            color: rgba(255, 255, 255, 0.4);
+            border-color: rgba(100, 100, 100, 0.3);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+
+            &:hover {
+                transform: none;
+                box-shadow: none;
+                background: rgba(100, 100, 100, 0.3);
+            }
+
+            &::before {
+                display: none;
+            }
+        }
+    }
+}
+
+/* Estilos para el Modal de Configuración de Exhibidores */
+.exhibitor-modal-content {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    min-height: 0;
+    padding: 20px 25px;
+}
+
+.exhibitor-content-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow: hidden;
+}
+
+.exhibitor-stats {
+    display: flex;
+    gap: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 15px;
+
+    .stat-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex: 1;
+
+        .stat-label {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 12px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .stat-value {
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+        }
+    }
+}
+
+.exhibitor-search-section {
+    .search-container {
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            color: rgba(255, 255, 255, 0.5);
+            width: 16px;
+            height: 16px;
+            z-index: 2;
+        }
+
+        .search-input {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 12px 45px 12px 40px;
+            color: white;
+            font-size: 14px;
+            transition: all 0.3s ease;
+
+            &:focus {
+                outline: none;
+                border-color: rgba(255, 107, 0, 0.5);
+                background: rgba(0, 0, 0, 0.6);
+            }
+
+            &::placeholder {
+                color: rgba(255, 255, 255, 0.4);
+            }
+        }
+
+        .clear-search-btn {
+            position: absolute;
+            right: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 4px;
+            color: rgba(255, 255, 255, 0.7);
+            width: 28px;
+            height: 28px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.2);
+                color: white;
+            }
+        }
+    }
+}
+
+.exhibitor-actions {
+    display: flex;
+    gap: 10px;
+
+    .btn-action {
+        flex: 1;
+        background: rgba(0, 0, 0, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        padding: 12px 16px;
+        color: white;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+
+        &:hover {
+            background: rgba(0, 0, 0, 0.6);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        &.btn-select-all:hover {
+            background: rgba(34, 197, 94, 0.2);
+            border-color: rgba(34, 197, 94, 0.4);
+        }
+
+        &.btn-clear-all:hover {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: rgba(239, 68, 68, 0.4);
+        }
+    }
+}
+
+.exhibitor-vehicles-grid {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-right: 8px;
+    max-height: 400px;
+
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: rgba(255, 107, 0, 0.5);
+        border-radius: 3px;
+
+        &:hover {
+            background: rgba(255, 107, 0, 0.7);
+        }
+    }
+
+    .vehicle-item {
+        background: rgba(0, 0, 0, 0.3);
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        padding: 12px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background: rgba(0, 0, 0, 0.5);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        &.selected {
+            background: rgba(255, 107, 0, 0.2);
+            border-color: rgba(255, 107, 0, 0.5);
+
+            .vehicle-checkbox input {
+                accent-color: rgba(255, 107, 0, 1);
+            }
+        }
+
+        .vehicle-checkbox {
+            flex-shrink: 0;
+
+            input[type="checkbox"] {
+                width: 18px;
+                height: 18px;
+                cursor: pointer;
+                accent-color: rgba(255, 107, 0, 0.8);
+            }
+        }
+
+        .vehicle-image {
+            flex-shrink: 0;
+            width: 60px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 4px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                object-position: center;
+                transition: transform 0.3s ease;
+                padding: 2px;
+                box-sizing: border-box;
+            }
+        }
+
+        .vehicle-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+
+            .vehicle-name {
+                color: white;
+                font-size: 14px;
+                font-weight: 600;
+            }
+
+            .vehicle-details {
+                display: flex;
+                gap: 12px;
+
+                .vehicle-model {
+                    color: rgba(255, 255, 255, 0.6);
+                    font-size: 12px;
+                    text-transform: uppercase;
+                }
+
+                .vehicle-class {
+                    color: rgba(255, 255, 255, 0.4);
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+}
+
+.no-results {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    color: rgba(255, 255, 255, 0.5);
+    text-align: center;
+
+    i {
+        width: 48px;
+        height: 48px;
+        margin-bottom: 16px;
+        opacity: 0.3;
+    }
+
+    p {
+        font-size: 14px;
+        margin: 0;
+    }
+}
+
+.exhibitor-modal-footer {
+    padding: 20px 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    flex-shrink: 0;
+
+    .btn-cancel,
+    .btn-confirm {
+        padding: 12px 20px;
+        border: none;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .btn-cancel {
+        background: rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: rgba(255, 255, 255, 1);
+        }
+    }
+
+    .btn-confirm {
+        background: linear-gradient(135deg, rgba(255, 107, 0, 0.9), rgba(0, 168, 204, 0.9));
+        color: white;
+        border: 1px solid rgba(255, 107, 0, 0.7);
+
+        &:hover {
+            background: linear-gradient(135deg, rgba(255, 107, 0, 1), rgba(0, 168, 204, 1));
+            border-color: rgba(255, 107, 0, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 0, 0.4);
+        }
+
+        &:active {
+            transform: translateY(0);
+        }
+    }
+}
+
+/* Controles Combinados de Filtrado y Ordenamiento - Estilo Admin */
+.vehicle-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vh;
+    background: rgba(0, 0, 0, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    padding: 1.5vh;
+    margin-bottom: 1vh;
+
+    .controls-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 1vh;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+        .results-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3vh;
+
+            .results-count {
+                color: rgba(255, 255, 255, 0.9);
+                font-size: 1.3vh;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+
+            .filter-status {
+                color: rgba(255, 107, 0, 1);
+                font-size: 1.1vh;
+                font-weight: 500;
+                opacity: 0.9;
+            }
+        }
+
+        .control-title {
+            font-size: 1.4vh;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: $color_2;
+            letter-spacing: 0.8px;
+        }
+    }
+
+    .controls-row {
+        display: flex;
+        gap: 2vh;
+        align-items: flex-start;
+
+        .controls-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1vh;
+            min-width: 0; // Permite que flex funcione correctamente
+
+            .section-label {
+                display: flex;
+                align-items: center;
+                gap: 0.8vh;
+                color: rgba(255, 255, 255, 0.623);
+                font-size: 1.2vh;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.3px;
+
+                [data-lucide] {
+                    width: 1.4vh;
+                    height: 1.4vh;
+                    color: rgba(255, 107, 0, 0.8);
+                }
+            }
+
+            .control-options {
+                display: flex;
+                gap: 0.8vh;
+                align-items: center;
+                flex-wrap: wrap;
+
+                .sort-option {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5vh;
+                    padding: 0.8vh 1.2vh;
+                    background: rgba(123, 121, 121, 0.4);
+                    border: 1px solid rgba(255, 255, 255, 0.2);
+                    border-radius: 5px;
+                    color: rgba(255, 255, 255, 0.85);
+                    font-size: 1.1vh;
+                    font-weight: 500;
+                    text-transform: uppercase;
+                    letter-spacing: 0.2px;
+                    cursor: pointer;
+                    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                    user-select: none;
+                    height: 4vh;
+                    box-sizing: border-box;
+
+                    [data-lucide] {
+                        width: 1.2vh;
+                        height: 1.2vh;
+                        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                    }
+
+                    &:hover {
+                        letter-spacing: 0.5px;
+                        background: rgba(123, 121, 121, 0.6);
+                        border-color: rgba(255, 255, 255, 0.3);
+                        color: rgba(255, 255, 255, 1);
+
+                        [data-lucide] {
+                            rotate: 10deg;
+                            transform: scale(1.2);
+                        }
+                    }
+
+                    &.active {
+                        background: rgba(255, 107, 0, 0.8);
+                        border-color: rgba(255, 107, 0, 1);
+                        color: white;
+                        letter-spacing: 0.8px;
+
+                        [data-lucide] {
+                            rotate: 15deg;
+                            transform: scale(1.3);
+                        }
+
+                        &:hover {
+                            background: rgba(255, 107, 0, 0.9);
+                            transform: translateY(-1px);
+                            box-shadow: 0 4px 12px rgba(255, 107, 0, 0.3);
+                        }
+                    }
+                }
+
+                .sort-direction {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 0.8vh;
+                    background: rgba(255, 107, 0, 0.8);
+                    border: 1px solid rgba(255, 107, 0, 1);
+                    border-radius: 5px;
+                    color: white;
+                    cursor: pointer;
+                    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                    user-select: none;
+                    width: 4vh;
+                    height: 4vh;
+                    box-sizing: border-box;
+
+                    [data-lucide] {
+                        width: 1.4vh;
+                        height: 1.4vh;
+                        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                    }
+
+                    &:hover {
+                        background: rgba(255, 107, 0, 1);
+                        border-color: rgba(255, 107, 0, 1);
+                        transform: translateY(-1px);
+
+                        [data-lucide] {
+                            transform: scale(1.3);
+                        }
+                    }
+                }
+            }
+
+            .price-controls {
+                display: flex;
+                align-items: center;
+                gap: 1vh;
+
+                .price-input {
+                    width: 8vh;
+                    background: rgba(255, 255, 255, 0.15);
+                    border: 1px solid rgba(255, 255, 255, 0.3);
+                    border-radius: 8px;
+                    color: $color_2;
+                    padding: 0.8vh 1.2vh;
+                    font-size: 1.2vh;
+                    height: 4vh;
+                    box-sizing: border-box;
+                    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                    text-align: center;
+                    font-weight: 500;
+
+                    &::placeholder {
+                        color: rgba(255, 255, 255, 0.5);
+                        font-size: 1.1vh;
+                    }
+
+                    &:focus {
+                        border-color: rgba(255, 107, 0, 0.8);
+                        background: rgba(255, 255, 255, 0.25);
+                        outline: none;
+                        box-shadow: 0 0 10px rgba(255, 107, 0, 0.3);
+                    }
+
+                    &:hover {
+                        border-color: rgba(255, 255, 255, 0.4);
+                        background: rgba(255, 255, 255, 0.2);
+                    }
+
+                    &[type="number"] {
+                        appearance: textfield;
+                        -moz-appearance: textfield;
+
+                        &::-webkit-outer-spin-button,
+                        &::-webkit-inner-spin-button {
+                            -webkit-appearance: none;
+                            margin: 0;
+                        }
+                    }
+                }
+
+                .price-separator {
+                    color: rgba(255, 255, 255, 0.5);
+                    font-weight: 600;
+                    font-size: 1.2vh;
+                    margin: 0 0.5vh;
+                }
+
+                .btn-apply-price,
+                .btn-clear-price {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    border: 1px solid rgba(255, 255, 255, 0.3);
+                    border-radius: 5px;
+                    padding: 0.8vh;
+                    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                    user-select: none;
+                    width: 4vh;
+                    height: 4vh;
+                    box-sizing: border-box;
+
+                    [data-lucide] {
+                        width: 1.4vh;
+                        height: 1.4vh;
+                        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                    }
+
+                    &:hover {
+                        transform: translateY(-1px);
+                        border-color: rgba(255, 255, 255, 0.5);
+
+                        [data-lucide] {
+                            transform: scale(1.2);
+                        }
+                    }
+                }
+
+                .btn-apply-price {
+                    background: rgba(46, 204, 113, 0.8);
+                    border-color: rgba(46, 204, 113, 0.9);
+                    color: white;
+
+                    &:hover:not(:disabled) {
+                        background: rgba(46, 204, 113, 1);
+                        border-color: rgba(46, 204, 113, 1);
+                        box-shadow: 0 4px 12px rgba(46, 204, 113, 0.4);
+                    }
+
+                    &:disabled {
+                        background: rgba(100, 100, 100, 0.5);
+                        border-color: rgba(100, 100, 100, 0.5);
+                        color: rgba(255, 255, 255, 0.6);
+                        cursor: not-allowed;
+                        transform: none;
+
+                        &:hover {
+                            transform: none;
+                            border-color: rgba(100, 100, 100, 0.5);
+                            box-shadow: none;
+
+                            [data-lucide] {
+                                transform: none;
+                            }
+                        }
+                    }
+                }
+
+                .btn-clear-price {
+                    background: rgba(231, 76, 60, 0.8);
+                    border-color: rgba(231, 76, 60, 0.9);
+                    color: white;
+
+                    &:hover {
+                        background: rgba(231, 76, 60, 1);
+                        border-color: rgba(231, 76, 60, 1);
+                        box-shadow: 0 4px 12px rgba(231, 76, 60, 0.4);
+                    }
+                }
+            }
+        }
+    }
+
+    // Responsive
+    @media (max-width: 768px) {
+        .controls-row {
+            flex-direction: column;
+            gap: 1.5vh;
+        }
+
+        .controls-section {
+            width: 100%;
+
+            .control-options {
+                justify-content: flex-start;
+            }
+        }
+
+        .controls-separator {
+            width: 100%;
+            height: 1px;
+            grid-column: 1;
+        }
+
+        .results-info {
+            grid-column: 1;
+            align-items: flex-start;
+            flex-direction: column;
+            padding-left: 0;
+        }
+    }
+}
+
+/* Estilos para Controles de Ordenamiento en Modal */
+.modal-sorting-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 12px 15px;
+    margin-bottom: 12px;
+    gap: 15px;
+    flex-wrap: wrap;
+
+    .sort-options-modal {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+
+        .sort-option-modal {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 6px 10px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 5px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 11px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            user-select: none;
+
+            i {
+                width: 12px;
+                height: 12px;
+            }
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.1);
+                border-color: rgba(255, 255, 255, 0.15);
+                color: rgba(255, 255, 255, 0.9);
+            }
+
+            &.active {
+                background: rgba(255, 107, 0, 0.7);
+                border-color: rgba(255, 107, 0, 0.8);
+                color: white;
+                box-shadow: 0 0 8px rgba(255, 107, 0, 0.3);
+
+                &:hover {
+                    background: rgba(255, 107, 0, 0.8);
+                }
+            }
+        }
+    }
+
+    .sort-direction-modal {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 6px 10px;
+        background: rgba(0, 168, 204, 0.6);
+        border: 1px solid rgba(0, 168, 204, 0.7);
+        border-radius: 5px;
+        color: white;
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        user-select: none;
+        flex-shrink: 0;
+
+        i {
+            width: 12px;
+            height: 12px;
+        }
+
+        &:hover {
+            background: rgba(0, 168, 204, 0.8);
+            border-color: rgba(0, 168, 204, 0.9);
+            box-shadow: 0 3px 10px rgba(0, 168, 204, 0.3);
+        }
+    }
+}
+
+/* Los estilos anteriores del filtro de precios han sido reemplazados por .vehicle-controls */
+
+/* Configuración de métodos de pago en el modal de agregar vehículo */
+.payment-methods-config {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; // Reducir gap de 12px a 8px
+    margin-top: 8px;
+
+    .payment-method-option {
+        .payment-method-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px; // Reducir gap de 12px a 10px
+            cursor: pointer;
+            padding: 8px 10px; // Reducir padding de 12px a 8px 10px
+            border: 1px solid #444;
+            border-radius: 6px 6px 0 0; // Reducir border-radius
+            background: #2a2a2a;
+            transition: all 0.2s ease;
+
+            &:hover {
+                border-color: #ff6b00;
+                background: #333;
+            }
+
+            input[type="checkbox"] {
+                display: none;
+            }
+
+            .payment-checkbox {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 24px;
+                height: 24px;
+                border: 2px solid #666;
+                border-radius: 4px;
+                background: transparent;
+                transition: all 0.2s ease;
+
+                i {
+                    font-size: 14px;
+                    color: #666;
+                    transition: all 0.2s ease;
+                }
+
+                &.disabled {
+                    opacity: 0.5;
+                    border-color: #555;
+
+                    i {
+                        color: #555;
+                    }
+                }
+            }
+
+            .payment-method-name {
+                color: #ddd;
+                font-weight: 500;
+                transition: all 0.2s ease;
+
+                &.disabled {
+                    opacity: 0.5;
+                    color: #888;
+                }
+            }
+
+            input[type="checkbox"]:checked+.payment-checkbox {
+                border-color: #ff6b00;
+                background: #ff6b00;
+
+                i {
+                    color: white;
+                }
+            }
+
+            input[type="checkbox"]:disabled+.payment-checkbox {
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
+        }
+
+        .payment-price-input {
+            border: 1px solid #444;
+            border-top: none;
+            border-radius: 0 0 6px 6px; // Reducir border-radius
+            background: #333;
+            padding: 8px 10px; // Reducir padding de 12px a 8px 10px
+
+            .form-input {
+                margin: 0;
+                background: #2a2a2a;
+                border: 1px solid #555;
+
+                &:focus {
+                    border-color: #ff6b00;
+                    box-shadow: 0 0 0 2px rgba(255, 107, 0, 0.3);
+                }
+            }
+        }
+    }
+}
+
+/* Estilos para las pestañas principales del dealership */
+.dealership-tabs {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-height: 0;
+}
+
+.dealership-tab-header {
+    display: flex;
+    gap: 0.5vh;
+    margin-bottom: 1.5vh;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1vh;
+    flex-shrink: 0;
+}
+
+.dealership-tab-item {
+    flex: 1;
+    background: rgba(40, 40, 40, 0.8);
+    border: 1px solid rgba(255, 255, 255, .15);
+    padding: 1vh 1.5vh;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5vh;
+    font-size: 0.9vw;
+    font-weight: 500;
+
+    i {
+        font-size: 0.8vw;
+        opacity: 0.7;
+    }
+
+    &:hover {
+        background: rgba(60, 60, 60, 0.8);
+        border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    &.active {
+        background: rgba(255, 107, 0, 0.8);
+        border-color: rgba(255, 107, 0, 1);
+        color: white;
+
+        i {
+            opacity: 1;
+        }
+    }
+}
+
+.dealership-tab-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-height: 0;
+}
+
+.dealership-tab-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-height: 0;
+}
+
+.general-settings {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    max-height: 70vh;
+    overflow-y: auto;
+    padding-right: 1vh;
+
+    &::-webkit-scrollbar {
+        width: 0.5vh;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: rgba(255, 107, 0, 0.6);
+        border-radius: 10px;
+
+        &:hover {
+            background: rgba(255, 107, 0, 0.8);
+        }
+    }
+
+    h4 {
+        display: flex;
+        align-items: center;
+        gap: 0.8vh;
+        margin-bottom: 1.5vh;
+        font-size: 1.1vw;
+        color: rgba(255, 255, 255, 0.95);
+        font-weight: 600;
+        padding-bottom: 0.8vh;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+        i {
+            font-size: 1vw;
+            opacity: 0.8;
+            color: rgba(255, 107, 0, 0.9);
+        }
+    }
+}
+
+.form-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2vh;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 1.5vh;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    h4 {
+        margin-bottom: 1vh;
+        padding-bottom: 0.8vh;
+    }
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6vh;
+
+    label {
+        font-size: 0.85vw;
+        color: rgba(255, 255, 255, 0.85);
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 0.5vh;
+    }
+
+    small {
+        font-size: 0.7vw;
+        color: rgba(255, 255, 255, 0.5);
+        font-style: italic;
+        margin-top: 0.3vh;
+        padding-left: 0.5vh;
+        display: block;
+    }
+
+    .form-input {
+        background: rgba(40, 40, 40, 0.6);
+        border: 1px solid rgba(255, 255, 255, .12);
+        padding: 0.9vh 1.2vh;
+        border-radius: 5px;
+        color: white;
+        font-size: 0.85vw;
+        transition: all 0.25s ease;
+
+        &:focus {
+            outline: none;
+            border-color: rgba(255, 107, 0, 0.7);
+            background: rgba(50, 50, 50, 0.7);
+            box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.15);
+        }
+
+        &:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        &::placeholder {
+            color: rgba(255, 255, 255, 0.35);
+        }
+    }
+
+    textarea.form-input {
+        resize: vertical;
+        min-height: 8vh;
+        font-family: inherit;
+        line-height: 1.4;
+    }
+
+    input[type="number"].form-input {
+
+        &::-webkit-inner-spin-button,
+        &::-webkit-outer-spin-button {
+            opacity: 0.5;
+        }
+    }
+
+    input[type="checkbox"] {
+        width: auto;
+        margin-right: 0.5vh;
+    }
+}
+
+.locations-management {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vh;
+}
+
+.locations-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 1vh;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+    h4 {
+        display: flex;
+        align-items: center;
+        gap: 0.5vh;
+        margin: 0;
+        font-size: 1.1vw;
+        color: rgba(255, 255, 255, 0.9);
+
+        i {
+            font-size: 1vw;
+            opacity: 0.7;
+        }
+    }
+}
+
+.location-tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+.location-tab-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3vh;
+}
+
+.location-tab-item {
+    flex: 1;
+    min-width: 15%;
+    background: rgba(30, 30, 30, 0.8);
+    border: 1px solid rgba(255, 255, 255, .1);
+    padding: 0.6vh;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 0.7vw;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2vh;
+
+    i {
+        font-size: 0.8vw;
+        opacity: 0.6;
+    }
+
+    span {
+        font-weight: 500;
+        opacity: 0.7;
+    }
+
+    .location-counter {
+        font-size: 0.6vw;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 0.1vh 0.3vh;
+        border-radius: 8px;
+        opacity: 0.5;
+    }
+
+    &:hover {
+        background: rgba(50, 50, 50, 0.8);
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    &.active {
+        background: rgba(255, 107, 0, 0.7);
+        border-color: rgba(255, 107, 0, 0.9);
+        color: white;
+
+        i,
+        span {
+            opacity: 1;
+        }
+
+        .location-counter {
+            background: rgba(255, 255, 255, 0.2);
+            opacity: 1;
+        }
+    }
+}
+
+.location-tab-content {
+    background: rgba(20, 20, 20, 0.5);
+    border: 1px solid rgba(255, 255, 255, .1);
+    border-radius: 4px;
+    padding: 1.5vh;
+    min-height: 56.8vh;
+}
+
+.location-section {
+    .section-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1vh;
+        padding-bottom: 0.5vh;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+        h5 {
+            margin: 0;
+            font-size: 1vw;
+            display: flex;
+            align-items: center;
+            gap: 0.5vh;
+            color: rgba(255, 255, 255, 0.9);
+
+            i {
+                font-size: 0.9vw;
+                opacity: 0.7;
+            }
+        }
+
+        .section-actions {
+            display: flex;
+            align-items: center;
+            gap: 1vh;
+
+            .location-count {
+                background: rgba(255, 107, 0, 0.8);
+                color: white;
+                padding: 0.3vh 0.6vh;
+                border-radius: 10px;
+                font-size: 0.75vw;
+                font-weight: bold;
+            }
+
+            .btn-action {
+                font-size: 0.8vw;
+                padding: 0.6vh 1vh;
+
+                &:disabled {
+                    opacity: 0.5;
+                    cursor: not-allowed;
+                }
+            }
+        }
+    }
+
+    .location-description {
+        font-size: 0.8vw;
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 1.5vh;
+        font-style: italic;
+    }
+}
+
+.locations-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8vh;
+    max-height: 30vh;
+    overflow-y: auto;
+    flex: 1 1 auto;
+    min-height: 0;
+    margin-bottom: 0.5em;
+}
+
+.location-item {
+    background: rgba(40, 40, 40, 0.6);
+    border: 1px solid rgba(255, 255, 255, .1);
+    border-radius: 4px;
+    padding: 1vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.2s ease;
+
+    &:hover {
+        background: rgba(50, 50, 50, 0.6);
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+}
+
+.location-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3vh;
+
+    .location-label {
+        font-size: 0.85vw;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    .location-coords {
+        font-size: 0.7vw;
+        color: rgba(255, 255, 255, 0.5);
+        font-family: 'Courier New', monospace;
+    }
+}
+
+.location-actions {
+    display: flex;
+    gap: 0.5vh;
+}
+
+.btn-location-action {
+    background: rgba(60, 60, 60, 0.8);
+    border: 1px solid rgba(255, 255, 255, .15);
+    color: white;
+    padding: 0.5vh;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    i {
+        font-size: 0.7vw;
+    }
+
+    &:hover {
+        background: rgba(80, 80, 80, 0.8);
+        border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    &.btn-teleport {
+        &:hover {
+            background: rgba(0, 120, 255, 0.8);
+            border-color: rgba(100, 150, 255, 0.8);
+        }
+    }
+
+    &.btn-delete {
+        &:hover {
+            background: rgba(200, 50, 50, 0.8);
+            border-color: rgba(255, 100, 100, 0.8);
+        }
+    }
+}
+
+// Mejorar botón Agregar (global)
+.btn-action {
+    background: linear-gradient(135deg, rgba(255, 107, 0, 0.85), rgba(0, 168, 204, 0.85));
+    color: #fff;
+    border: 1.5px solid rgba(255, 107, 0, 0.8);
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.95em;
+    padding: 0.55em 1.3em;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    box-shadow: 0 2px 8px rgba(255, 107, 0, 0.08);
+    transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-action i {
+    font-size: 1.1em;
+    opacity: 0.9;
+}
+
+.btn-action:hover:not(:disabled) {
+    background: linear-gradient(135deg, rgba(255, 107, 0, 1), rgba(0, 168, 204, 1));
+    border-color: #ff6b00;
+    color: #fff;
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 6px 18px rgba(255, 107, 0, 0.18);
+}
+
+.btn-action:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+// Hacer que el contenedor y la lista ocupen todo el espacio
+.location-tab-content {
+    display: flex;
+    flex-direction: column;
+    min-height: 56.5vh;
+    height: 100%;
+}
+
+.location-section {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0;
+}
+
+.locations-list {
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: none;
+    overflow-y: auto;
+    margin-bottom: 0.5em;
+}
+
+// MEJORA DE INPUTS Y CHECKBOXES
+
+// Inputs principales
+.form-input,
+.form-select {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.10);
+    border: 1.5px solid rgba(255, 255, 255, 0.18);
+    border-radius: 10px;
+    padding: 18px 20px;
+    color: white;
+    font-size: 1.05vw;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    height: 56px;
+    box-sizing: border-box;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+
+    &::placeholder {
+        color: rgba(255, 255, 255, 0.45);
+        font-weight: 400;
+    }
+
+    &:focus {
+        outline: none;
+        border-color: #ff6b00;
+        box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.18);
+        background: rgba(255, 255, 255, 0.16);
+    }
+
+    &[type="number"] {
+        appearance: textfield;
+        -moz-appearance: textfield;
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    }
+}
+
+// Checkboxes modernos
+input[type="checkbox"].financing-checkbox {
+    display: none;
+}
+
+input[type="checkbox"].financing-checkbox+label.custom-checkbox {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    font-size: 1vw;
+    gap: 10px;
+}
+
+input[type="checkbox"].financing-checkbox+label.custom-checkbox .checkbox-box {
+    width: 28px;
+    height: 28px;
+    border: 2.5px solid #ff6b00;
+    border-radius: 7px;
+    background: rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 8px rgba(255, 107, 0, 0.10);
+    position: relative;
+}
+
+input[type="checkbox"].financing-checkbox:checked+label.custom-checkbox .checkbox-box {
+    background: #ff6b00;
+    border-color: #fff;
+    box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.18);
+}
+
+input[type="checkbox"].financing-checkbox+label.custom-checkbox .checkbox-box::after {
+    content: '';
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    background: white;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+input[type="checkbox"].financing-checkbox:checked+label.custom-checkbox .checkbox-box::after {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.toggle-filters-btn {
+    margin-left: 2vh;
+    background: linear-gradient(135deg, rgba(255, 107, 0, 0.85), rgba(0, 168, 204, 0.85));
+    color: #fff;
+    border: 1.5px solid rgba(255, 107, 0, 0.8);
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 1.1em;
+    padding: 0.4em 0.7em;
+    box-shadow: 0 2px 8px rgba(255, 107, 0, 0.08);
+    transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3.2em;
+    width: 3.2em;
+    gap: 0.3em;
+}
+
+.toggle-filters-btn i[data-lucide="filter"] {
+    font-size: 2.1em;
+    width: 1.7em;
+    height: 1.7em;
+    display: block;
+    margin: 0;
+}
+
+.toggle-filters-btn i[data-lucide^="chevron"] {
+    font-size: 1.3em;
+    width: 1.1em;
+    height: 1.1em;
+    display: block;
+    margin-left: 0.1em;
+}
+
+.toggle-filters-btn:hover,
+.toggle-filters-btn:focus {
+    background: linear-gradient(135deg, rgba(255, 107, 0, 1), rgba(0, 168, 204, 1));
+    border-color: #ff6b00;
+    color: #fff;
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 6px 18px rgba(255, 107, 0, 0.18);
+}
+
+.notifications-container {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5vh;
+    pointer-events: none;
+    width: 100vw;
+    max-width: 100vw;
+}
+
+.notification {
+    min-width: 220px;
+    max-width: 420px;
+    width: fit-content;
+    margin: 0 auto;
+    padding: 0.5em 1.2em 0.5em 2.2em;
+    border-radius: 6px;
+    font-size: 1em;
+    font-family: "Quicksand", sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    color: #fff;
+    border: 1.5px solid #ff6b00;
+    background: linear-gradient(135deg, #050505 80%, #ff6b00 100%);
+    opacity: 0;
+    animation: fadeInOutMini 2.2s forwards;
+    text-align: left;
+    pointer-events: auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.7em;
+    box-shadow: none;
+}
+
+.notification i {
+    position: absolute;
+    left: 0.7em;
+    font-size: 1.2em;
+    opacity: 0.85;
+}
+
+.notification.error {
+    background: #aa2200;
+    border-color: #ff6b00;
+}
+
+.notification.success {
+    background: #1e7a34;
+    border-color: #4be37a;
+}
+
+.notification.info {
+    background: #00a8cc;
+    border-color: #00d4ff;
+}
+
+@keyframes fadeInOutMini {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.98);
+    }
+
+    10% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+    90% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.98);
+    }
+}
+
+.notification span {
+    color: #fff !important;
+    font-size: 1em;
+    font-weight: 600;
+    margin-left: 1.7em;
+    letter-spacing: 0.2px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.stat.price {
+    color: rgba(46, 204, 113, 0.7); // Verde opaco
+    font-weight: 700;
+}
+
+.fade-tab {
+    opacity: 0;
+    transition: opacity 0.22s cubic-bezier(.4, 0, .2, 1);
+    will-change: opacity;
+}
+
+.fade-tab.tab-active {
+    opacity: 1;
+}
+
+.vehicle-card.disabled {
+    opacity: 0.45;
+    pointer-events: none;
+    filter: grayscale(0.7);
+    cursor: not-allowed;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ===== MT STYLE OVERRIDES (DEALERSHIP ADMIN) ===== */
+.admin-menu {
+    background: #000000d9;
+
+    .header {
+        background: rgba(255, 255, 255, 0.14);
+        border: 0.1vh solid rgba(255, 255, 255, 0.14);
+        text-shadow: none;
+    }
+
+    .main-content .admin-layout {
+        .admin-sidebar {
+            .options-section,
+            .dealerships-section {
+                background: rgba(0, 0, 0, 0.4);
+                border: 0.1vh solid rgba(255, 255, 255, 0.14);
+                outline: 0.1vh dashed rgba(255, 255, 255, 0.14);
+            }
+
+            .options-section .option.active {
+                background: rgba(255, 255, 255, 0.14);
+                border-color: rgba(255, 255, 255, 0.2);
+                color: rgba(255, 255, 255, 0.95);
+            }
+
+            .dealerships-section {
+                .section-header .btn-action,
+                .dealership-item.active::before {
+                    background: rgba(255, 255, 255, 0.6);
+                }
+            }
+        }
+
+        .admin-main-content {
+            background: rgba(0, 0, 0, 0.4);
+            border: 0.1vh solid rgba(255, 255, 255, 0.14);
+            outline: 0.1vh dashed rgba(255, 255, 255, 0.14);
+
+            .dealership-management {
+                .management-header .management-actions .btn-action.btn-save,
+                .content-body .categories-panel .panel-header .btn-action,
+                .content-body .vehicles-panel .vehicles-header .vehicles-actions .btn-action,
+                .content-body .vehicles-panel .vehicles-grid-container .category-section .category-header.collapsible.expanded,
+                .dealership-tab-item.active {
+                    background: rgba(255, 255, 255, 0.14);
+                    border-color: rgba(255, 255, 255, 0.2);
+                    color: rgba(255, 255, 255, 0.95);
+                    box-shadow: none;
+                }
+
+                .management-header .dealership-info-compact .info-group {
+                    .form-control-inline:focus {
+                        border-color: rgba(255, 255, 255, 0.28);
+                        background: rgba(255, 255, 255, 0.1);
+                        box-shadow: none;
+                    }
+                }
+
+                .content-body {
+                    .categories-panel .categories-list {
+                        &::-webkit-scrollbar-thumb {
+                            background: rgba(255, 255, 255, 0.24);
+                        }
+
+                        .category-item {
+                            .form-control-small:focus {
+                                border-color: rgba(255, 255, 255, 0.28);
+                                background: rgba(255, 255, 255, 0.1);
+                                box-shadow: none;
+                            }
+
+                            .btn-action.btn-danger:hover {
+                                background: rgba(255, 255, 255, 0.16);
+                                border-color: rgba(255, 255, 255, 0.24);
+                                color: rgba(255, 255, 255, 0.92);
+                            }
+                        }
+                    }
+
+                    .vehicles-panel {
+                        .vehicles-header .vehicles-actions .search-vehicles-compact .search-input-compact:focus {
+                            border-color: rgba(255, 255, 255, 0.28);
+                            background: rgba(255, 255, 255, 0.1);
+                            box-shadow: none;
+                        }
+
+                        .vehicles-grid-container {
+                            &::-webkit-scrollbar-thumb {
+                                background: rgba(255, 255, 255, 0.24);
+                            }
+
+                            .category-section .category-header {
+                                border-left-color: rgba(255, 255, 255, 0.5);
+
+                                &.collapsible:hover {
+                                    border-left-color: rgba(255, 255, 255, 0.7);
+                                    transform: none;
+                                }
+                            }
+
+                            .vehicle-card-compact {
+                                .vehicle-details {
+                                    .vehicle-stats .stat.stock,
+                                    .financing-status.enabled,
+                                    .financing-status.disabled {
+                                        color: rgba(255, 255, 255, 0.9);
+                                        background: rgba(255, 255, 255, 0.12);
+                                        border-color: rgba(255, 255, 255, 0.2);
+                                    }
+                                }
+
+                                .vehicle-actions .btn-action.btn-danger:hover {
+                                    background: rgba(255, 255, 255, 0.16);
+                                    border-color: rgba(255, 255, 255, 0.24);
+                                    color: rgba(255, 255, 255, 0.92);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .map-container {
+                    border: 0.1vh solid rgba(255, 255, 255, 0.14);
+                    outline: 0.1vh dashed rgba(255, 255, 255, 0.12);
+                    outline-offset: 0.22vh;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+

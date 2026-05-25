@@ -1,0 +1,22 @@
+[
+    {
+        "freqs": [
+            "Central"
+        ],
+        "category": "Mando"
+    },
+    {
+        "freqs": [
+            "4",
+            "5"
+        ],
+        "category": "Patrulleros"
+    },
+    {
+        "freqs": [
+            "6",
+            "7"
+        ],
+        "category": "SWAT"
+    }
+]

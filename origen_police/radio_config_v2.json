@@ -1,0 +1,53 @@
+[
+    {
+        "freqs": [
+            "Central 1",
+            "Central 2",
+            "Supervisión Sur",
+            "Supervisión Norte",
+            "Táctico Mando"
+        ],
+        "category": "MANDO Y SUPERVISIÓN"
+    },
+    {
+        "freqs": [
+            "Adam 10",
+            "Adam 20",
+            "Adam 30",
+            "Adam 40",
+            "Adam 50",
+            "Lincoln 10",
+            "Lincoln 20",
+            "Mary 10",
+            "Adam 60"
+        ],
+        "category": "UNIDADES SAPD"
+    },
+    {
+        "freqs": [
+            "SWAT Táctico",
+            "SWAT Asalto",
+            "K9 Unidad",
+            "Aéreo 1 (Air Support)",
+            "Aéreo 2"
+        ],
+        "category": "DIVISIONES ESPECIALES"
+    },
+    {
+        "freqs": [
+            "CID 1",
+            "CID 2",
+            "Operaciones Encubiertas",
+            "Narcóticos"
+        ],
+        "category": "INVESTIGACIÓN Y DETECTIVES"
+    },
+    {
+        "freqs": [
+            "Interdepartamental",
+            "Emergencias SAPD/EMS",
+            "Frecuencia Compartida"
+        ],
+        "category": "DEPARTAMENTOS COMUNES"
+    }
+]
