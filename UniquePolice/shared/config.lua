@@ -86,6 +86,8 @@ Config.GarageVehicles = {
     { model = 'police2', label = '🚓 Patrulla Interceptora (Buffalo)' },
     { model = 'police3', label = '🚙 Camioneta de Asalto (Interceptor)' },
     { model = 'fbi2', label = '🕶️ Camioneta de Incógnito (Granger)' },
+    { model = 'lcpdpigeon', label = '🚓 Triciclo Policial' },
+    { model = 'riot', label = '🚓 Furgoneta Policial' },
 }
 
 -- Puntos de Spawn auxiliares (Opcional, si quieres que aparezcan unos metros más adelante)

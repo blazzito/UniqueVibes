@@ -1,6 +1,32 @@
 local ESX = exports['es_extended']:getSharedObject()
 local StationsCache = {}
 
+-- =========================================
+-- MOTOR DE WEBHOOKS (DISCORD)
+-- =========================================
+local function SendDiscordWebhook(webhookUrl, title, message, color)
+    -- Si no hay link configurado, no hace nada
+    if webhookUrl == nil or webhookUrl == "" then return end
+    
+    local embed = {
+        {
+            ["title"] = title,
+            ["description"] = message,
+            ["type"] = "rich",
+            ["color"] = color, -- Color en formato decimal
+            ["footer"] = {
+                ["text"] = "UniquePolice Logs • " .. os.date("%Y-%m-%d %H:%M:%S")
+            }
+        }
+    }
+
+    PerformHttpRequest(webhookUrl, function(err, text, headers) end, 'POST', json.encode({
+        username = "Unique Police", 
+        avatar_url = "https://cdn.discordapp.com/icons/1474223143064440943/2798d90b0a442dcc111008070df3729a.webp?size=80&quality=lossless", -- Puedes poner el logo de tu server aquí
+        embeds = embed
+    }), { ['Content-Type'] = 'application/json' })
+end
+
 -- Función auxiliar para registrar la armería en ox_inventory
 local function RegisterStationArmory(stationId, stationName, coords)
     if not coords then return end
@@ -240,6 +266,21 @@ RegisterCommand('jail', function(source, args)
     
     -- Iniciamos el contador para este jugador
     StartJailTimer(targetIdentifier, targetId, closestStation)
+
+    -- Mandamos al civil a la celda
+    TriggerClientEvent('uniquepolice:client:sendToJail', targetId, closestStation, jailTime)
+    TriggerClientEvent('ox_lib:notify', source, { title = 'Éxito', description = 'Has encarcelado al ciudadano por '..jailTime..' minutos.', type = 'success' })
+    
+    -- Iniciamos el contador para este jugador
+    StartJailTimer(targetIdentifier, targetId, closestStation)
+
+    -- 👇 NUEVO: DISPARADOR DEL WEBHOOK 👇
+    local oficialNombre = xPlayer.getName()
+    local presoNombre = tPlayer.getName()
+    local mensaje = string.format("**Oficial:** %s\n**Sospechoso:** %s (ID: %s)\n**Tiempo:** %s meses\n**Comisaría:** %s", oficialNombre, presoNombre, targetId, jailTime, StationsCache[closestStation].name)
+    
+    -- Disparamos a Discord (16711680 es color rojo)
+    SendDiscordWebhook(Config.Webhooks.Jail, "🚨 Nuevo Encarcelamiento", mensaje, 16711680)
 end)
 
 -- Función que resta el tiempo cada minuto

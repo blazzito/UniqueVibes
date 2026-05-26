@@ -261,3 +261,32 @@ RegisterNetEvent('esx:setJob', function(job)
     Citizen.Wait(500)
     RefreshStationPoints()
 end)
+
+-- =========================================
+-- HERRAMIENTA DE DESARROLLADOR: INFO DE VEHÍCULO
+-- =========================================
+RegisterCommand('vehmodel', function()
+    local ped = PlayerPedId()
+    
+    if IsPedInAnyVehicle(ped, false) then
+        local vehicle = GetVehiclePedIsIn(ped, false)
+        local hash = GetEntityModel(vehicle)
+        local modelName = GetDisplayNameFromVehicleModel(hash)
+        
+        -- Los nombres de spawn suelen estar en minúsculas en el motor
+        local spawnName = string.lower(modelName)
+        
+        -- Notificación visual en pantalla
+        lib.notify({ 
+            title = '🚗 Info del Vehículo', 
+            description = 'Nombre de Spawn: **' .. spawnName .. '**\nHash: ' .. hash, 
+            type = 'info',
+            duration = 8000
+        })
+        
+        -- Impresión en la consola F8 para que puedas copiar el texto
+        print('^2[DEV]^7 Nombre de Spawn: ^5' .. spawnName .. '^7 | Hash: ^3' .. hash .. '^7')
+    else
+        lib.notify({ title = 'Error', description = 'No estás subido en ningún vehículo.', type = 'error' })
+    end
+end, false)
