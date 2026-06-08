@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div id="app" style="display: none;">
+        
+        <div class="pause-container">
+            
+            <div class="left-panel">
+                <div class="brand">
+                    MIDNIGHT <span>NYC</span>
+                </div>
+                
+                <div class="menu-buttons">
+                    <button onclick="resumeGame()" class="btn-pause selected">
+                        <i class="fas fa-play"></i> CONTINUAR
+                    </button>
+                    <button onclick="openMap()" class="btn-pause">
+                        <i class="fas fa-map-marked-alt"></i> MAPA
+                    </button>
+                    <button onclick="openSettings()" class="btn-pause">
+                        <i class="fas fa-cog"></i> AJUSTES
+                    </button>
+                    <button onclick="window.invokeNative('openUrl', 'https://discord.gg/tuserver')" class="btn-pause">
+                        <i class="fab fa-discord"></i> DISCORD
+                    </button>
+                </div>
+
+                <div class="bottom-exit">
+                    <button onclick="disconnect()" class="btn-exit">
+                        <i class="fas fa-power-off"></i> SALIR DE LA CIUDAD
+                    </button>
+                </div>
+            </div>
+
+            <div class="right-panel">
+                <div class="info-card">
+                    <div class="char-header">
+                        <div class="id-badge">ID: <span id="playerId">1</span></div>
+                        <div class="status-live">EN LÍNEA</div>
+                    </div>
+                    
+                    <div class="char-avatar">
+                        <i class="fas fa-user-astronaut"></i>
+                    </div>
+
+                    <div class="char-details">
+                        <h2 id="charName">Cargando...</h2>
+                        <div class="job-pill" id="charJob">Desempleado</div>
+                    </div>
+
+                    <div class="economy-box">
+                        <div class="eco-row">
+                            <i class="fas fa-wallet" style="color: #2ecc71;"></i>
+                            <span id="charCash">$0</span>
+                        </div>
+                        <div class="eco-row">
+                            <i class="fas fa-university" style="color: #3498db;"></i>
+                            <span id="charBank">$0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="server-news">
+                    <h3><i class="fas fa-broadcast-tower"></i> ANUNCIOS</h3>
+                    <p>Bienvenido a Midnight NYC. Recuerda reportar bugs en Discord. ¡Disfruta el rol!</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

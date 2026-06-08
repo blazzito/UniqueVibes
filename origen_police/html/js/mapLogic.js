@@ -20,17 +20,14 @@ CUSTOM_CRS = L.extend({}, L.CRS.Simple, {
 	infinite: true
 });
 
-var mapStatic = L.tileLayer('https://www.gtamap.xyz/mapStyles/styleAtlas/{z}/{x}/{y}.jpg', {
-	minZoom: 0,
-	maxZoom: 5,
-	noWrap: true,
+const CUSTOM_MAP_URL = 'https://media.discordapp.net/attachments/1490531090048356452/1513548156317470770/gta-4-liberty-city-map-ultra-hd.png?ex=6a282110&is=6a26cf90&hm=4b8519207394788c4e3d1af6840e46f7c295925a42d5828687f0585458088e8e&';
+const CUSTOM_MAP_BOUNDS = L.latLngBounds([[-5111.265, 2520], [-300, 8488.512]]);
+
+var mapStatic = L.imageOverlay(CUSTOM_MAP_URL, CUSTOM_MAP_BOUNDS, {
 	id: 'styleAtlas map'
 });
 
-var mapStatic2 = L.tileLayer('https://www.gtamap.xyz/mapStyles/styleAtlas/{z}/{x}/{y}.jpg', {
-	minZoom: 0,
-	maxZoom: 5,
-	noWrap: true,
+var mapStatic2 = L.imageOverlay(CUSTOM_MAP_URL, CUSTOM_MAP_BOUNDS, {
 	id: 'styleAtlas map'
 });
 
@@ -328,8 +325,8 @@ function cargarMapaCentral(heatAlers) {
 			maxNativeZoom: 5,
 			preferCanvas: true,
 			layers: [mapStatic, Icons['Central'], heatmapLayer],
-			center: [0, 300],
-			zoom: 1.5,
+			center: [-2613, 4866],
+			zoom: 2.5,
 			zoomControl: false,
 			maxBoundsViscosity: 1.0,
 			tms: false,
@@ -342,10 +339,7 @@ function cargarMapaCentral(heatAlers) {
 	}
 	setTimeout(() => {
 		mapCentral.invalidateSize();
-		var southWest = mapCentral.unproject([0, 8592], mapCentral.getMaxZoom());
-		var northEast = mapCentral.unproject([8192, 0], mapCentral.getMaxZoom());
-		var bounds = L.latLngBounds(southWest, northEast);
-		mapCentral.setMaxBounds(bounds);
+		mapCentral.setMaxBounds(CUSTOM_MAP_BOUNDS);
 	}, 500);
 }
 
@@ -359,7 +353,7 @@ function loadShapesMap() {
 			maxNativeZoom: 5,
 			preferCanvas: true,
 			layers: [mapStatic2],
-			center: [1500, 300],
+			center: [-2613, 4866],
 			zoom: 1.5,
 			zoomControl: false,
 			maxBoundsViscosity: 1.0,
@@ -370,10 +364,7 @@ function loadShapesMap() {
 
 	setTimeout(() => {
 		mapShapes.invalidateSize();
-		var southWest = mapShapes.unproject([0, 8592], mapShapes.getMaxZoom());
-		var northEast = mapShapes.unproject([8192, 0], mapShapes.getMaxZoom());
-		var bounds = L.latLngBounds(southWest, northEast);
-		mapShapes.setMaxBounds(bounds);
+		mapShapes.setMaxBounds(CUSTOM_MAP_BOUNDS);
 		if (typeof centralFunctions !== 'undefined' && centralFunctions.updateShapes) {
 			centralFunctions.updateShapes();
 		}
@@ -403,7 +394,7 @@ function LoadAnkleMap(data) {
 		maxNativeZoom: 5,
 		preferCanvas: true,
 		layers: [mapStatic2],
-		center: [1500, 300],
+		center: [-2613, 4866],
 		zoom: 1.5,
 		zoomControl: false,
 		maxBoundsViscosity: 1.0,
@@ -412,10 +403,7 @@ function LoadAnkleMap(data) {
 	});
 	setTimeout(() => {
 		mapAnkle.invalidateSize();
-		var southWest = mapAnkle.unproject([0, 8592], mapAnkle.getMaxZoom());
-		var northEast = mapAnkle.unproject([8192, 0], mapAnkle.getMaxZoom());
-		var bounds = L.latLngBounds(southWest, northEast);
-		mapAnkle.setMaxBounds(bounds);
+		mapAnkle.setMaxBounds(CUSTOM_MAP_BOUNDS);
 		blipMarker = CreateBlipMarker(mapAnkle, 99, { x: data.coords[0], y: data.coords[1] }, './img/signal.png', 'Ankle Monitor', false);
 		ZoomAnkleBlip();
 		LastAnkleCoords = [data.coords[0], data.coords[1]];
@@ -782,10 +770,7 @@ function initHomeMap() {
 
 
 	if (!mapHomeTiles) {
-		mapHomeTiles = L.tileLayer('https://www.gtamap.xyz/mapStyles/styleAtlas/{z}/{x}/{y}.jpg', {
-			minZoom: 0,
-			maxZoom: 5,
-			noWrap: true,
+		mapHomeTiles = L.imageOverlay(CUSTOM_MAP_URL, CUSTOM_MAP_BOUNDS, {
 			id: 'styleAtlas map'
 		});
 	}
@@ -799,8 +784,8 @@ function initHomeMap() {
 		maxNativeZoom: 5,
 		preferCanvas: true,
 		layers: [mapHomeTiles],
-		center: [0, 0],
-		zoom: 2,
+		center: [-2613, 4866],
+		zoom: 3,
 		zoomControl: false,
 		maxBoundsViscosity: 1.0,
 		tms: false,
@@ -811,10 +796,7 @@ function initHomeMap() {
 	setTimeout(() => {
 		if (mapHome) {
 			mapHome.invalidateSize();
-			var southWest = mapHome.unproject([0, 8592], mapHome.getMaxZoom());
-			var northEast = mapHome.unproject([8192, 0], mapHome.getMaxZoom());
-			var bounds = L.latLngBounds(southWest, northEast);
-			mapHome.setMaxBounds(bounds);
+			mapHome.setMaxBounds(CUSTOM_MAP_BOUNDS);
 			if (typeof alertsFunctions !== 'undefined' && alertsFunctions.syncMarkersWithMap) {
 				alertsFunctions.syncMarkersWithMap();
 			}

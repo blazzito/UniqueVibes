@@ -1,0 +1,13 @@
+.initial-screen,
+.cinematic-text-box {
+    display: none !important;
+}
+
+.initial-screen .text {
+    font-size: 2vw;
+    font-weight: 400;
+}
+
+.initial-screen .text span {
+    font-weight: 700;
+}

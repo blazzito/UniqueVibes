@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unique Escape Menu</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Google Fonts: Quicksand y Bebas Neue para matchear Unique Vibes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div id="app" style="display: none;">
+        <div class="global-overlay">
+            <div class="bg-gradient"></div>
+            <div class="noise-overlay"></div>
+        </div>
+
+        <div class="menu-container">
+            <div class="header-brand">
+                <h1 class="brand-title">UNIQUE <span>VIBES</span></h1>
+                <div class="brand-subtitle">MENÚ DE PAUSA</div>
+                <div class="brand-line"></div>
+            </div>
+
+            <div class="grid-layout">
+                <!-- Columna Izquierda: Botones -->
+                <div class="column-actions">
+                    <button class="action-btn btn-map" id="btn-map">
+                        <div class="btn-bg map-bg"></div>
+                        <div class="btn-content">
+                            <i data-lucide="map"></i>
+                            <span>MAPA</span>
+                        </div>
+                    </button>
+
+                    <button class="action-btn" id="btn-settings">
+                        <div class="btn-bg"></div>
+                        <div class="btn-content">
+                            <i data-lucide="settings"></i>
+                            <span>CONFIGURACIÓN</span>
+                        </div>
+                    </button>
+
+                    <button class="action-btn" id="btn-logout">
+                        <div class="btn-bg"></div>
+                        <div class="btn-content">
+                            <i data-lucide="log-out"></i>
+                            <span>CERRAR SESIÓN</span>
+                        </div>
+                    </button>
+
+                    <button class="action-btn btn-danger" id="btn-quit">
+                        <div class="btn-bg"></div>
+                        <div class="btn-content">
+                            <i data-lucide="power"></i>
+                            <span>SALIR DEL JUEGO</span>
+                        </div>
+                    </button>
+                    
+                    <button class="action-btn btn-close" id="btn-close">
+                        <div class="btn-bg"></div>
+                        <div class="btn-content">
+                            <i data-lucide="x"></i>
+                            <span>VOLVER AL JUEGO</span>
+                        </div>
+                    </button>
+
+                    <div class="social-links">
+                        <button class="social-btn" onclick="window.invokeNative('openUrl', 'https://discord.gg/uniquevibes')">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/>
+                            </svg>
+                        </button>
+                        <button class="social-btn" onclick="window.invokeNative('openUrl', 'https://x.com/uniquevibes')">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </button>
+                        <button class="social-btn" onclick="window.invokeNative('openUrl', 'https://uniquevibes.com')">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="2" y1="12" x2="22" y2="12"></line>
+                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Columna Derecha: Información del personaje -->
+                <div class="column-info">
+                    <div class="info-card">
+                        <div class="card-header">
+                            <span class="card-tag">TU PERSONAJE</span>
+                        </div>
+                        
+                        <div class="character-preview">
+                            <div class="mugshot-wrapper">
+                                <div class="mugshot-frame">
+                                    <img id="char-mugshot" src="" alt="Mugshot" style="display: none;">
+                                    <div class="mugshot-placeholder" id="mugshot-placeholder">
+                                        <i data-lucide="user"></i>
+                                    </div>
+                                </div>
+                                <div class="player-id-badge">ID: <span id="char-id">0</span></div>
+                            </div>
+                            <div class="character-name" id="char-name">NOMBRE APELLIDO</div>
+                            <div class="character-job" id="char-job">TRABAJO - RANGO</div>
+                        </div>
+
+                        <div class="finances-section">
+                            <div class="finance-item">
+                                <div class="fin-icon wallet-icon"><i data-lucide="wallet"></i></div>
+                                <div class="fin-details">
+                                    <div class="fin-label">EFECTIVO</div>
+                                    <div class="fin-value" id="char-money">$0</div>
+                                </div>
+                            </div>
+                            <div class="finance-item">
+                                <div class="fin-icon bank-icon"><i data-lucide="landmark"></i></div>
+                                <div class="fin-details">
+                                    <div class="fin-label">BANCO</div>
+                                    <div class="fin-value" id="char-bank">$0</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="status-footer">
+                <div class="status-item">
+                    <i data-lucide="globe"></i>
+                    <div class="status-info">
+                        <span class="status-label">Jugadores</span>
+                        <span class="status-value" id="stat-online">...</span>
+                    </div>
+                </div>
+                <div class="status-item" id="stat-police">
+                    <i data-lucide="shield"></i>
+                    <div class="status-info">
+                        <span class="status-label">Policía</span>
+                        <span class="status-value" id="val-police">No Disponible</span>
+                    </div>
+                </div>
+                <div class="status-item" id="stat-ems">
+                    <i data-lucide="cross"></i>
+                    <div class="status-info">
+                        <span class="status-label">EMS</span>
+                        <span class="status-value" id="val-ems">No Disponible</span>
+                    </div>
+                </div>
+                <div class="status-item" id="stat-admin">
+                    <i data-lucide="crown"></i>
+                    <div class="status-info">
+                        <span class="status-label">Staff</span>
+                        <span class="status-value" id="val-admin">No Disponible</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

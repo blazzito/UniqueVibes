@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NYC Loading Screen</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Bebas+Neue&family=Inter:wght@300;400;600;800&family=JetBrains+Mono&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+        @theme {
+            --font-sans: "Quicksand", ui-sans-serif, system-ui, sans-serif;
+            --font-display: "Bebas Neue", sans-serif;
+            --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+            --color-elite-orange: #ff6b00;
+            --color-petrol: #00a8cc;
+        }
+
+        @layer base {
+            body {
+                @apply bg-black text-white overflow-hidden;
+                font-family: var(--font-sans);
+                pointer-events: all !important;
+                cursor: default !important;
+            }
+        }
+
+        .text-glow {
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .orange-glow {
+            box-shadow: 0 0 15px rgba(255, 107, 0, 0.5);
+        }
+        
+        ::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+    <script src="js/config.js"></script>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body class="bg-black text-white overflow-hidden">
+    <!-- Magical Particles Container -->
+    <div id="particles-container" class="absolute inset-0 z-10 pointer-events-none"></div>
+
+    <!-- Main Container -->
+    <main id="main-container"
+        class="relative h-screen w-screen flex flex-col items-center justify-center opacity-0 transition-opacity duration-1500 ease-out">
+
+        <!-- Background with Ken Burns effect -->
+        <div class="absolute inset-0 z-0">
+            <img id="bg-image" src="https://r2.fivemanage.com/5nOEpfNnpHW9tfpLTFBoV/bg_mdn_new.png" alt="NYC Background"
+                class="w-full h-full object-cover opacity-50 animate-ken-burns" referrerPolicy="no-referrer" />
+            <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-black/90"></div>
+        </div>
+
+        <!-- Music Player (Top Right) -->
+        <div id="music-player"
+            class="absolute top-10 right-10 z-20 flex flex-col items-end gap-3 opacity-0 translate-x-5 transition-all duration-700 delay-1000">
+            <div
+                class="flex items-center gap-4 bg-white/5 backdrop-blur-2xl border border-white/10 p-2 pr-5 rounded-full shadow-2xl">
+                <div class="flex items-center gap-2">
+                    <button id="prev-btn" class="text-white/40 hover:text-elite-orange transition-colors cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="19 20 9 12 19 4 19 20"></polygon><line x1="5" y1="19" x2="5" y2="5"></line></svg>
+                    </button>
+                    <button id="play-pause-btn"
+                        class="w-10 h-10 flex items-center justify-center bg-elite-orange rounded-full text-black shadow-[0_0_15px_rgba(255,107,0,0.4)] cursor-pointer hover:scale-110 active:scale-95 transition-transform">
+                        <svg id="play-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                            fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="hidden ml-1">
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                        <svg id="pause-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                            fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <rect x="6" y="4" width="4" height="16"></rect>
+                            <rect x="14" y="4" width="4" height="16"></rect>
+                        </svg>
+                    </button>
+                    <button id="next-btn" class="text-white/40 hover:text-elite-orange transition-colors cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="5" x2="19" y2="19"></line></svg>
+                    </button>
+                </div>
+
+                <div class="flex flex-col">
+                    <div class="flex items-center gap-2">
+                        <span class="text-[10px] font-bold text-elite-orange tracking-widest leading-none">NOW
+                            PLAYING</span>
+                        <div id="visualizer" class="flex items-end gap-[2px] h-3">
+                            <div class="w-[2px] bg-elite-orange animate-music-1"></div>
+                            <div class="w-[2px] bg-elite-orange animate-music-2"></div>
+                            <div class="w-[2px] bg-elite-orange animate-music-3"></div>
+                        </div>
+                    </div>
+                    <span id="current-song-name" class="text-[12px] text-white/80 font-medium tracking-tight">Cargando Radio...</span>
+                </div>
+
+                <div class="h-6 w-[1px] bg-white/10 mx-2"></div>
+
+                <div id="volume-control" class="flex items-center gap-3 relative group">
+                    <button id="mute-btn" class="text-white/50 hover:text-white transition-colors cursor-pointer">
+                        <svg id="volume-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                        </svg>
+                        <svg id="mute-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" class="hidden">
+                            <line x1="1" y1="1" x2="23" y2="23"></line>
+                            <path d="M9 9v6a3 3 0 0 0 5.12 2.12M15 9.34V4a2 2 0 0 0-2-2h-3L9 3"></path>
+                        </svg>
+                    </button>
+
+                    <div id="volume-slider-container" class="w-0 opacity-0 overflow-hidden transition-all duration-300">
+                        <input id="volume-slider" type="range" min="0" max="1" step="0.01" value="0.3"
+                            class="w-20 accent-elite-orange h-1 bg-white/10 rounded-full appearance-none cursor-pointer" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Center Content -->
+        <div class="relative z-10 flex flex-col items-center w-full max-w-3xl px-6">
+            <!-- Logo -->
+            <div id="logo-container"
+                class="mb-4 opacity-0 translate-y-5 transition-all duration-[1500ms] ease-[cubic-bezier(0.16,1,0.3,1)] animate-float">
+                <img src="https://r2.fivemanage.com/5nOEpfNnpHW9tfpLTFBoV/UNVLogo.png" alt="UNV Logo"
+                    class="w-full max-w-xs h-auto drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)] brightness-110 contrast-110 saturate-110" />
+            </div>
+
+            <!-- Progress Section -->
+            <div id="progress-container"
+                class="w-full max-w-xs flex flex-col items-center opacity-0 transition-opacity duration-1000 delay-500">
+                <div class="w-full flex justify-between items-end mb-2 px-1">
+                    <div class="flex flex-col">
+                        <div class="flex items-center">
+                            <span class="text-[10px] text-elite-orange font-display tracking-[0.2em] uppercase">
+                                CARGANDO
+                            </span>
+                            <span class="text-[10px] text-elite-orange font-display tracking-[0.2em] animate-pulse">
+                                ...
+                            </span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-end">
+                        <span class="text-2xl font-display text-white leading-none tracking-tighter">
+                            <span id="load-percentage">0</span><span class="text-elite-orange text-xs ml-1">%</span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="w-full h-[2px] bg-white/5 rounded-full overflow-hidden relative">
+                    <div id="progress-bar"
+                        class="absolute top-0 left-0 h-full bg-elite-orange orange-glow w-0 transition-all duration-300 ease-out">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hidden Audio Element -->
+        <audio id="bg-music" loop>
+            <source
+                src="https://r2.fivemanage.com/jPNMOOdp2wffAlCKxu5IV/GunsnRoses-Don'tCry.mp3"
+                type="audio/mpeg">
+        </audio>
+    </main>
+
+    <script src="js/index.js"></script>
+</body>
+
+</html>

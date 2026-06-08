@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNIQUE VIBES</title>
+    <link rel="stylesheet" href="css/root.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link rel="stylesheet" href="css/ux/welcome.css">
+    <link rel="stylesheet" href="css/ux/initial.css">
+    <link rel="stylesheet" href="css/ux/loader.css">
+    <link rel="stylesheet" href="css/ux/base.css">
+    <link rel="stylesheet" href="css/ux/identity.css">
+    <link rel="stylesheet" href="css/ux/remove.css">
+    <link rel="stylesheet" href="css/ux/presents.css">
+    <link rel="stylesheet" href="css/ux/vehicle_tag.css">
+    <link rel="stylesheet" href="css/ux/admin.css">
+    <script src="js/fontawesome_lib.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"
+        type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/howler@2.2.3/dist/howler.min.js"></script>
+    <script src="js/functions/datatable.js"></script>
+    <script src="js/functions/scrambling-text.js"></script>
+    <script src="js/functions/variables.js"></script>
+    <script src="js/functions/functions.js"></script>
+    <script src="js/loader.js"></script>
+    <script src="js/windowListener.js"></script>
+</head>
+
+<body>
+    <div class="global-background"></div>
+    <div class="loader-content">
+        <div class="parent">
+            <div class="sq-rt"></div>
+            <div class="sq-rt-2"></div>
+        </div>
+    </div>
+    <div class="black-screen-override"
+        style="display: none;position: absolute; left: 0%; top: 0%; background-color: black; width: 100%; height: 100%;">
+    </div>
+    <div class="remove-user-screen">
+        <div class="bg-layer">
+            <div class="bg-gradient"></div>
+        </div>
+
+        <div class="remove-modal-panel">
+            <div class="modal-header-strip">
+                <span class="strip-text">&iquest;EST&Aacute;S SEGURO?</span>
+            </div>
+
+            <div class="remove-content-box">
+                <div class="text">VAS A ELIMINAR A</div>
+                <div class="user-name remove-box-user-name">UNDEFINED UNDEFINED</div>
+                <div class="warning-text">ESTA ACCI&Oacute;N NO SE PUEDE DESHACER</div>
+            </div>
+
+            <div class="buttons">
+                <div class="button-container button-remove-character" data-type="dont_remove">
+                    <div class="btn-tape">CANCELAR</div>
+                </div>
+                <div class="button-container button-remove-character" data-type="remove">
+                    <div class="btn-tape btn-tape-danger">ELIMINAR</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="disconnect-user-screen" style="display: none;">
+        <div class="remove-modal-panel">
+            <div class="modal-header-strip">
+                <span class="strip-text">&iquest;CONFIRMAR?</span>
+            </div>
+
+            <div class="remove-content-box">
+                <div class="text">EST&Aacute;S POR</div>
+                <div class="user-name">DESCONECTAR</div>
+                <div class="warning-text">SE GUARDAR&Aacute;N TODOS TUS DATOS</div>
+            </div>
+
+            <div class="buttons">
+                <div class="button-container" onclick="disconnect.hide()">
+                    <div class="btn-tape">CANCELAR</div>
+                </div>
+                <div class="button-container" onclick="disconnect.confirm()">
+                    <div class="btn-tape btn-tape-danger">SALIR</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bars">
+        <div class="bar cinematic-bar"></div>
+        <div class="bar cinematic-bar"></div>
+        <div class="text-box cinematic-text-box" style="display: none !important;">
+            <div class="text">Welcome</div>
+            <div class="cinematic-user-name user-name">UNDEFINED UNDEFINED</div>
+        </div>
+    </div>
+    <div class="initial-screen">
+        <div class="text">Welcome, <span class="initial-discord-user-name">ElMata</span></div>
+    </div>
+
+
+    <div id="welcome-screen" class="welcome-screen">
+        <div class="welcome-ghost-text" id="welcome-ghost">WELCOME</div>
+
+        <div class="welcome-user-name" id="welcome-user">BIENVENIDO</div>
+
+
+        <div class="loader-street-container" id="loader-street">
+            <div class="loader-text-street" id="loader-text">MEZCLANDO PINTURA...</div>
+            <div class="loader-track-street">
+                <div class="loader-fill-street" id="loader-fill"></div>
+            </div>
+        </div>
+
+
+        <!-- Removidos drips -->
+    </div>
+    </div>
+
+
+    <div class="slider-black" id="slider-black">
+        <div class="bar slider-bar-anim"></div>
+    </div>
+    <div class="loading-information">
+        <div class="loader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="text"></div>
+    </div>
+    <div class="loader-container">
+        <div class="loader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <div class="multicharacter-container">
+
+        <div class="bg-layer">
+            <div class="bg-gradient"></div>
+            <div class="noise-overlay"></div>
+        </div>
+
+
+        <div class="brand-dashboard">
+            <h1 class="brand-main">SELECCI&Oacute;N DE <span>PERSONAJES</span></h1>
+            <div class="brand-sub">ELIGE TU IDENTIDAD PARA INGRESAR A LA CIUDAD</div>
+            <div class="brand-line"></div>
+        </div>
+
+        <div class="upper-right-actions">
+            <div class="action-item remove-content-button">
+                <i data-lucide="trash-2"></i>
+                <div class="tooltip">BORRAR</div>
+            </div>
+            <div class="action-item discord-content-button new-web-content-handler" data-url="">
+                <i class="fab fa-discord"></i>
+                <div class="tooltip">DISCORD</div>
+            </div>
+            <div class="action-item" onclick="disconnect.show()">
+                <i data-lucide="power"></i>
+                <div class="tooltip">SALIR</div>
+            </div>
+        </div>
+
+        <div class="identity-panel">
+            <span class="panel-label">PERSONAJE SELECCIONADO</span>
+            <h2 class="name-box-user-name">...</h2>
+            <h3 class="user-job">...</h3>
+        </div>
+
+        <div class="bottom-layout">
+            <div class="slots-container">
+                <div class="character-navs">
+                    <!-- populated in js -->
+                </div>
+            </div>
+
+            <div class="play-action-container">
+                <div class="play-button">
+                    <div class="button">ENTRAR</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="identity-container" style="display: none;">
+        <div class="brand-logo-container">
+            <img src="https://r2.fivemanage.com/5nOEpfNnpHW9tfpLTFBoV/logomdn.png" class="brand-logo-img"
+                alt="Midnight NYC">
+        </div>
+
+
+        <!-- Removida palmera -->
+
+
+        <div class="form-container">
+
+
+            <div class="header-box">
+                <div class="header-tag">
+                    <span>&iquest;QUI&Eacute;N ERES?</span>
+                </div>
+                <h2 class="header-title">SOLO <br /> REG&Iacute;STRATE</h2>
+            </div>
+
+
+            <div class="inputs-cluster">
+                <div class="cluster-bg"></div>
+
+
+                <div class="hud-input-group row-firstname" id="group-firstname">
+                    <label class="input-label" id="label-firstname">NOMBRE</label>
+                    <div class="tape-container">
+                        <div class="tape-body">
+                            <div class="tape-noise bg-noise"></div>
+                            <input type="text" id="firstname" class="tape-input identity-input-text"
+                                data-type="firstname" autocomplete="off">
+                            <div class="error-icon">
+                                <span>MAL</span>
+                                <i data-lucide="alert-circle" width="20"></i>
+                            </div>
+                        </div>
+                        <div class="tape-end left"></div>
+                        <div class="tape-end right"></div>
+                    </div>
+                </div>
+
+
+                <div class="hud-input-group row-lastname" id="group-lastname">
+                    <label class="input-label" id="label-lastname">APELLIDO</label>
+                    <div class="tape-container">
+                        <div class="tape-body">
+                            <div class="tape-noise bg-noise"></div>
+                            <input type="text" id="lastname" class="tape-input identity-input-text" data-type="lastname"
+                                autocomplete="off">
+                            <div class="error-icon">
+                                <span>MAL</span>
+                                <i data-lucide="alert-circle" width="20"></i>
+                            </div>
+                        </div>
+                        <div class="tape-end left"></div>
+                        <div class="tape-end right"></div>
+                    </div>
+                </div>
+
+
+                <div class="row-stats">
+                    <div class="col-stats-1">
+                        <div class="hud-input-group" id="group-birthdate">
+                            <label class="input-label" id="label-birthdate">FECHA NAC.</label>
+                            <div class="tape-container">
+                                <div class="tape-body">
+                                    <div class="tape-noise bg-noise"></div>
+                                    <input type="text" id="birthdate" data-type="date" placeholder="DD/MM/AAAA"
+                                        maxlength="10" class="tape-input identity-input-date" autocomplete="off">
+                                    <div class="error-icon">
+                                        <span>MAL</span>
+                                        <i data-lucide="alert-circle" width="20"></i>
+                                    </div>
+                                </div>
+                                <div class="tape-end left"></div>
+                                <div class="tape-end right"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-stats-2">
+                        <div class="hud-input-group" id="group-height">
+                            <label class="input-label" id="label-height">ALTURA (CM)</label>
+                            <div class="tape-container">
+                                <div class="tape-body">
+                                    <div class="tape-noise bg-noise"></div>
+                                    <input type="text" id="height" maxlength="3" inputmode="numeric"
+                                        class="tape-input identity-input-number" data-type="height" autocomplete="off">
+                                    <div class="error-icon">
+                                        <span>MAL</span>
+                                        <i data-lucide="alert-circle" width="20"></i>
+                                    </div>
+                                </div>
+                                <div class="tape-end left"></div>
+                                <div class="tape-end right"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="gender-selection-v2">
+                    <label class="input-label"
+                        style="position: static; margin-bottom: 0.8rem; display: block;">G&Eacute;NERO</label>
+                    <div class="gender-cards-container">
+                        <div id="gender-male" class="gender-card male identity-gender" data-type="male">
+                            <div class="card-noise"></div>
+                            <span class="gender-label-card">HOMBRE</span>
+                            <i data-lucide="mars" class="gender-watermark"></i>
+                        </div>
+                        <div id="gender-female" class="gender-card female identity-gender" data-type="female">
+                            <div class="card-noise"></div>
+                            <span class="gender-label-card">MUJER</span>
+                            <i data-lucide="venus" class="gender-watermark"></i>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="nationality-wrapper">
+                    <div class="hud-input-group">
+                        <label class="input-label" style="top: -1.25rem;">NACIONALIDAD</label>
+                        <div id="nationality-trigger" class="nationality-btn select-nationality-button">
+                            <div class="tape-noise bg-noise"></div>
+                            <span id="nationality-display"
+                                class="nationality-text selected-country">SELECCIONAR...</span>
+                            <div class="nationality-icon">
+                                <i data-lucide="chevron-right"></i>
+                            </div>
+                            <div class="tape-end left" style="background-color: #c0c0c0;"></div>
+                            <div class="tape-end right" style="background-color: #c0c0c0;"></div>
+                        </div>
+                    </div>
+
+                    <!-- New Popover Position -->
+                    <div id="modal-container" class="nationality-popover hidden">
+                        <div id="modal-panel" class="popover-panel">
+                            <div class="popover-arrow"></div>
+
+                            <div class="popover-header">
+                                <div class="popover-title-group">
+                                    <span class="popover-sub">ORIGEN</span>
+                                    <h2 class="popover-title">PA&Iacute;S</h2>
+                                </div>
+                                <div class="search-box-v2">
+                                    <i data-lucide="search" width="16"></i>
+                                    <input type="text" id="search-input" placeholder="BUSCAR..."
+                                        class="search-input-v2 identity-nationality-input-text">
+                                </div>
+                            </div>
+
+                            <div class="popover-list-container custom-scrollbar">
+                                <div id="countries-list" class="popover-list nationality-countries-list">
+                                    <!-- Populated in JS -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="confirm-wrapper">
+            <button id="btn-confirm" class="btn-confirm identity-create-button" disabled>
+                <div style="position: relative; display: flex; flex-direction: column; align-items: center;">
+                    <span id="btn-sub" class="btn-sub">¿LISTO PARA ENTRAR?</span>
+                    <div id="btn-box" class="btn-box" style="margin-top: 1rem;">
+                        <span id="btn-text" class="btn-label">CONFIRMAR</span>
+                    </div>
+
+
+                    <div id="btn-arrow" class="btn-arrow hidden animate-bounce">
+                        <i data-lucide="arrow-right" width="64" height="64" stroke-width="3"></i>
+                    </div>
+                </div>
+            </button>
+        </div>
+
+
+    </div>
+
+    <div class="packs-container" style="display: none;">
+        <div class="bg-layer">
+            <div class="bg-texture"></div>
+            <div class="bg-noise"></div>
+            <div class="bg-gradient"></div>
+            <h1 class="deco-text deco-pack">REGALOS</h1>
+
+            <div class="drip" style="left: 10%; animation-delay: 0.5s; background-color: var(--color-pink);"></div>
+            <div class="drip drip-cyan" style="left: 35%; animation-delay: 1.8s;"></div>
+            <div class="drip drip-yellow" style="left: 70%; animation-delay: 3s;"></div>
+
+
+        </div>
+
+        <div class="packs-content">
+            <div class="packs-header">
+                <div class="tape-tag">BIENVENIDA</div>
+                <h2 class="packs-title">ELIGE TU <br /><span>EQUIPAJE</span></h2>
+            </div>
+
+            <div class="packs-list">
+
+            </div>
+
+            <div class="packs-footer">
+                SELECCIONA PARA CONTINUAR
+            </div>
+        </div>
+    </div>
+
+
+    <div class="admin-panel-container" style="display: none;">
+        <div class="bg-layer">
+            <div class="bg-texture"></div>
+            <div class="bg-noise"></div>
+            <div class="bg-gradient"></div>
+            <h1 class="deco-text deco-admin">ADMINISTRACIÓN</h1>
+
+            <div class="drip" style="left: 15%; animation-delay: 0.5s; background-color: var(--color-pink);"></div>
+            <div class="drip drip-cyan" style="left: 85%; animation-delay: 1.8s;"></div>
+        </div>
+
+        <div class="admin-content">
+            <div class="admin-header">
+                <div class="admin-title-group">
+                    <span class="admin-sub">PANEL DE CONTROL</span>
+                    <h2 class="admin-title">AJUSTES <br /><span>SISTEMA</span></h2>
+                </div>
+                <div class="admin-nav">
+                    <div class="nav-item active" data-tab="users">
+                        <i data-lucide="users"></i>
+                        <span>USUARIOS</span>
+                    </div>
+                    <div class="nav-item" data-tab="packs">
+                        <i data-lucide="package"></i>
+                        <span>PAQUETES</span>
+                    </div>
+                    <div class="nav-item" data-tab="global">
+                        <i data-lucide="settings"></i>
+                        <span>AJUSTES</span>
+                    </div>
+                </div>
+                <div class="admin-search">
+                    <div class="search-wrapper" id="admin-search-wrapper">
+                        <input type="text" id="admin-search-input" placeholder="BUSCAR POR NOMBRE O LICENSE..."
+                            autocomplete="off">
+                        <button id="admin-search-btn"><i data-lucide="search"></i></button>
+                    </div>
+                    <button id="admin-close-btn" class="close-admin-btn"><i data-lucide="x"></i></button>
+                </div>
+            </div>
+
+            <div class="admin-body">
+                <!-- Tab: Users -->
+                <div class="admin-tab-content active" id="tab-users">
+                    <div class="admin-flex-container">
+                        <div class="admin-users-list custom-scrollbar">
+                            <!-- Users will be populated here -->
+                        </div>
+
+                        <div class="admin-details-panel">
+                            <div class="details-placeholders">SELECCIONA UN USUARIO</div>
+                            <div class="details-content" style="display: none;">
+                                <div class="user-info-header">
+                                    <i data-lucide="user" class="user-icon-large"></i>
+                                    <div class="user-info-text">
+                                        <span class="user-name-display">UNDEFINED</span>
+                                        <span class="user-identifier-display">LICENSE: ...</span>
+                                        <span class="user-status-display">OFFLINE</span>
+                                    </div>
+                                </div>
+
+                                <div class="slots-control">
+                                    <label>SLOTS DE PERSONAJES</label>
+                                    <div class="slots-input-group">
+                                        <button class="slot-btn-minus"><i data-lucide="minus"></i></button>
+                                        <input type="number" id="admin-slots-input" value="1" min="1" max="10">
+                                        <button class="slot-btn-plus"><i data-lucide="plus"></i></button>
+                                        <button class="slot-btn-save">GUARDAR</button>
+                                    </div>
+                                </div>
+
+                                <label
+                                    style="margin-top: 2rem; display: block; color: rgba(255,255,255,0.5); font-weight: 600; font-size: 0.9rem;">PERSONAJES
+                                    CREADOS</label>
+                                <div class="user-characters-list custom-scrollbar">
+                                    <!-- User characters will be populated here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab: Packs -->
+                <div class="admin-tab-content" id="tab-packs" style="display: none;">
+                    <div class="admin-flex-container">
+                        <div class="admin-packs-list-panel custom-scrollbar">
+                            <!-- Packs will be populated here -->
+                        </div>
+                        <div class="admin-pack-editor-panel">
+                            <div class="details-placeholders">SELECCIONA UN PAQUETE</div>
+                            <div class="pack-editor-content" style="display: none;">
+                                <!-- Editor fields populated by JS -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab: Global Settings -->
+                <div class="admin-tab-content" id="tab-global" style="display: none;">
+                    <div class="global-settings-grid">
+                        <!-- Global settings populated by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Icon Picker Popover -->
+            <div id="admin-icon-picker" class="icon-picker-popover hidden">
+                <div class="popover-panel">
+                    <div class="popover-header">
+                        <div class="search-box-v2">
+                            <i data-lucide="search" width="16"></i>
+                            <input type="text" id="icon-search-input" placeholder="BUSCAR ICONO..."
+                                class="search-input-v2">
+                        </div>
+                    </div>
+                    <div class="popover-list-container custom-scrollbar">
+                        <div id="icons-grid" class="icons-grid">
+                            <!-- Icons populated by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="vehicle-tag-container">
+        <div id="vehicle-tag" class="vehicle-floating-tag">
+            <div class="tag-icon-circle">
+                <i data-lucide="car-front" width="24" height="24"></i>
+            </div>
+            <div class="tag-label-box">
+                <div class="tag-text">TU VEHiCULO</div>
+            </div>
+            <div class="tag-subtext">INCLUIDO</div>
+            <div class="tag-arrow"></div>
+        </div>
+    </div>
+
+
+    <div class="instructions-panel" id="claim-instructions" style="display: none;">
+        <div class="inst-line"></div>
+        <div class="inst-content">
+            <h3 id="inst-title">BIENVENIDO A UNIQUE VIBES</h3>
+            <p id="inst-desc">Personaliza tu estancia en la ciudad con el mejor estilo.</p>
+        </div>
+    </div>
+
+    <div class="claim-tag-container" id="claim-tag" style="display: none;">
+        <div class="tag-body">
+            <div class="tag-icon">
+                <i data-lucide="car"></i>
+            </div>
+            <div class="tag-text">
+                <span class="tag-main" id="claim-tag-text">RECLAMA TU VEHiCULO</span>
+                <span class="tag-sub" id="claim-tag-sub">PRESIONA [E] PARA RECLAMAR</span>
+            </div>
+        </div>
+        <div class="tag-arrow"></div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            if (window.lucide) lucide.createIcons();
+        });
+    </script>
+</body>
+
+</html>

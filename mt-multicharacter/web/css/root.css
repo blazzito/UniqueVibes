@@ -1,0 +1,297 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Bebas+Neue&display=swap");
+
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    user-select: none;
+    cursor: default;
+    background-color: transparent;
+}
+
+.global-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    background-image: var(--midnight-skyline);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.5;
+    pointer-events: none;
+    display: none;
+}
+
+:root {
+    /* Unique Vibes Core Palette */
+    --color-orange: #ff6b00;
+    --color-petrol: #00a8cc;
+    --color-bg-dark: #0f0f0f;
+    --glass-bg: rgba(10, 10, 12, 0.75);
+    --glass-border: rgba(255, 255, 255, 0.05);
+    
+    /* Preserved Backgrounds */
+    --midnight-skyline: url('https://r2.fivemanage.com/5nOEpfNnpHW9tfpLTFBoV/bg_mdn_new.png');
+    --midnight-logo: url('https://r2.fivemanage.com/5nOEpfNnpHW9tfpLTFBoV/logomdn.png');
+
+    /* Typography */
+    --font-main: 'Quicksand', sans-serif;
+    --font-accent: 'Bebas Neue', sans-serif;
+    
+    /* Design Tokens */
+    --radius-lg: 16px;
+    --radius-md: 10px;
+    --shadow-premium: 0 20px 50px rgba(0, 0, 0, 0.8);
+    --accent-gradient: linear-gradient(135deg, var(--color-orange) 0%, var(--color-petrol) 100%);
+
+    /* Compatibility mapping (prevents breaking existing CSS files temporarily) */
+    --midnight-accent: var(--color-orange);
+    --midnight-accent-gradient: var(--accent-gradient);
+    --midnight-border: var(--glass-border);
+    --font-title: var(--font-accent);
+    --color-pink: var(--color-orange);
+}
+
+
+
+.flex-end {
+    justify-content: flex-end;
+}
+
+.bars {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.bars .bar {
+    width: 100%;
+    background-color: black;
+    height: 0vw;
+    transition: all 3s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.bars .bar.active {
+    height: 8vw;
+}
+
+.bars .text-box {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: white;
+}
+
+.bars .text-box .text {
+    font-size: 1vw;
+    height: .9vw;
+}
+
+.bars .text-box .user-name {
+    font-size: 3vw;
+}
+
+.timer-screen {
+    position: absolute;
+    bottom: 5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 450px;
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    z-index: 1000;
+}
+
+.timer-screen.active {
+    display: flex;
+    animation: hudEntry 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.timer-screen.hide {
+    animation: hudExit 0.5s cubic-bezier(0.5, 0, 0.75, 0) forwards;
+}
+
+.info-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.8rem;
+    margin-bottom: 2px;
+    padding-left: 10px;
+}
+
+.status-tag {
+    background: var(--color-yellow);
+    color: black;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    padding: 2px 8px;
+    border: 2px solid black;
+    transform: skewX(-10deg) rotate(-2deg);
+    box-shadow: 2px 2px 0px black;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.info-text {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.1rem;
+    line-height: 1.1;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-transform: uppercase;
+    flex: 1;
+}
+
+.timer-box {
+    position: relative;
+    width: 100%;
+    height: 18px;
+    background: #1a1a1a;
+    border: 2px solid white;
+    box-shadow: 4px 4px 0px black;
+    transform: skewX(-15deg);
+    overflow: hidden;
+}
+
+.timer-bg-texture {
+    position: absolute;
+    inset: 0;
+    opacity: 0.3;
+    background-image: repeating-linear-gradient(90deg,
+            transparent,
+            transparent 2px,
+            #000 2px,
+            #000 4px);
+}
+
+.timer-bar-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    background-color: var(--color-pink);
+    background-image: linear-gradient(45deg,
+            rgba(255, 255, 255, 0.2) 25%,
+            transparent 25%,
+            transparent 50%,
+            rgba(255, 255, 255, 0.2) 50%,
+            rgba(255, 255, 255, 0.2) 75%,
+            transparent 75%,
+            transparent);
+    background-size: 20px 20px;
+    box-shadow: 0 0 15px var(--color-pink);
+}
+
+.timer-bar-fill::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: white;
+    box-shadow: 0 0 5px white;
+}
+
+@keyframes hudEntry {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(50px) scale(0.9);
+    }
+
+    70% {
+        transform: translateX(-50%) translateY(-10px) scale(1.02);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0) scale(1);
+    }
+}
+
+@keyframes hudExit {
+    0% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0) scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(50px) scale(0.9);
+    }
+}
+
+
+
+.bar-shine {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, transparent 50%, rgba(0, 0, 0, 0.1) 100%);
+    pointer-events: none;
+}
+
+/* Global Branded Logo */
+.brand-logo-container {
+    position: fixed;
+    top: 3.5vh;
+    right: 4vw;
+    z-index: 10000;
+    width: clamp(100px, 8vw, 150px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: none;
+    animation: floatLogo 6s ease-in-out infinite;
+    display: none;
+}
+
+.brand-logo-img {
+    width: 100%;
+    filter: drop-shadow(0 0 15px rgba(255, 204, 0, 0.1));
+    animation: glowLogo 3s ease-in-out infinite alternate;
+}
+
+@keyframes floatLogo {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-10px) rotate(1deg);
+    }
+}
+
+@keyframes glowLogo {
+    0% {
+        filter: drop-shadow(0 0 5px rgba(255, 204, 0, 0.1)) brightness(1);
+    }
+
+    100% {
+        filter: drop-shadow(0 0 20px rgba(255, 204, 0, 0.4)) brightness(1.2);
+    }
+}
