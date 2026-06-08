@@ -192,7 +192,7 @@ const alertsFunctions = {
                         </div>
                         <div class="alert-player">
                             <i class="fas fa-user"></i>
-                            <span>ID: ${alert.playerId || '-'}</span>
+                            <span>${alert.metadata && alert.metadata.name ? alert.metadata.name : 'ID: ' + (alert.playerId || '-')}</span>
                         </div>
                         <div class="alert-time">${timeAgo}</div>
                     </div>
@@ -317,7 +317,7 @@ const alertsFunctions = {
                 <div style="font-family: 'Quicksand', sans-serif; text-align: center;">
                     <strong>${alert.type}</strong><br>
                     <small>${alert.location}</small><br>
-                    <small>ID: ${alert.playerId || '-'}</small>
+                    <small>${alert.metadata && alert.metadata.name ? alert.metadata.name : 'ID: ' + (alert.playerId || '-')}</small>
                 </div>
             `);
         
@@ -364,7 +364,8 @@ const alertsFunctions = {
             location: dispatchAlert.street || 'Desconocido',
             playerId,
             coords: parsedCoords || null,
-            timestamp
+            timestamp,
+            metadata: dispatchAlert.metadata || {}
         });
     },
 

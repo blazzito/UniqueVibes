@@ -588,7 +588,8 @@ centralFunctions = {
 				x: event.data.alert.coords.x,
 				y: event.data.alert.coords.y,
 				z: event.data.alert.coords.z
-			} : null
+			} : null,
+			playerID: event.data.playerID || event.data.playerId || event.data.source || (event.data.alert && (event.data.alert.playerID || event.data.alert.playerId || event.data.alert.source))
 		};
 
 		centralFunctions.alerts.push(alertToStore);
@@ -644,7 +645,8 @@ centralFunctions = {
 				x: event.data.alert.coords.x,
 				y: event.data.alert.coords.y,
 				z: event.data.alert.coords.z
-			} : null
+			} : null,
+			playerID: event.data.playerID || event.data.playerId || event.data.source || (event.data.alert && (event.data.alert.playerID || event.data.alert.playerId || event.data.alert.source))
 		};
 		centralFunctions.alerts.push(alertToStore);
 		const index = centralFunctions.alerts.length - 1;
