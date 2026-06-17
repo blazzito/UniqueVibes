@@ -2,6 +2,7 @@ local ESX = exports["es_extended"]:getSharedObject()
 local isMenuOpen = false
 local mugshotHandle = nil
 local mugshotTxd = nil
+local blockPauseInterceptor = false
 
 function CreateMugshot()
     local ped = PlayerPedId()
@@ -105,21 +106,33 @@ end
 Citizen.CreateThread(function()
     while true do
         Citizen.Wait(0)
-        SetPauseMenuActive(false) 
         
-        -- Si nuestro menú custom está abierto, ocultamos HUD y bloqueamos controles clave
         if isMenuOpen then
+            -- Si nuestro menú custom está abierto, ocultamos HUD, bloqueamos controles y mantenemos cerrado el nativo
+            SetPauseMenuActive(false) 
             DisplayHud(false)
             DisplayRadar(false)
             DisableAllControlActions(0) 
             EnableControlAction(0, 249, true) -- N (Radio)
             EnableControlAction(0, 245, true) -- T (Chat)
+        else
+            -- Si el juego decide abrir el menú nativo y no lo hemos bloqueado temporalmente
+            if IsPauseMenuActive() and not blockPauseInterceptor then
+                -- Cerramos el menú nativo instantáneamente y abrimos el nuestro
+                SetPauseMenuActive(false)
+                OpenEscapeMenu()
+            end
         end
     end
 end)
 
 RegisterCommand('unique_escape_menu', function()
+    -- Si el juego tiene el menú de pausa nativo activo, ignoramos
     if IsPauseMenuActive() then return end
+    
+    -- ¡CRÍTICO! Protegemos el comando por si el usuario tiene la tecla guardada en su cliente (KeyMapping residual).
+    -- Si hay un NUI enfocado (como el inventario ox_inventory), NO debemos abrir el menú de pausa.
+    if IsNuiFocused() then return end
     
     if UpdateOnscreenKeyboard() ~= 0 then
         if not isMenuOpen then
@@ -130,7 +143,26 @@ RegisterCommand('unique_escape_menu', function()
     end
 end, false)
 
-RegisterKeyMapping('unique_escape_menu', 'Abrir Menu de Pausa', 'keyboard', 'ESCAPE')
+-- Función para abrir menús nativos desde nuestro menú sin que se intercepte
+function OpenNativeMenu(menuHash)
+    CloseEscapeMenu()
+    blockPauseInterceptor = true
+    ActivateFrontendMenu(menuHash, 0, -1)
+    
+    Citizen.CreateThread(function()
+        -- Darle tiempo al menú nativo para que se registre como abierto
+        Citizen.Wait(100)
+        
+        -- Esperar mientras el menú nativo esté abierto
+        while IsPauseMenuActive() do
+            Citizen.Wait(0)
+        end
+        
+        -- Una vez cerrado el menú nativo, esperamos unos ms extra y volvemos a permitir interceptar ESC
+        Citizen.Wait(100)
+        blockPauseInterceptor = false
+    end)
+end
 
 RegisterNUICallback("playSound", function(data, cb)
     if data.name == "hover" then
@@ -147,14 +179,12 @@ RegisterNUICallback("close", function(data, cb)
 end)
 
 RegisterNUICallback("map", function(data, cb)
-    CloseEscapeMenu()
-    ActivateFrontendMenu(GetHashKey("FE_MENU_VERSION_MP_PAUSE"), 0, -1)
+    OpenNativeMenu(GetHashKey("FE_MENU_VERSION_MP_PAUSE"))
     cb("ok")
 end)
 
 RegisterNUICallback("settings", function(data, cb)
-    CloseEscapeMenu()
-    ActivateFrontendMenu(-1031775802, 0, 0)
+    OpenNativeMenu(-1031775802)
     cb("ok")
 end)
 
