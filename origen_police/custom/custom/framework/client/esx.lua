@@ -90,6 +90,19 @@ function FW_Notify(text)
     Framework.ShowNotification(text)
 end
 
+RegisterNetEvent("esx:playerLoaded", function(xPlayer)
+    TriggerEvent("origen_police:client:OnPlayerLoaded")
+    SetTimeout(5000, function()
+        local Player = FW_GetPlayerData()
+        if Player and Player.job then
+            TriggerEvent("origen_police:client:OnJobUpdate", Player.job)
+            if Player.job.onduty then
+                SetDuty(true)
+            end
+        end
+    end)
+end)
+
 RegisterNetEvent("esx:onPlayerSpawn", function()
     TriggerEvent("origen_police:client:OnPlayerLoaded")
 end)

@@ -1,4 +1,4 @@
-Config.Maps = {}
+Config.Maps = {"mission-row"}
 
 Config.MarkersDraw = true -- Draw the markers on the map
 

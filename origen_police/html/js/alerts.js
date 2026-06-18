@@ -265,7 +265,7 @@ const alertsFunctions = {
             const coords = alert.coords;
             if (coords && coords.x != null && coords.y != null) {
                 
-                const leafletCoords = this.gtaToLeaflet(coords.x, coords.y);
+                const leafletCoords = [coords.y, coords.x];
                 
                 
                 mapHome.flyTo(leafletCoords, 4, {

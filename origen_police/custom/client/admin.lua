@@ -339,20 +339,3 @@ RegisterCommand("inventoryPolice", function()
     TriggerEvent("origen_police:client:inventory", eventData)
 end, false)
 
-RegisterNetEvent("esx:playerLoaded")
-AddEventHandler("esx:playerLoaded", function()
-    Wait(2000)
-    LoadAllMarkers()
-end)
-
-RegisterNetEvent("QBCore:Client:OnPlayerLoaded")
-AddEventHandler("QBCore:Client:OnPlayerLoaded", function()
-    Wait(2000)
-    LoadAllMarkers()
-end)
-
-RegisterCommand("reloadpolice", function()
-    LoadAllMarkers()
-    FW_Notify("Marcadores recargados manualmente.")
-end, false)
-
