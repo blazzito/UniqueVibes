@@ -1,0 +1,1470 @@
+================================================================
+======== Log Rotated - 6/15/2026, 12:00:00 AM                   
+================================================================
+║             TXADMIN║ ================================================================
+║             TXADMIN║ ======== [2752] FXServer Starting - 6/15/2026, 3:09:03 PM       
+║             TXADMIN║ ================================================================
+[           resources] Scanning resources.
+[           resources] Found 142 resources.
+[          svadhesive] Authenticating server license key...
+[          svadhesive] Server license key authentication succeeded. Welcome!
+[    c-scripting-core] Creating script environments for monitor
+[      script:monitor] [txAdmin] Resource v8.0.1 threads and commands set up. All Ready.
+[           resources] Started resource monitor
+[ citizen-server-impl] Could not open esxLogo.png for reading.
+[ citizen-server-impl] Couldn't find resource CRACK_libertycity_streetprops.
+[resources:lcpack:str] Asset lcpack/boxvilleretro+hi.ytd uses 20.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/cabby+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/fdlc+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/fdlcamb+hi.ytd uses 24.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/fdlcambold+hi.ytd uses 48.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/fdlcbastion+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/fdlcboxville+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/fdlcgranger+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/fdlchazmat+hi.ytd uses 24.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/fdlcheavy+hi.ytd uses 24.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/fdlcladder+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/fdlcrescue+hi.ytd uses 24.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/fdlcsteed+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/fdlctiller+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/fdlctillert+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/fdlctruck2+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcbus+hi.ytd uses 40.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcpbus+hi.ytd uses 48.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcpd+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcpd2+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcpd3+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcpd4+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcpd5+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcpdbob+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcpdboxville+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcpdimpaler+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcpdimpaler2+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcpdold+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcpdpanto+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcpdpatriot+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcpdpigeon+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcpdpredator+hi.ytd uses 24.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcpdriata+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcpdscout+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcpdshark+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcpdsparrow+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcpdspeedo+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcpdtow+hi.ytd uses 36.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcpdtru+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcsbus+hi.ytd uses 24.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lctaxi4+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lctaxiimpaler+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lctrash2+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/metrotrain.ytd uses 64.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[           resources] Started resource lcpack (44 warnings)
+[ citizen-server-impl] Couldn't find resource liberty_vehicles.
+[resources:liberty_ci] Asset liberty_city_peds/csb_burgerdrug_lc.ytd uses 24.0 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/g_m_m_chisuit_01_lc.ytd uses 16.2 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/g_m_y_hustler_01.ytd uses 16.4 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/g_m_y_hustler_02.ytd uses 16.3 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/g_m_y_hustler_03.ytd uses 16.2 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/g_m_y_hustler_04.ytd uses 18.0 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/g_m_y_italian_01.ytd uses 36.0 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/g_m_y_italian_02.ytd uses 22.5 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/g_m_y_italian_03.ytd uses 32.0 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/g_m_y_italian_04.ytd uses 24.2 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/g_m_y_italian_07.ytd uses 49.2 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:liberty_ci] Asset liberty_city_peds/g_m_y_italian_10.ytd uses 26.5 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/g_m_y_italian_11.ytd uses 21.0 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/g_m_y_italian_13.ytd uses 29.0 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/g_m_y_italianmafia_01.ytd uses 20.9 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/g_m_y_jamaican_01.ydd uses 24.4 MiB of virtual memory.
+[resources:liberty_ci] Asset liberty_city_peds/g_m_y_jamaican_01.ytd uses 54.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:liberty_ci] Asset liberty_city_peds/g_m_y_korean_03_lc.ytd uses 18.0 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/g_m_y_pimp_02.ytd uses 28.4 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/ig_fatbiker.ytd uses 52.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:liberty_ci] Asset liberty_city_peds/ig_lccop_01.ytd uses 42.0 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/ig_lccop_02.ytd uses 77.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:liberty_ci] Asset liberty_city_peds/ig_lccop_coat_01.ytd uses 33.2 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/ig_lccop_coat_02.ytd uses 68.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:liberty_ci] Asset liberty_city_peds/ig_lccop_traffic.ytd uses 62.2 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:liberty_ci] Asset liberty_city_peds/ig_lccop_vest_01.ytd uses 42.0 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/ig_lccop_vest_02.ytd uses 77.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:liberty_ci] Asset liberty_city_peds/ig_lcfatcop.ytd uses 66.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:liberty_ci] Asset liberty_city_peds/ig_lcfatcop_coat.ytd uses 46.5 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/ig_lcfatcop_vest.ytd uses 61.2 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:liberty_ci] Asset liberty_city_peds/ig_lcfbi.ytd uses 55.8 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:liberty_ci] Asset liberty_city_peds/ig_lcfbidlc_01.ytd uses 44.5 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/ig_lcfbidlc_02.ytd uses 41.8 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/ig_lcstrooper.ytd uses 29.5 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/ig_lcswat.ytd uses 94.2 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[           resources] Started resource liberty_city_peds (35 warnings)
+[resources:libertycit] Warning: could not find file `gta5.meta` (defined in fxmanifest.lua:12)
+[resources:libertycit] Warning: could not find file `images.meta` (defined in fxmanifest.lua:12)
+[resources:libertycit] Asset libertycity/brook_new_roads+hi.ytd uses 22.0 MiB of physical memory.
+[resources:libertycit] Asset libertycity/brook_new_roads.ytd uses 22.0 MiB of physical memory.
+[resources:libertycit] Asset libertycity/brook_roads+hi.ytd uses 24.0 MiB of physical memory.
+[resources:libertycit] Asset libertycity/brook_roads.ytd uses 26.0 MiB of physical memory.
+[resources:libertycit] Asset libertycity/e2_mis_boat.ytd uses 25.0 MiB of physical memory.
+[resources:libertycit] Asset libertycity/jersey_roads+hi.ytd uses 51.5 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:libertycit] Asset libertycity/jersey_roads.ytd uses 51.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:libertycit] Asset libertycity/mh_roads+hi.ytd uses 54.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:libertycit] Asset libertycity/mh_roads.ytd uses 32.0 MiB of physical memory.
+[           resources] Started resource libertycity (11 warnings)
+[           resources] Started resource liberty_audio
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv1_V7/CookiesBackRoom.ytd uses 26.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv1_V7/bodega_1.ydr uses 220.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv1_V7/breze_swimmingpool_chair_01.ydr uses 24.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv1_V7/breze_swimmingpool_chair_02.ydr uses 24.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv1_V7/breze_swimmingpool_shell.ydr uses 32.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv1_V7/crack-deliv3.ydr uses 80.5 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv1_V7/crack_247.ydr uses 36.5 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv1_V7/crack_pugs_lsia.ydr uses 21.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv1_V7/crack_v2deli.ydr uses 48.1 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv1_V7/crackruntz.ydr uses 26.2 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv1_V7/crackruntz.ydr uses 32.0 MiB of virtual memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv1_V7/crackruntzBathroom.ydr uses 17.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv1_V7/hedwig_pillbox_props_txd.ytd uses 30.5 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv1_V7/mrpd_txt.ytd uses 25.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv1_V7/nx_shops2_txd.ytd uses 48.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv1_V7/nx_shops_txd.ytd uses 46.2 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv1_V7/otaku_harem_saloon_shell.ydr uses 19.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv1_V7/rfc_eastcustums_txt.ytd uses 50.5 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv1_V7/rfc_tunergarage_txd.ytd uses 21.5 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv1_V7/tn_mechanic.ytd uses 31.2 MiB of physical memory.
+[           resources] Started resource CMS_MlosPacksv1_V7 (20 warnings)
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv2_V7/MilosWalmart.ydr uses 22.8 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv2_V7/Pharmacy.ytd uses 20.1 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv2_V7/Shelv32.ydr uses 25.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv2_V7/Shelv36.ydr uses 32.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv2_V7/Shelv36.ytd uses 36.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv2_V7/Shelv37.ydr uses 32.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv2_V7/Shelv39.ydr uses 18.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv2_V7/Shelv40.ydr uses 18.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv2_V7/breze_tuner_tyres.ydr uses 40.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv2_V7/denis3d_catcafe_txd.ytd uses 23.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv2_V7/patoche_cyber_det23.ydr uses 18.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv2_V7/rfc_grovebar_props.ytd uses 23.5 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv2_V7/sempre_club77_interior.ytd uses 29.2 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv2_V7/vhm_props.ydr uses 20.0 MiB of physical memory.
+[           resources] Started resource CMS_MlosPacksv2_V7 (14 warnings)
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv3_V7/Cinema_Lusino_coll.ybn uses 20.0 MiB of virtual memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv3_V7/Room1_cinema.ydr uses 32.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv3_V7/Room2_bathroom.ydr uses 36.0 MiB of virtual memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv3_V7/bkr_biker_dlc_int_01txd.ytd uses 36.5 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv3_V7/crack_chickenheater.ydr uses 16.2 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv3_V7/crack_chickenheater.ydr uses 32.0 MiB of virtual memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv3_V7/crack_kennedy_tex.ytd uses 20.5 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv3_V7/crack_kfc_exterior.ydr uses 64.0 MiB of virtual memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv3_V7/cs6_04_prison+hi.ytd uses 20.8 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv3_V7/cs6_04_prison.ytd uses 17.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv3_V7/dons_gclub.ytd uses 22.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv3_V7/hei_obankbank_shell.ydr uses 20.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv3_V7/kfc_interior.ydr uses 53.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv3_V7/patoche_billard_det17.ydr uses 18.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv3_V7/prison_cells_wall_details1_lower.ydr uses 18.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv3_V7/prison_cells_wall_details1_upper.ydr uses 20.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv3_V7/xm_int_sub.ytd uses 21.5 MiB of physical memory.
+[           resources] Started resource CMS_MlosPacksv3_V7 (17 warnings)
+[resources:CMS_MlosPa] Warning: could not find file `interiorproxies.meta` (defined in fxmanifest.lua:6)
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv4_V7/as_autoexotic_txt.ytd uses 22.5 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv4_V7/breze_wingstop_shell.ydr uses 24.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv4_V7/dons_elk_bar_shell.ytd uses 56.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv4_V7/dons_elk_lob_shell.ytd uses 45.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv4_V7/dons_lc_weed.ytd uses 48.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv4_V7/gindena_mechanic_shell.ydr uses 32.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv4_V7/mansion_txd.ytd uses 54.5 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv4_V7/patoche_blood_shell.ydr uses 21.4 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv4_V7/vw_vwint01_vwdlc_vw_casino.ytd uses 25.8 MiB of physical memory.
+[           resources] Started resource CMS_MlosPacksv4_V7 (10 warnings)
+[resources:CMS_MlosPa] Warning: could not find file `interiorproxies.meta` (defined in fxmanifest.lua:6)
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv5_V7/dount_props.ydr uses 17.2 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv5_V7/qnx_univ_txd1.ytd uses 32.1 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv5_V7/qnx_univ_txd2.ytd uses 17.6 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv5_V7/tr_int1_tuner_mod_garage.ytd uses 81.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv5_V7/w_ar_assaultrifle.ytd uses 19.0 MiB of physical memory.
+[           resources] Started resource CMS_MlosPacksv5_V7 (6 warnings)
+[resources:CMS_StarkM] Warning: could not find client_script `escrow.lua` (defined in fxmanifest.lua:7)
+[resources:CMS_StarkM] Asset CMS_StarkMansion_NY/stark_bedward.ydr uses 22.0 MiB of physical memory.
+[resources:CMS_StarkM] Asset CMS_StarkMansion_NY/starkmansion_exterior.ytd uses 16.2 MiB of physical memory.
+[resources:CMS_StarkM] Asset CMS_StarkMansion_NY/starkmansion_interior.ytd uses 18.5 MiB of physical memory.
+[resources:CMS_StarkM] Asset CMS_StarkMansion_NY/starkmansion_interior2.ytd uses 27.0 MiB of physical memory.
+[           resources] Started resource CMS_StarkMansion_NY (5 warnings)
+[resources:TF_OilRig:] Asset TF_OilRig/ld_small_oilrig.ydr uses 18.0 MiB of physical memory.
+[resources:TF_OilRig:] Asset TF_OilRig/ld_small_oilrig2.ydr uses 32.0 MiB of physical memory.
+[resources:TF_OilRig:] Asset TF_OilRig/ld_small_oilrig3.ydr uses 32.0 MiB of physical memory.
+[resources:TF_OilRig:] Asset TF_OilRig/ld_small_oilrig5.ydr uses 24.0 MiB of physical memory.
+[           resources] Started resource TF_OilRig (4 warnings)
+[    c-scripting-core] Creating script environments for UniqueEscapeMenu
+[script:UniqueEscapeM] SCRIPT ERROR: @es_extended/imports.lua:1: No such export getSharedObject in resource es_extended
+[script:UniqueEscapeM] SCRIPT ERROR: @UniqueEscapeMenu/server/main.lua:1: No such export getSharedObject in resource es_extended
+[           resources] Started resource UniqueEscapeMenu
+[    c-scripting-core] Creating script environments for UniquePolice
+[ script:UniquePolice] SCRIPT ERROR: ox_lib must be started before this resource.
+[ script:UniquePolice] > fn (@ox_lib/init.lua:27)
+[ script:UniquePolice] SCRIPT ERROR: @UniquePolice/server/main.lua:1: No such export getSharedObject in resource es_extended
+[           resources] Started resource UniquePolice
+[           resources] Started resource crack_unload_lossantos
+[    c-scripting-core] Creating script environments for libertycity_mlosdependency
+[           resources] Started resource libertycity_mlosdependency
+[           resources] Started resource NativeUI
+[    c-scripting-core] Creating script environments for uniquevibes_cam
+[           resources] Started resource uniquevibes_cam
+[ citizen-server-impl] Couldn't find resource CRACK_NYCMlosPacksv1_v7.
+[ citizen-server-impl] Couldn't find resource CRACK_NYCMlosPacksv2_v7.
+[ citizen-server-impl] Couldn't find resource CRACK_NYCMlosPacksv3_v7.
+[ citizen-server-impl] Couldn't find resource CRACK_NYCMlosPacksv4_v7.
+[ citizen-server-impl] Couldn't find resource CRACK_StarkMansion_NY.
+[           resources] Started resource cfx_onx_mp_faces
+[resources:h1_kawsdel] Asset h1_kawsdeluxe/mp_m_freemode_01_mp_m_h1_kawsdeluxe^berd_diff_038_a_uni.ytd uses 32.0 MiB of physical memory.
+[resources:h1_kawsdel] Asset h1_kawsdeluxe/mp_m_freemode_01_mp_m_h1_kawsdeluxe^decl_079_u.ydd uses 32.0 MiB of virtual memory.
+[resources:h1_kawsdel] Asset h1_kawsdeluxe/mp_m_freemode_01_mp_m_h1_kawsdeluxe^decl_080_u.ydd uses 32.0 MiB of virtual memory.
+[resources:h1_kawsdel] Asset h1_kawsdeluxe/mp_m_freemode_01_mp_m_h1_kawsdeluxe^decl_081_u.ydd uses 32.0 MiB of virtual memory.
+[resources:h1_kawsdel] Asset h1_kawsdeluxe/mp_m_freemode_01_mp_m_h1_kawsdeluxe^decl_diff_079_a_uni.ytd uses 32.0 MiB of physical memory.
+[resources:h1_kawsdel] Asset h1_kawsdeluxe/mp_m_freemode_01_mp_m_h1_kawsdeluxe^decl_diff_080_a_uni.ytd uses 32.0 MiB of physical memory.
+[resources:h1_kawsdel] Asset h1_kawsdeluxe/mp_m_freemode_01_mp_m_h1_kawsdeluxe^decl_diff_081_a_uni.ytd uses 32.0 MiB of physical memory.
+[resources:h1_kawsdel] Asset h1_kawsdeluxe/mp_m_freemode_01_mp_m_h1_kawsdeluxe^feet_003_u.ydd uses 16.6 MiB of virtual memory.
+[resources:h1_kawsdel] Asset h1_kawsdeluxe/mp_m_freemode_01_mp_m_h1_kawsdeluxe^feet_064_u.ydd uses 24.0 MiB of virtual memory.
+[resources:h1_kawsdel] Asset h1_kawsdeluxe/mp_m_freemode_01_mp_m_h1_kawsdeluxe^feet_068_u.ydd uses 18.0 MiB of virtual memory.
+[resources:h1_kawsdel] Asset h1_kawsdeluxe/mp_m_freemode_01_mp_m_h1_kawsdeluxe^hair_074_u.ydd uses 18.0 MiB of virtual memory.
+[resources:h1_kawsdel] Asset h1_kawsdeluxe/mp_m_freemode_01_mp_m_h1_kawsdeluxe^lowr_diff_126_b_whi.ytd uses 32.0 MiB of physical memory.
+[resources:h1_kawsdel] Asset h1_kawsdeluxe/mp_m_freemode_01_mp_m_h1_kawsdeluxe^task_068_u.ydd uses 28.0 MiB of virtual memory.
+[resources:h1_kawsdel] Asset h1_kawsdeluxe/mp_m_freemode_01_mp_m_h1_kawsdeluxe^task_080_u.ydd uses 18.0 MiB of virtual memory.
+[resources:h1_kawsdel] Asset h1_kawsdeluxe/mp_m_freemode_01_mp_m_h1_kawsdeluxe^task_081_u.ydd uses 32.0 MiB of virtual memory.
+[resources:h1_kawsdel] Asset h1_kawsdeluxe/mp_m_freemode_01_mp_m_h1_kawsdeluxe^task_089_u.ydd uses 48.0 MiB of virtual memory.
+[resources:h1_kawsdel] Asset h1_kawsdeluxe/mp_m_freemode_01_mp_m_h1_kawsdeluxe^task_093_u.ydd uses 36.0 MiB of virtual memory.
+[resources:h1_kawsdel] Asset h1_kawsdeluxe/mp_m_freemode_01_mp_m_h1_kawsdeluxe^task_094_u.ydd uses 17.0 MiB of physical memory.
+[resources:h1_kawsdel] Asset h1_kawsdeluxe/mp_m_freemode_01_mp_m_h1_kawsdeluxe^task_096_u.ydd uses 34.0 MiB of physical memory.
+[resources:h1_kawsdel] Asset h1_kawsdeluxe/mp_m_freemode_01_mp_m_h1_kawsdeluxe^task_diff_079_b_uni.ytd uses 32.0 MiB of physical memory.
+[resources:h1_kawsdel] Asset h1_kawsdeluxe/mp_m_freemode_01_mp_m_h1_kawsdeluxe^task_diff_084_a_uni.ytd uses 32.0 MiB of physical memory.
+[resources:h1_kawsdel] Asset h1_kawsdeluxe/mp_m_freemode_01_mp_m_h1_kawsdeluxe^task_diff_090_a_uni.ytd uses 32.0 MiB of physical memory.
+[resources:h1_kawsdel] Asset h1_kawsdeluxe/mp_m_freemode_01_mp_m_h1_kawsdeluxe^task_diff_091_a_uni.ytd uses 32.0 MiB of physical memory.
+[resources:h1_kawsdel] Asset h1_kawsdeluxe/mp_m_freemode_01_mp_m_h1_kawsdeluxe^task_diff_096_a_uni.ytd uses 32.0 MiB of physical memory.
+[resources:h1_kawsdel] Asset h1_kawsdeluxe/mp_m_freemode_01_mp_m_h1_kawsdeluxe^teef_121_u.ydd uses 64.0 MiB of virtual memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:h1_kawsdel] Asset h1_kawsdeluxe/mp_m_freemode_01_p_mp_m_h1_kawsdeluxe^p_head_005.ydd uses 32.0 MiB of virtual memory.
+[resources:h1_kawsdel] Asset h1_kawsdeluxe/mp_m_freemode_01_p_mp_m_h1_kawsdeluxe^p_head_diff_027_a.ytd uses 32.0 MiB of physical memory.
+[resources:h1_kawsdel] Asset h1_kawsdeluxe/mp_m_freemode_01_p_mp_m_h1_kawsdeluxe^p_head_diff_027_b.ytd uses 32.0 MiB of physical memory.
+[           resources] Started resource h1_kawsdeluxe (28 warnings)
+[resources:h2_kawsdel] Asset h2_kawsdeluxe/mp_m_freemode_01_mp_m_h2_kawsdeluxe^feet_028_u.ydd uses 32.0 MiB of virtual memory.
+[resources:h2_kawsdel] Asset h2_kawsdeluxe/mp_m_freemode_01_mp_m_h2_kawsdeluxe^hair_011_u.ydd uses 24.0 MiB of virtual memory.
+[resources:h2_kawsdel] Asset h2_kawsdeluxe/mp_m_freemode_01_mp_m_h2_kawsdeluxe^hair_016_u.ydd uses 32.0 MiB of physical memory.
+[resources:h2_kawsdel] Asset h2_kawsdeluxe/mp_m_freemode_01_mp_m_h2_kawsdeluxe^hair_018_u.ydd uses 32.0 MiB of physical memory.
+[resources:h2_kawsdel] Asset h2_kawsdeluxe/mp_m_freemode_01_mp_m_h2_kawsdeluxe^hair_021_u.ydd uses 32.0 MiB of physical memory.
+[resources:h2_kawsdel] Asset h2_kawsdeluxe/mp_m_freemode_01_mp_m_h2_kawsdeluxe^hair_096_u.ydd uses 24.0 MiB of physical memory.
+[resources:h2_kawsdel] Asset h2_kawsdeluxe/mp_m_freemode_01_mp_m_h2_kawsdeluxe^hair_diff_095_b_uni.ytd uses 32.0 MiB of physical memory.
+[resources:h2_kawsdel] Asset h2_kawsdeluxe/mp_m_freemode_01_mp_m_h2_kawsdeluxe^jbib_100_u.ydd uses 32.0 MiB of virtual memory.
+[resources:h2_kawsdel] Asset h2_kawsdeluxe/mp_m_freemode_01_mp_m_h2_kawsdeluxe^lowr_074_u.ydd uses 24.0 MiB of physical memory.
+[resources:h2_kawsdel] Asset h2_kawsdeluxe/mp_m_freemode_01_mp_m_h2_kawsdeluxe^lowr_084_u.ydd uses 24.0 MiB of physical memory.
+[resources:h2_kawsdel] Asset h2_kawsdeluxe/mp_m_freemode_01_mp_m_h2_kawsdeluxe^lowr_diff_081_a_uni.ytd uses 32.0 MiB of physical memory.
+[resources:h2_kawsdel] Asset h2_kawsdeluxe/mp_m_freemode_01_mp_m_h2_kawsdeluxe^teef_016_u.ydd uses 64.0 MiB of virtual memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:h2_kawsdel] Asset h2_kawsdeluxe/mp_m_freemode_01_mp_m_h2_kawsdeluxe^teef_018_u.ydd uses 32.0 MiB of virtual memory.
+[resources:h2_kawsdel] Asset h2_kawsdeluxe/mp_m_freemode_01_mp_m_h2_kawsdeluxe^teef_019_u.ydd uses 22.0 MiB of virtual memory.
+[resources:h2_kawsdel] Asset h2_kawsdeluxe/mp_m_freemode_01_mp_m_h2_kawsdeluxe^teef_032_u.ydd uses 20.0 MiB of virtual memory.
+[resources:h2_kawsdel] Asset h2_kawsdeluxe/mp_m_freemode_01_mp_m_h2_kawsdeluxe^teef_034_u.ydd uses 32.0 MiB of virtual memory.
+[resources:h2_kawsdel] Asset h2_kawsdeluxe/mp_m_freemode_01_mp_m_h2_kawsdeluxe^teef_035_u.ydd uses 40.0 MiB of physical memory.
+[resources:h2_kawsdel] Asset h2_kawsdeluxe/mp_m_freemode_01_mp_m_h2_kawsdeluxe^teef_035_u.ydd uses 32.0 MiB of virtual memory.
+[resources:h2_kawsdel] Asset h2_kawsdeluxe/mp_m_freemode_01_mp_m_h2_kawsdeluxe^teef_036_u.ydd uses 40.0 MiB of virtual memory.
+[resources:h2_kawsdel] Asset h2_kawsdeluxe/mp_m_freemode_01_mp_m_h2_kawsdeluxe^teef_037_u.ydd uses 64.0 MiB of virtual memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:h2_kawsdel] Asset h2_kawsdeluxe/mp_m_freemode_01_mp_m_h2_kawsdeluxe^teef_038_u.ydd uses 22.0 MiB of virtual memory.
+[resources:h2_kawsdel] Asset h2_kawsdeluxe/mp_m_freemode_01_mp_m_h2_kawsdeluxe^teef_041_u.ydd uses 32.0 MiB of virtual memory.
+[resources:h2_kawsdel] Asset h2_kawsdeluxe/mp_m_freemode_01_mp_m_h2_kawsdeluxe^teef_042_u.ydd uses 28.0 MiB of virtual memory.
+[resources:h2_kawsdel] Asset h2_kawsdeluxe/mp_m_freemode_01_mp_m_h2_kawsdeluxe^teef_043_u.ydd uses 32.0 MiB of virtual memory.
+[resources:h2_kawsdel] Asset h2_kawsdeluxe/mp_m_freemode_01_mp_m_h2_kawsdeluxe^teef_044_u.ydd uses 40.0 MiB of physical memory.
+[resources:h2_kawsdel] Asset h2_kawsdeluxe/mp_m_freemode_01_mp_m_h2_kawsdeluxe^teef_044_u.ydd uses 26.0 MiB of virtual memory.
+[resources:h2_kawsdel] Asset h2_kawsdeluxe/mp_m_freemode_01_mp_m_h2_kawsdeluxe^teef_046_u.ydd uses 64.0 MiB of virtual memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:h2_kawsdel] Asset h2_kawsdeluxe/mp_m_freemode_01_mp_m_h2_kawsdeluxe^teef_047_u.ydd uses 34.0 MiB of virtual memory.
+[resources:h2_kawsdel] Asset h2_kawsdeluxe/mp_m_freemode_01_mp_m_h2_kawsdeluxe^teef_048_u.ydd uses 32.0 MiB of virtual memory.
+[resources:h2_kawsdel] Asset h2_kawsdeluxe/mp_m_freemode_01_mp_m_h2_kawsdeluxe^teef_050_u.ydd uses 64.0 MiB of virtual memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:h2_kawsdel] Asset h2_kawsdeluxe/mp_m_freemode_01_mp_m_h2_kawsdeluxe^teef_054_u.ydd uses 28.0 MiB of virtual memory.
+[resources:h2_kawsdel] Asset h2_kawsdeluxe/mp_m_freemode_01_mp_m_h2_kawsdeluxe^teef_055_u.ydd uses 24.0 MiB of virtual memory.
+[resources:h2_kawsdel] Asset h2_kawsdeluxe/mp_m_freemode_01_mp_m_h2_kawsdeluxe^teef_056_u.ydd uses 48.0 MiB of virtual memory.
+[resources:h2_kawsdel] Asset h2_kawsdeluxe/mp_m_freemode_01_mp_m_h2_kawsdeluxe^teef_057_u.ydd uses 24.0 MiB of virtual memory.
+[resources:h2_kawsdel] Asset h2_kawsdeluxe/mp_m_freemode_01_mp_m_h2_kawsdeluxe^teef_058_u.ydd uses 24.0 MiB of virtual memory.
+[resources:h2_kawsdel] Asset h2_kawsdeluxe/mp_m_freemode_01_mp_m_h2_kawsdeluxe^teef_059_u.ydd uses 22.0 MiB of virtual memory.
+[resources:h2_kawsdel] Asset h2_kawsdeluxe/mp_m_freemode_01_mp_m_h2_kawsdeluxe^teef_061_u.ydd uses 32.0 MiB of virtual memory.
+[resources:h2_kawsdel] Asset h2_kawsdeluxe/mp_m_freemode_01_mp_m_h2_kawsdeluxe^teef_062_u.ydd uses 32.0 MiB of virtual memory.
+[resources:h2_kawsdel] Asset h2_kawsdeluxe/mp_m_freemode_01_mp_m_h2_kawsdeluxe^teef_063_u.ydd uses 24.0 MiB of virtual memory.
+[resources:h2_kawsdel] Asset h2_kawsdeluxe/mp_m_freemode_01_mp_m_h2_kawsdeluxe^teef_064_u.ydd uses 32.0 MiB of virtual memory.
+[resources:h2_kawsdel] Asset h2_kawsdeluxe/mp_m_freemode_01_mp_m_h2_kawsdeluxe^teef_diff_028_a_uni.ytd uses 32.0 MiB of physical memory.
+[resources:h2_kawsdel] Asset h2_kawsdeluxe/mp_m_freemode_01_mp_m_h2_kawsdeluxe^teef_diff_028_b_uni.ytd uses 32.0 MiB of physical memory.
+[           resources] Started resource h2_kawsdeluxe (42 warnings)
+[resources:h3_kawsdel] Asset h3_kawsdeluxe/mp_m_freemode_01_mp_m_h3_kawsdeluxe^hair_004_u.ydd uses 17.0 MiB of physical memory.
+[resources:h3_kawsdel] Asset h3_kawsdeluxe/mp_m_freemode_01_mp_m_h3_kawsdeluxe^hair_098_u.ydd uses 24.0 MiB of physical memory.
+[resources:h3_kawsdel] Asset h3_kawsdeluxe/mp_m_freemode_01_mp_m_h3_kawsdeluxe^lowr_017_u.ydd uses 32.0 MiB of virtual memory.
+[resources:h3_kawsdel] Asset h3_kawsdeluxe/mp_m_freemode_01_mp_m_h3_kawsdeluxe^lowr_diff_059_a_uni.ytd uses 32.0 MiB of physical memory.
+[           resources] Started resource h3_kawsdeluxe (4 warnings)
+[           resources] Started resource h4_kawsdeluxe
+[resources:h5_kawsdel] Asset h5_kawsdeluxe/mp_m_freemode_01_mp_m_h5_kawsdeluxe^hair_011_u.ydd uses 19.5 MiB of virtual memory.
+[resources:h5_kawsdel] Asset h5_kawsdeluxe/mp_m_freemode_01_mp_m_h5_kawsdeluxe^hair_021_u.ydd uses 18.0 MiB of virtual memory.
+[resources:h5_kawsdel] Asset h5_kawsdeluxe/mp_m_freemode_01_mp_m_h5_kawsdeluxe^hair_022_u.ydd uses 32.0 MiB of virtual memory.
+[           resources] Started resource h5_kawsdeluxe (3 warnings)
+[resources:h6_kawsdel] Asset h6_kawsdeluxe/mp_m_freemode_01_mp_m_h6_kawsdeluxe^hair_033_u.ydd uses 24.0 MiB of virtual memory.
+[resources:h6_kawsdel] Asset h6_kawsdeluxe/mp_m_freemode_01_mp_m_h6_kawsdeluxe^hair_034_u.ydd uses 21.8 MiB of virtual memory.
+[resources:h6_kawsdel] Asset h6_kawsdeluxe/mp_m_freemode_01_mp_m_h6_kawsdeluxe^hair_054_u.ydd uses 24.0 MiB of physical memory.
+[resources:h6_kawsdel] Asset h6_kawsdeluxe/mp_m_freemode_01_mp_m_h6_kawsdeluxe^hair_056_u.ydd uses 20.0 MiB of virtual memory.
+[           resources] Started resource h6_kawsdeluxe (4 warnings)
+[           resources] Started resource h7_kawsdeluxe
+[resources:h8_kawsdel] Asset h8_kawsdeluxe_x1/mp_m_freemode_01_mp_m_h8_kawsdeluxe^teef_000_u.ydd uses 32.0 MiB of virtual memory.
+[           resources] Started resource h8_kawsdeluxe_x1 (1 warning)
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer1/mp_f_freemode_01_mp_f_kawsdeluxe_mujer1^accs_114_u.ydd uses 24.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer1/mp_f_freemode_01_mp_f_kawsdeluxe_mujer1^feet_114_u.ydd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer1/mp_f_freemode_01_mp_f_kawsdeluxe_mujer1^feet_diff_024_a_uni.ytd uses 64.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer1/mp_f_freemode_01_mp_f_kawsdeluxe_mujer1^jbib_106_u.ydd uses 24.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer1/mp_f_freemode_01_mp_f_kawsdeluxe_mujer1^jbib_diff_105_a_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer1/mp_f_freemode_01_mp_f_kawsdeluxe_mujer1^jbib_diff_105_b_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer1/mp_f_freemode_01_mp_f_kawsdeluxe_mujer1^jbib_diff_105_c_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer1/mp_f_freemode_01_mp_f_kawsdeluxe_mujer1^jbib_diff_105_d_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer1/mp_f_freemode_01_mp_f_kawsdeluxe_mujer1^jbib_diff_105_e_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer1/mp_f_freemode_01_mp_f_kawsdeluxe_mujer1^jbib_diff_105_f_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer1/mp_f_freemode_01_mp_f_kawsdeluxe_mujer1^jbib_diff_105_g_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer1/mp_f_freemode_01_mp_f_kawsdeluxe_mujer1^jbib_diff_105_h_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer1/mp_f_freemode_01_mp_f_kawsdeluxe_mujer1^jbib_diff_105_i_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer1/mp_f_freemode_01_mp_f_kawsdeluxe_mujer1^jbib_diff_105_j_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer1/mp_f_freemode_01_mp_f_kawsdeluxe_mujer1^jbib_diff_124_a_uni.ytd uses 64.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer1/mp_f_freemode_01_mp_f_kawsdeluxe_mujer1^jbib_diff_124_b_uni.ytd uses 64.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer1/mp_f_freemode_01_mp_f_kawsdeluxe_mujer1^jbib_diff_124_c_uni.ytd uses 64.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer1/mp_f_freemode_01_mp_f_kawsdeluxe_mujer1^jbib_diff_124_d_uni.ytd uses 64.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer1/mp_f_freemode_01_mp_f_kawsdeluxe_mujer1^jbib_diff_124_e_uni.ytd uses 64.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer1/mp_f_freemode_01_mp_f_kawsdeluxe_mujer1^jbib_diff_124_f_uni.ytd uses 64.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer1/mp_f_freemode_01_mp_f_kawsdeluxe_mujer1^jbib_diff_124_g_uni.ytd uses 64.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer1/mp_f_freemode_01_mp_f_kawsdeluxe_mujer1^jbib_diff_124_h_uni.ytd uses 64.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer1/mp_f_freemode_01_p_mp_f_kawsdeluxe_mujer1^p_ears_005.ydd uses 32.0 MiB of virtual memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer1/mp_f_freemode_01_p_mp_f_kawsdeluxe_mujer1^p_head_diff_003_a.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer1/mp_f_freemode_01_p_mp_f_kawsdeluxe_mujer1^p_head_diff_003_b.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer1/mp_f_freemode_01_p_mp_f_kawsdeluxe_mujer1^p_lwrist_000.ydd uses 32.8 MiB of virtual memory.
+[           resources] Started resource kawsdeluxe_mujer1 (26 warnings)
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer2/mp_f_freemode_01_mp_f_kawsdeluxe_mujer2^feet_087_u.ydd uses 32.0 MiB of virtual memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer2/mp_f_freemode_01_mp_f_kawsdeluxe_mujer2^feet_119_u.ydd uses 24.0 MiB of virtual memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer2/mp_f_freemode_01_mp_f_kawsdeluxe_mujer2^lowr_diff_057_c_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer2/mp_f_freemode_01_mp_f_kawsdeluxe_mujer2^lowr_diff_057_d_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer2/mp_f_freemode_01_mp_f_kawsdeluxe_mujer2^lowr_diff_057_e_uni.ytd uses 32.0 MiB of physical memory.
+[           resources] Started resource kawsdeluxe_mujer2 (5 warnings)
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer3/mp_f_freemode_01_mp_f_kawsdeluxe_mujer3^feet_116_u.ydd uses 32.0 MiB of virtual memory.
+[           resources] Started resource kawsdeluxe_mujer3 (1 warning)
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer4/mp_f_freemode_01_mp_f_kawsdeluxe_mujer4^accs_092_u.ydd uses 32.0 MiB of virtual memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer4/mp_f_freemode_01_mp_f_kawsdeluxe_mujer4^accs_diff_100_a_uni.ytd uses 64.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer4/mp_f_freemode_01_mp_f_kawsdeluxe_mujer4^accs_diff_107_a_uni.ytd uses 64.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer4/mp_f_freemode_01_mp_f_kawsdeluxe_mujer4^accs_diff_107_b_uni.ytd uses 64.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer4/mp_f_freemode_01_mp_f_kawsdeluxe_mujer4^accs_diff_107_c_uni.ytd uses 64.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer4/mp_f_freemode_01_mp_f_kawsdeluxe_mujer4^accs_diff_107_d_uni.ytd uses 64.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer4/mp_f_freemode_01_mp_f_kawsdeluxe_mujer4^accs_diff_107_e_uni.ytd uses 64.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer4/mp_f_freemode_01_mp_f_kawsdeluxe_mujer4^accs_diff_107_f_uni.ytd uses 64.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer4/mp_f_freemode_01_mp_f_kawsdeluxe_mujer4^accs_diff_107_g_uni.ytd uses 64.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer4/mp_f_freemode_01_mp_f_kawsdeluxe_mujer4^accs_diff_107_h_uni.ytd uses 64.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer4/mp_f_freemode_01_mp_f_kawsdeluxe_mujer4^accs_diff_107_i_uni.ytd uses 64.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer4/mp_f_freemode_01_mp_f_kawsdeluxe_mujer4^jbib_diff_099_a_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer4/mp_f_freemode_01_mp_f_kawsdeluxe_mujer4^jbib_diff_099_b_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer4/mp_f_freemode_01_mp_f_kawsdeluxe_mujer4^teef_091_u.ydd uses 40.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer4/mp_f_freemode_01_mp_f_kawsdeluxe_mujer4^teef_091_u.ydd uses 64.0 MiB of virtual memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer4/mp_f_freemode_01_mp_f_kawsdeluxe_mujer4^teef_092_u.ydd uses 32.0 MiB of virtual memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer4/mp_f_freemode_01_mp_f_kawsdeluxe_mujer4^teef_097_u.ydd uses 18.0 MiB of virtual memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer4/mp_f_freemode_01_mp_f_kawsdeluxe_mujer4^teef_117_u.ydd uses 32.0 MiB of virtual memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer4/mp_f_freemode_01_mp_f_kawsdeluxe_mujer4^teef_118_u.ydd uses 64.0 MiB of virtual memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[           resources] Started resource kawsdeluxe_mujer4 (19 warnings)
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer5/mp_f_freemode_01_mp_f_kawsdeluxe_mujer5^hand_040_u.ydd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer5/mp_f_freemode_01_mp_f_kawsdeluxe_mujer5^teef_006_u.ydd uses 32.0 MiB of virtual memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer5/mp_f_freemode_01_mp_f_kawsdeluxe_mujer5^teef_009_u.ydd uses 32.0 MiB of virtual memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer5/mp_f_freemode_01_mp_f_kawsdeluxe_mujer5^teef_014_u.ydd uses 32.0 MiB of virtual memory.
+[           resources] Started resource kawsdeluxe_mujer5 (4 warnings)
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer6/mp_f_freemode_01_mp_f_kawsdeluxe_mujer6^accs_006_u.ydd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer6/mp_f_freemode_01_mp_f_kawsdeluxe_mujer6^hand_diff_008_a_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer6/mp_f_freemode_01_mp_f_kawsdeluxe_mujer6^hand_diff_008_b_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer6/mp_f_freemode_01_mp_f_kawsdeluxe_mujer6^hand_diff_008_c_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer6/mp_f_freemode_01_mp_f_kawsdeluxe_mujer6^hand_diff_008_d_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer6/mp_f_freemode_01_mp_f_kawsdeluxe_mujer6^hand_diff_008_e_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer6/mp_f_freemode_01_mp_f_kawsdeluxe_mujer6^hand_diff_008_f_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer6/mp_f_freemode_01_mp_f_kawsdeluxe_mujer6^hand_diff_008_g_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer6/mp_f_freemode_01_mp_f_kawsdeluxe_mujer6^hand_diff_008_h_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer6/mp_f_freemode_01_mp_f_kawsdeluxe_mujer6^hand_diff_008_i_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer6/mp_f_freemode_01_mp_f_kawsdeluxe_mujer6^hand_diff_008_j_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer6/mp_f_freemode_01_mp_f_kawsdeluxe_mujer6^hand_diff_008_k_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer6/mp_f_freemode_01_mp_f_kawsdeluxe_mujer6^hand_diff_008_l_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer6/mp_f_freemode_01_mp_f_kawsdeluxe_mujer6^hand_diff_008_m_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer6/mp_f_freemode_01_mp_f_kawsdeluxe_mujer6^hand_diff_008_n_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer6/mp_f_freemode_01_mp_f_kawsdeluxe_mujer6^hand_diff_008_o_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer6/mp_f_freemode_01_mp_f_kawsdeluxe_mujer6^hand_diff_008_p_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer6/mp_f_freemode_01_mp_f_kawsdeluxe_mujer6^hand_diff_008_q_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer6/mp_f_freemode_01_mp_f_kawsdeluxe_mujer6^hand_diff_008_r_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer6/mp_f_freemode_01_mp_f_kawsdeluxe_mujer6^hand_diff_008_s_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer6/mp_f_freemode_01_mp_f_kawsdeluxe_mujer6^hand_diff_008_t_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer6/mp_f_freemode_01_mp_f_kawsdeluxe_mujer6^hand_diff_008_u_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer6/mp_f_freemode_01_mp_f_kawsdeluxe_mujer6^hand_diff_008_v_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer6/mp_f_freemode_01_mp_f_kawsdeluxe_mujer6^hand_diff_008_w_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer6/mp_f_freemode_01_mp_f_kawsdeluxe_mujer6^hand_diff_008_x_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer6/mp_f_freemode_01_mp_f_kawsdeluxe_mujer6^hand_diff_008_y_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer6/mp_f_freemode_01_mp_f_kawsdeluxe_mujer6^hand_diff_008_z_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer6/mp_f_freemode_01_mp_f_kawsdeluxe_mujer6^task_054_u.ydd uses 32.0 MiB of virtual memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer6/mp_f_freemode_01_mp_f_kawsdeluxe_mujer6^task_diff_054_a_uni.ytd uses 32.0 MiB of physical memory.
+[           resources] Started resource kawsdeluxe_mujer6 (29 warnings)
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer7/mp_f_freemode_01_mp_f_kawsdeluxe_mujer7^task_010_u.ydd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer7/mp_f_freemode_01_mp_f_kawsdeluxe_mujer7^task_011_u.ydd uses 48.0 MiB of virtual memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer7/mp_f_freemode_01_mp_f_kawsdeluxe_mujer7^task_diff_008_a_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer7/mp_f_freemode_01_mp_f_kawsdeluxe_mujer7^task_diff_012_a_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer7/mp_f_freemode_01_mp_f_kawsdeluxe_mujer7^teef_000_u.ydd uses 20.0 MiB of virtual memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer7/mp_f_freemode_01_mp_f_kawsdeluxe_mujer7^teef_002_u.ydd uses 64.0 MiB of virtual memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer7/mp_f_freemode_01_mp_f_kawsdeluxe_mujer7^teef_004_u.ydd uses 18.0 MiB of virtual memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer7/mp_f_freemode_01_mp_f_kawsdeluxe_mujer7^teef_005_u.ydd uses 32.0 MiB of virtual memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer7/mp_f_freemode_01_mp_f_kawsdeluxe_mujer7^teef_007_u.ydd uses 36.0 MiB of virtual memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer7/mp_f_freemode_01_mp_f_kawsdeluxe_mujer7^teef_012_u.ydd uses 32.0 MiB of virtual memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer7/mp_f_freemode_01_mp_f_kawsdeluxe_mujer7^teef_013_u.ydd uses 32.0 MiB of virtual memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer7/mp_f_freemode_01_mp_f_kawsdeluxe_mujer7^teef_014_u.ydd uses 24.0 MiB of virtual memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer7/mp_f_freemode_01_mp_f_kawsdeluxe_mujer7^teef_015_u.ydd uses 22.0 MiB of virtual memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer7/mp_f_freemode_01_mp_f_kawsdeluxe_mujer7^teef_016_u.ydd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer7/mp_f_freemode_01_mp_f_kawsdeluxe_mujer7^teef_016_u.ydd uses 32.0 MiB of virtual memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer7/mp_f_freemode_01_mp_f_kawsdeluxe_mujer7^teef_019_u.ydd uses 28.0 MiB of virtual memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer7/mp_f_freemode_01_mp_f_kawsdeluxe_mujer7^teef_020_u.ydd uses 18.0 MiB of virtual memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer7/mp_f_freemode_01_mp_f_kawsdeluxe_mujer7^teef_021_u.ydd uses 24.0 MiB of virtual memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer7/mp_f_freemode_01_mp_f_kawsdeluxe_mujer7^teef_022_u.ydd uses 32.0 MiB of virtual memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer7/mp_f_freemode_01_mp_f_kawsdeluxe_mujer7^teef_023_u.ydd uses 24.0 MiB of virtual memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer7/mp_f_freemode_01_mp_f_kawsdeluxe_mujer7^teef_024_u.ydd uses 32.0 MiB of virtual memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer7/mp_f_freemode_01_mp_f_kawsdeluxe_mujer7^teef_diff_001_b_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer7/mp_f_freemode_01_mp_f_kawsdeluxe_mujer7^teef_diff_005_a_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer7/mp_f_freemode_01_mp_f_kawsdeluxe_mujer7^teef_diff_005_b_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer7/mp_f_freemode_01_mp_f_kawsdeluxe_mujer7^teef_diff_010_a_uni.ytd uses 64.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer7/mp_f_freemode_01_mp_f_kawsdeluxe_mujer7^teef_diff_010_b_uni.ytd uses 64.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer7/mp_f_freemode_01_mp_f_kawsdeluxe_mujer7^teef_diff_010_c_uni.ytd uses 64.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer7/mp_f_freemode_01_mp_f_kawsdeluxe_mujer7^teef_diff_016_a_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer7/mp_f_freemode_01_mp_f_kawsdeluxe_mujer7^teef_diff_016_b_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer7/mp_f_freemode_01_mp_f_kawsdeluxe_mujer7^teef_diff_016_c_uni.ytd uses 32.0 MiB of physical memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer7/mp_f_freemode_01_mp_f_kawsdeluxe_mujer7^teef_diff_016_d_uni.ytd uses 32.0 MiB of physical memory.
+[           resources] Started resource kawsdeluxe_mujer7 (31 warnings)
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer8/mp_f_freemode_01_mp_f_kawsdeluxe_mujer8^teef_000_u.ydd uses 32.0 MiB of virtual memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer8/mp_f_freemode_01_mp_f_kawsdeluxe_mujer8^teef_001_u.ydd uses 32.0 MiB of virtual memory.
+[resources:kawsdeluxe] Asset kawsdeluxe_mujer8/mp_f_freemode_01_mp_f_kawsdeluxe_mujer8^teef_002_u.ydd uses 32.0 MiB of virtual memory.
+[           resources] Started resource kawsdeluxe_mujer8 (3 warnings)
+[           resources] Started resource kawsdeluxe_mujer_replace2
+[           resources] Started resource kawsdeluxe_mujer_replace3
+[           resources] Started resource kawsdeluxe_mujer_replace4
+[           resources] Started resource kawsdeluxe_mujer_replace5
+[           resources] Started resource zmoongleis
+[    c-scripting-core] Creating script environments for http
+﻿↩
+║              STDERR║ ﻿↩
+[         script:http] Instantiated instance of script Monitor.TxAdmin.
+[           resources] Started resource http
+[resources:Moon1:stre] Asset Moon1/IC_FFXMoonV2.ydd uses 38.5 MiB of virtual memory.
+[resources:Moon1:stre] Asset Moon1/IC_FFXMoonV2.ytd uses 20.0 MiB of physical memory.
+[           resources] Started resource Moon1 (2 warnings)
+[resources:Unique-Vib] Asset Unique-Vibes-C1/1016rwdevo.yft uses 28.5 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/1016rwdevo_hi.yft uses 28.5 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/18performante.yft uses 24.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/18performante_hi.yft uses 24.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/2018s650p.yft uses 20.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/2018s650p_hi.yft uses 20.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/20xb7.yft uses 33.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/20xb7_hi.yft uses 33.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/21durango+hi.ytd uses 32.0 MiB of physical memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/G63Sam.yft uses 16.8 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/G63Sam_hi.yft uses 16.8 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/TTSTO.yft uses 26.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/TTSTO_hi.yft uses 26.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/bmwg07.yft uses 17.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/bmwg07_hi.yft uses 17.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/boss429.yft uses 29.5 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/boss429_hi.yft uses 29.5 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/charger21.yft uses 20.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/charger21_hi.yft uses 20.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/chargerf8.yft uses 28.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/chargerf8_hi.yft uses 28.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/f12rp.yft uses 26.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/f12rp_hi.yft uses 26.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/f90_livery1.yft uses 32.0 MiB of physical memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/f90_livery2.yft uses 32.0 MiB of physical memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/f90_livery3.yft uses 32.0 MiB of physical memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/f90_livery4.yft uses 32.0 MiB of physical memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/fgt.yft uses 24.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/fgt_hi.yft uses 24.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/g63_livery1.yft uses 32.0 MiB of physical memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/g63_livery2.yft uses 32.0 MiB of physical memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/g63_livery3.yft uses 32.0 MiB of physical memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/g63_livery4.yft uses 32.0 MiB of physical memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/g81hr.yft uses 22.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/g81hr_hi.yft uses 22.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/gl63.yft uses 31.5 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/gl63_hi.yft uses 31.5 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/gta5rp_veh_gle1.yft uses 17.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/gta5rp_veh_gle1_hi.yft uses 17.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/hycadeurus.yft uses 21.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/hycadeurus_hi.yft uses 21.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/m3g80mp.yft uses 26.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/m3g80mp_hi.yft uses 26.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/mayg600p.yft uses 34.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/mayg600p_hi.yft uses 34.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/nbmazda3.yft uses 19.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/nbmazda3_hi.yft uses 19.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/rmode63s.yft uses 18.5 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/rmode63s_hi.yft uses 18.5 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/rmodm4.yft uses 18.1 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/rmodm4_hi.yft uses 18.1 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/rmodmustang.yft uses 17.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/rmodmustang_hi.yft uses 17.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/rmodx6.yft uses 18.5 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/rmodx6_hi.yft uses 18.5 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/rocket.yft uses 30.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/rocket_hi.yft uses 30.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/rr21shelbystreet.yft uses 26.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/rr21shelbystreet_hi.yft uses 26.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/rubicon24.yft uses 25.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/rubicon24_hi.yft uses 25.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/trackhcstm.yft uses 26.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/trackhcstm_hi.yft uses 26.0 MiB of virtual memory.
+[           resources] Started resource Unique-Vibes-C1 (63 warnings)
+[resources:Unique-Vib] Asset Unique-Vibes-C2/17mansorypnmr.yft uses 17.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/17mansorypnmr_hi.yft uses 17.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/21rsq8.yft uses 27.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/21rsq8_hi.yft uses 27.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/356a.yft uses 26.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/356a_hi.yft uses 26.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/Hycaders6.yft uses 28.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/Hycaders6_hi.yft uses 28.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/K8.yft uses 18.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/K8.ytd uses 17.0 MiB of physical memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/K8_hi.yft uses 18.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/aaq4.yft uses 17.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/aaq4_hi.yft uses 17.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/agerars.yft uses 16.2 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/agerars_hi.yft uses 16.2 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/amv23.yft uses 20.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/amv23_hi.yft uses 20.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/deville75.yft uses 18.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/deville75_hi.yft uses 18.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/elantran24.yft uses 17.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/elantran24_hi.yft uses 17.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/gemera.yft uses 16.2 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/gemera_hi.yft uses 16.2 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/hyundaiveloster.yft uses 26.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/hyundaiveloster_hi.yft uses 26.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/optima.yft uses 22.5 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/optima.ytd uses 34.0 MiB of physical memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/optima_hi.yft uses 22.5 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/q8hycade.yft uses 27.8 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/q8hycade_hi.yft uses 27.8 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/r820.yft uses 19.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/r820_hi.yft uses 19.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/rmodr8alpil.yft uses 18.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/rmodr8alpil_hi.yft uses 18.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/rmodskyline34.yft uses 19.5 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/rmodskyline34_hi.yft uses 19.5 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/rs615.yft uses 30.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/rs615_hi.yft uses 30.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/rs6rabt20.yft uses 28.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/rs6rabt20_hi.yft uses 28.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/rs721.yft uses 33.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/rs721_hi.yft uses 33.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/singer.yft uses 18.8 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/singer_hi.yft uses 18.8 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/sonata20.ytd uses 32.0 MiB of physical memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/sportage16.yft uses 26.5 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/sportage16_hi.yft uses 26.5 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/techart17.yft uses 21.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/techart17_hi.yft uses 21.0 MiB of virtual memory.
+[           resources] Started resource Unique-Vibes-C2 (49 warnings)
+[resources:phone-prop] Asset phone-props/ks_qsphone_01.ydr uses 32.0 MiB of physical memory.
+[resources:phone-prop] Asset phone-props/ks_qsphone_02.ydr uses 32.0 MiB of physical memory.
+[resources:phone-prop] Asset phone-props/ks_qsphone_03.ydr uses 32.0 MiB of physical memory.
+[resources:phone-prop] Asset phone-props/ks_qsphone_04.ydr uses 32.0 MiB of physical memory.
+[resources:phone-prop] Asset phone-props/ks_qsphone_05.ydr uses 32.0 MiB of physical memory.
+[resources:phone-prop] Asset phone-props/ks_qsphone_06.ydr uses 32.0 MiB of physical memory.
+[           resources] Started resource phone-props (6 warnings)
+[    c-scripting-core] Creating script environments for raccoon_new
+﻿↩
+║              STDERR║ ﻿↩
+[  script:raccoon_new] Instantiated instance of script Monitor.TxAdmin.
+[           resources] Started resource raccoon_new
+[    c-scripting-core] Creating script environments for hardcap
+[           resources] Started resource hardcap
+[    c-scripting-core] Creating script environments for oxmysql
+[           resources] Started resource oxmysql
+[    c-scripting-core] Creating script environments for ox_lib
+[           resources] Started resource ox_lib
+[    c-scripting-core] Creating script environments for cron
+[           resources] Started resource cron
+[    c-scripting-core] Creating script environments for es_extended
+[           resources] Started resource es_extended
+[    c-scripting-core] Creating script environments for illenium-appearance
+[           resources] Started resource illenium-appearance
+[           resources] Started resource mt-loadingscreen
+[    c-scripting-core] Creating script environments for mt-multicharacter
+[           resources] Started resource mt-multicharacter
+[    c-scripting-core] Creating script environments for BS-Breathalyzer
+[    c-scripting-core] Failed to load script @qbx_core/modules/lib.lua.
+[script:BS-Breathalyz] SCRIPT ERROR: @BS-Breathalyzer/server/server.lua:15: No such export GetCoreObject in resource qb-core
+[resources:BS-Breatha] Warning: could not find server_script `versionchecker.lua` (defined in fxmanifest.lua:27)
+[           resources] Started resource BS-Breathalyzer (1 warning)
+[    c-scripting-core] Creating script environments for PolyZone
+[           resources] Started resource PolyZone
+[    c-scripting-core] Creating script environments for cd_easytime
+[           resources] Started resource cd_easytime
+[    c-scripting-core] Creating script environments for connectqueue
+[           resources] Stopping resource hardcap
+[           resources] Started resource connectqueue
+[    c-scripting-core] Creating script environments for cruz-emotesV2
+[script:cruz-emotesV2] [rpemotes] Loading and caching emote data...
+[script:cruz-emotesV2] [rpemotes] Loaded custom emotes
+[script:cruz-emotesV2] [rpemotes] Cached 1742 emotes, 186 shared, 38 expressions, 139 walks
+[           resources] Started resource cruz-emotesV2
+[           resources] Started resource dpclothing
+[    c-scripting-core] Creating script environments for interact-sound
+[           resources] Started resource interact-sound
+[    c-scripting-core] Creating script environments for lambra-tunerChipV2
+[resources:lambra-tun] Asset lambra-tunerChipV2/core.ypt uses 21.8 MiB of virtual memory.
+[           resources] Started resource lambra-tunerChipV2 (1 warning)
+[    c-scripting-core] Creating script environments for mhacking
+[           resources] Started resource mhacking
+[    c-scripting-core] Creating script environments for ox_doorlock
+[           resources] Started resource ox_doorlock
+[    c-scripting-core] Creating script environments for ox_target
+[           resources] Started resource ox_target
+[    c-scripting-core] Creating script environments for pma-voice
+[           resources] Started resource pma-voice
+[           resources] Started resource poolchecker
+[    c-scripting-core] Creating script environments for yarn
+[           resources] Started resource yarn
+[    c-scripting-core] Creating script environments for webpack
+[           resources] Started resource webpack
+[    c-scripting-core] Creating script environments for screenshot-basic
+[           resources] Started resource screenshot-basic
+[    c-scripting-core] Creating script environments for xsound
+[           resources] Started resource xsound
+[    c-scripting-core] Creating script environments for esx_addonaccount
+[           resources] Started resource esx_addonaccount
+[    c-scripting-core] Creating script environments for esx_addoninventory
+[           resources] Started resource esx_addoninventory
+[    c-scripting-core] Creating script environments for esx_ambulancejob
+[           resources] Started resource esx_ambulancejob
+[    c-scripting-core] Creating script environments for esx_banking
+[           resources] Started resource esx_banking
+[    c-scripting-core] Creating script environments for esx_status
+[           resources] Started resource esx_status
+[    c-scripting-core] Creating script environments for esx_basicneeds
+[           resources] Started resource esx_basicneeds
+[    c-scripting-core] Creating script environments for esx_datastore
+[           resources] Started resource esx_datastore
+[    c-scripting-core] Creating script environments for esx_service
+[           resources] Started resource esx_service
+[    c-scripting-core] Creating script environments for esx_smallresources
+[           resources] Started resource esx_smallresources
+[    c-scripting-core] Creating script environments for esx_society
+[           resources] Started resource esx_society
+[    c-scripting-core] Creating script environments for ox_inventory
+[           resources] Started resource ox_inventory
+[    c-scripting-core] Creating script environments for cs-stream
+[           resources] Started resource cs-stream
+[    c-scripting-core] Creating script environments for cs-hall
+[    c-scripting-core] Failed to load script @WaveShield/resource/waveshield.lua.
+[           resources] Started resource cs-hall
+[           resources] Started resource kad_fxlights
+[    c-scripting-core] Creating script environments for kc-pickitback
+[           resources] Started resource kc-pickitback
+[    c-scripting-core] Creating script environments for kc-sitting
+[           resources] Started resource kc-sitting
+[    c-scripting-core] Creating script environments for kq_engineswaps
+[           resources] Started resource kq_engineswaps
+[    c-scripting-core] Creating script environments for lls_mechanic
+[           resources] Started resource lls_mechanic
+[    c-scripting-core] Creating script environments for mt-attach
+[resources:mt-attach:] Asset mt-attach/DLTB4.ytd uses 20.9 MiB of physical memory.
+[resources:mt-attach:] Asset mt-attach/DLTBOAT.ytd uses 16.5 MiB of physical memory.
+[resources:mt-attach:] Asset mt-attach/DLTBOAT2.yft uses 20.0 MiB of virtual memory.
+[resources:mt-attach:] Asset mt-attach/DLTBOAT2_hi.yft uses 20.0 MiB of virtual memory.
+[resources:mt-attach:] Asset mt-attach/DLTENC2.yft uses 26.5 MiB of virtual memory.
+[resources:mt-attach:] Asset mt-attach/DLTENC2.ytd uses 20.9 MiB of physical memory.
+[resources:mt-attach:] Asset mt-attach/DLTENC2_hi.yft uses 26.5 MiB of virtual memory.
+[resources:mt-attach:] Asset mt-attach/DLTENC3.ytd uses 19.1 MiB of physical memory.
+[resources:mt-attach:] Asset mt-attach/DLTS2.yft uses 22.9 MiB of virtual memory.
+[resources:mt-attach:] Asset mt-attach/DLTS2_hi.yft uses 22.9 MiB of virtual memory.
+[resources:mt-attach:] Asset mt-attach/DLTS3.yft uses 19.0 MiB of virtual memory.
+[resources:mt-attach:] Asset mt-attach/DLTS3_hi.yft uses 19.0 MiB of virtual memory.
+[resources:mt-attach:] Asset mt-attach/DLTS7.ytd uses 32.0 MiB of physical memory.
+[resources:mt-attach:] Asset mt-attach/bigtex20.ytd uses 34.0 MiB of physical memory.
+[resources:mt-attach:] Asset mt-attach/bigtex40.ytd uses 34.0 MiB of physical memory.
+[resources:mt-attach:] Asset mt-attach/flatbed3.ytd uses 160.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[           resources] Started resource mt-attach (16 warnings)
+[    c-scripting-core] Creating script environments for mt-bossmenu
+[           resources] Started resource mt-bossmenu
+[    c-scripting-core] Creating script environments for mt-carlock
+[           resources] Started resource mt-carlock
+[    c-scripting-core] Creating script environments for mt-dealerships
+[           resources] Started resource mt-dealerships
+[    c-scripting-core] Creating script environments for mt-elevators
+[           resources] Started resource mt-elevators
+[    c-scripting-core] Creating script environments for mt-fuel
+[           resources] Started resource mt-fuel
+[    c-scripting-core] Creating script environments for mt-garages
+[           resources] Started resource mt-garages
+[    c-scripting-core] Creating script environments for mt-gym
+[           resources] Started resource mt-gym
+[    c-scripting-core] Creating script environments for mt-hud
+[           resources] Started resource mt-hud
+[    c-scripting-core] Creating script environments for mt-idcard
+[           resources] Started resource mt-idcard
+[    c-scripting-core] Creating script environments for mt-ids
+[           resources] Started resource mt-ids
+[    c-scripting-core] Creating script environments for mt-minijuegos
+[           resources] Started resource mt-minijuegos
+[    c-scripting-core] Creating script environments for mt-multijob
+[           resources] Started resource mt-multijob
+[    c-scripting-core] Creating script environments for mt-newjobs
+[           resources] Started resource mt-newjobs
+[    c-scripting-core] Creating script environments for mt-notify
+[    script:mt-notify] [mt-notify] Lógica de servidor cargada correctamente.
+[           resources] Started resource mt-notify
+[    c-scripting-core] Creating script environments for mt-outfitbag
+[           resources] Started resource mt-outfitbag
+[    c-scripting-core] Creating script environments for mt-rpchat
+[  script:es_extended] [WARNING] Command "clear" already registered, overriding command
+[  script:es_extended] [WARNING] Command "clearall" already registered, overriding command
+[  script:es_extended] [WARNING] Command "clear" already registered, overriding command
+[  script:es_extended] [WARNING] Command "clearall" already registered, overriding command
+[           resources] Started resource mt-rpchat
+[    c-scripting-core] Creating script environments for mt-speaker
+[           resources] Started resource mt-speaker
+[    c-scripting-core] Creating script environments for mt-vip
+[           resources] Started resource mt-vip
+[    c-scripting-core] Creating script environments for mt-waypoints
+[           resources] Started resource mt-waypoints
+[    c-scripting-core] Creating script environments for origen_admin
+[           resources] Started resource origen_admin
+[    c-scripting-core] Creating script environments for origen_housing
+[           resources] Started resource origen_housing
+[           resources] Started resource origen_housing_assets
+[    c-scripting-core] Creating script environments for origen_police
+[           resources] Started resource origen_police
+[           resources] Started resource phone-render
+[    c-scripting-core] Creating script environments for qs-smartphone-pro
+[           resources] Started resource qs-smartphone-pro
+[    c-scripting-core] Creating script environments for phone-radio
+[           resources] Started resource phone-radio
+[           resources] Started resource phone-recorder
+[           resources] Started resource rcore_casino_assets
+[           resources] Started resource rcore_casino_interior
+[    c-scripting-core] Creating script environments for rcore_casino
+[ script:rcore_casino] [Casino] Framework ESX detected.
+[           resources] Started resource rcore_casino
+[    c-scripting-core] Creating script environments for rcore_pool
+[           resources] Started resource rcore_pool
+[    c-scripting-core] Creating script environments for tk_drugs
+[           resources] Started resource tk_drugs
+[    script:cs-stream] [criticalscripts.shop] Resource "cs-stream" is up to date.
+[      script:cs-hall] [criticalscripts.shop] Resource "cs-hall" is outdated, please download the latest version through your keymaster.
+[      script:cs-hall] [criticalscripts.shop] Important security update, please update your resource.
+[  script:cd_easytime] [cd_easytime] - Settings Applied.
+[   script:mt-speaker] ========================================================
+[   script:mt-speaker] [mt-speaker]
+[   script:mt-speaker] * Framework: esx
+[   script:mt-speaker] * Language: es
+[   script:mt-speaker] * Debug: Disabled
+[   script:mt-speaker] * Version: 1.0.0
+[   script:mt-speaker] ========================================================
+[script:origen_housin] ========================================================
+[script:origen_housin] [origen_housing]
+[script:origen_housin] * Framework: esx
+[script:origen_housin] * Inventory: ox_inventory
+[script:origen_housin] * Clothing: illenium-appearance
+[script:origen_housin] * Weather: qb-weathersync
+[script:origen_housin] * Lockpick: No lockpick resource found
+[script:origen_housin] * Keysystem: No keysystem resource found
+[script:origen_housin] * Garage: No garage resource found
+[script:origen_housin] * Language: es
+[script:origen_housin] * Debug: Disabled
+[script:origen_housin] * Version: 1.0.3  Latest Version
+[script:origen_housin] ========================================================
+[ citizen-server-impl] server thread hitch warning: timer interval of 339 milliseconds
+[script:cruz-emotesV2] Currently running an outdated version (2.0.4)
+[script:cruz-emotesV2] Update: https://github.com/alberttheprince/rpemotes-reborn/releases/tag/v2.1.1
+[       script:ox_lib] An update is available for ox_lib (current version: 3.30.6)
+[       script:ox_lib] https://github.com/overextended/ox_lib/releases/tag/v3.37.2
+[      script:oxmysql] [11.8.6-MariaDB] Database server connection established!
+[       script:mt-vip] [mt-vip] Checking database tables...
+[ citizen-server-impl]         fff                          
+[ citizen-server-impl]   cccc ff   xx  xx     rr rr    eee  
+[ citizen-server-impl] cc     ffff   xx       rrr  r ee   e 
+[ citizen-server-impl] cc     ff     xx   ... rr     eeeee  
+[ citizen-server-impl]  ccccc ff   xx  xx ... rr      eeeee 
+[ citizen-server-impl]                                      
+[ citizen-server-impl] Authenticated with cfx.re Nucleus: https://ftpcruzito-xlzdoax.users.cfx.re/
+[      script:oxmysql] An update is available for oxmysql (current version: 2.12.0)
+[      script:oxmysql] https://github.com/overextended/oxmysql/releases/tag/v2.14.1
+[ script:ox_inventory] [ox_inventory] [INFO] Database contains 60 items.
+[       script:ox_lib] An update is available for ox_target (current version: 1.17.2)
+[       script:ox_lib] https://github.com/overextended/ox_target/releases/tag/v1.18.1
+[script:origen_housin] [Origen Housing] 0 houses loaded.
+[  script:es_extended] [INFO] ESX Legacy 1.13.4 initialized!
+[ script:mt-waypoints] [MT Waypoints] Loaded 0 markers from database.
+[       script:mt-vip] [mt-vip] Server initialized successfully.
+[   script:mt-garages] [AutoSQL] All queries executed successfully.
+[script:illenium-appe] [illenium-appearance] [SERVER] [DB] Database migration successful: 'cost' column ensured.
+[ script:rcore_casino] 
+[ script:rcore_casino] rcore_casino
+[ script:rcore_casino] framework: ESX
+[ script:rcore_casino] version: 1.9.4
+[ script:rcore_casino] database: mysql-async
+[ script:rcore_casino] map: GTA:O Interior
+[ script:rcore_casino] society: disabled
+[ script:rcore_casino] inventory: ox_inventory
+[ script:rcore_casino] casino time: 15.06.2026, 03:11 PM
+[ script:rcore_casino] https://documentation.rcore.cz/paid-resources/rcore_casino
+[ script:rcore_casino] 
+[script:mt-dealership] [Dealership] Loaded 1 dealerships from database.
+[ script:ox_inventory] [ox_inventory] [INFO] Inventory has loaded 445 items
+[ citizen-server-impl] server thread hitch warning: timer interval of 182 milliseconds
+[script:kq_engineswap] Loaded 0 tuned cars
+[ script:connectqueue] QUEUE: Cruzito[license:60426602873b3fffb0730dfcad21314c86d22001] was placed 1/1 in queue
+║              STDERR║ (node:2752) MaxListenersExceededWarning: (node) warning: possible EventEmitter memory leak detected. 11 listeners added. Use emitter.setMaxListeners() to increase limit.
+║              STDERR║ (Use `FXServer --trace-warnings ...` to show where the warning was created)
+║              STDERR║ (node:2752) MaxListenersExceededWarning: (node) warning: possible EventEmitter memory leak detected. 11 listeners added. Use emitter.setMaxListeners() to increase limit.
+║              STDERR║ (node:2752) MaxListenersExceededWarning: (node) warning: possible EventEmitter memory leak detected. 11 listeners added. Use emitter.setMaxListeners() to increase limit.
+║              STDERR║ (node:2752) MaxListenersExceededWarning: (node) warning: possible EventEmitter memory leak detected. 11 listeners added. Use emitter.setMaxListeners() to increase limit.
+[  script:es_extended] [INFO] Player "zzzzz zzzzzz" has connected to the server. ID: 1
+[script:qs-smartphone] OX Error: item is nil. You need to take a new phone. And we hope you did read the docs well.
+║             TXADMIN║ txaReportResources 
+[      script:monitor] [txAdmin] Sending resources list to txAdmin.
+║          FTPCruzito║ stop "mt-hud"
+[           resources] Stopping resource mt-hud
+║             TXADMIN║ txaReportResources 
+[      script:monitor] [txAdmin] Sending resources list to txAdmin.
+[  script:es_extended] [INFO] Saved player "zzzzz zzzzzz"
+║             TXADMIN║ ================================================================
+║             TXADMIN║ ======== [6784] FXServer Starting - 6/15/2026, 3:39:59 PM       
+║             TXADMIN║ ================================================================
+[           resources] Scanning resources.
+[           resources] Found 135 resources.
+[          svadhesive] Authenticating server license key...
+[          svadhesive] Server license key authentication succeeded. Welcome!
+[    c-scripting-core] Creating script environments for monitor
+[      script:monitor] [txAdmin] Resource v8.0.1 threads and commands set up. All Ready.
+[           resources] Started resource monitor
+[ citizen-server-impl] Could not open esxLogo.png for reading.
+[ citizen-server-impl] Couldn't find resource CRACK_libertycity_streetprops.
+[resources:lcpack:str] Asset lcpack/boxvilleretro+hi.ytd uses 20.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/cabby+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/fdlc+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/fdlcamb+hi.ytd uses 24.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/fdlcambold+hi.ytd uses 48.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/fdlcbastion+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/fdlcboxville+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/fdlcgranger+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/fdlchazmat+hi.ytd uses 24.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/fdlcheavy+hi.ytd uses 24.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/fdlcladder+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/fdlcrescue+hi.ytd uses 24.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/fdlcsteed+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/fdlctiller+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/fdlctillert+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/fdlctruck2+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcbus+hi.ytd uses 40.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcpbus+hi.ytd uses 48.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcpd+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcpd2+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcpd3+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcpd4+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcpd5+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcpdbob+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcpdboxville+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcpdimpaler+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcpdimpaler2+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcpdold+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcpdpanto+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcpdpatriot+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcpdpigeon+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcpdpredator+hi.ytd uses 24.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcpdriata+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcpdscout+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcpdshark+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcpdsparrow+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcpdspeedo+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcpdtow+hi.ytd uses 36.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcpdtru+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lcsbus+hi.ytd uses 24.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lctaxi4+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lctaxiimpaler+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/lctrash2+hi.ytd uses 32.0 MiB of physical memory.
+[resources:lcpack:str] Asset lcpack/metrotrain.ytd uses 64.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[           resources] Started resource lcpack (44 warnings)
+[ citizen-server-impl] Couldn't find resource liberty_vehicles.
+[resources:liberty_ci] Asset liberty_city_peds/csb_burgerdrug_lc.ytd uses 24.0 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/g_m_m_chisuit_01_lc.ytd uses 16.2 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/g_m_y_hustler_01.ytd uses 16.4 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/g_m_y_hustler_02.ytd uses 16.3 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/g_m_y_hustler_03.ytd uses 16.2 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/g_m_y_hustler_04.ytd uses 18.0 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/g_m_y_italian_01.ytd uses 36.0 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/g_m_y_italian_02.ytd uses 22.5 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/g_m_y_italian_03.ytd uses 32.0 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/g_m_y_italian_04.ytd uses 24.2 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/g_m_y_italian_07.ytd uses 49.2 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:liberty_ci] Asset liberty_city_peds/g_m_y_italian_10.ytd uses 26.5 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/g_m_y_italian_11.ytd uses 21.0 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/g_m_y_italian_13.ytd uses 29.0 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/g_m_y_italianmafia_01.ytd uses 20.9 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/g_m_y_jamaican_01.ydd uses 24.4 MiB of virtual memory.
+[resources:liberty_ci] Asset liberty_city_peds/g_m_y_jamaican_01.ytd uses 54.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:liberty_ci] Asset liberty_city_peds/g_m_y_korean_03_lc.ytd uses 18.0 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/g_m_y_pimp_02.ytd uses 28.4 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/ig_fatbiker.ytd uses 52.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:liberty_ci] Asset liberty_city_peds/ig_lccop_01.ytd uses 42.0 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/ig_lccop_02.ytd uses 77.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:liberty_ci] Asset liberty_city_peds/ig_lccop_coat_01.ytd uses 33.2 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/ig_lccop_coat_02.ytd uses 68.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:liberty_ci] Asset liberty_city_peds/ig_lccop_traffic.ytd uses 62.2 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:liberty_ci] Asset liberty_city_peds/ig_lccop_vest_01.ytd uses 42.0 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/ig_lccop_vest_02.ytd uses 77.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:liberty_ci] Asset liberty_city_peds/ig_lcfatcop.ytd uses 66.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:liberty_ci] Asset liberty_city_peds/ig_lcfatcop_coat.ytd uses 46.5 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/ig_lcfatcop_vest.ytd uses 61.2 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:liberty_ci] Asset liberty_city_peds/ig_lcfbi.ytd uses 55.8 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:liberty_ci] Asset liberty_city_peds/ig_lcfbidlc_01.ytd uses 44.5 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/ig_lcfbidlc_02.ytd uses 41.8 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/ig_lcstrooper.ytd uses 29.5 MiB of physical memory.
+[resources:liberty_ci] Asset liberty_city_peds/ig_lcswat.ytd uses 94.2 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[           resources] Started resource liberty_city_peds (35 warnings)
+[resources:libertycit] Warning: could not find file `gta5.meta` (defined in fxmanifest.lua:12)
+[resources:libertycit] Warning: could not find file `images.meta` (defined in fxmanifest.lua:12)
+[resources:libertycit] Asset libertycity/brook_new_roads+hi.ytd uses 22.0 MiB of physical memory.
+[resources:libertycit] Asset libertycity/brook_new_roads.ytd uses 22.0 MiB of physical memory.
+[resources:libertycit] Asset libertycity/brook_roads+hi.ytd uses 24.0 MiB of physical memory.
+[resources:libertycit] Asset libertycity/brook_roads.ytd uses 26.0 MiB of physical memory.
+[resources:libertycit] Asset libertycity/e2_mis_boat.ytd uses 25.0 MiB of physical memory.
+[resources:libertycit] Asset libertycity/jersey_roads+hi.ytd uses 51.5 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:libertycit] Asset libertycity/jersey_roads.ytd uses 51.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:libertycit] Asset libertycity/mh_roads+hi.ytd uses 54.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:libertycit] Asset libertycity/mh_roads.ytd uses 32.0 MiB of physical memory.
+[           resources] Started resource libertycity (11 warnings)
+[           resources] Started resource liberty_audio
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv1_V7/CookiesBackRoom.ytd uses 26.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv1_V7/bodega_1.ydr uses 220.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv1_V7/breze_swimmingpool_chair_01.ydr uses 24.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv1_V7/breze_swimmingpool_chair_02.ydr uses 24.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv1_V7/breze_swimmingpool_shell.ydr uses 32.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv1_V7/crack-deliv3.ydr uses 80.5 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv1_V7/crack_247.ydr uses 36.5 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv1_V7/crack_pugs_lsia.ydr uses 21.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv1_V7/crack_v2deli.ydr uses 48.1 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv1_V7/crackruntz.ydr uses 26.2 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv1_V7/crackruntz.ydr uses 32.0 MiB of virtual memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv1_V7/crackruntzBathroom.ydr uses 17.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv1_V7/hedwig_pillbox_props_txd.ytd uses 30.5 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv1_V7/mrpd_txt.ytd uses 25.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv1_V7/nx_shops2_txd.ytd uses 48.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv1_V7/nx_shops_txd.ytd uses 46.2 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv1_V7/otaku_harem_saloon_shell.ydr uses 19.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv1_V7/rfc_eastcustums_txt.ytd uses 50.5 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv1_V7/rfc_tunergarage_txd.ytd uses 21.5 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv1_V7/tn_mechanic.ytd uses 31.2 MiB of physical memory.
+[           resources] Started resource CMS_MlosPacksv1_V7 (20 warnings)
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv2_V7/MilosWalmart.ydr uses 22.8 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv2_V7/Pharmacy.ytd uses 20.1 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv2_V7/Shelv32.ydr uses 25.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv2_V7/Shelv36.ydr uses 32.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv2_V7/Shelv36.ytd uses 36.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv2_V7/Shelv37.ydr uses 32.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv2_V7/Shelv39.ydr uses 18.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv2_V7/Shelv40.ydr uses 18.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv2_V7/breze_tuner_tyres.ydr uses 40.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv2_V7/denis3d_catcafe_txd.ytd uses 23.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv2_V7/patoche_cyber_det23.ydr uses 18.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv2_V7/rfc_grovebar_props.ytd uses 23.5 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv2_V7/sempre_club77_interior.ytd uses 29.2 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv2_V7/vhm_props.ydr uses 20.0 MiB of physical memory.
+[           resources] Started resource CMS_MlosPacksv2_V7 (14 warnings)
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv3_V7/Cinema_Lusino_coll.ybn uses 20.0 MiB of virtual memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv3_V7/Room1_cinema.ydr uses 32.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv3_V7/Room2_bathroom.ydr uses 36.0 MiB of virtual memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv3_V7/bkr_biker_dlc_int_01txd.ytd uses 36.5 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv3_V7/crack_chickenheater.ydr uses 16.2 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv3_V7/crack_chickenheater.ydr uses 32.0 MiB of virtual memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv3_V7/crack_kennedy_tex.ytd uses 20.5 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv3_V7/crack_kfc_exterior.ydr uses 64.0 MiB of virtual memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv3_V7/cs6_04_prison+hi.ytd uses 20.8 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv3_V7/cs6_04_prison.ytd uses 17.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv3_V7/dons_gclub.ytd uses 22.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv3_V7/hei_obankbank_shell.ydr uses 20.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv3_V7/kfc_interior.ydr uses 53.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv3_V7/patoche_billard_det17.ydr uses 18.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv3_V7/prison_cells_wall_details1_lower.ydr uses 18.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv3_V7/prison_cells_wall_details1_upper.ydr uses 20.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv3_V7/xm_int_sub.ytd uses 21.5 MiB of physical memory.
+[           resources] Started resource CMS_MlosPacksv3_V7 (17 warnings)
+[resources:CMS_MlosPa] Warning: could not find file `interiorproxies.meta` (defined in fxmanifest.lua:6)
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv4_V7/as_autoexotic_txt.ytd uses 22.5 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv4_V7/breze_wingstop_shell.ydr uses 24.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv4_V7/dons_elk_bar_shell.ytd uses 56.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv4_V7/dons_elk_lob_shell.ytd uses 45.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv4_V7/dons_lc_weed.ytd uses 48.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv4_V7/gindena_mechanic_shell.ydr uses 32.0 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv4_V7/mansion_txd.ytd uses 54.5 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv4_V7/patoche_blood_shell.ydr uses 21.4 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv4_V7/vw_vwint01_vwdlc_vw_casino.ytd uses 25.8 MiB of physical memory.
+[           resources] Started resource CMS_MlosPacksv4_V7 (10 warnings)
+[resources:CMS_MlosPa] Warning: could not find file `interiorproxies.meta` (defined in fxmanifest.lua:6)
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv5_V7/dount_props.ydr uses 17.2 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv5_V7/qnx_univ_txd1.ytd uses 32.1 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv5_V7/qnx_univ_txd2.ytd uses 17.6 MiB of physical memory.
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv5_V7/tr_int1_tuner_mod_garage.ytd uses 81.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[resources:CMS_MlosPa] Asset CMS_MlosPacksv5_V7/w_ar_assaultrifle.ytd uses 19.0 MiB of physical memory.
+[           resources] Started resource CMS_MlosPacksv5_V7 (6 warnings)
+[resources:CMS_StarkM] Warning: could not find client_script `escrow.lua` (defined in fxmanifest.lua:7)
+[resources:CMS_StarkM] Asset CMS_StarkMansion_NY/stark_bedward.ydr uses 22.0 MiB of physical memory.
+[resources:CMS_StarkM] Asset CMS_StarkMansion_NY/starkmansion_exterior.ytd uses 16.2 MiB of physical memory.
+[resources:CMS_StarkM] Asset CMS_StarkMansion_NY/starkmansion_interior.ytd uses 18.5 MiB of physical memory.
+[resources:CMS_StarkM] Asset CMS_StarkMansion_NY/starkmansion_interior2.ytd uses 27.0 MiB of physical memory.
+[           resources] Started resource CMS_StarkMansion_NY (5 warnings)
+[resources:TF_OilRig:] Asset TF_OilRig/ld_small_oilrig.ydr uses 18.0 MiB of physical memory.
+[resources:TF_OilRig:] Asset TF_OilRig/ld_small_oilrig2.ydr uses 32.0 MiB of physical memory.
+[resources:TF_OilRig:] Asset TF_OilRig/ld_small_oilrig3.ydr uses 32.0 MiB of physical memory.
+[resources:TF_OilRig:] Asset TF_OilRig/ld_small_oilrig5.ydr uses 24.0 MiB of physical memory.
+[           resources] Started resource TF_OilRig (4 warnings)
+[    c-scripting-core] Creating script environments for UniqueEscapeMenu
+[script:UniqueEscapeM] SCRIPT ERROR: @es_extended/imports.lua:1: No such export getSharedObject in resource es_extended
+[script:UniqueEscapeM] SCRIPT ERROR: @UniqueEscapeMenu/server/main.lua:1: No such export getSharedObject in resource es_extended
+[           resources] Started resource UniqueEscapeMenu
+[    c-scripting-core] Creating script environments for UniquePolice
+[ script:UniquePolice] SCRIPT ERROR: ox_lib must be started before this resource.
+[ script:UniquePolice] > fn (@ox_lib/init.lua:27)
+[ script:UniquePolice] SCRIPT ERROR: @UniquePolice/server/main.lua:1: No such export getSharedObject in resource es_extended
+[           resources] Started resource UniquePolice
+[           resources] Started resource crack_unload_lossantos
+[    c-scripting-core] Creating script environments for libertycity_mlosdependency
+[           resources] Started resource libertycity_mlosdependency
+[           resources] Started resource NativeUI
+[    c-scripting-core] Creating script environments for uniquevibes_cam
+[           resources] Started resource uniquevibes_cam
+[ citizen-server-impl] Couldn't find resource CRACK_NYCMlosPacksv1_v7.
+[ citizen-server-impl] Couldn't find resource CRACK_NYCMlosPacksv2_v7.
+[ citizen-server-impl] Couldn't find resource CRACK_NYCMlosPacksv3_v7.
+[ citizen-server-impl] Couldn't find resource CRACK_NYCMlosPacksv4_v7.
+[ citizen-server-impl] Couldn't find resource CRACK_StarkMansion_NY.
+[resources:UniqueVibe] Asset UniqueVibesRopaH1/mp_m_freemode_01_mp_m_uniquevibesropah1^feet_046_u.ydd uses 18.0 MiB of virtual memory.
+[resources:UniqueVibe] Asset UniqueVibesRopaH1/mp_m_freemode_01_mp_m_uniquevibesropah1^feet_049_u.ydd uses 32.0 MiB of virtual memory.
+[resources:UniqueVibe] Asset UniqueVibesRopaH1/mp_m_freemode_01_mp_m_uniquevibesropah1^hair_021_u.ydd uses 32.0 MiB of physical memory.
+[resources:UniqueVibe] Asset UniqueVibesRopaH1/mp_m_freemode_01_mp_m_uniquevibesropah1^hair_074_u.ydd uses 18.0 MiB of virtual memory.
+[resources:UniqueVibe] Asset UniqueVibesRopaH1/mp_m_freemode_01_mp_m_uniquevibesropah1^teef_020_u.ydd uses 28.0 MiB of virtual memory.
+[           resources] Started resource UniqueVibesRopaH1 (5 warnings)
+[resources:UniqueVibe] Asset UniqueVibesRopaH2/mp_m_freemode_01_mp_m_uniquevibesropah2^jbib_diff_127_a_uni.ytd uses 32.0 MiB of physical memory.
+[resources:UniqueVibe] Asset UniqueVibesRopaH2/mp_m_freemode_01_mp_m_uniquevibesropah2^jbib_diff_127_b_uni.ytd uses 32.0 MiB of physical memory.
+[resources:UniqueVibe] Asset UniqueVibesRopaH2/mp_m_freemode_01_mp_m_uniquevibesropah2^jbib_diff_127_c_uni.ytd uses 32.0 MiB of physical memory.
+[resources:UniqueVibe] Asset UniqueVibesRopaH2/mp_m_freemode_01_mp_m_uniquevibesropah2^jbib_diff_127_d_uni.ytd uses 32.0 MiB of physical memory.
+[resources:UniqueVibe] Asset UniqueVibesRopaH2/mp_m_freemode_01_mp_m_uniquevibesropah2^jbib_diff_127_e_uni.ytd uses 32.0 MiB of physical memory.
+[resources:UniqueVibe] Asset UniqueVibesRopaH2/mp_m_freemode_01_mp_m_uniquevibesropah2^jbib_diff_127_f_uni.ytd uses 32.0 MiB of physical memory.
+[resources:UniqueVibe] Asset UniqueVibesRopaH2/mp_m_freemode_01_mp_m_uniquevibesropah2^lowr_diff_111_a_uni.ytd uses 32.0 MiB of physical memory.
+[resources:UniqueVibe] Asset UniqueVibesRopaH2/mp_m_freemode_01_mp_m_uniquevibesropah2^lowr_diff_111_b_uni.ytd uses 32.0 MiB of physical memory.
+[           resources] Started resource UniqueVibesRopaH2 (8 warnings)
+[resources:UniqueVibe] Asset UniqueVibesRopaH3/mp_m_freemode_01_mp_m_uniquevibesropah3^hair_103_u.ydd uses 17.8 MiB of virtual memory.
+[           resources] Started resource UniqueVibesRopaH3 (1 warning)
+[resources:UniqueVibe] Asset UniqueVibesRopaH4/mp_m_freemode_01_mp_m_uniquevibesropah41^jbib_121_u.ydd uses 27.5 MiB of virtual memory.
+[resources:UniqueVibe] Asset UniqueVibesRopaH4/mp_m_freemode_01_mp_m_uniquevibesropah4^hair_007_u.ydd uses 24.0 MiB of virtual memory.
+[resources:UniqueVibe] Asset UniqueVibesRopaH4/mp_m_freemode_01_mp_m_uniquevibesropah4^hair_115_u.ydd uses 24.0 MiB of virtual memory.
+[resources:UniqueVibe] Asset UniqueVibesRopaH4/mp_m_freemode_01_mp_m_uniquevibesropah4^hair_116_u.ydd uses 21.8 MiB of virtual memory.
+[           resources] Started resource UniqueVibesRopaH4 (4 warnings)
+[resources:UniqueVibe] Asset UniqueVibesRopaH5/mp_m_freemode_01_mp_m_uniquevibesropah5^hair_027_u.ydd uses 32.0 MiB of virtual memory.
+[           resources] Started resource UniqueVibesRopaH5 (1 warning)
+[    c-scripting-core] Creating script environments for UniqueVibesRopaH6
+[           resources] Started resource UniqueVibesRopaH6
+[           resources] Started resource UniqueVibesRopaM1
+[           resources] Started resource UniqueVibesRopaM2
+[           resources] Started resource UniqueVibesRopaM3
+[           resources] Started resource UniqueVibesRopaM4
+[           resources] Started resource UniqueVibesRopaM5
+[           resources] Started resource UniqueVibesRopaM6
+[           resources] Started resource UniqueVibesRopaM7
+[resources:uv_addonbe] Asset uv_addonbelico/mp_m_freemode_01_mp_m_UniqueVibesRopaBelica^decl_000_u.ydd uses 48.0 MiB of physical memory.
+[resources:uv_addonbe] Asset uv_addonbelico/mp_m_freemode_01_mp_m_UniqueVibesRopaBelica^feet_005_u.ydd uses 24.0 MiB of physical memory.
+[resources:uv_addonbe] Asset uv_addonbelico/mp_m_freemode_01_mp_m_UniqueVibesRopaBelica^feet_006_u.ydd uses 48.0 MiB of virtual memory.
+[resources:uv_addonbe] Asset uv_addonbelico/mp_m_freemode_01_mp_m_UniqueVibesRopaBelica^lowr_005_u.ydd uses 24.0 MiB of physical memory.
+[resources:uv_addonbe] Asset uv_addonbelico/mp_m_freemode_01_mp_m_UniqueVibesRopaBelica^lowr_007_u.ydd uses 24.0 MiB of physical memory.
+[resources:uv_addonbe] Asset uv_addonbelico/mp_m_freemode_01_mp_m_UniqueVibesRopaBelica^teef_001_u.ydd uses 32.0 MiB of virtual memory.
+[resources:uv_addonbe] Asset uv_addonbelico/mp_m_freemode_01_mp_m_UniqueVibesRopaBelica^teef_002_u.ydd uses 32.0 MiB of virtual memory.
+[           resources] Started resource uv_addonbelico (7 warnings)
+[           resources] Started resource uv_addons1
+[    c-scripting-core] Creating script environments for http
+﻿↩
+║              STDERR║ ﻿↩
+[         script:http] Instantiated instance of script Monitor.TxAdmin.
+[           resources] Started resource http
+[resources:Moon1:stre] Asset Moon1/IC_FFXMoonV2.ydd uses 38.5 MiB of virtual memory.
+[resources:Moon1:stre] Asset Moon1/IC_FFXMoonV2.ytd uses 20.0 MiB of physical memory.
+[           resources] Started resource Moon1 (2 warnings)
+[resources:Unique-Vib] Asset Unique-Vibes-C1/1016rwdevo.yft uses 28.5 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/1016rwdevo_hi.yft uses 28.5 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/18performante.yft uses 24.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/18performante_hi.yft uses 24.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/2018s650p.yft uses 20.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/2018s650p_hi.yft uses 20.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/20xb7.yft uses 33.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/20xb7_hi.yft uses 33.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/21durango+hi.ytd uses 32.0 MiB of physical memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/G63Sam.yft uses 16.8 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/G63Sam_hi.yft uses 16.8 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/TTSTO.yft uses 26.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/TTSTO_hi.yft uses 26.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/bmwg07.yft uses 17.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/bmwg07_hi.yft uses 17.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/boss429.yft uses 29.5 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/boss429_hi.yft uses 29.5 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/charger21.yft uses 20.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/charger21_hi.yft uses 20.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/chargerf8.yft uses 28.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/chargerf8_hi.yft uses 28.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/f12rp.yft uses 26.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/f12rp_hi.yft uses 26.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/f90_livery1.yft uses 32.0 MiB of physical memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/f90_livery2.yft uses 32.0 MiB of physical memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/f90_livery3.yft uses 32.0 MiB of physical memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/f90_livery4.yft uses 32.0 MiB of physical memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/fgt.yft uses 24.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/fgt_hi.yft uses 24.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/g63_livery1.yft uses 32.0 MiB of physical memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/g63_livery2.yft uses 32.0 MiB of physical memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/g63_livery3.yft uses 32.0 MiB of physical memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/g63_livery4.yft uses 32.0 MiB of physical memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/g81hr.yft uses 22.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/g81hr_hi.yft uses 22.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/gl63.yft uses 31.5 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/gl63_hi.yft uses 31.5 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/gta5rp_veh_gle1.yft uses 17.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/gta5rp_veh_gle1_hi.yft uses 17.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/hycadeurus.yft uses 21.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/hycadeurus_hi.yft uses 21.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/m3g80mp.yft uses 26.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/m3g80mp_hi.yft uses 26.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/mayg600p.yft uses 34.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/mayg600p_hi.yft uses 34.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/nbmazda3.yft uses 19.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/nbmazda3_hi.yft uses 19.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/rmode63s.yft uses 18.5 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/rmode63s_hi.yft uses 18.5 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/rmodm4.yft uses 18.1 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/rmodm4_hi.yft uses 18.1 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/rmodmustang.yft uses 17.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/rmodmustang_hi.yft uses 17.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/rmodx6.yft uses 18.5 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/rmodx6_hi.yft uses 18.5 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/rocket.yft uses 30.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/rocket_hi.yft uses 30.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/rr21shelbystreet.yft uses 26.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/rr21shelbystreet_hi.yft uses 26.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/rubicon24.yft uses 25.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/rubicon24_hi.yft uses 25.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/trackhcstm.yft uses 26.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C1/trackhcstm_hi.yft uses 26.0 MiB of virtual memory.
+[           resources] Started resource Unique-Vibes-C1 (63 warnings)
+[resources:Unique-Vib] Asset Unique-Vibes-C2/17mansorypnmr.yft uses 17.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/17mansorypnmr_hi.yft uses 17.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/21rsq8.yft uses 27.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/21rsq8_hi.yft uses 27.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/356a.yft uses 26.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/356a_hi.yft uses 26.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/Hycaders6.yft uses 28.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/Hycaders6_hi.yft uses 28.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/K8.yft uses 18.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/K8.ytd uses 17.0 MiB of physical memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/K8_hi.yft uses 18.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/aaq4.yft uses 17.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/aaq4_hi.yft uses 17.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/agerars.yft uses 16.2 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/agerars_hi.yft uses 16.2 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/amv23.yft uses 20.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/amv23_hi.yft uses 20.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/deville75.yft uses 18.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/deville75_hi.yft uses 18.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/elantran24.yft uses 17.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/elantran24_hi.yft uses 17.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/gemera.yft uses 16.2 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/gemera_hi.yft uses 16.2 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/hyundaiveloster.yft uses 26.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/hyundaiveloster_hi.yft uses 26.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/optima.yft uses 22.5 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/optima.ytd uses 34.0 MiB of physical memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/optima_hi.yft uses 22.5 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/q8hycade.yft uses 27.8 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/q8hycade_hi.yft uses 27.8 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/r820.yft uses 19.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/r820_hi.yft uses 19.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/rmodr8alpil.yft uses 18.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/rmodr8alpil_hi.yft uses 18.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/rmodskyline34.yft uses 19.5 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/rmodskyline34_hi.yft uses 19.5 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/rs615.yft uses 30.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/rs615_hi.yft uses 30.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/rs6rabt20.yft uses 28.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/rs6rabt20_hi.yft uses 28.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/rs721.yft uses 33.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/rs721_hi.yft uses 33.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/singer.yft uses 18.8 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/singer_hi.yft uses 18.8 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/sonata20.ytd uses 32.0 MiB of physical memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/sportage16.yft uses 26.5 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/sportage16_hi.yft uses 26.5 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/techart17.yft uses 21.0 MiB of virtual memory.
+[resources:Unique-Vib] Asset Unique-Vibes-C2/techart17_hi.yft uses 21.0 MiB of virtual memory.
+[           resources] Started resource Unique-Vibes-C2 (49 warnings)
+[resources:phone-prop] Asset phone-props/ks_qsphone_01.ydr uses 32.0 MiB of physical memory.
+[resources:phone-prop] Asset phone-props/ks_qsphone_02.ydr uses 32.0 MiB of physical memory.
+[resources:phone-prop] Asset phone-props/ks_qsphone_03.ydr uses 32.0 MiB of physical memory.
+[resources:phone-prop] Asset phone-props/ks_qsphone_04.ydr uses 32.0 MiB of physical memory.
+[resources:phone-prop] Asset phone-props/ks_qsphone_05.ydr uses 32.0 MiB of physical memory.
+[resources:phone-prop] Asset phone-props/ks_qsphone_06.ydr uses 32.0 MiB of physical memory.
+[           resources] Started resource phone-props (6 warnings)
+[    c-scripting-core] Creating script environments for raccoon_new
+﻿↩
+║              STDERR║ ﻿↩
+[  script:raccoon_new] Instantiated instance of script Monitor.TxAdmin.
+[           resources] Started resource raccoon_new
+[    c-scripting-core] Creating script environments for hardcap
+[           resources] Started resource hardcap
+[    c-scripting-core] Creating script environments for oxmysql
+[           resources] Started resource oxmysql
+[    c-scripting-core] Creating script environments for ox_lib
+[           resources] Started resource ox_lib
+[    c-scripting-core] Creating script environments for cron
+[           resources] Started resource cron
+[    c-scripting-core] Creating script environments for es_extended
+[           resources] Started resource es_extended
+[    c-scripting-core] Creating script environments for illenium-appearance
+[           resources] Started resource illenium-appearance
+[           resources] Started resource mt-loadingscreen
+[    c-scripting-core] Creating script environments for mt-multicharacter
+[           resources] Started resource mt-multicharacter
+[    c-scripting-core] Creating script environments for BS-Breathalyzer
+[    c-scripting-core] Failed to load script @qbx_core/modules/lib.lua.
+[script:BS-Breathalyz] SCRIPT ERROR: @BS-Breathalyzer/server/server.lua:15: No such export GetCoreObject in resource qb-core
+[resources:BS-Breatha] Warning: could not find server_script `versionchecker.lua` (defined in fxmanifest.lua:27)
+[           resources] Started resource BS-Breathalyzer (1 warning)
+[    c-scripting-core] Creating script environments for PolyZone
+[           resources] Started resource PolyZone
+[    c-scripting-core] Creating script environments for cd_easytime
+[           resources] Started resource cd_easytime
+[    c-scripting-core] Creating script environments for connectqueue
+[           resources] Stopping resource hardcap
+[           resources] Started resource connectqueue
+[    c-scripting-core] Creating script environments for cruz-emotesV2
+[script:cruz-emotesV2] [rpemotes] Loading and caching emote data...
+[script:cruz-emotesV2] [rpemotes] Loaded custom emotes
+[script:cruz-emotesV2] [rpemotes] Cached 1742 emotes, 186 shared, 38 expressions, 139 walks
+[           resources] Started resource cruz-emotesV2
+[           resources] Started resource dpclothing
+[    c-scripting-core] Creating script environments for interact-sound
+[           resources] Started resource interact-sound
+[    c-scripting-core] Creating script environments for lambra-tunerChipV2
+[resources:lambra-tun] Asset lambra-tunerChipV2/core.ypt uses 21.8 MiB of virtual memory.
+[           resources] Started resource lambra-tunerChipV2 (1 warning)
+[    c-scripting-core] Creating script environments for mhacking
+[           resources] Started resource mhacking
+[    c-scripting-core] Creating script environments for ox_doorlock
+[           resources] Started resource ox_doorlock
+[    c-scripting-core] Creating script environments for ox_target
+[           resources] Started resource ox_target
+[    c-scripting-core] Creating script environments for pma-voice
+[           resources] Started resource pma-voice
+[           resources] Started resource poolchecker
+[    c-scripting-core] Creating script environments for yarn
+[           resources] Started resource yarn
+[    c-scripting-core] Creating script environments for webpack
+[           resources] Started resource webpack
+[    c-scripting-core] Creating script environments for screenshot-basic
+[           resources] Started resource screenshot-basic
+[    c-scripting-core] Creating script environments for xsound
+[           resources] Started resource xsound
+[    c-scripting-core] Creating script environments for esx_addonaccount
+[           resources] Started resource esx_addonaccount
+[    c-scripting-core] Creating script environments for esx_addoninventory
+[           resources] Started resource esx_addoninventory
+[    c-scripting-core] Creating script environments for esx_ambulancejob
+[           resources] Started resource esx_ambulancejob
+[    c-scripting-core] Creating script environments for esx_banking
+[           resources] Started resource esx_banking
+[    c-scripting-core] Creating script environments for esx_status
+[           resources] Started resource esx_status
+[    c-scripting-core] Creating script environments for esx_basicneeds
+[           resources] Started resource esx_basicneeds
+[    c-scripting-core] Creating script environments for esx_datastore
+[           resources] Started resource esx_datastore
+[    c-scripting-core] Creating script environments for esx_service
+[           resources] Started resource esx_service
+[    c-scripting-core] Creating script environments for esx_smallresources
+[           resources] Started resource esx_smallresources
+[    c-scripting-core] Creating script environments for esx_society
+[           resources] Started resource esx_society
+[    c-scripting-core] Creating script environments for ox_inventory
+[           resources] Started resource ox_inventory
+[    c-scripting-core] Creating script environments for cs-stream
+[           resources] Started resource cs-stream
+[    c-scripting-core] Creating script environments for cs-hall
+[    c-scripting-core] Failed to load script @WaveShield/resource/waveshield.lua.
+[           resources] Started resource cs-hall
+[           resources] Started resource kad_fxlights
+[    c-scripting-core] Creating script environments for kc-pickitback
+[           resources] Started resource kc-pickitback
+[    c-scripting-core] Creating script environments for kc-sitting
+[           resources] Started resource kc-sitting
+[    c-scripting-core] Creating script environments for kq_engineswaps
+[           resources] Started resource kq_engineswaps
+[    c-scripting-core] Creating script environments for lls_mechanic
+[           resources] Started resource lls_mechanic
+[    c-scripting-core] Creating script environments for mt-attach
+[resources:mt-attach:] Asset mt-attach/DLTB4.ytd uses 20.9 MiB of physical memory.
+[resources:mt-attach:] Asset mt-attach/DLTBOAT.ytd uses 16.5 MiB of physical memory.
+[resources:mt-attach:] Asset mt-attach/DLTBOAT2.yft uses 20.0 MiB of virtual memory.
+[resources:mt-attach:] Asset mt-attach/DLTBOAT2_hi.yft uses 20.0 MiB of virtual memory.
+[resources:mt-attach:] Asset mt-attach/DLTENC2.yft uses 26.5 MiB of virtual memory.
+[resources:mt-attach:] Asset mt-attach/DLTENC2.ytd uses 20.9 MiB of physical memory.
+[resources:mt-attach:] Asset mt-attach/DLTENC2_hi.yft uses 26.5 MiB of virtual memory.
+[resources:mt-attach:] Asset mt-attach/DLTENC3.ytd uses 19.1 MiB of physical memory.
+[resources:mt-attach:] Asset mt-attach/DLTS2.yft uses 22.9 MiB of virtual memory.
+[resources:mt-attach:] Asset mt-attach/DLTS2_hi.yft uses 22.9 MiB of virtual memory.
+[resources:mt-attach:] Asset mt-attach/DLTS3.yft uses 19.0 MiB of virtual memory.
+[resources:mt-attach:] Asset mt-attach/DLTS3_hi.yft uses 19.0 MiB of virtual memory.
+[resources:mt-attach:] Asset mt-attach/DLTS7.ytd uses 32.0 MiB of physical memory.
+[resources:mt-attach:] Asset mt-attach/bigtex20.ytd uses 34.0 MiB of physical memory.
+[resources:mt-attach:] Asset mt-attach/bigtex40.ytd uses 34.0 MiB of physical memory.
+[resources:mt-attach:] Asset mt-attach/flatbed3.ytd uses 160.0 MiB of physical memory. Oversized assets can and WILL lead to streaming issues (such as models not loading/rendering).
+[           resources] Started resource mt-attach (16 warnings)
+[    c-scripting-core] Creating script environments for mt-bossmenu
+[           resources] Started resource mt-bossmenu
+[    c-scripting-core] Creating script environments for mt-carlock
+[           resources] Started resource mt-carlock
+[    c-scripting-core] Creating script environments for mt-dealerships
+[           resources] Started resource mt-dealerships
+[    c-scripting-core] Creating script environments for mt-elevators
+[           resources] Started resource mt-elevators
+[    c-scripting-core] Creating script environments for mt-fuel
+[           resources] Started resource mt-fuel
+[    c-scripting-core] Creating script environments for mt-garages
+[           resources] Started resource mt-garages
+[    c-scripting-core] Creating script environments for mt-gym
+[           resources] Started resource mt-gym
+[    c-scripting-core] Creating script environments for mt-hud
+[           resources] Started resource mt-hud
+[    c-scripting-core] Creating script environments for mt-idcard
+[           resources] Started resource mt-idcard
+[    c-scripting-core] Creating script environments for mt-ids
+[           resources] Started resource mt-ids
+[    c-scripting-core] Creating script environments for mt-minijuegos
+[           resources] Started resource mt-minijuegos
+[    c-scripting-core] Creating script environments for mt-multijob
+[           resources] Started resource mt-multijob
+[    c-scripting-core] Creating script environments for mt-newjobs
+[           resources] Started resource mt-newjobs
+[    c-scripting-core] Creating script environments for mt-notify
+[    script:mt-notify] [mt-notify] Lógica de servidor cargada correctamente.
+[           resources] Started resource mt-notify
+[    c-scripting-core] Creating script environments for mt-outfitbag
+[           resources] Started resource mt-outfitbag
+[    c-scripting-core] Creating script environments for mt-rpchat
+[  script:es_extended] [WARNING] Command "clear" already registered, overriding command
+[  script:es_extended] [WARNING] Command "clearall" already registered, overriding command
+[  script:es_extended] [WARNING] Command "clear" already registered, overriding command
+[  script:es_extended] [WARNING] Command "clearall" already registered, overriding command
+[           resources] Started resource mt-rpchat
+[    c-scripting-core] Creating script environments for mt-speaker
+[           resources] Started resource mt-speaker
+[    c-scripting-core] Creating script environments for mt-vip
+[           resources] Started resource mt-vip
+[    c-scripting-core] Creating script environments for mt-waypoints
+[           resources] Started resource mt-waypoints
+[    c-scripting-core] Creating script environments for origen_admin
+[           resources] Started resource origen_admin
+[    c-scripting-core] Creating script environments for origen_housing
+[           resources] Started resource origen_housing
+[           resources] Started resource origen_housing_assets
+[    c-scripting-core] Creating script environments for origen_police
+[           resources] Started resource origen_police
+[           resources] Started resource phone-render
+[    c-scripting-core] Creating script environments for qs-smartphone-pro
+[           resources] Started resource qs-smartphone-pro
+[    c-scripting-core] Creating script environments for phone-radio
+[           resources] Started resource phone-radio
+[           resources] Started resource phone-recorder
+[           resources] Started resource rcore_casino_assets
+[           resources] Started resource rcore_casino_interior
+[    c-scripting-core] Creating script environments for rcore_casino
+[ script:rcore_casino] [Casino] Framework ESX detected.
+[           resources] Started resource rcore_casino
+[    c-scripting-core] Creating script environments for rcore_pool
+[           resources] Started resource rcore_pool
+[    c-scripting-core] Creating script environments for tk_drugs
+[           resources] Started resource tk_drugs
+[    script:cs-stream] [criticalscripts.shop] Resource "cs-stream" is up to date.
+[      script:cs-hall] [criticalscripts.shop] Resource "cs-hall" is outdated, please download the latest version through your keymaster.
+[      script:cs-hall] [criticalscripts.shop] Important security update, please update your resource.
+[  script:cd_easytime] [cd_easytime] - Settings Applied.
+[   script:mt-speaker] ========================================================
+[   script:mt-speaker] [mt-speaker]
+[   script:mt-speaker] * Framework: esx
+[   script:mt-speaker] * Language: es
+[   script:mt-speaker] * Debug: Disabled
+[   script:mt-speaker] * Version: 1.0.0
+[   script:mt-speaker] ========================================================
+[script:origen_housin] ========================================================
+[script:origen_housin] [origen_housing]
+[script:origen_housin] * Framework: esx
+[script:origen_housin] * Inventory: ox_inventory
+[script:origen_housin] * Clothing: illenium-appearance
+[script:origen_housin] * Weather: qb-weathersync
+[script:origen_housin] * Lockpick: No lockpick resource found
+[script:origen_housin] * Keysystem: No keysystem resource found
+[script:origen_housin] * Garage: No garage resource found
+[script:origen_housin] * Language: es
+[script:origen_housin] * Debug: Disabled
+[script:origen_housin] * Version: 1.0.3  Latest Version
+[script:origen_housin] ========================================================
+[ citizen-server-impl] server thread hitch warning: timer interval of 331 milliseconds
+[      script:oxmysql] [11.8.6-MariaDB] Database server connection established!
+[       script:mt-vip] [mt-vip] Checking database tables...
+[ citizen-server-impl]         fff                          
+[ citizen-server-impl]   cccc ff   xx  xx     rr rr    eee  
+[ citizen-server-impl] cc     ffff   xx       rrr  r ee   e 
+[ citizen-server-impl] cc     ff     xx   ... rr     eeeee  
+[ citizen-server-impl]  ccccc ff   xx  xx ... rr      eeeee 
+[ citizen-server-impl]                                      
+[ citizen-server-impl] Authenticated with cfx.re Nucleus: https://ftpcruzito-xlzdoax.users.cfx.re/
+[ script:ox_inventory] [ox_inventory] [INFO] Database contains 60 items.
+[script:cruz-emotesV2] Currently running an outdated version (2.0.4)
+[script:cruz-emotesV2] Update: https://github.com/alberttheprince/rpemotes-reborn/releases/tag/v2.1.1
+[       script:ox_lib] An update is available for ox_target (current version: 1.17.2)
+[       script:ox_lib] https://github.com/overextended/ox_target/releases/tag/v1.18.1
+[       script:ox_lib] An update is available for ox_lib (current version: 3.30.6)
+[       script:ox_lib] https://github.com/overextended/ox_lib/releases/tag/v3.37.2
+[script:origen_housin] [Origen Housing] 0 houses loaded.
+[  script:es_extended] [INFO] ESX Legacy 1.13.4 initialized!
+[ script:mt-waypoints] [MT Waypoints] Loaded 0 markers from database.
+[      script:oxmysql] An update is available for oxmysql (current version: 2.12.0)
+[      script:oxmysql] https://github.com/overextended/oxmysql/releases/tag/v2.14.1
+[       script:mt-vip] [mt-vip] Server initialized successfully.
+[   script:mt-garages] [AutoSQL] All queries executed successfully.
+[script:illenium-appe] [illenium-appearance] [SERVER] [DB] Database migration successful: 'cost' column ensured.
+[ script:rcore_casino] 
+[ script:rcore_casino] rcore_casino
+[ script:rcore_casino] framework: ESX
+[ script:rcore_casino] version: 1.9.4
+[ script:rcore_casino] database: mysql-async
+[ script:rcore_casino] map: GTA:O Interior
+[ script:rcore_casino] society: disabled
+[ script:rcore_casino] inventory: ox_inventory
+[ script:rcore_casino] casino time: 15.06.2026, 03:40 PM
+[ script:rcore_casino] https://documentation.rcore.cz/paid-resources/rcore_casino
+[ script:rcore_casino] 
+[script:mt-dealership] [Dealership] Loaded 1 dealerships from database.
+[ script:ox_inventory] [ox_inventory] [INFO] Inventory has loaded 445 items
+[script:kq_engineswap] Loaded 0 tuned cars
+[ citizen-server-impl] server thread hitch warning: timer interval of 227 milliseconds
+║              STDERR║ (node:6784) MaxListenersExceededWarning: (node) warning: possible EventEmitter memory leak detected. 11 listeners added. Use emitter.setMaxListeners() to increase limit.
+║              STDERR║ (Use `FXServer --trace-warnings ...` to show where the warning was created)
+║              STDERR║ (node:6784) MaxListenersExceededWarning: (node) warning: possible EventEmitter memory leak detected. 11 listeners added. Use emitter.setMaxListeners() to increase limit.
+║              STDERR║ (node:6784) MaxListenersExceededWarning: (node) warning: possible EventEmitter memory leak detected. 11 listeners added. Use emitter.setMaxListeners() to increase limit.
+║              STDERR║ (node:6784) MaxListenersExceededWarning: (node) warning: possible EventEmitter memory leak detected. 11 listeners added. Use emitter.setMaxListeners() to increase limit.
+[ script:connectqueue] QUEUE: Mafs[steam:11000013fca0d6b] was placed 1/1 in queue
+[  script:es_extended] [INFO] Player "Victoria Prescott" has connected to the server. ID: 1
+[script:esx_ambulance] [INFO] Jugador 1 reentró estando muerto. Aplicando estado.
+[script:qs-smartphone] OX Error: item is nil. You need to take a new phone. And we hope you did read the docs well.
+[ script:lls_mechanic] [lls-mechanic] oxmysql not found
+[ script:lls_mechanic] [lls-mechanic] oxmysql not found
+[  script:es_extended] [INFO] Saved 1 player over 0.0 ms
+[ script:lls_mechanic] [lls-mechanic] oxmysql not found
+║          FTPCruzito║ ensure UniqueEscapeMenu
+[           resources] Stopping resource UniqueEscapeMenu
+[    c-scripting-core] Creating script environments for UniqueEscapeMenu
+[           resources] Started resource UniqueEscapeMenu
+║          FTPCruzito║ ensure origen_police
+[           resources] Stopping resource origen_police
+[    c-scripting-core] Creating script environments for origen_police
+[           resources] Started resource origen_police
+[ citizen-server-impl] server thread hitch warning: timer interval of 226 milliseconds
+[script:esx_ambulance] [SEGURIDAD] Jugador 1 intentó quitarse el estado de muerte fuera de un hospital.
+[  script:es_extended] [INFO] Saved player "Victoria Prescott"

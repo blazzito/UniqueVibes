@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mechanic</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- HUD PRINCIPAL -->
+<div id="hud">
+
+    <!-- HEADER -->
+    <div id="hud-hdr">
+        <div class="hdr-side">
+            <button id="back-btn" title="Atrás [ESC]">&#8249;</button>
+            <span id="menu-title" class="hdr-label">MENÚ</span>
+        </div>
+        <div class="hdr-line"></div>
+        <div class="hdr-side">
+            <span id="hdr-name" class="hdr-label">Cargando...</span>
+        </div>
+    </div>
+
+    <!-- CARRUSEL -->
+    <div id="carousel-outer">
+        <button class="nav-arrow" id="nav-prev">&#8249;</button>
+        <div id="carousel-clip">
+            <div id="carousel"></div>
+        </div>
+        <button class="nav-arrow" id="nav-next">&#8250;</button>
+    </div>
+
+    <!-- FOOTER -->
+    <div id="hud-footer">
+        <kbd>ESC</kbd> Atrás &nbsp;·&nbsp;
+        <kbd>&#8592;</kbd> <kbd>&#8594;</kbd> Navegar &nbsp;·&nbsp;
+        <kbd>Enter</kbd> Abrir &nbsp;·&nbsp;
+        <kbd>C</kbd> Cámara
+    </div>
+
+</div>
+
+<!-- PANEL DE RESUMEN (bottom-left) -->
+<div id="summary">
+    <div id="sum-hdr">
+        <span id="sum-title">RESUMEN</span>
+        <span id="sum-count">0 mods</span>
+    </div>
+    <div id="sum-body">
+        <div id="sum-empty">Navega el menú para<br>agregar modificaciones</div>
+        <div id="sum-list"></div>
+    </div>
+    <div id="sum-foot">
+        <div id="sum-total-row">
+            <span class="sum-lbl">TOTAL</span>
+            <span id="sum-total">$0</span>
+        </div>
+        <button id="sum-confirm">&#8592; SALIR DEL TALLER</button>
+    </div>
+</div>
+
+<!-- COLOR PICKER -->
+<div id="cp">
+    <div id="cp-hdr">
+        <span id="cp-title">COLOR</span>
+        <span id="cp-price-tag"></span>
+    </div>
+    <div id="cp-body">
+        <!-- Modo RGB libre: color1 / color2 / neón / humo de llantas -->
+        <div id="cp-rgbpicker">
+            <canvas id="cp-sv" width="232" height="232"></canvas>
+            <canvas id="cp-hue" width="232" height="20"></canvas>
+            <div id="cp-info">
+                <div id="cp-swatch"></div>
+                <span id="cp-hex-val">#FF0000</span>
+            </div>
+        </div>
+        <!-- Modo paleta fija: nacarado / llantas / tablero / interior (el juego solo acepta índices fijos, no RGB libre) -->
+        <div id="cp-palette"></div>
+    </div>
+    <div id="cp-btns">
+        <button id="cp-cancel">Cancelar</button>
+        <button id="cp-ok">Confirmar</button>
+    </div>
+</div>
+
+<audio id="snd-construction" src="sounds/construction.ogg" preload="auto"></audio>
+<audio id="snd-spray"        src="sounds/spray.ogg"        preload="auto"></audio>
+
+<script src="js/main.js"></script>
+</body>
+</html>

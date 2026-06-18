@@ -1,0 +1,188 @@
+:root {
+    --color-orange: #ff6b00;
+    --color-petrol: #00a8cc;
+    --color-bg-dark: #0f0f0f;
+    --color-red: #ff3333;
+    --glass-bg: rgba(15, 15, 18, 0.75);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    
+    --font-main: 'Quicksand', sans-serif;
+    --font-accent: 'Bebas Neue', sans-serif;
+    
+    --radius-lg: 16px;
+    --radius-md: 10px;
+    --shadow-premium: 0 10px 30px rgba(0,0,0,0.6);
+    --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: transparent;
+    font-family: var(--font-main);
+    color: white;
+    user-select: none;
+}
+
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: inherit;
+    font-family: inherit;
+    outline: none;
+}
+
+/* ── CONTENEDOR PRINCIPAL ── */
+#hud-container {
+    position: fixed;
+    bottom: 0;
+    right: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    transform: translateY(calc(100% - 46px)); /* Oculta el panel, deja la pestaña visible */
+    transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+#hud-container.expanded {
+    transform: translateY(0);
+}
+
+/* ── PESTAÑA (TAB BUTTON) ── */
+#tab-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-bottom: none;
+    padding: 10px 16px;
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.3);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+#tab-button:hover {
+    background: rgba(25, 25, 30, 0.9);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+#tab-button span {
+    font-family: var(--font-accent);
+    font-size: 18px;
+    letter-spacing: 1.5px;
+    color: var(--color-orange);
+}
+
+#tab-icon {
+    width: 20px;
+    height: 20px;
+    color: white;
+    transition: var(--transition);
+}
+
+/* Rotar icono cuando está abierto */
+#hud-container.expanded #tab-icon {
+    transform: rotate(180deg);
+}
+
+/* ── PANEL DE CONTROLES ── */
+#control-panel {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-top: 3px solid var(--color-petrol);
+    border-bottom: none;
+    border-radius: var(--radius-lg) 0 0 0;
+    box-shadow: var(--shadow-premium);
+    padding: 25px; /* Más grande */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 400px; /* Más ancho */
+}
+
+/* ── CABECERA DEL PANEL ── */
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    padding-bottom: 10px;
+}
+
+.header-title {
+    font-family: var(--font-accent);
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: var(--color-petrol);
+}
+
+.close-btn {
+    color: rgba(255,255,255,0.4);
+    transition: var(--transition);
+}
+
+.close-btn:hover {
+    color: var(--color-red);
+    transform: scale(1.1);
+}
+
+/* ── GRILLA DE BOTONES ── */
+.controls-grid-main {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.controls-grid-doors {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+}
+
+.control-btn {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius-md);
+    padding: 12px 6px; /* Más grandes */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: var(--transition);
+}
+
+.control-btn img {
+    width: 36px; /* Imágenes más grandes */
+    height: 36px;
+    object-fit: contain;
+    opacity: 0.6;
+    filter: brightness(10);
+    transition: var(--transition);
+}
+
+.control-btn:hover {
+    background: rgba(255, 107, 0, 0.15);
+    border-color: rgba(255, 107, 0, 0.4);
+    box-shadow: 0 4px 15px rgba(255, 107, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+.control-btn:hover img {
+    opacity: 1;
+    /* Efecto naranja en hover */
+    filter: invert(55%) sepia(95%) saturate(600%) hue-rotate(359deg) brightness(115%);
+}
+
+.control-btn:active {
+    transform: translateY(1px);
+    background: rgba(255, 107, 0, 0.25);
+}

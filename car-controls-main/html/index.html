@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Controls</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://kit.fontawesome.com/fae5757b79.js" crossorigin="anonymous"></script>
+    <link href="styles/controls_v2.css" rel="stylesheet"> 
+    <link href="styles/hud.css" rel="stylesheet"> 
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+</head>
+<body>
+    <div id="hud-container" style="display: none;" class="minimized">
+        <!-- Pestaña flotante -->
+        <div id="tab-button" onclick="toggleMenu()">
+            <i data-lucide="chevron-up" id="tab-icon"></i>
+            <span>CONTROLES DEL VEHÍCULO</span>
+        </div>
+
+        <!-- Panel principal -->
+        <div id="control-panel">
+            <div class="panel-header">
+                <span class="header-title">VEHÍCULO</span>
+                <button class="close-btn" onclick="collapseMenu()"><i data-lucide="x"></i></button>
+            </div>
+            
+            <div class="controls-grid-main">
+                <button class="control-btn" id="engine" onclick="toggleEngine()">
+                    <img src="./images/ignition.png" alt="Engine">
+                </button>
+                <button class="control-btn" id="hood" onclick="toggleFrontHood()">
+                    <img src="./images/frontHood.png" alt="Hood">
+                </button>
+                <button class="control-btn" id="trunk" onclick="toggleTrunk()">
+                    <img src="./images/rearHood.png" alt="Trunk">
+                </button>
+                <button class="control-btn" id="headlights" onclick="toggleHeadlights()">
+                    <img src="./images/interiorLight.png" alt="Lights">
+                </button>
+            </div>
+
+            <div class="controls-grid-doors">
+                <button class="control-btn" onclick="openWindow(0)">
+                    <img src="./images/windowFrontLeft.png">
+                </button>
+                <button class="control-btn" onclick="openDoor(0)">
+                    <img src="./images/doorFrontLeft.png">
+                </button>
+                <button class="control-btn" onclick="sitAtSeat(-1)">
+                    <img src="./images/seatFrontLeft.png">
+                </button>
+                <button class="control-btn" onclick="sitAtSeat(0)">
+                    <img src="./images/seatFrontLeft.png" style="transform: scaleX(-1);">
+                </button>
+                <button class="control-btn" onclick="openDoor(1)">
+                    <img src="./images/doorFrontRight.png">
+                </button>
+                <button class="control-btn" onclick="openWindow(1)">
+                    <img src="./images/windowFrontRight.png">
+                </button>
+
+                <button class="control-btn" onclick="openWindow(2)">
+                    <img src="./images/windowRearLeft.png">
+                </button>
+                <button class="control-btn" onclick="openDoor(2)">
+                    <img src="./images/doorRearLeft.png">
+                </button>
+                <button class="control-btn" onclick="sitAtSeat(1)">
+                    <img src="./images/seatFrontLeft.png">
+                </button>
+                <button class="control-btn" onclick="sitAtSeat(2)">
+                    <img src="./images/seatFrontLeft.png" style="transform: scaleX(-1);">
+                </button>
+                <button class="control-btn" onclick="openDoor(3)">
+                    <img src="./images/doorRearRight.png">
+                </button>
+                <button class="control-btn" onclick="openWindow(3)">
+                    <img src="./images/windowRearRight.png">
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="./js/controls_v2.js"></script>
+    <script src="./js/hud.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
