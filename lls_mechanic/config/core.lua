@@ -100,6 +100,11 @@ Config.Positions = {
         whitelistJobName = 'mechanic',
         actionDistance = 8.0
     },
+    { -- Sports Customs -- #3
+        pos = {x = 6348.962402, y =  -3862.694580, z =  13.575806},
+        whitelistJobName = 'mechanic',
+        actionDistance = 8.0
+    },
     -- DUMBER CUSTOMS
     { -- Dumber Customs -- #1
         pos = {x = 609.26, y = -249.26, z = 4.73},
