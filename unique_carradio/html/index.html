@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radio Car V3</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app" style="display: none;">
+        <div class="radio-dashboard">
+            <!-- Header -->
+            <div class="header">
+                <div class="header-title">
+                    <i class="fas fa-car-side"></i>
+                    <span id="headerTitle">Smart Display Radio</span>
+                </div>
+                <button class="close-btn" id="closeBtn"><i class="fas fa-times"></i></button>
+            </div>
+
+            <div class="main-content">
+                <!-- Left: Player Section -->
+                <div class="player-section">
+                    <div class="thumbnail-container">
+                        <img id="thumbnailImg" src="https://img.youtube.com/vi/default/hqdefault.jpg" alt="Thumbnail">
+                        <div class="visualizer" id="visualizer">
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="now-playing">
+                        <div class="track-title-container">
+                            <span id="trackTitle">No hay música reproduciéndose</span>
+                        </div>
+                    </div>
+
+                    <div class="controls-wrapper">
+                        <!-- Playback Controls -->
+                        <div class="playback-controls">
+                            <div class="control-btn state-engine-off" id="stopBtn" title="Apagar Radio">
+                                <i class="fas fa-power-off"></i>
+                            </div>
+                            <div class="control-btn" id="prevBtn" title="Anterior">
+                                <i class="fas fa-step-backward"></i>
+                            </div>
+                            <div class="control-btn primary" id="playPauseBtn" title="Play/Pause">
+                                <i class="fas fa-play" id="playPauseIcon"></i>
+                            </div>
+                            <div class="control-btn" id="nextBtn" title="Siguiente">
+                                <i class="fas fa-step-forward"></i>
+                            </div>
+                            <div class="control-btn" id="loopBtn" title="Bucle">
+                                <i class="fas fa-sync-alt" id="loopIcon"></i>
+                            </div>
+                        </div>
+                        
+                        <!-- Circular Volume Control -->
+                        <div class="volume-knob" id="volumeKnob" title="Arrastra hacia arriba/abajo para ajustar">
+                            <svg viewBox="0 0 36 36" class="circular-chart">
+                                <path class="circle-bg"
+                                  d="M18 2.0845
+                                    a 15.9155 15.9155 0 0 1 0 31.831
+                                    a 15.9155 15.9155 0 0 1 0 -31.831"
+                                />
+                                <path class="circle-progress" id="volumeProgress"
+                                  stroke-dasharray="50, 100"
+                                  d="M18 2.0845
+                                    a 15.9155 15.9155 0 0 1 0 31.831
+                                    a 15.9155 15.9155 0 0 1 0 -31.831"
+                                />
+                            </svg>
+                            <span id="volumeText">50%</span>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <input type="text" id="urlInput" placeholder="Enlace de YouTube...">
+                        <button id="addBtn" title="Añadir a la cola"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+
+                <!-- Right: Lists Section -->
+                <div class="lists-section">
+                    <!-- Queue List -->
+                    <div class="queue-container">
+                        <div class="lists-header">
+                            <i class="fas fa-list-ol"></i> Cola de Reproducción
+                        </div>
+                        <div class="queue-list" id="queueList">
+                            <!-- Items agregados a la cola aquí -->
+                        </div>
+                    </div>
+                    
+                    <!-- Saved Playlists -->
+                    <div class="saved-playlists-section">
+                        <div class="lists-header">
+                            <i class="fas fa-save"></i> Playlists Guardadas
+                        </div>
+                        <div class="save-playlist-row">
+                            <input type="text" id="playlistName" placeholder="Nombre de playlist...">
+                            <button id="savePlaylistBtn" title="Guardar Cola Actual"><i class="fas fa-download"></i></button>
+                        </div>
+                        <div class="playlists-list" id="playlistsList">
+                            <!-- Playlists guardadas -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

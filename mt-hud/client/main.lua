@@ -17,7 +17,8 @@ end)
 
 AddEventHandler('onResourceStart', function(resourceName)
     if GetCurrentResourceName() ~= resourceName then return end
-    if exports['es_extended']:getSharedObject().PlayerLoaded then
+    Wait(1000)
+    if NetworkIsPlayerActive(PlayerId()) then
         isPlayerLoaded = true
         InitializeHUD()
     end
@@ -36,8 +37,14 @@ RegisterNUICallback("nui_ready", function(data, cb)
     cb("ok")
 end)
 
---[[RegisterCommand("testui", function()
+RegisterCommand("testui", function()
     SendNUIMessage({ action = "setVisible", value = true })
     SendNUIMessage({ action = "updateVitals", data = { health = 50, hunger = 20, thirst = 20, armor = 10, stamina = 40 } })
 end)
-]]--
+
+
+RegisterCommand('fixhud', function()
+    isPlayerLoaded = true
+    InitializeHUD()
+end)
+

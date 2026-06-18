@@ -15,6 +15,7 @@ client_scripts {
     'client/main.lua',
     'client/player.lua',
     'client/vehicle.lua',
+    'client/car_controls.lua',
     'client/minimap.lua',
     'client/screenFade.lua'
 }
@@ -25,6 +26,7 @@ files {
     'ui/dist/style.css',
     'ui/dist/script.js',
     'ui/dist/sounds/*',
+    'ui/dist/images_controls/*'
 }
 
 ui_page 'ui/dist/index.html'

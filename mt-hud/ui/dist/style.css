@@ -34,11 +34,7 @@ body {
 }
 
 .location-container {
-    position: fixed;
-    top: 2vh;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 100;
+    display: none !important;
 }
 
 .street-container {
@@ -214,7 +210,10 @@ body {
     gap: .5vh;
     pointer-events: none;
     z-index: 100;
+    transition: bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
+
+
 
 .speed-label {
     font-size: 1vh;
@@ -424,4 +423,592 @@ body {
     opacity: 0;
     pointer-events: none;
     transition: opacity 1s ease;
+}
+/* -- CONTROLES VEHICULARES DASHBOARD -- */
+
+
+
+
+.controls-row {
+    display: flex;
+    justify-content: center;
+    gap: 1vh;
+}
+
+.control-btn {
+    background: var(--glass-bg);
+    border: .1vh solid var(--glass-border);
+    border-radius: 0.8vh;
+    padding: 1.2vh 1.5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.control-btn img {
+    width: 3.5vh;
+    height: 3.5vh;
+    object-fit: contain;
+    opacity: 0.6;
+    filter: brightness(10);
+    transition: all 0.3s ease;
+}
+
+.control-btn:hover {
+    background: rgba(255, 107, 0, 0.15);
+    border-color: rgba(255, 107, 0, 0.4);
+    transform: translateY(-0.3vh);
+}
+
+.control-btn:hover img {
+    opacity: 1;
+    filter: invert(55%) sepia(95%) saturate(600%) hue-rotate(359deg) brightness(115%);
+}
+
+.control-btn:active {
+    transform: translateY(0.1vh);
+    background: rgba(255, 107, 0, 0.25);
+}
+
+/* -- ESTADOS DIN�MICOS DE LOS BOTONES -- */
+
+/* Estado Activo: General (Naranja Brillante) - Puertas, Capo, Maletero, Ventanas abiertas */
+.control-btn.state-active {
+    background: rgba(255, 107, 0, 0.25) !important;
+    border-color: rgba(255, 107, 0, 0.6) !important;
+    box-shadow: 0 0 1vh rgba(255, 107, 0, 0.4);
+}
+.control-btn.state-active img {
+    opacity: 1 !important;
+    filter: invert(55%) sepia(95%) saturate(600%) hue-rotate(359deg) brightness(115%) !important;
+}
+
+/* Estado: Motor Encendido (Verde) */
+.control-btn.state-engine-on {
+    background: rgba(0, 200, 83, 0.2) !important;
+    border-color: rgba(0, 200, 83, 0.5) !important;
+    box-shadow: 0 0 1vh rgba(0, 200, 83, 0.3);
+}
+.control-btn.state-engine-on img {
+    opacity: 1 !important;
+    /* Filtro para color verde */
+    filter: invert(56%) sepia(85%) saturate(405%) hue-rotate(101deg) brightness(97%) contrast(97%) !important;
+}
+
+/* Estado: Motor Apagado (Rojo) */
+.control-btn.state-engine-off {
+    background: rgba(213, 0, 0, 0.2) !important;
+    border-color: rgba(213, 0, 0, 0.5) !important;
+    box-shadow: 0 0 1vh rgba(213, 0, 0, 0.3);
+}
+.control-btn.state-engine-off img {
+    opacity: 1 !important;
+    /* Filtro para color rojo */
+    filter: invert(15%) sepia(97%) saturate(5833%) hue-rotate(357deg) brightness(96%) contrast(116%) !important;
+}
+
+/* Estado: Luces Bajas (Verde) */
+.control-btn.state-lights-low {
+    background: rgba(0, 200, 83, 0.2) !important;
+    border-color: rgba(0, 200, 83, 0.5) !important;
+    box-shadow: 0 0 1vh rgba(0, 200, 83, 0.3);
+}
+.control-btn.state-lights-low img {
+    opacity: 1 !important;
+    filter: invert(56%) sepia(85%) saturate(405%) hue-rotate(101deg) brightness(97%) contrast(97%) !important;
+}
+
+/* Estado: Luces Altas (Azul) */
+.control-btn.state-lights-high {
+    background: rgba(0, 168, 204, 0.2) !important;
+    border-color: rgba(0, 168, 204, 0.5) !important;
+    box-shadow: 0 0 1vh rgba(0, 168, 204, 0.3);
+}
+.control-btn.state-lights-high img {
+    opacity: 1 !important;
+    /* Filtro para color azul petr�leo */
+    filter: invert(49%) sepia(87%) saturate(2758%) hue-rotate(162deg) brightness(93%) contrast(104%) !important;
+}
+
+
+/* RADIO DASHBOARD INTEGRATION */
+
+
+
+
+.main-content {
+    display: flex;
+    flex-direction: row;
+    gap: 2vh;
+    overflow: hidden;
+    height: 38vh;
+}
+
+/* Left Section: Player */
+.player-section {
+    flex: 1.2;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2vh;
+    min-width: 0;
+}
+
+.thumbnail-container {
+    width: 100%;
+    flex: 1;
+    border-radius: 0.8vh;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: #000;
+}
+
+.thumbnail-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
+    transition: opacity 0.5s;
+}
+
+/* Visualizer */
+.visualizer {
+    position: absolute;
+    bottom: 1vh;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: flex-end;
+    gap: 0.4vh;
+    height: 3vh;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.visualizer.active {
+    opacity: 1;
+}
+
+.bar {
+    width: 0.6vh;
+    background: #00fbff;
+    border-radius: 1vh;
+    box-shadow: 0 0 1vh rgba(0, 251, 255, 0.6);
+    animation: bounce 0.5s infinite alternate ease-in-out;
+}
+
+.bar:nth-child(1) { animation-duration: 0.4s; }
+.bar:nth-child(2) { animation-duration: 0.6s; animation-delay: 0.1s; }
+.bar:nth-child(3) { animation-duration: 0.5s; animation-delay: 0.2s; }
+.bar:nth-child(4) { animation-duration: 0.3s; animation-delay: 0.1s; }
+.bar:nth-child(5) { animation-duration: 0.6s; animation-delay: 0.3s; }
+.bar:nth-child(6) { animation-duration: 0.4s; animation-delay: 0.2s; }
+
+@keyframes bounce {
+    0% { height: 0.5vh; }
+    100% { height: 2.5vh; }
+}
+
+.now-playing {
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 0.6vh;
+    padding: 1.2vh;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+    min-width: 0;
+}
+
+.track-title-container {
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+#trackTitle {
+    color: white;
+    font-size: 1.3vh;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.scrolling {
+    animation: marquee 10s linear infinite;
+}
+
+@keyframes marquee {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+/* Controls Wrapper (Buttons + Vertical Volume) */
+.controls-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2vh;
+}
+
+.playback-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1vh;
+    flex: 1;
+}
+
+.control-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.6vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.5vh;
+    width: 4vh;
+    height: 4vh;
+}
+
+.control-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    transform: translateY(-0.2vh);
+}
+
+.control-btn.primary {
+    background: rgba(255, 107, 0, 0.15);
+    border-color: rgba(255, 107, 0, 0.4);
+    color: #ff6b00;
+    width: 5vh;
+    height: 5vh;
+    font-size: 1.8vh;
+}
+
+.control-btn.primary:hover {
+    background: rgba(255, 107, 0, 0.25);
+    box-shadow: 0 0 1vh rgba(255, 107, 0, 0.4);
+}
+
+.control-btn.state-engine-off:hover {
+    background: rgba(213, 0, 0, 0.2);
+    border-color: rgba(213, 0, 0, 0.5);
+    color: #ff2d55;
+}
+
+/* Loop active state */
+.control-btn.active-loop {
+    color: #22c55e;
+    background: rgba(34, 197, 94, 0.1);
+    border-color: rgba(34, 197, 94, 0.3);
+}
+
+/* Circular Volume Knob */
+.volume-knob {
+    flex-shrink: 0;
+    position: relative;
+    width: 6vh;
+    height: 6vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,0.3);
+    border-radius: 50%;
+    cursor: ns-resize;
+    user-select: none;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.circular-chart {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.circle-bg {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.1);
+    stroke-width: 3.8;
+}
+
+.circle-progress {
+    fill: none;
+    stroke: #00fbff;
+    stroke-width: 2.8;
+    stroke-linecap: round;
+    transition: stroke-dasharray 0.1s ease-out;
+}
+
+#volumeText {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 1.2vh;
+    font-weight: 800;
+    pointer-events: none;
+}
+
+/* Input Group */
+.input-group {
+    display: flex;
+    gap: 0.8vh;
+}
+
+.input-group input, .save-playlist-row input {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.6vh;
+    padding: 1vh;
+    color: white;
+    font-size: 1.1vh;
+    outline: none;
+    transition: border-color 0.3s;
+    min-width: 0;
+}
+
+.input-group input:focus, .save-playlist-row input:focus {
+    border-color: #ff6b00;
+}
+
+.input-group button, .save-playlist-row button {
+    background: rgba(255, 107, 0, 0.15);
+    border: 1px solid rgba(255, 107, 0, 0.4);
+    color: #ff6b00;
+    border-radius: 0.6vh;
+    width: 3.5vh;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.input-group button:hover, .save-playlist-row button:hover {
+    background: rgba(255, 107, 0, 0.25);
+    color: white;
+}
+
+/* Right Section: Lists */
+.lists-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vh;
+    min-width: 0;
+}
+
+.lists-header {
+    font-size: 1.1vh;
+    color: white;
+    font-weight: 600;
+    margin-bottom: 0.5vh;
+    display: flex;
+    align-items: center;
+    gap: 0.5vh;
+}
+
+.lists-header i {
+    color: #00fbff;
+}
+
+.queue-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1.2;
+    min-height: 0;
+}
+
+.queue-list {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 0.6vh;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    flex: 1;
+    overflow-y: auto;
+    padding: 0.5vh;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4vh;
+}
+
+.queue-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8vh;
+    padding: 0.6vh;
+    background: rgba(255,255,255,0.03);
+    border-radius: 0.4vh;
+    font-size: 1vh;
+    color: #ccc;
+    overflow: hidden;
+}
+
+.queue-item.active {
+    background: rgba(0, 251, 255, 0.1);
+    border-left: 0.3vh solid #00fbff;
+    color: white;
+}
+
+.queue-item img {
+    width: 2.5vh;
+    height: 1.8vh;
+    object-fit: cover;
+    border-radius: 0.2vh;
+    flex-shrink: 0;
+}
+
+.queue-item-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1;
+    min-width: 0;
+}
+
+.queue-item-delete {
+    color: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: color 0.2s;
+    font-size: 1.2vh;
+    padding: 0 0.5vh;
+}
+
+.queue-item-delete:hover {
+    color: #ff2d55;
+}
+
+.saved-playlists-section {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+}
+
+.save-playlist-row {
+    display: flex;
+    gap: 0.8vh;
+    margin-bottom: 0.5vh;
+}
+
+.playlists-list {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 0.6vh;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4vh;
+    padding: 0.5vh;
+}
+
+.playlist-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6vh;
+    background: rgba(255,255,255,0.03);
+    border-radius: 0.4vh;
+    font-size: 1vh;
+    color: white;
+}
+
+.playlist-actions {
+    display: flex;
+    gap: 0.8vh;
+}
+
+.playlist-actions i {
+    cursor: pointer;
+    color: rgba(255,255,255,0.5);
+    transition: color 0.2s;
+}
+
+.playlist-actions i.fa-play:hover { color: #22c55e; }
+.playlist-actions i.fa-trash:hover { color: #ff2d55; }
+
+
+
+
+#car-hud.show-controls {
+    bottom: 70vh; /* Se eleva para revelar el panel debajo */
+}
+
+/* UNIFIED DASHBOARD */
+#unified-dashboard {
+    position: absolute;
+    top: 110%; /* Debajo del velocímetro */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vh;
+    background: rgba(15, 15, 18, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 3px solid #ff6b00;
+    border-radius: 1.5vh;
+    padding: 2.5vh;
+    box-shadow: 0 1vh 4vh rgba(0,0,0,0.8);
+    width: 65vh; /* Fixed width for the unified UI */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+#car-hud.show-controls #unified-dashboard {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.dashboard-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+.section-header {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2vh;
+    color: #ff6b00;
+    text-shadow: 0 0.2vh 0.5vh rgba(0,0,0,0.5);
+    letter-spacing: 0.1vh;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.5vh;
+    margin-bottom: 0.5vh;
+}
+
+#car-controls-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+#radio-dashboard-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+/* Adjust volume knob for thumbnail overlay */
+.thumbnail-container {
+    position: relative;
+}
+
+.volume-knob {
+    position: absolute;
+    bottom: 0.5vh;
+    right: 0.5vh;
+    width: 5vh;
+    height: 5vh;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0.5vh 1vh rgba(0,0,0,0.5);
+    z-index: 10;
+}
+.volume-knob span {
+    font-size: 1.1vh;
 }

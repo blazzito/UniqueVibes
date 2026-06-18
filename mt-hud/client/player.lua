@@ -41,29 +41,20 @@ function StartStatusLoop()
             local playerId = PlayerId()
             local coords = GetEntityCoords(ped)
             
-            if not location.lastUpdate or GetGameTimer() - location.lastUpdate > 500 then
-                local street = GetStreetName(coords)
-                local heading = GetEntityHeading(ped)
-                local veh = GetVehiclePedIsIn(ped, false)
-                if veh ~= 0 then heading = GetEntityHeading(veh) end
-                local cardinal = GetCardinalFromHeading(heading)
-                
-                location.lastUpdate = GetGameTimer()
-                if location.street ~= street or location.cardinal ~= cardinal then
-                    location.street = street
-                    location.cardinal = cardinal
-                    SendNUIMessage({
-                        action = 'updateLocation',
-                        data = {
-                            zone = cardinal,
-                            street = street
-                        }
-                    })
-                end
-            end
 
+
+            local maxHealth = GetEntityMaxHealth(ped)
+            local health = GetEntityHealth(ped)
+            local healthPercent = 0
+            
+            if maxHealth <= 100 then
+                healthPercent = (health / maxHealth) * 100
+            else
+                healthPercent = ((health - 100) / (maxHealth - 100)) * 100
+            end
+            
             UpdateHUD({
-                health = math.min(100, math.max(0, GetEntityHealth(ped) - 100)),
+                health = math.min(100, math.max(0, healthPercent)),
                 armor = math.min(100, GetPedArmour(ped)),
                 stamina = math.min(100, math.floor(100 - GetPlayerSprintStaminaRemaining(playerId))),
                 oxygen = math.min(100, math.floor(GetPlayerUnderwaterTimeRemaining(playerId) * 10)),
@@ -109,8 +100,14 @@ end)
 RegisterNetEvent('esx_status:onTick', function(status)
     local hunger, thirst
     for _, s in ipairs(status) do
-        if s.name == 'hunger' then hunger = math.floor(s.percent) end
-        if s.name == 'thirst' then thirst = math.floor(s.percent) end
+        if s.name == 'hunger' then 
+            hunger = s.percent and math.floor(s.percent) or math.floor(s.val / 10000)
+        end
+        if s.name == 'thirst' then 
+            thirst = s.percent and math.floor(s.percent) or math.floor(s.val / 10000)
+        end
     end
-    UpdateHUD({ hunger = hunger, thirst = thirst })
+    if hunger or thirst then
+        UpdateHUD({ hunger = hunger, thirst = thirst })
+    end
 end)

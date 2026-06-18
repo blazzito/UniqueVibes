@@ -26,7 +26,7 @@ function StartVehicleLoop()
             local ped = PlayerPedId()
             local veh = GetVehiclePedIsIn(ped, false)
 
-            if veh ~= 0 and GetPedInVehicleSeat(veh, -1) == ped then
+            if veh ~= 0 then
                 sleep = 100
                 if not inVehicle then
                     inVehicle = true

@@ -23,10 +23,19 @@ window.addEventListener('message', function(event) {
             } else {
                 carHud.classList.add('hidden');
                 locationHud.classList.add('hidden');
+                if (typeof controlsExpanded !== 'undefined' && controlsExpanded) {
+                    toggleControls();
+                }
             }
             break;
         case 'updateVehicle':
             updateVehicle(data);
+            break;
+        case 'updateCarControlsStates':
+            updateCarControlsStates(data);
+            break;
+        case 'toggleCarControls':
+            toggleControls();
             break;
         case 'updateLocation':
             document.getElementById('zone-name').innerText = data.zone.toUpperCase();
@@ -47,6 +56,22 @@ window.addEventListener('message', function(event) {
             break;
         case 'openSettings':
             openSettings(event.data.type);
+            break;
+        case 'setRadioVehicleName':
+            let titleEl = document.getElementById('headerTitle');
+            if(titleEl) titleEl.innerText = data + " Radio";
+            break;
+        case 'updateRadioState':
+            currentRadioState = data;
+            updateDashboard(currentRadioState);
+            break;
+        case 'updatePlaylists':
+            savedPlaylists = data;
+            renderPlaylists();
+            break;
+        case 'radioStopped':
+            currentRadioState = null;
+            resetDashboard();
             break;
     }
 });
@@ -176,3 +201,322 @@ fetch(`https://${GetParentResourceName()}/nui_ready`, {
 function openSettings() {}
 function closeSettings() {}
 function setMapType(type) {}
+
+/* -- CAR CONTROLS INTEGRATION -- */
+let controlsExpanded = false;
+
+function toggleControls() {
+    controlsExpanded = !controlsExpanded;
+    const hud = document.getElementById('car-hud');
+    
+    if (controlsExpanded) {
+        hud.classList.add('show-controls');
+        postToLua('focusOnControls');
+    } else {
+        hud.classList.remove('show-controls');
+        postToLua('focusOffControls');
+    }
+}
+
+function postToLua(endpoint, data = {}) {
+    fetch(`https://${GetParentResourceName()}/${endpoint}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    }).catch(e => {});
+}
+
+window.addEventListener('keydown', function(event) {
+    // Ignore input fields
+    const tagName = document.activeElement ? document.activeElement.tagName.toLowerCase() : '';
+    if (tagName === 'input' || tagName === 'textarea') return;
+
+    if (controlsExpanded && (event.key === "Escape" || event.key === "i" || event.key === "I")) {
+        toggleControls();
+    }
+});
+
+function updateCarControlsStates(states) {
+    if (!controlsExpanded) return; // Only process if UI is visible
+    
+    // Engine
+    const btnEngine = document.getElementById('btn-engine');
+    if (btnEngine) {
+        btnEngine.classList.remove('state-engine-on', 'state-engine-off');
+        btnEngine.classList.add(states.engine ? 'state-engine-on' : 'state-engine-off');
+    }
+    
+    // Lights
+    const btnLights = document.getElementById('btn-lights');
+    if (btnLights) {
+        btnLights.classList.remove('state-lights-low', 'state-lights-high');
+        if (states.highbeams) {
+            btnLights.classList.add('state-lights-high');
+        } else if (states.lights) {
+            btnLights.classList.add('state-lights-low');
+        }
+    }
+    
+    // Doors
+    const doorMapping = {
+        0: 'btn-door-0',
+        1: 'btn-door-1',
+        2: 'btn-door-2',
+        3: 'btn-door-3',
+        4: 'btn-hood',
+        5: 'btn-trunk'
+    };
+    
+    if (states.doors) {
+        for (const [index, isOpen] of Object.entries(states.doors)) {
+            const btn = document.getElementById(doorMapping[index]);
+            if (btn) {
+                if (isOpen) btn.classList.add('state-active');
+                else btn.classList.remove('state-active');
+            }
+        }
+    }
+    
+    // Windows
+    if (states.windows) {
+        for (let i = 0; i <= 3; i++) {
+            const btn = document.getElementById('btn-win-' + i);
+            if (btn) {
+                if (states.windows[i]) btn.classList.add('state-active');
+                else btn.classList.remove('state-active');
+            }
+        }
+    }
+}
+
+/* --- RADIO INTEGRATION --- */
+let currentRadioState = null;
+let savedPlaylists = {};
+
+let isProcessingPlayCommand = false;
+
+async function sendPlayCommand(url) {
+    if (!url || url.trim() === "") return;
+    if (isProcessingPlayCommand) return;
+    
+    isProcessingPlayCommand = true;
+    document.getElementById("urlInput").value = "";
+    
+    let volume = (document.getElementById("volumeText").innerText) ? 
+        parseInt((document.getElementById("volumeText").innerText)) / 100 : 0.5;
+        
+    let title = "Buscando información...";
+    let thumbnail = "https://img.youtube.com/vi/default/hqdefault.jpg";
+    
+    try {
+        let response = await fetch('https://noembed.com/embed?url=' + encodeURIComponent(url));
+        if (response.ok) {
+            let data = await response.json();
+            if (data.title) title = data.title;
+            if (data.thumbnail_url) thumbnail = data.thumbnail_url;
+        }
+    } catch(e) {
+        console.log("Error fetching metadata:", e);
+    }
+
+    postToLua('play', { url: url, title: title, thumbnail: thumbnail, volume: isNaN(volume) ? 0.5 : volume });
+    
+    setTimeout(() => {
+        isProcessingPlayCommand = false;
+    }, 1000);
+}
+
+document.getElementById("addBtn").addEventListener("click", function() { sendPlayCommand(document.getElementById("urlInput").value); });
+document.getElementById("urlInput").addEventListener("keypress", function(e) { if(e.which == 13) sendPlayCommand(document.getElementById("urlInput").value); });
+
+window.addEventListener("keyup", function(e) {
+    if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") return;
+    
+    if (e.key === "Escape" || e.key === "i" || e.key === "I") {
+        document.getElementById("carControlsWrap").classList.remove("open");
+        postToLua("focusOffControls", {});
+    }
+});
+
+document.getElementById("playPauseBtn").addEventListener("click", function() {
+    if (currentRadioState) {
+        if (currentRadioState.paused) {
+            postToLua("resume", {});
+        } else {
+            postToLua("pause", {});
+        }
+    }
+});
+
+document.getElementById("nextBtn").addEventListener("click", function() { postToLua("next", {}); });
+document.getElementById("prevBtn").addEventListener("click", function() { postToLua("prev", {}); });
+document.getElementById("stopBtn").addEventListener("click", function() { postToLua("stop", {}); });
+document.getElementById("loopBtn").addEventListener("click", function() { postToLua("toggleLoop", {}); });
+
+let isDraggingVolume = false;
+let startY = 0;
+let startX = 0;
+let startVolume = 50;
+
+function updateVolumeVisual(vol) {
+    document.getElementById("volumeText").innerText = Math.round(vol) + "%";
+    document.getElementById("volumeProgress").setAttribute("stroke-dasharray", `${vol}, 100`);
+}
+
+document.getElementById("volumeKnob").addEventListener("mousedown", function(e) {
+    isDraggingVolume = true;
+    startY = e.clientY;
+    startX = e.clientX;
+    let parsed = parseInt((document.getElementById("volumeText").innerText));
+    startVolume = isNaN(parsed) ? 50 : parsed;
+});
+
+document.addEventListener("mousemove", function(e) {
+    if (isDraggingVolume) {
+        let deltaY = startY - e.clientY;
+        let deltaX = e.clientX - startX;
+        let delta = Math.abs(deltaY) > Math.abs(deltaX) ? deltaY : deltaX;
+        
+        let newVolume = startVolume + Math.floor(delta / 1.5);
+        if (newVolume > 100) newVolume = 100;
+        if (newVolume < 0) newVolume = 0;
+        
+        updateVolumeVisual(newVolume);
+        postToLua("volume", { volume: newVolume / 100 });
+    }
+});
+
+document.addEventListener("mouseup", function() { isDraggingVolume = false; });
+
+function removeFromQueue(index) {
+    postToLua("removeFromQueue", { index: parseInt(index) });
+}
+
+let activePlaylist = null;
+
+document.getElementById("savePlaylistBtn").addEventListener("click", function() {
+    let name = document.getElementById("playlistName").value.trim();
+    if (name !== "" && currentRadioState && currentRadioState.queue.length > 0) {
+        fetch(`https://${GetParentResourceName()}/savePlaylist`, { method: 'POST', body: JSON.stringify({
+            name: name,
+            queue: currentRadioState.queue
+        }) }).catch(() => {});
+        activePlaylist = name;
+        document.getElementById("playlistName").value = "";
+    }
+});
+
+function playSavedPlaylist(name) {
+    let queue = savedPlaylists[name];
+    if (queue && queue.length > 0) {
+        activePlaylist = name;
+        postToLua("clearQueue", {});
+        setTimeout(() => {
+            let volume = parseFloat(document.getElementById("volumeText").innerText) / 100;
+            postToLua('playPlaylist', { queue: queue, volume: isNaN(volume) ? 0.5 : volume });
+            renderPlaylists();
+        }, 150);
+    }
+}
+
+function updateActivePlaylist(name) {
+    if (currentRadioState && currentRadioState.queue.length > 0) {
+        fetch(`https://${GetParentResourceName()}/savePlaylist`, { method: 'POST', body: JSON.stringify({
+            name: name,
+            queue: currentRadioState.queue
+        }) }).catch(() => {});
+    }
+}
+
+function deletePlaylist(name) {
+    if (activePlaylist === name) activePlaylist = null;
+    postToLua("deletePlaylist", { name: name });
+}
+
+function updateDashboard(radio) {
+    if (!radio || !radio.queue || radio.queue.length === 0) {
+        resetDashboard();
+        return;
+    }
+
+    let track = radio.queue[radio.currentIndex - 1];
+    
+    if (track) {
+        document.getElementById("thumbnailImg").src = track.thumbnail;
+        document.getElementById("trackTitle").innerText = track.title;
+        
+        if (document.getElementById("trackTitle").offsetWidth > document.querySelector(".track-title-container").offsetWidth) {
+            document.getElementById("trackTitle").classList.add("scrolling");
+        } else {
+            document.getElementById("trackTitle").classList.remove("scrolling");
+        }
+    }
+
+    if (radio.paused) {
+        document.getElementById("playPauseIcon").classList.remove("fa-pause"); document.getElementById("playPauseIcon").classList.add("fa-play");
+        document.getElementById("visualizer").classList.remove("active");
+    } else {
+        document.getElementById("playPauseIcon").classList.remove("fa-play"); document.getElementById("playPauseIcon").classList.add("fa-pause");
+        document.getElementById("visualizer").classList.add("active");
+    }
+    
+    if (radio.loop) document.getElementById("loopBtn").classList.add("active-loop");
+    else document.getElementById("loopBtn").classList.remove("active-loop");
+
+    if (!isDraggingVolume) updateVolumeVisual(radio.volume * 100);
+
+    let queueHtml = "";
+    radio.queue.forEach((item, index) => {
+        let activeClass = (index === radio.currentIndex - 1) ? "active" : "";
+        queueHtml += `
+            <div class="queue-item ${activeClass}">
+                <img src="${item.thumbnail}" alt="thumb">
+                <div class="queue-item-title">${item.title}</div>
+                <div style="display: flex; gap: 0.5vh;">
+                    <i class="fas fa-play queue-item-play" onclick="skipToQueueItem(${index + 1})" title="Reproducir esta pista"></i>
+                    <i class="fas fa-times queue-item-delete" onclick="removeFromQueue(${index + 1})" title="Eliminar de la cola"></i>
+                </div>
+            </div>
+        `;
+    });
+    document.getElementById("queueList").innerHTML = queueHtml;
+}
+
+function skipToQueueItem(index) {
+    postToLua("skipTo", { index: parseInt(index) });
+}
+
+function renderPlaylists() {
+    let html = "";
+    for (let name in savedPlaylists) {
+        let isActivo = (activePlaylist === name);
+        let activeClass = isActivo ? "color: #00fbff;" : "";
+        let updateBtn = `<i class="fas fa-sync-alt" onclick="updateActivePlaylist('${name}')" title="Actualizar Playlist" style="color: #ff6b00;"></i>`;
+        
+        html += `
+            <div class="playlist-item">
+                <span style="${activeClass}">${name} (${savedPlaylists[name].length})</span>
+                <div class="playlist-actions">
+                    ${updateBtn}
+                    <i class="fas fa-plus" onclick="playSavedPlaylist(\x27${name}\x27)" title="Reemplazar y Reproducir"></i>
+                    <i class="fas fa-trash" onclick="deletePlaylist(\x27${name}\x27)" title="Eliminar"></i>
+                </div>
+            </div>
+        `;
+    }
+    document.getElementById("playlistsList").innerHTML = html;
+}
+
+function resetDashboard() {
+    document.getElementById("thumbnailImg").src = "https://img.youtube.com/vi/default/hqdefault.jpg";
+    document.getElementById("trackTitle").innerText = "No hay musica reproduciendose";
+    document.getElementById("trackTitle").classList.remove("scrolling");
+    document.getElementById("playPauseIcon").classList.remove("fa-pause"); document.getElementById("playPauseIcon").classList.add("fa-play");
+    document.getElementById("visualizer").classList.remove("active");
+    document.getElementById("loopBtn").classList.remove("active-loop");
+    document.getElementById("queueList").innerHTML = "";
+    activePlaylist = null;
+    renderPlaylists();
+}
+
+
