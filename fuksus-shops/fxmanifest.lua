@@ -1,0 +1,36 @@
+fx_version 'cerulean'
+games { 'gta5' }
+
+lua54 'yes'
+
+author 'Fuksus Boost#4383 — patched by UniqueVibes'
+description 'Fuksus shops (security-hardened)'
+version '1.1.0'
+
+ui_page 'ui/dist/index.html'
+
+shared_scripts {
+    '@ox_lib/init.lua',
+    '@es_extended/imports.lua',
+    'locales.lua',
+}
+
+client_scripts {
+    'client/main.lua',
+}
+
+server_scripts {
+    'config.lua',
+    'server/main.lua',
+}
+
+files {
+    'ui/dist/index.html',
+    'ui/dist/assets/**',
+    'ui/images/**',
+}
+
+dependencies {
+    'es_extended',
+    'ox_lib',
+}
