@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>esx_banking</title>
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js"></script>
+</head>
+
+<body>
+    <audio id="clickSfx" src="https://r2.fivemanage.com/7eE9bRZZNtIRxfBqnOxDV/click.mp3"></audio>
+    <audio id="overButtonSfx" src="https://r2.fivemanage.com/7eE9bRZZNtIRxfBqnOxDV/over.wav"></audio>
+    <audio id="bankOnSfx" src="https://r2.fivemanage.com/7eE9bRZZNtIRxfBqnOxDV/bankon.ogg"></audio>
+    <audio id="cargadoSfx" src="https://r2.fivemanage.com/7eE9bRZZNtIRxfBqnOxDV/cargado.ogg"></audio>
+
+    <div id="app">
+
+        <transition name="toast">
+            <div v-if="notification" class="toast" :class="notification.type">{{ notification.message }}</div>
+        </transition>
+
+
+        <div class="banking-container" v-show="showLogo || isBankOpen">
+            <transition name="fade-up">
+                <div v-if="showLogo" class="logo-animado">
+                    <img src="https://r2.fivemanage.com/5nOEpfNnpHW9tfpLTFBoV/UNVLogo.png" alt="Logo" class="artwork" />
+                </div>
+            </transition>
+
+            <div v-if="!showLogo && isBankOpen" class="main-content">
+                <div class="nav-bar">
+                    <div class="nav-options">
+                        <div class="nav-option" :class="{selected: activeView==='home'}" @click="setActiveView('home')">
+                            <i class="fa-solid fa-house"></i> Mi Cuenta</div>
+                        <div class="nav-option" :class="{selected: activeView==='transactions'}"
+                            @click="setActiveView('transactions')"><i class="fa-solid fa-money-bill-transfer"></i> Movimientos</div>
+                    </div>
+                    <div class="nav-logout" @click="closeApplication()"><i class="fa-solid fa-power-off"></i> Desconectarse</div>
+                </div>
+
+                <div v-if="activeView === 'home'" class="home-section scroll-y">
+
+                    <div class="home-balance">
+                        <div class="balance-bar">
+                            <span class="balance-header-pill icon-user"></span>
+                            <span class="balance-value-pill" data-label="Información de Cuenta">
+                                <div style="font-size: 1.05rem;">{{ playerName }} - <span style="font-size: 0.95rem; font-family: monospace; color: var(--text-2);">{{ accountNumber }}</span></div>
+                            </span>
+                        </div>
+                        <div class="balance-bar">
+                            <span class="balance-header-pill icon-account"></span>
+                            <span class="balance-value-pill" data-label="En Cuenta">${{ formatCurrency(currentAccountBalance) }}</span>
+                        </div>
+                        <div class="balance-bar">
+                            <span class="balance-header-pill"></span>
+                            <span class="balance-value-pill" data-label="Efectivo">${{ formatCurrency(playerCash) }}</span>
+                        </div>
+                    </div>
+
+                    <div class="home-quick">
+                        <div class="quick-title">Opciones Rápidas</div>
+                        <div class="quick-buttons">
+                            <button class="quick-btn deposit" @click="deposit(100)">Depositar $100</button>
+                            <button class="quick-btn deposit" @click="deposit(1000)">Depositar $1.000</button>
+                            <button class="quick-btn deposit" @click="deposit(10000)">Depositar $10.000</button>
+                            <button class="quick-btn withdraw" @click="withdraw(100)">Retirar $100</button>
+                            <button class="quick-btn withdraw" @click="withdraw(1000)">Retirar $1.000</button>
+                            <button class="quick-btn withdraw" @click="withdraw(10000)">Retirar $10.000</button>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 0 24px 16px;">
+                        <div class="action-card" style="margin: 0; padding: 16px; min-height: 250px;">
+                            <div class="trans-title" style="margin-bottom: 12px; margin-top: 0;">Lista de Transacciones</div>
+                            <div class="trans-list scroll-y" style="max-height: 200px; flex-grow: 1;">
+                                <div class="no-data" v-if="!accountStatements.length">No has realizado ninguna transacción</div>
+                                <div class="trans-row" :class="tx.type" v-for="(tx, index) in accountStatements" :key="index">
+                                    <div class="trans-row-icon">
+                                        <i :class="tx.type === 'deposit' ? 'fa-solid fa-arrow-down' : 'fa-solid fa-arrow-up'"></i>
+                                    </div>
+                                    <div class="trans-row-info">
+                                        <span class="trans-row-reason">{{ tx.reason }}</span>
+                                        <span class="trans-row-meta">{{ formatDate(tx.date) }} · {{ tx.iban }}</span>
+                                    </div>
+                                    <span class="trans-row-amount" :class="balanceClass(tx.type)">${{ formatCurrency(tx.amount) }}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="action-card" style="margin: 0; padding: 16px;">
+                            <div class="action-card-header" style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-2); margin-bottom: 6px;"><i class="fa-solid fa-credit-card"></i> Tarjeta de Débito</div>
+                            <div class="action-card-desc">Solicita o cambia el NIP de tu tarjeta de débito de forma gratuita a través de Fleeca Bank.</div>
+                            <div class="amount-input-wrapper action-card-input" style="margin-top: auto; margin-bottom: 8px;">
+                                <input id="debit-pin" type="number" v-model="debitPin" placeholder="NIP (0000)" />
+                            </div>
+                            <button class="deposit-btn" style="margin: 0; width: 100%; height: 44px;" @click="orderDebitCard">Solicitar Tarjeta</button>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div v-if="activeView === 'transactions'" class="transactions-section scroll-y">
+                    <div class="section-title"><i class="fa-solid fa-money-bill-transfer"></i> Movimientos</div>
+
+                    <div class="home-balance">
+                        <div class="balance-bar">
+                            <span class="balance-header-pill icon-user"></span>
+                            <span class="balance-value-pill" data-label="Información de Cuenta">
+                                <div style="font-size: 1.05rem;">{{ playerName }} - <span style="font-size: 0.95rem; font-family: monospace; color: var(--text-2);">{{ accountNumber }}</span></div>
+                            </span>
+                        </div>
+                        <div class="balance-bar">
+                            <span class="balance-header-pill icon-account"></span>
+                            <span class="balance-value-pill" data-label="En Cuenta">${{ formatCurrency(currentAccountBalance) }}</span>
+                        </div>
+                        <div class="balance-bar">
+                            <span class="balance-header-pill"></span>
+                            <span class="balance-value-pill" data-label="Efectivo">${{ formatCurrency(playerCash) }}</span>
+                        </div>
+                    </div>
+
+                    <div class="action-cards-grid">
+                        <!-- Withdraw Card -->
+                        <div class="action-card">
+                            <div class="action-card-header"><i class="fa-solid fa-arrow-up"></i> Retirar</div>
+                            <div class="action-card-desc">Para retirar dinero de tu cuenta bancaria a tu billetera, es necesario realizar una transferencia a efectivo.</div>
+                            <div class="amount-input-wrapper action-card-input">
+                                <span class="amount-currency">$</span>
+                                <input id="withdraw-amount" type="number" v-model="selectedMoneyAmount" placeholder="0" />
+                            </div>
+                            <button class="withdraw-btn" style="margin:0; width:100%;" @click="withdrawMoney">Retirar</button>
+                        </div>
+
+                        <!-- Deposit Card -->
+                        <div class="action-card">
+                            <div class="action-card-header"><i class="fa-solid fa-arrow-down"></i> Depositar</div>
+                            <div class="action-card-desc">Ingresa tu efectivo a la cuenta bancaria para mantenerlo seguro. Evitarás perderlo.</div>
+                            <div class="amount-input-wrapper action-card-input">
+                                <span class="amount-currency">$</span>
+                                <input id="deposit-amount" type="number" v-model="selectedMoneyAmount" placeholder="0" />
+                            </div>
+                            <button class="deposit-btn" style="margin:0; width:100%;" @click="deposit(selectedMoneyAmount)">Depositar</button>
+                        </div>
+
+                        <!-- Transfer Card -->
+                        <div class="action-card">
+                            <div class="action-card-header"><i class="fa-solid fa-right-left"></i> Transferir</div>
+                            <div class="action-card-desc">Envía fondos a otra persona de forma instantánea usando su ID.</div>
+                            <div class="amount-input-wrapper action-card-input">
+                                <input type="text" v-model="externalAccountNumber" placeholder="ID a transferir" />
+                            </div>
+                            <div class="amount-input-wrapper action-card-input">
+                                <span class="amount-currency">$</span>
+                                <input type="number" v-model="externalTransferAmount" placeholder="Cantidad" />
+                            </div>
+                            <div class="amount-input-wrapper action-card-input">
+                                <input type="text" v-model="transferReason" placeholder="Concepto (Opcional)" />
+                            </div>
+                            <button class="withdraw-btn" style="margin:0; width:100%;" @click="externalTransfer()">Enviar</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="banking-container" v-show="isATMOpen">
+            <div class="nav-bar">
+                <div class="nav-options">
+                    <div class="nav-option" :class="{ selected: atmView === 'inicio' }" @click="atmView = 'inicio'">
+                        <i class="fa-solid fa-house"></i> Inicio
+                    </div>
+                    <div class="nav-option" :class="{ selected: atmView === 'movimientos' }"
+                        @click="atmView = 'movimientos'">
+                        <i class="fa-solid fa-money-bill-transfer"></i> Movimientos
+                    </div>
+                </div>
+                <div class="nav-logout" @click="closeApplication()"><i class="fa-solid fa-power-off"></i> Desconectarse</div>
+            </div>
+
+            <div v-if="atmView === 'inicio'" class="atm-section inicio scroll-y">
+                
+                <div class="home-balance" style="margin-top: 20px;">
+                    <div class="balance-bar">
+                        <span class="balance-header-pill icon-user"></span>
+                        <span class="balance-value-pill" data-label="Información de Cuenta">
+                            <div style="font-size: 1.05rem;">{{ playerName }} - <span style="font-size: 0.95rem; font-family: monospace; color: var(--text-2);">{{ accountNumber }}</span></div>
+                        </span>
+                    </div>
+                    <div class="balance-bar">
+                        <span class="balance-header-pill icon-account"></span>
+                        <span class="balance-value-pill" data-label="En Cuenta">
+                            ${{ formatCurrency(currentAccountBalance) }}
+                        </span>
+                    </div>
+                    <div class="balance-bar">
+                        <span class="balance-header-pill"></span>
+                        <span class="balance-value-pill" data-label="Efectivo">
+                            ${{ formatCurrency(playerCash) }}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="home-quick">
+                    <div class="quick-title">Retiros Rápidos</div>
+                    <div class="quick-buttons">
+                        <button class="quick-btn withdraw" style="flex: 1;" @click="withdraw(100)">Retirar $100</button>
+                        <button class="quick-btn withdraw" style="flex: 1;" @click="withdraw(1000)">Retirar $1.000</button>
+                        <button class="quick-btn withdraw" style="flex: 1;" @click="withdraw(10000)">Retirar $10.000</button>
+                    </div>
+                </div>
+
+                <div style="margin: 0 24px 16px;">
+                    <div class="action-card" style="margin: 0; padding: 16px; min-height: 250px;">
+                        <div class="trans-title" style="margin-bottom: 12px; margin-top: 0;">Lista de Transacciones</div>
+                        <div class="trans-list scroll-y" style="max-height: 200px; flex-grow: 1;">
+                            <div class="no-data" v-if="!accountStatements.length">No has realizado ninguna transacción</div>
+                            <div class="trans-row" :class="tx.type" v-for="(tx, index) in accountStatements" :key="index">
+                                <div class="trans-row-icon">
+                                    <i :class="tx.type === 'deposit' ? 'fa-solid fa-arrow-down' : 'fa-solid fa-arrow-up'"></i>
+                                </div>
+                                <div class="trans-row-info">
+                                    <span class="trans-row-reason">{{ tx.reason }}</span>
+                                    <span class="trans-row-meta">{{ formatDate(tx.date) }} · {{ tx.iban }}</span>
+                                </div>
+                                <span class="trans-row-amount" :class="balanceClass(tx.type)">${{ formatCurrency(tx.amount) }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div v-if="atmView === 'movimientos'" class="atm-section movimientos scroll-y">
+                <div class="section-title"><i class="fa-solid fa-money-bill-transfer"></i> Movimientos</div>
+                
+                <div class="home-balance">
+                    <div class="balance-bar">
+                        <span class="balance-header-pill icon-user"></span>
+                        <span class="balance-value-pill" data-label="Información de Cuenta">
+                            <div style="font-size: 1.05rem;">{{ playerName }} - <span style="font-size: 0.95rem; font-family: monospace; color: var(--text-2);">{{ accountNumber }}</span></div>
+                        </span>
+                    </div>
+                    <div class="balance-bar">
+                        <span class="balance-header-pill icon-account"></span>
+                        <span class="balance-value-pill" data-label="En Cuenta">
+                            ${{ formatCurrency(currentAccountBalance) }}
+                        </span>
+                    </div>
+                    <div class="balance-bar">
+                        <span class="balance-header-pill"></span>
+                        <span class="balance-value-pill" data-label="Efectivo">
+                            ${{ formatCurrency(playerCash) }}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="action-cards-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 66%;">
+                    <!-- Withdraw Card -->
+                    <div class="action-card">
+                        <div class="action-card-header"><i class="fa-solid fa-arrow-up"></i> Retirar Efectivo</div>
+                        <div class="action-card-desc">Para retirar dinero de tu cuenta bancaria a tu billetera, ingresa la cantidad exacta aquí.</div>
+                        <div class="amount-input-wrapper action-card-input">
+                            <span class="amount-currency">$</span>
+                            <input id="withdraw-amount" type="number" v-model="selectedMoneyAmount" placeholder="0" />
+                        </div>
+                        <button class="withdraw-btn" style="margin:0; width:100%;" @click="withdrawMoney">Retirar</button>
+                    </div>
+                    
+                    <!-- Transfer Card -->
+                    <div class="action-card">
+                        <div class="action-card-header"><i class="fa-solid fa-right-left"></i> Transferir</div>
+                        <div class="action-card-desc">Envía fondos a otra persona de forma instantánea usando su ID.</div>
+                        <div class="amount-input-wrapper action-card-input" style="margin-bottom: 5px;">
+                            <input type="text" v-model="externalAccountNumber" placeholder="ID a transferir" />
+                        </div>
+                        <div class="amount-input-wrapper action-card-input" style="margin-bottom: 5px;">
+                            <span class="amount-currency">$</span>
+                            <input type="number" v-model="externalTransferAmount" placeholder="Cantidad" />
+                        </div>
+                        <div class="amount-input-wrapper action-card-input">
+                            <input type="text" v-model="transferReason" placeholder="Concepto" />
+                        </div>
+                        <button class="withdraw-btn" style="margin:0; width:100%;" @click="externalTransfer()">Enviar</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <div v-if="showPinPrompt" class="pin-prompt">
+            <img src="https://r2.fivemanage.com/5nOEpfNnpHW9tfpLTFBoV/UNVLogo.png" alt="Logo" class="pin-logo" />
+
+            <div class="pin-header">
+                Por favor, introduce el PIN de tu tarjeta para acceder
+            </div>
+
+            <div class="pin-input">
+                <input type="password" v-model="enteredPin" placeholder="• • • •" readonly />
+            </div>
+
+            <div class="number-pad">
+                <button v-for="n in 9" :key="n" @mouseenter="playOver()" @click="playClick(); appendNumber(n)">{{ n
+                    }}</button>
+
+                <button class="clear-btn" @mouseenter="playOver()" @click="playClick(); removeLastDigit()">✕</button>
+
+                <button @mouseenter="playOver()" @click="playClick(); appendNumber(0)">0</button>
+
+                <button class="submit-btn" @mouseenter="playOver()"
+                    @click="playClick(); pinPrompt(enteredPin)">✓</button>
+            </div>
+
+            <button class="full-clear-btn" @mouseenter="playOver()" @click="playClick(); clearPin()">Borrar</button>
+        </div>
+
+
+    </div>
+</body>
+<script src="scripts/app.js"></script>
+
+</html>
