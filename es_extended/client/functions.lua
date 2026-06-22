@@ -370,7 +370,9 @@ function ESX.UI.Menu.Open(menuType, namespace, name, data, submit, cancel, chang
     menu.change = change
 
     menu.close = function()
-        ESX.UI.Menu.RegisteredTypes[menuType].close(namespace, name)
+        if ESX.UI.Menu.RegisteredTypes[menuType] then
+            ESX.UI.Menu.RegisteredTypes[menuType].close(namespace, name)
+        end
 
         for i = 1, #ESX.UI.Menu.Opened, 1 do
             if ESX.UI.Menu.Opened[i] then
@@ -433,7 +435,9 @@ function ESX.UI.Menu.Open(menuType, namespace, name, data, submit, cancel, chang
     end
 
     ESX.UI.Menu.Opened[#ESX.UI.Menu.Opened + 1] = menu
-    ESX.UI.Menu.RegisteredTypes[menuType].open(namespace, name, data)
+    if ESX.UI.Menu.RegisteredTypes[menuType] then
+        ESX.UI.Menu.RegisteredTypes[menuType].open(namespace, name, data)
+    end
 
     return menu
 end
@@ -451,7 +455,9 @@ function ESX.UI.Menu.Close(menuType, namespace, name, cancel)
                     ESX.UI.Menu.Opened[i].close()
                 else
                     local menu = ESX.UI.Menu.Opened[i]
-                    ESX.UI.Menu.RegisteredTypes[menu.type].close(menu.namespace, menu.name)
+                    if ESX.UI.Menu.RegisteredTypes[menu.type] then
+                        ESX.UI.Menu.RegisteredTypes[menu.type].close(menu.namespace, menu.name)
+                    end
 
                     if type(menu.cancel) ~= "nil" then
                         menu.cancel(menu.data, menu)
@@ -472,7 +478,9 @@ function ESX.UI.Menu.CloseAll(cancel)
                 ESX.UI.Menu.Opened[i].close()
             else
                 local menu = ESX.UI.Menu.Opened[i]
-                ESX.UI.Menu.RegisteredTypes[menu.type].close(menu.namespace, menu.name)
+                if ESX.UI.Menu.RegisteredTypes[menu.type] then
+                    ESX.UI.Menu.RegisteredTypes[menu.type].close(menu.namespace, menu.name)
+                end
 
                 if type(menu.cancel) ~= "nil" then
                     menu.cancel(menu.data, menu)
@@ -603,7 +611,7 @@ function ESX.Game.SpawnVehicle(vehicleModel, coords, heading, cb, networked)
     local vector = type(coords) == "vector3" and coords or vec(coords.x, coords.y, coords.z)
     local isNetworked = networked == nil or networked
 
-    local playerCoords = GetEntityCoords(ESX.PlayerData.ped)
+    local playerCoords = GetEntityCoords(PlayerPedId())
     if not vector or not playerCoords then
         return
     end

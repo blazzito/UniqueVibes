@@ -1,0 +1,25 @@
+{
+    "Options": {
+        "inUse": true,
+        "LastDateModified": "21/06/2026 - 17:40",
+        "LastUserModified": "Blazzito",
+        "AllowedJobCat": [],
+        "label": "Colony Island"
+    },
+    "RequestVehicle": [
+        {
+            "coords": [
+                5643.376953125,
+                -3168.362060546875,
+                8.72171306610107,
+                22.40713310241699
+            ],
+            "spawn": [
+                5643.27587890625,
+                -3168.072021484375,
+                8.72149038314819,
+                19.63788032531738
+            ]
+        }
+    ]
+}
