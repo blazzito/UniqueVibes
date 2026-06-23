@@ -20,7 +20,7 @@ CUSTOM_CRS = L.extend({}, L.CRS.Simple, {
 	infinite: true
 });
 
-const CUSTOM_MAP_URL = 'https://media.discordapp.net/attachments/1490531090048356452/1513548156317470770/gta-4-liberty-city-map-ultra-hd.png?ex=6a282110&is=6a26cf90&hm=4b8519207394788c4e3d1af6840e46f7c295925a42d5828687f0585458088e8e&';
+const CUSTOM_MAP_URL = './img/mapa.png';
 const CUSTOM_MAP_BOUNDS = L.latLngBounds([[-5111.265, 2520], [-300, 8488.512]]);
 
 var mapStatic = L.imageOverlay(CUSTOM_MAP_URL, CUSTOM_MAP_BOUNDS, {
