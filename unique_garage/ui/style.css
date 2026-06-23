@@ -1,0 +1,422 @@
+:root {
+    --primary: #ff6b00;
+    --primary-hover: rgba(255, 107, 0, 0.15);
+    --primary-border: rgba(255, 107, 0, 0.4);
+    --secondary: #00a8cc;
+    --bg-base: #0f0f0f;
+    --bg-glass: rgba(12, 12, 14, 0.95);
+    --border-glass: rgba(255, 255, 255, 0.08);
+    --bg-item: rgba(255, 255, 255, 0.05);
+    --text-main: #ffffff;
+    --text-muted: #aaaaaa;
+    --font-main: 'Outfit', sans-serif;
+    --font-title: 'Bebas Neue', sans-serif;
+    --shadow-depth: 0 0.5vh 2vh rgba(0, 0, 0, 0.5);
+    --glow-primary: drop-shadow(0 0 0.4vh rgba(255, 107, 0, 0.4));
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+body {
+    font-family: var(--font-main);
+    color: var(--text-main);
+    overflow: hidden;
+    background: transparent;
+}
+
+#app {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5vh;
+}
+
+.garage-container {
+    width: 25vw;
+    height: 75vh;
+    background: var(--bg-glass);
+    border: 1px solid var(--border-glass);
+    border-radius: 1.5vh;
+    box-shadow: var(--shadow-depth);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.garage-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2vh 3vh;
+    border-bottom: 1px solid var(--border-glass);
+    background: linear-gradient(90deg, rgba(255, 107, 0, 0.1) 0%, transparent 100%);
+}
+
+.title-group h1 {
+    font-family: var(--font-title);
+    font-size: 3.5vh;
+    letter-spacing: 2px;
+    color: var(--primary);
+    filter: var(--glow-primary);
+    margin: 0;
+    line-height: 1;
+}
+
+.subtitle {
+    font-size: 1.2vh;
+    color: var(--text-muted);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+.close-btn {
+    width: 4vh;
+    height: 4vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-item);
+    border-radius: 0.5vh;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.close-btn:hover {
+    background: rgba(255, 50, 50, 0.2);
+    color: #ff5555;
+    transform: scale(1.05);
+}
+
+.garage-content {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* Vehicle List */
+.vehicle-list-panel {
+    flex: 1;
+    border-right: 1px solid var(--border-glass);
+    display: flex;
+    flex-direction: column;
+}
+
+.panel-header {
+    padding: 1.5vh 2vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-glass);
+}
+
+.panel-header h2 {
+    font-size: 1.8vh;
+    font-weight: 600;
+}
+
+.panel-header span {
+    font-size: 1.4vh;
+    color: var(--text-muted);
+}
+
+.vehicle-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1vh;
+}
+
+/* Scrollbar styling */
+.vehicle-list::-webkit-scrollbar {
+    width: 0.5vh;
+}
+.vehicle-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+.vehicle-list::-webkit-scrollbar-thumb {
+    background: var(--bg-item);
+    border-radius: 1vh;
+}
+
+.vehicle-item {
+    padding: 1.5vh;
+    background: var(--bg-item);
+    border: 1px solid var(--border-glass);
+    border-radius: 1vh;
+    margin-bottom: 1vh;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vehicle-item:hover {
+    transform: translateY(-0.2vh);
+    background: var(--primary-hover);
+    border-color: var(--primary-border);
+}
+
+.vehicle-item.active {
+    background: var(--primary-hover);
+    border-color: var(--primary);
+    box-shadow: inset 0 0 1vh rgba(255, 107, 0, 0.2);
+}
+
+.veh-info h3 {
+    font-size: 1.6vh;
+    font-weight: 600;
+    margin-bottom: 0.5vh;
+}
+
+.veh-plate {
+    font-family: var(--font-title);
+    font-size: 1.6vh;
+    color: var(--secondary);
+    letter-spacing: 1px;
+}
+
+.veh-status {
+    font-size: 1.2vh;
+    padding: 0.3vh 0.8vh;
+    border-radius: 0.4vh;
+    background: rgba(255,255,255,0.1);
+}
+
+.veh-status.stored {
+    background: rgba(0, 168, 204, 0.2);
+    color: var(--secondary);
+}
+
+.veh-status.out {
+    background: rgba(255, 50, 50, 0.2);
+    color: #ff5555;
+}
+
+/* Vehicle Details */
+.vehicle-details-panel {
+    flex: 1;
+    padding: 2vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.empty-state {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-muted);
+    opacity: 0.5;
+}
+
+.empty-state i {
+    font-size: 4vh;
+    margin-bottom: 1vh;
+}
+
+.details-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.detail-title {
+    font-size: 2.5vh;
+    font-weight: 800;
+    margin-bottom: 0.5vh;
+}
+
+.plate-badge {
+    display: inline-block;
+    font-family: var(--font-title);
+    font-size: 2.2vh;
+    letter-spacing: 2px;
+    background: white;
+    color: black;
+    padding: 0.5vh 1.5vh;
+    border-radius: 0.4vh;
+    border: 2px solid #ccc;
+    align-self: flex-start;
+    margin-bottom: 3vh;
+    box-shadow: 0 0.2vh 0.5vh rgba(0,0,0,0.5);
+}
+
+.stats-container {
+    margin-bottom: auto;
+}
+
+.stat-row {
+    margin-bottom: 2vh;
+}
+
+.stat-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.4vh;
+    margin-bottom: 0.5vh;
+    color: var(--text-muted);
+}
+
+.stat-label i {
+    width: 2vh;
+    color: var(--secondary);
+}
+
+.progress-bar {
+    width: 100%;
+    height: 0.8vh;
+    background: var(--bg-item);
+    border-radius: 1vh;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--primary);
+    width: 0%;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 1vh var(--primary);
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+.btn {
+    width: 100%;
+    padding: 1.5vh;
+    border: none;
+    border-radius: 0.8vh;
+    font-family: var(--font-main);
+    font-size: 1.5vh;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1vh;
+}
+
+.btn:hover {
+    transform: translateY(-0.2vh);
+    filter: brightness(1.1);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 0.5vh 1.5vh rgba(255, 107, 0, 0.3);
+}
+
+.btn-secondary {
+    background: var(--bg-item);
+    border: 1px solid var(--border-glass);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255,255,255,0.2);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--border-glass);
+    color: var(--text-muted);
+}
+.btn-outline:hover {
+    color: white;
+}
+
+/* Modals */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.modal-content {
+    background: var(--bg-glass);
+    border: 1px solid var(--primary-border);
+    padding: 3vh;
+    border-radius: 1vh;
+    width: 25vw;
+    box-shadow: var(--shadow-depth);
+}
+
+.modal-content h2 {
+    color: var(--primary);
+    margin-bottom: 1vh;
+}
+
+.modal-content p {
+    color: var(--text-muted);
+    font-size: 1.4vh;
+    margin-bottom: 2vh;
+}
+
+.form-group {
+    margin-bottom: 2vh;
+}
+
+.form-group label {
+    display: block;
+    font-size: 1.3vh;
+    margin-bottom: 0.5vh;
+    color: var(--text-muted);
+}
+
+.form-group select {
+    width: 100%;
+    padding: 1vh;
+    background: var(--bg-item);
+    border: 1px solid var(--border-glass);
+    color: white;
+    border-radius: 0.5vh;
+    font-family: var(--font-main);
+}
+
+.modal-actions {
+    display: flex;
+    gap: 1vh;
+}
+
+/* Camera help */
+.camera-help {
+    position: absolute;
+    bottom: 5vh;
+    right: 5vw;
+    background: var(--bg-glass);
+    border: 1px solid var(--border-glass);
+    padding: 1.5vh 2.5vh;
+    border-radius: 3vh;
+    color: var(--text-muted);
+    font-size: 1.4vh;
+    display: flex;
+    align-items: center;
+    gap: 1vh;
+    box-shadow: var(--shadow-depth);
+    pointer-events: none;
+}

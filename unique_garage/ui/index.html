@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unique Garaje</title>
+    <!-- Google Fonts: Outfit and Bebas Neue -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;600;800&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app" style="display: none;">
+        <div class="garage-container">
+            <header class="garage-header">
+                <div class="title-group">
+                    <h1 id="garage-name">GARAGE LEGION</h1>
+                    <span class="subtitle">UNIQUEVIBES</span>
+                </div>
+                <div class="close-btn" onclick="closeUI()">
+                    <i class="fa-solid fa-xmark"></i>
+                </div>
+            </header>
+
+            <main class="garage-content">
+                <!-- Vehicle List -->
+                <div class="vehicle-list-panel">
+                    <div class="panel-header">
+                        <h2><i class="fa-solid fa-car-side"></i> Vehículos</h2>
+                        <span id="vehicle-count">0/0</span>
+                    </div>
+                    <div class="vehicle-list" id="vehicle-list">
+                        <!-- Vehicle items will be injected here via JS -->
+                    </div>
+                </div>
+
+                <!-- Vehicle Details -->
+                <div class="vehicle-details-panel">
+                    <div class="details-card" id="details-card" style="display: none;">
+                        <h2 id="detail-name" class="detail-title">Coche</h2>
+                        <div class="plate-badge" id="detail-plate">AAA 111</div>
+                        
+                        <div class="stats-container">
+                            <div class="stat-row">
+                                <div class="stat-label">
+                                    <i class="fa-solid fa-engine"></i> Motor
+                                    <span id="stat-engine-val">100%</span>
+                                </div>
+                                <div class="progress-bar"><div class="progress-fill" id="stat-engine-fill"></div></div>
+                            </div>
+                            <div class="stat-row">
+                                <div class="stat-label">
+                                    <i class="fa-solid fa-car-burst"></i> Carrocería
+                                    <span id="stat-body-val">100%</span>
+                                </div>
+                                <div class="progress-bar"><div class="progress-fill" id="stat-body-fill"></div></div>
+                            </div>
+                            <div class="stat-row">
+                                <div class="stat-label">
+                                    <i class="fa-solid fa-gas-pump"></i> Combustible
+                                    <span id="stat-fuel-val">100%</span>
+                                </div>
+                                <div class="progress-bar"><div class="progress-fill" id="stat-fuel-fill"></div></div>
+                            </div>
+                        </div>
+
+                        <div class="action-buttons">
+                            <button class="btn btn-primary" id="btn-spawn" onclick="spawnVehicle()">
+                                <i class="fa-solid fa-key"></i> Sacar Vehículo
+                            </button>
+                            <button class="btn btn-secondary" id="btn-transfer" onclick="openTransferModal()">
+                                <i class="fa-solid fa-right-left"></i> Traspasar
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="no-selection" class="empty-state">
+                        <i class="fa-solid fa-car"></i>
+                        <p>Selecciona un vehículo para ver los detalles</p>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Camera Help -->
+        <div class="camera-help">
+            <p><i class="fa-solid fa-mouse"></i> Mantén click izquierdo para rotar la cámara</p>
+        </div>
+
+        <div id="transfer-modal" class="modal">
+            <div class="modal-content">
+                <h2 id="modal-title">Traspasar Vehículo</h2>
+                <p>Selecciona el garaje de destino.</p>
+                <div class="form-group">
+                    <label>Garaje Destino (Tarifa: $<span id="transfer-fee-display">500</span>)</label>
+                    <select id="transfer-select">
+                        <!-- Garages injected here -->
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn btn-outline" onclick="closeTransferModal()">Cancelar</button>
+                    <button class="btn btn-primary" onclick="confirmTransfer()">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
