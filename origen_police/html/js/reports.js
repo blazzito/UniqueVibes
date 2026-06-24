@@ -55,6 +55,8 @@ informesFunctions = {
 
 		$(document).on('click', '.police .report-list .report', function () {
 			if ($(this).closest('.federal-admin').length || $(this).closest('.debtors-admin').length) return;
+			$('.police ' + policeTabSelected + ' .report-list .report').removeClass('selected');
+			$(this).addClass('selected');
 			const reportid = $(this).find('.report-name span').text().replace('#', '');
 
 			informesFunctions.loadInforme(reportid);
@@ -63,11 +65,6 @@ informesFunctions = {
 			if (HasPermissionMenu("CreateReport")) return sendNotification('error', Translations.NoPermissionPage);
 			autoEditNewReport = true;
 			informesFunctions.crearInforme();
-		});
-		$(document).on('click', '.police .new-denuncia-button', function () {
-			if (HasPermissionMenu("CreateReport")) return sendNotification('error', Translations.NoPermissionPage);
-			autoEditNewReport = true;
-			informesFunctions.crearDenuncia();
 		});
 		$(document).on('click', '.police .informes .add-persona', function () {
 			if (HasPermissionMenu("AddPeopleToReport")) return sendNotification('error', Translations.NoPermissionPage);
@@ -863,9 +860,7 @@ informesFunctions = {
 
 	crearInforme: function () {
 		if (currentReport && currentReportLocked) {
-			TriggerCallback('origen_police:police:UnlockReport', { reportid: currentReport }).done((cb) => {
-				currentReportLocked = false;
-			});
+			currentReportLocked = false;
 		}
 		TriggerCallback('origen_police:police:NewReport', {}).done((cb) => {
 			if (cb) {
@@ -885,9 +880,7 @@ informesFunctions = {
 	},
 	crearDenuncia: function () {
 		if (currentReport && currentReportLocked) {
-			TriggerCallback('origen_police:police:UnlockReport', { reportid: currentReport }).done((cb) => {
-				currentReportLocked = false;
-			});
+			currentReportLocked = false;
 		}
 		TriggerCallback('origen_police:police:NewDenuncia', {}).done((cb) => {
 			if (cb) {
@@ -1087,9 +1080,7 @@ informesFunctions = {
 
 	loadInforme: function (reportid) {
 		if (currentReport && currentReportLocked) {
-			TriggerCallback('origen_police:police:UnlockReport', { reportid: currentReport }).done((cb) => {
-				currentReportLocked = false;
-			});
+			currentReportLocked = false;
 		}
 		currentReport = String(reportid);
 		$('.police ' + policeTabSelected + ' .informes .informe-report').fadeOut(
@@ -1484,20 +1475,15 @@ $(document).on('click', '.btn-edit-report', function (e) {
 	e.stopPropagation();
 	const btn = $(this);
 	const reportid = String(currentReport);
-	TriggerCallback('origen_police:police:LockReport', { reportid }).done((cb) => {
-		if (cb.success) {
-			currentReportLocked = true;
-			$('.police .informe-report').addClass('editing');
-			$('.police .informe-report input, .police .informe-report textarea').prop('readonly', false);
-			$('.police .informe-report .select-tags').prop('disabled', false).show();
+	
+	currentReportLocked = true;
+	$('.police .informe-report').addClass('editing');
+	$('.police .informe-report input, .police .informe-report textarea').prop('readonly', false);
+	$('.police .informe-report .select-tags').prop('disabled', false).show();
 
-			$('.police ' + policeTabSelected + ' .informes .title-2 .btn-edit-report').removeClass('btn-edit-report').addClass('btn-finish-report').html(`<i class="fas fa-check"></i> <span>${Translations.FinishEdition}</span>`);
-			$('.police .informe-report .new-button, .police .informe-report .delete-report, .police .informe-report .delete-evidence, .police .informe-report .delete-button, .police .informe-report .multa-button, .police .informe-report .tag i').show();
-			sendNotification('success', Translations.EditReport);
-		} else {
-			sendNotification('error', Translations.ReportLockedBy.replace('%s', (cb.name || 'otro agente')));
-		}
-	});
+	$('.police ' + policeTabSelected + ' .informes .title-2 .btn-edit-report').removeClass('btn-edit-report').addClass('btn-finish-report').html(`<i class="fas fa-check"></i> <span>${Translations.FinishEdition}</span>`);
+	$('.police .informe-report .new-button, .police .informe-report .delete-report, .police .informe-report .delete-evidence, .police .informe-report .delete-button, .police .informe-report .multa-button, .police .informe-report .tag i').show();
+	sendNotification('success', Translations.EditReport);
 });
 
 $(document).on('click', '.btn-finish-report', function (e) {
@@ -1506,24 +1492,19 @@ $(document).on('click', '.btn-finish-report', function (e) {
 	const btn = $(this);
 	$('.police .informe-report input, .police .informe-report textarea').blur();
 	const reportid = String(currentReport);
-	TriggerCallback('origen_police:police:UnlockReport', { reportid }).done((cb) => {
-		if (cb) {
-			currentReportLocked = false;
-			$('.police .informe-report').removeClass('editing');
-			$('.police .informe-report input, .police .informe-report textarea').prop('readonly', true);
-			$('.police .informe-report .select-tags').prop('disabled', true).val('0').hide();
+	
+	currentReportLocked = false;
+	$('.police .informe-report').removeClass('editing');
+	$('.police .informe-report input, .police .informe-report textarea').prop('readonly', true);
+	$('.police .informe-report .select-tags').prop('disabled', true).val('0').hide();
 
-			$('.police ' + policeTabSelected + ' .informes .title-2 .btn-finish-report').removeClass('btn-finish-report').addClass('btn-edit-report').html(`<i class="fas fa-edit"></i> <span>${Translations.EditReport}</span>`);
-			$('.police .informe-report .new-button, .police .informe-report .delete-report, .police .informe-report .delete-evidence, .police .informe-report .delete-button, .police .informe-report .multa-button, .police .informe-report .tag i').hide();
-		}
-	});
+	$('.police ' + policeTabSelected + ' .informes .title-2 .btn-finish-report').removeClass('btn-finish-report').addClass('btn-edit-report').html(`<i class="fas fa-edit"></i> <span>${Translations.EditReport}</span>`);
+	$('.police .informe-report .new-button, .police .informe-report .delete-report, .police .informe-report .delete-evidence, .police .informe-report .delete-button, .police .informe-report .multa-button, .police .informe-report .tag i').hide();
 });
 
 
 $(document).on('click', '.policer-close-button', function () {
 	if (currentReport && currentReportLocked) {
-		TriggerCallback('origen_police:police:UnlockReport', { reportid: currentReport }).done((cb) => {
-			currentReportLocked = false;
-		});
+		currentReportLocked = false;
 	}
 });

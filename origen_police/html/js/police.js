@@ -17,7 +17,6 @@ policeFunctions = {
 		$('.police-actions-bar').toggle(isReports || isCriminalCode || isFederal || isDebtors || isCameras || isManage || isRadio);
 		$('.police-action-btn.radio-shortcuts-header').toggle(isRadio);
 		$('.police-action-btn.new-report-button').toggle(isReports);
-		$('.police-action-btn.new-denuncia-button').toggle(isReports);
 		$('.police-action-btn.add-federal-button').toggle(isFederal);
 		$('.police-action-btn.add-agent-button').toggle(isManage);
 		$('.police-action-btn.refresh-cameras-button').toggle(isCameras);

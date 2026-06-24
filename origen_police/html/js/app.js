@@ -106,7 +106,6 @@ function HasPermission(permName) {
 function closeMenu() {
 	if (typeof stopRobberyPoll === 'function') stopRobberyPoll();
 	if (currentReport && currentReportLocked) {
-		TriggerCallback('origen_police:police:UnlockReport', { reportid: currentReport }).done((cb) => { });
 		currentReportLocked = false;
 		$('.police .informes .title-2 .btn-finish-report').removeClass('btn-finish-report').addClass('btn-edit-report').html(`<i class="fas fa-edit"></i> <span>Editar Informe</span>`);
 		currentReport = null;
