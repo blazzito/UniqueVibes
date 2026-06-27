@@ -1,0 +1,1 @@
+AddTextEntry("WEAPON_ELEGANT44", "ELEGANT44")

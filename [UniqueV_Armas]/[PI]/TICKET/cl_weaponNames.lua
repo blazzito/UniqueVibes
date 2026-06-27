@@ -1,0 +1,1 @@
+AddTextEntry("WEAPON_TICKET", "TICKET")

@@ -1,0 +1,1 @@
+AddTextEntry("WEAPON_STITCH3D", "STITCH3D")
