@@ -13,8 +13,13 @@ local windowRightRearState   = true  -- 3 -> RR
 
 RegisterCommand('+opencarcontrols', function()
     local ped = PlayerPedId()
-    if IsPedInAnyVehicle(ped, false) then
-        SendNUIMessage({ action = 'toggleCarControls' })
+    local veh = GetVehiclePedIsIn(ped, false)
+    if veh ~= 0 then
+        local isDriver = (GetPedInVehicleSeat(veh, -1) == ped)
+        SendNUIMessage({ 
+            action = 'toggleCarControls',
+            isDriver = isDriver
+        })
     end
 end)
 

@@ -937,6 +937,10 @@ body {
     bottom: 70vh; /* Se eleva para revelar el panel debajo */
 }
 
+#car-hud.show-controls-passenger {
+    bottom: 22vh; /* Se eleva menos porque el panel es mas pequeño */
+}
+
 /* UNIFIED DASHBOARD */
 #unified-dashboard {
     position: absolute;
@@ -958,7 +962,8 @@ body {
     transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-#car-hud.show-controls #unified-dashboard {
+#car-hud.show-controls #unified-dashboard,
+#car-hud.show-controls-passenger #unified-dashboard {
     opacity: 1;
     pointer-events: auto;
 }

@@ -35,7 +35,7 @@ window.addEventListener('message', function(event) {
             updateCarControlsStates(data);
             break;
         case 'toggleCarControls':
-            toggleControls();
+            toggleControls(event.data.isDriver);
             break;
         case 'updateLocation':
             document.getElementById('zone-name').innerText = data.zone.toUpperCase();
@@ -205,15 +205,37 @@ function setMapType(type) {}
 /* -- CAR CONTROLS INTEGRATION -- */
 let controlsExpanded = false;
 
-function toggleControls() {
+function toggleControls(isDriver = true) {
     controlsExpanded = !controlsExpanded;
     const hud = document.getElementById('car-hud');
     
     if (controlsExpanded) {
-        hud.classList.add('show-controls');
+        if (isDriver) {
+            hud.classList.add('show-controls');
+        } else {
+            hud.classList.add('show-controls-passenger');
+        }
+        
+        const nonSeatButtons = [
+            'btn-lights', 'btn-win-0', 'btn-door-0', 'btn-door-1', 'btn-win-1', 'btn-hood',
+            'btn-engine', 'btn-win-2', 'btn-door-2', 'btn-door-3', 'btn-win-3', 'btn-trunk',
+            'section-radio'
+        ];
+        
+        nonSeatButtons.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) {
+                if (isDriver === false) {
+                    el.style.display = 'none';
+                } else {
+                    el.style.display = '';
+                }
+            }
+        });
+
         postToLua('focusOnControls');
     } else {
-        hud.classList.remove('show-controls');
+        hud.classList.remove('show-controls', 'show-controls-passenger');
         postToLua('focusOffControls');
     }
 }
