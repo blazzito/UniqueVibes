@@ -31,7 +31,8 @@
 	</head>
 
 	<body>
-		<div class="bg dashboard">
+		<div class="bg">
+			<div class="dashboard">
 			<!-- LEFT SIDEBAR -->
 			<div class="dashboard-sidebar">
 				<img src="./img/Unique_Clean.png" class="sidebar-logo" />
@@ -63,7 +64,43 @@
 
 			<!-- RIGHT CONTENT AREA -->
 			<div class="dashboard-content">
-				<!-- PLAYER CARD -->
+				<!-- TOP CONTAINER: Server Stats -->
+				<div class="dashboard-widgets" style="flex-grow: 0; margin-bottom: 0;">
+					<div class="widget">
+						<div class="stats-cards-container">
+							<div class="stat-card" id="stat-citizens">
+								<i class="lni lni-users"></i>
+								<div class="stat-info">
+									<h4>CIUDADANOS</h4>
+									<span class="stat-val"><span id="players-online">0</span></span>
+								</div>
+							</div>
+							<div class="stat-card golden" id="stat-admins">
+								<i class="lni lni-crown"></i>
+								<div class="stat-info">
+									<h4>ADMINISTRADORES</h4>
+									<span class="stat-val"><span id="admins-online">0</span> EN LÍNEA</span>
+								</div>
+							</div>
+							<div class="stat-card" id="stat-police">
+								<i class="lni lni-shield"></i>
+								<div class="stat-info">
+									<h4>POLICÍA</h4>
+									<span class="stat-val" id="police-status">NO DISPONIBLES</span>
+								</div>
+							</div>
+							<div class="stat-card" id="stat-ems">
+								<i class="lni lni-ambulance"></i>
+								<div class="stat-info">
+									<h4>EMS</h4>
+									<span class="stat-val" id="ems-status">NO DISPONIBLES</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- MIDDLE CONTAINER: Player Card -->
 				<div class="player-card">
 					<div class="header-avatar"></div>
 					<div class="player-info">
@@ -91,14 +128,31 @@
 					</div>
 				</div>
 
-				<!-- WIDGETS -->
+				<!-- BOTTOM CONTAINER: Widgets -->
 				<div class="dashboard-widgets">
 					<div class="widget">
-						<h2 class="widget-title">COMERCIOS DISPONIBLES</h2>
+						<h2 class="widget-title" id="rewards-title">RECOMPENSAS DIARIAS <span class="streak-badge">Racha: Día <span id="current-streak">0</span></span></h2>
+						
+						<!-- LOGIN REWARDS TIMELINE (CAROUSEL) -->
+						<div class="carousel-wrapper">
+							<button class="carousel-btn prev-btn" id="rewards-prev"><i class="lni lni-chevron-left"></i></button>
+							<div class="rewards-track-container" id="rewards-scroll-container">
+								<div class="rewards-progress-bar"></div>
+								<div class="rewards-track" id="rewards-track">
+									<!-- Nodes injected by JS -->
+								</div>
+							</div>
+							<button class="carousel-btn next-btn" id="rewards-next"><i class="lni lni-chevron-right"></i></button>
+						</div>
+
+						<!-- ANTIGUO SISTEMA DE COMERCIOS (COMENTADO) 
+						<h2 class="widget-title" style="margin-top: 2vh !important;">COMERCIOS DISPONIBLES</h2>
 						<div class="lista-comercios"></div>
+						-->
 					</div>
 				</div>
 			</div>
+		</div>
 		</div>
 		<script
 			src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"

@@ -121,3 +121,37 @@ Config.Negocios ={
     },
 
 }
+
+Config.MaxStreak = 30 -- Maximum days for the streak timeline
+Config.DailyRewards = {
+    [1] = { label = "$1,000", type = "money", amount = 1000, icon = "lni-coin", milestone = false },
+    [2] = { label = "$1,000", type = "money", amount = 1000, icon = "lni-coin", milestone = false },
+    [3] = { label = "$1,000", type = "money", amount = 1000, icon = "lni-coin", milestone = false },
+    [4] = { label = "$1,000", type = "money", amount = 1000, icon = "lni-coin", milestone = false },
+    [5] = { label = "$1,000", type = "money", amount = 1000, icon = "lni-coin", milestone = false },
+    [6] = { label = "$1,000", type = "money", amount = 1000, icon = "lni-coin", milestone = false },
+    [7] = { label = "Teléfono", type = "item", item = "phone", amount = 1, icon = "lni-mobile", milestone = true },
+    [8] = { label = "$1,000", type = "money", amount = 1000, icon = "lni-coin", milestone = false },
+    [9] = { label = "$1,000", type = "money", amount = 1000, icon = "lni-coin", milestone = false },
+    [10] = { label = "$1,000", type = "money", amount = 1000, icon = "lni-coin", milestone = false },
+    [11] = { label = "$1,000", type = "money", amount = 1000, icon = "lni-coin", milestone = false },
+    [12] = { label = "$1,000", type = "money", amount = 1000, icon = "lni-coin", milestone = false },
+    [13] = { label = "$1,000", type = "money", amount = 1000, icon = "lni-coin", milestone = false },
+    [14] = { label = "$1,000", type = "money", amount = 1000, icon = "lni-coin", milestone = false },
+    [15] = { label = "Kit Médico", type = "item", item = "medkit", amount = 5, icon = "lni-first-aid", milestone = true },
+    [16] = { label = "$1,000", type = "money", amount = 1000, icon = "lni-coin", milestone = false },
+    [17] = { label = "$1,000", type = "money", amount = 1000, icon = "lni-coin", milestone = false },
+    [18] = { label = "$1,000", type = "money", amount = 1000, icon = "lni-coin", milestone = false },
+    [19] = { label = "$1,000", type = "money", amount = 1000, icon = "lni-coin", milestone = false },
+    [20] = { label = "$1,000", type = "money", amount = 1000, icon = "lni-coin", milestone = false },
+    [21] = { label = "$1,000", type = "money", amount = 1000, icon = "lni-coin", milestone = false },
+    [22] = { label = "$1,000", type = "money", amount = 1000, icon = "lni-coin", milestone = false },
+    [23] = { label = "$1,000", type = "money", amount = 1000, icon = "lni-coin", milestone = false },
+    [24] = { label = "$1,000", type = "money", amount = 1000, icon = "lni-coin", milestone = false },
+    [25] = { label = "Chaleco", type = "item", item = "armor", amount = 1, icon = "lni-shield", milestone = true },
+    [26] = { label = "$1,000", type = "money", amount = 1000, icon = "lni-coin", milestone = false },
+    [27] = { label = "$1,000", type = "money", amount = 1000, icon = "lni-coin", milestone = false },
+    [28] = { label = "$1,000", type = "money", amount = 1000, icon = "lni-coin", milestone = false },
+    [29] = { label = "$1,000", type = "money", amount = 1000, icon = "lni-coin", milestone = false },
+    [30] = { label = "Rango VIP", type = "vip", amount = 1, icon = "lni-crown", milestone = true }
+}

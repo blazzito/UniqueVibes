@@ -227,7 +227,16 @@ RegisterNUICallback("SetWaypointinCoords", function(data, cb)
 end)
 
 RegisterNetEvent("origen_notify:business", function(data)
-    Config.Negocios[data.job]['open'] = data.value
+    for k, v in pairs(Config.Negocios) do
+        if v.job == data.job then
+            v.open = data.value
+            break
+        end
+    end
+
+    SendNUIMessage({
+        action = "UpdateNegocios"
+    })
 end)
 
 RegisterNetEvent("pausemenu:client", function(data)
@@ -247,7 +256,11 @@ RegisterNetEvent("pausemenu:client", function(data)
         maxPlayers =  data.max ,
         police = data.police,
         ems = data.ems,
-        mugshot = txd
+        admins = data.admins,
+        mugshot = txd,
+        streak = data.streak,
+        maxStreak = Config.MaxStreak,
+        rewards = Config.DailyRewards
     })
 end)
 
