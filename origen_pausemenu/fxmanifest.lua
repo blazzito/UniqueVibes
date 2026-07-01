@@ -3,8 +3,6 @@
 -- server_script "@ReaperV4/s-bypass.lua"
 -- lua54 "yes" -- needed for Reaper
 
-
-
 fx_version 'cerulean'
 games { 'gta5' }
 
@@ -18,6 +16,8 @@ client_scripts {
 }
 
 server_scripts {
+    '@oxmysql/lib/MySQL.lua',
+    '@mysql-async/lib/MySQL.lua',
     'server/*.lua'
 }
 

@@ -72,6 +72,70 @@ local function UpdateBusinesses()
     end
 end
 
+local function LoadPlayerStreak(xPlayer)
+    if not xPlayer or not xPlayer.identifier then return end
+
+    MySQL.Async.fetchAll('SELECT login_streak, last_login_date FROM users WHERE identifier = @identifier', {
+        ['@identifier'] = xPlayer.identifier
+    }, function(result)
+        local streak = 0
+        local lastDate = nil
+        if result[1] then
+            streak = result[1].login_streak or 0
+            lastDate = result[1].last_login_date
+        end
+
+        local currentDate = os.date("%Y-%m-%d")
+
+        if lastDate == currentDate then
+            playerStreaks[xPlayer.identifier] = streak
+        else
+            local y, m, d = currentDate:match("(%d+)-(%d+)-(%d+)")
+            local todayTime = os.time({year=y, month=m, day=d})
+
+            local isYesterday = false
+            if lastDate and lastDate ~= "" then
+                local ly, lm, ld = lastDate:match("(%d+)-(%d+)-(%d+)")
+                if ly and lm and ld then
+                    local lastTime = os.time({year=ly, month=lm, day=ld})
+                    if lastTime and (todayTime - lastTime <= 86400 * 1.5) and (todayTime - lastTime >= 86400 * 0.5) then
+                        isYesterday = true
+                    end
+                end
+            end
+
+            if isYesterday then
+                streak = streak + 1
+                if streak > Config.MaxStreak then streak = 1 end
+            else
+                streak = 1
+            end
+            
+            playerStreaks[xPlayer.identifier] = streak
+            
+            -- Give reward if exists
+            local reward = Config.DailyRewards[streak]
+            if reward then
+                if reward.type == "money" then
+                    xPlayer.addAccountMoney('bank', reward.amount)
+                    TriggerClientEvent('esx:showNotification', xPlayer.source, "Recompensa Diaria: Has recibido " .. reward.label .. " en el banco.")
+                elseif reward.type == "item" then
+                    xPlayer.addInventoryItem(reward.item, reward.amount)
+                    TriggerClientEvent('esx:showNotification', xPlayer.source, "Recompensa Diaria: Has recibido " .. reward.amount .. "x " .. reward.label .. ".")
+                end
+            else
+                TriggerClientEvent('esx:showNotification', xPlayer.source, "Recompensa Diaria: ¡Racha de " .. streak .. " días! Mantén la racha.")
+            end
+
+            MySQL.Async.execute('UPDATE users SET login_streak = @streak, last_login_date = @date WHERE identifier = @identifier', {
+                ['@streak'] = streak,
+                ['@date'] = currentDate,
+                ['@identifier'] = xPlayer.identifier
+            })
+        end
+    end)
+end
+
 RegisterNetEvent("esx:playerLoaded")
 AddEventHandler("esx:playerLoaded", function(playerId, xPlayer)
     for i, negocio in ipairs(Config.Negocios) do
@@ -82,67 +146,7 @@ AddEventHandler("esx:playerLoaded", function(playerId, xPlayer)
     UpdateBusinesses()
 
     -- Login Rewards Logic
-    if xPlayer and xPlayer.identifier then
-        MySQL.Async.fetchAll('SELECT login_streak, last_login_date FROM users WHERE identifier = @identifier', {
-            ['@identifier'] = xPlayer.identifier
-        }, function(result)
-            local streak = 0
-            local lastDate = nil
-            if result[1] then
-                streak = result[1].login_streak or 0
-                lastDate = result[1].last_login_date
-            end
-
-            local currentDate = os.date("%Y-%m-%d")
-
-            if lastDate == currentDate then
-                playerStreaks[xPlayer.identifier] = streak
-            else
-                local y, m, d = currentDate:match("(%d+)-(%d+)-(%d+)")
-                local todayTime = os.time({year=y, month=m, day=d})
-
-                local isYesterday = false
-                if lastDate and lastDate ~= "" then
-                    local ly, lm, ld = lastDate:match("(%d+)-(%d+)-(%d+)")
-                    if ly and lm and ld then
-                        local lastTime = os.time({year=ly, month=lm, day=ld})
-                        if lastTime and (todayTime - lastTime <= 86400 * 1.5) and (todayTime - lastTime >= 86400 * 0.5) then
-                            isYesterday = true
-                        end
-                    end
-                end
-
-                if isYesterday then
-                    streak = streak + 1
-                    if streak > Config.MaxStreak then streak = 1 end
-                else
-                    streak = 1
-                end
-                
-                playerStreaks[xPlayer.identifier] = streak
-                
-                -- Give reward if exists
-                local reward = Config.DailyRewards[streak]
-                if reward then
-                    if reward.type == "money" then
-                        xPlayer.addAccountMoney('bank', reward.amount)
-                        TriggerClientEvent('esx:showNotification', playerId, "Recompensa Diaria: Has recibido " .. reward.label .. " en el banco.")
-                    elseif reward.type == "item" then
-                        xPlayer.addInventoryItem(reward.item, reward.amount)
-                        TriggerClientEvent('esx:showNotification', playerId, "Recompensa Diaria: Has recibido " .. reward.amount .. "x " .. reward.label .. ".")
-                    end
-                else
-                    TriggerClientEvent('esx:showNotification', playerId, "Recompensa Diaria: ¡Racha de " .. streak .. " días! Mantén la racha.")
-                end
-
-                MySQL.Async.execute('UPDATE users SET login_streak = @streak, last_login_date = @date WHERE identifier = @identifier', {
-                    ['@streak'] = streak,
-                    ['@date'] = currentDate,
-                    ['@identifier'] = xPlayer.identifier
-                })
-            end
-        end)
-    end
+    LoadPlayerStreak(xPlayer)
 end)
 
 RegisterNetEvent("esx:playerDropped")
@@ -160,4 +164,12 @@ end)
 CreateThread(function()
     Wait(2000)
     UpdateBusinesses()
+    
+    local players = ESX.GetPlayers()
+    for _, playerId in ipairs(players) do
+        local xPlayer = ESX.GetPlayerFromId(playerId)
+        if xPlayer then
+            LoadPlayerStreak(xPlayer)
+        end
+    end
 end)
