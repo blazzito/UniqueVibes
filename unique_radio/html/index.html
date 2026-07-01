@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unique Radio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app" class="hidden">
+        <div class="radio-container">
+            <div class="antenna"></div>
+            <div class="volume-knob-container">
+                <i class="fas fa-volume-down" id="vol-down"></i>
+                <div class="volume-knob">
+                    <div class="knob-marker" id="knob-marker"></div>
+                </div>
+                <i class="fas fa-volume-up" id="vol-up"></i>
+            </div>
+            
+            <div class="radio-body">
+                <div class="speaker-grille">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+
+                <div class="screen-bezel">
+                    <div class="screen" id="screen">
+                        <div class="screen-header">
+                            <span class="vol-indicator">VOL <span id="vol-text">50</span>%</span>
+                            <i class="fas fa-signal"></i>
+                        </div>
+                        <div class="channel-display" id="channel-display">OFF</div>
+                        <div class="screen-status" id="status-text">Desconectado</div>
+                    </div>
+                </div>
+
+                <div class="keypad">
+                    <div class="keypad-row">
+                        <button class="key" data-val="1">1</button>
+                        <button class="key" data-val="2">2</button>
+                        <button class="key" data-val="3">3</button>
+                    </div>
+                    <div class="keypad-row">
+                        <button class="key" data-val="4">4</button>
+                        <button class="key" data-val="5">5</button>
+                        <button class="key" data-val="6">6</button>
+                    </div>
+                    <div class="keypad-row">
+                        <button class="key" data-val="7">7</button>
+                        <button class="key" data-val="8">8</button>
+                        <button class="key" data-val="9">9</button>
+                    </div>
+                    <div class="keypad-row">
+                        <button class="key action-key red" id="btn-disconnect"><i class="fas fa-power-off"></i></button>
+                        <button class="key" data-val="0">0</button>
+                        <button class="key action-key green" id="btn-connect"><i class="fas fa-check"></i></button>
+                    </div>
+                    <div class="keypad-row">
+                        <button class="key action-key wide" id="btn-clear"><i class="fas fa-backspace"></i> BORRAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-lock"></i> Canales Privados
+            </div>
+            <div class="anim-selector">
+                <span class="anim-label">Estilo:</span>
+                <button class="anim-btn active" data-anim="1">1</button>
+                <button class="anim-btn" data-anim="2">2</button>
+                <button class="anim-btn" data-anim="3">3</button>
+            </div>
+            <div class="channel-list" id="channel-list">
+                <!-- Dynamically populated -->
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
